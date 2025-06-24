@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="zh"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>Chapter8 MATH1408 - OD&#039;s blog</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="OD&#039;s blog"><meta name="msapplication-TileImage" content="/img/favicon.svg"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="OD&#039;s blog"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="description" content="对偶空间、伴随算子与双线性型1. 对偶空间 (Dual Space)1.1 线性函数&amp;#x2F;线性泛函 (Linear Functional) 设 $V$ 是数域 $F$ 上的一个向量空间。一个从 $V$ 到 $F$ 的线性映射 $f: V \to F$ 称为 $V$ 上的一个线性函数或线性泛函。 即，对任意 $\alpha, \beta \in V$ 和任意标量 $k \in F$，满足： $f(\al"><meta property="og:type" content="blog"><meta property="og:title" content="Chapter8 MATH1408"><meta property="og:url" content="http://example.com/MATH1408/Chapter8-MATH1408.html"><meta property="og:site_name" content="OD&#039;s blog"><meta property="og:description" content="对偶空间、伴随算子与双线性型1. 对偶空间 (Dual Space)1.1 线性函数&amp;#x2F;线性泛函 (Linear Functional) 设 $V$ 是数域 $F$ 上的一个向量空间。一个从 $V$ 到 $F$ 的线性映射 $f: V \to F$ 称为 $V$ 上的一个线性函数或线性泛函。 即，对任意 $\alpha, \beta \in V$ 和任意标量 $k \in F$，满足： $f(\al"><meta property="og:locale" content="zh_CN"><meta property="og:image" content="http://example.com/img/og_image.png"><meta property="article:published_time" content="2025-06-24T09:37:31.007Z"><meta property="article:modified_time" content="2025-06-24T09:37:31.007Z"><meta property="article:author" content="Jiamin Liu"><meta property="article:tag" content="对偶空间"><meta property="article:tag" content="伴随算子"><meta property="article:tag" content="双线性型"><meta property="twitter:card" content="summary"><meta property="twitter:image:src" content="http://example.com/img/og_image.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"http://example.com/MATH1408/Chapter8-MATH1408.html"},"headline":"Chapter8 MATH1408","image":["http://example.com/img/og_image.png"],"datePublished":"2025-06-24T09:37:31.007Z","dateModified":"2025-06-24T09:37:31.007Z","author":{"@type":"Person","name":"Jiamin Liu"},"publisher":{"@type":"Organization","name":"OD's blog","logo":{"@type":"ImageObject","url":"http://example.com/img/logo.svg"}},"description":"对偶空间、伴随算子与双线性型1. 对偶空间 (Dual Space)1.1 线性函数&#x2F;线性泛函 (Linear Functional) 设 $V$ 是数域 $F$ 上的一个向量空间。一个从 $V$ 到 $F$ 的线性映射 $f: V \\to F$ 称为 $V$ 上的一个线性函数或线性泛函。 即，对任意 $\\alpha, \\beta \\in V$ 和任意标量 $k \\in F$，满足： $f(\\al"}</script><link rel="canonical" href="http://example.com/MATH1408/Chapter8-MATH1408.html"><link rel="icon" href="/img/favicon.svg"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.0.0/css/all.css"><link data-pjax rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.7.0/styles/atom-one-light.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link data-pjax rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css"><!--!--><!--!--><!--!--><!--!--><style>.pace{-webkit-pointer-events:none;pointer-events:none;-webkit-user-select:none;-moz-user-select:none;user-select:none}.pace-inactive{display:none}.pace .pace-progress{background:#3273dc;position:fixed;z-index:2000;top:0;right:100%;width:100%;height:2px}</style><script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js"></script><!--!--><!--!--><!-- hexo injector head_end start --><script>
+<html lang="zh"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>Chapter8 MATH1408 - OD&#039;s blog</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="OD&#039;s blog"><meta name="msapplication-TileImage" content="/img/favicon.svg"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="OD&#039;s blog"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="description" content="对偶空间、伴随算子与双线性型1. 对偶空间 (Dual Space)1.1 线性函数&amp;#x2F;线性泛函 (Linear Functional) 设 $V$ 是数域 $F$ 上的一个向量空间。一个从 $V$ 到 $F$ 的线性映射 $f: V \to F$ 称为 $V$ 上的一个线性函数或线性泛函。 即，对任意 $\alpha, \beta \in V$ 和任意标量 $k \in F$，满足： $f(\al"><meta property="og:type" content="blog"><meta property="og:title" content="Chapter8 MATH1408"><meta property="og:url" content="http://example.com/MATH1408/Chapter8-MATH1408.html"><meta property="og:site_name" content="OD&#039;s blog"><meta property="og:description" content="对偶空间、伴随算子与双线性型1. 对偶空间 (Dual Space)1.1 线性函数&amp;#x2F;线性泛函 (Linear Functional) 设 $V$ 是数域 $F$ 上的一个向量空间。一个从 $V$ 到 $F$ 的线性映射 $f: V \to F$ 称为 $V$ 上的一个线性函数或线性泛函。 即，对任意 $\alpha, \beta \in V$ 和任意标量 $k \in F$，满足： $f(\al"><meta property="og:locale" content="zh_CN"><meta property="og:image" content="http://example.com/img/og_image.png"><meta property="article:published_time" content="2025-06-24T12:41:02.878Z"><meta property="article:modified_time" content="2025-06-24T12:41:02.878Z"><meta property="article:author" content="Jiamin Liu"><meta property="article:tag" content="对偶空间"><meta property="article:tag" content="伴随算子"><meta property="article:tag" content="双线性型"><meta property="twitter:card" content="summary"><meta property="twitter:image:src" content="http://example.com/img/og_image.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"http://example.com/MATH1408/Chapter8-MATH1408.html"},"headline":"Chapter8 MATH1408","image":["http://example.com/img/og_image.png"],"datePublished":"2025-06-24T12:41:02.878Z","dateModified":"2025-06-24T12:41:02.878Z","author":{"@type":"Person","name":"Jiamin Liu"},"publisher":{"@type":"Organization","name":"OD's blog","logo":{"@type":"ImageObject","url":"http://example.com/img/logo.svg"}},"description":"对偶空间、伴随算子与双线性型1. 对偶空间 (Dual Space)1.1 线性函数&#x2F;线性泛函 (Linear Functional) 设 $V$ 是数域 $F$ 上的一个向量空间。一个从 $V$ 到 $F$ 的线性映射 $f: V \\to F$ 称为 $V$ 上的一个线性函数或线性泛函。 即，对任意 $\\alpha, \\beta \\in V$ 和任意标量 $k \\in F$，满足： $f(\\al"}</script><link rel="canonical" href="http://example.com/MATH1408/Chapter8-MATH1408.html"><link rel="icon" href="/img/favicon.svg"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.0.0/css/all.css"><link data-pjax rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.7.0/styles/atom-one-light.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link data-pjax rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css"><!--!--><!--!--><!--!--><!--!--><style>.pace{-webkit-pointer-events:none;pointer-events:none;-webkit-user-select:none;-moz-user-select:none;user-select:none}.pace-inactive{display:none}.pace .pace-progress{background:#3273dc;position:fixed;z-index:2000;top:0;right:100%;width:100%;height:2px}</style><script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js"></script><!--!--><!--!--><!-- hexo injector head_end start --><script>
   (function () {
       function switchTab() {
           if (!location.hash) {
@@ -38,10 +38,10 @@
 </li>
 </ul>
 </li>
-<li>$V$ 上所有线性泛函的集合，关于通常的函数加法和标量乘法，构成数域 $F$ 上的一个向量空间，称为 $V$ 的<strong>对偶空间 (Dual Space)</strong>，记作 $V^*$。</li>
+<li>$V$ 上所有线性泛函的集合，关于通常的函数加法和标量乘法，构成数域 $F$ 上的一个向量空间，称为 $V$ 的<strong>对偶空间 (Dual Space)</strong>，记作 $V^{*}$。</li>
 </ul>
 <h3 id="1-2-Riesz-表示定理-针对有限维内积空间"><a href="#1-2-Riesz-表示定理-针对有限维内积空间" class="headerlink" title="1.2 Riesz 表示定理 (针对有限维内积空间)"></a>1.2 Riesz 表示定理 (针对有限维内积空间)</h3><ul>
-<li><strong>定理</strong>: 设 $V$ 是一个 $n$ 维（欧几里得或酉）内积空间 (Inner Product Space)，其内积记为 $(\cdot, \cdot)$。则对于 $V$ 上的任意一个线性泛函 $f \in V^*$，存在唯一的向量 $v \in V$，使得对所有 $x \in V$，都有：<br>$f(x) = (x, v)$</li>
+<li><strong>定理</strong>: 设 $V$ 是一个 $n$ 维（欧几里得或酉）内积空间 (Inner Product Space)，其内积记为 $(\cdot, \cdot)$。则对于 $V$ 上的任意一个线性泛函 $f \in V^{*}$，存在唯一的向量 $v \in V$，使得对所有 $x \in V$，都有：<br>$f(x) = (x, v)$</li>
 <li><strong>证明思路</strong>:<ol>
 <li><strong>存在性</strong>:<ul>
 <li>取 $V$ 的一组标准正交基 $\varepsilon_1, \varepsilon_2, \dots, \varepsilon_n$。</li>
@@ -60,20 +60,20 @@
 </ul>
 <h3 id="1-3-对偶基-Dual-Basis"><a href="#1-3-对偶基-Dual-Basis" class="headerlink" title="1.3 对偶基 (Dual Basis)"></a>1.3 对偶基 (Dual Basis)</h3><ul>
 <li>设 $V$ 是数域 $F$ 上的 $n$ 维向量空间，$\{e_1, e_2, \dots, e_n\}$ 是 $V$ 的一组基。</li>
-<li>存在 $V^<em>$ 中的一组唯一的基 $\{f^1, f^2, \dots, f^n\}$，称为相对于基 $\{e_i\}$ 的<em>*对偶基</em></em>，满足：<br>$f^i(e_j) = \delta_{ij} = \begin{cases} 1, &amp; \text{if } i=j \\ 0, &amp; \text{if } i \ne j \end{cases}$</li>
+<li>存在 $V^{*}$ 中的一组唯一的基 $\{f^1, f^2, \dots, f^n\}$，称为相对于基 $\{e_i\}$ 的<strong>对偶基</strong>，满足：<br>$f^i(e_j) = \delta_{ij} = \begin{cases} 1, &amp; \text{if } i=j \\ 0, &amp; \text{if } i \ne j \end{cases}$</li>
 <li><strong>证明</strong>:<ol>
 <li><strong>构造与存在性</strong>: 对每个 $i=1, \dots, n$，定义 $f^i: V \to F$ 如下：对任意 $x = \sum_{k=1}^n x_k e_k \in V$，令 $f^i(x) = x_i$。容易验证 $f^i$ 是线性的且 $f^i(e_j) = \delta_{ij}$。</li>
 <li><strong>线性无关</strong>: 设 $\sum_{i=1}^n k_i f^i = 0$ (零泛函)。将其作用于 $e_j$：<br>$(\sum k_i f^i)(e_j) = \sum k_i f^i(e_j) = \sum k_i \delta_{ij} = k_j = 0(e_j) = 0$。<br>由于对所有 $j$ 都成立，所以 $k_1 = \dots = k_n = 0$。因此 $\{f^i\}$ 线性无关。</li>
-<li><strong>生成性</strong>: 对任意 $f \in V^<em>$，令 $a_i = f(e_i)$。考虑泛函 $g = \sum_{i=1}^n a_i f^i$。<br>对任意基向量 $e_j$，$g(e_j) = (\sum a_i f^i)(e_j) = \sum a_i \delta_{ij} = a_j = f(e_j)$。<br>由于 $f$ 和 $g$ 在基向量上的取值相同，所以 $f=g$。因此 $\{f^i\}$ 生成 $V^</em>$。<br>□</li>
+<li><strong>生成性</strong>: 对任意 $f \in V^{*} $，令 $a_i = f(e_i)$。考虑泛函 $g = \sum_{i=1}^n a_i f^i$。<br>对任意基向量 $e_j$，$g(e_j) = (\sum a_i f^i)(e_j) = \sum a_i \delta_{ij} = a_j = f(e_j)$。<br>由于 $f$ 和 $g$ 在基向量上的取值相同，所以 $f=g$。因此 $\{f^i\}$ 生成 $V^{*}$。<br>□</li>
 </ol>
 </li>
-<li><strong>推论</strong>: 如果 $V$ 是有限维的，则 $\dim V = \dim V^*$。</li>
+<li><strong>推论</strong>: 如果 $V$ 是有限维的，则 $\dim V = \dim V^{*}$。</li>
 </ul>
 <h3 id="1-4-自然配对-Natural-Pairing-典范配对-Canonical-Pairing"><a href="#1-4-自然配对-Natural-Pairing-典范配对-Canonical-Pairing" class="headerlink" title="1.4 自然配对 (Natural Pairing) / 典范配对 (Canonical Pairing)"></a>1.4 自然配对 (Natural Pairing) / 典范配对 (Canonical Pairing)</h3><ul>
-<li>定义一个映射 $\langle \cdot, \cdot \rangle : V^<em> \times V \to F$ (或 $V \times V^</em> \to F$) 为：<br>$\langle f, x \rangle = f(x)$  (或 $\langle x, f \rangle = f(x)$)</li>
+<li>定义一个映射 $\langle \cdot, \cdot \rangle : V^{*} \times V \to F$ (或 $V \times V^{*} \to F$) 为：<br>$\langle f, x \rangle = f(x)$  (或 $\langle x, f \rangle = f(x)$)</li>
 <li>这个配对是非退化的 (non-degenerate)：<ol>
 <li>如果对所有 $x \in V$，$\langle f, x \rangle = 0$，则 $f=0$ (零泛函)。</li>
-<li>如果对所有 $f \in V^*$，$\langle f, x \rangle = 0$，则 $x=0$ (零向量)。<ul>
+<li>如果对所有 $f \in V^{*}$，$\langle f, x \rangle = 0$，则 $x=0$ (零向量)。<ul>
 <li>证明(2): 若 $x \ne 0$，则可以将其扩充为 $V$ 的一组基 $\{x, e_2, \dots, e_n\}$。构造其对偶基的第一个元素 $f^1$ 使得 $f^1(x)=1 \ne 0$，矛盾。</li>
 </ul>
 </li>
@@ -81,24 +81,24 @@
 </li>
 </ul>
 <h3 id="1-5-再对偶空间-Double-Dual-Space-V"><a href="#1-5-再对偶空间-Double-Dual-Space-V" class="headerlink" title="1.5 再对偶空间 (Double Dual Space) $V^{**}$"></a>1.5 再对偶空间 (Double Dual Space) $V^{**}$</h3><ul>
-<li>$V^{<em>*} = (V^</em>)^<em>$ 是 $V^</em>$ 的对偶空间。</li>
-<li>存在一个从 $V$到 $V^{<strong>}$ 的</strong>典范同构 (Canonical Isomorphism)<strong> $\Phi: V \to V^{</strong>}$，定义为：<br>对于任意 $x \in V$，$\Phi(x)$ 是 $V^<em>$ 上的一个线性泛函，它作用于 $f \in V^</em>$ 的方式是：<br>$(\Phi(x))(f) = f(x) = \langle f, x \rangle$</li>
+<li>$V^{**} = (V^{*})^{*}$ 是 $V^{*}$ 的对偶空间。</li>
+<li>存在一个从 $V$到 $V^{**}$ 的<strong>典范同构 (Canonical Isomorphism)</strong> $\Phi: V \to V^{**}$，定义为：<br>对于任意 $x \in V$，$\Phi(x)$ 是 $V^{*}$ 上的一个线性泛函，它作用于 $f \in V^{*}$ 的方式是：<br>$(\Phi(x))(f) = f(x) = \langle f, x \rangle$</li>
 <li><strong>证明 $\Phi$ 是同构</strong>:<ol>
 <li><strong>线性</strong>: 容易验证 $\Phi(kx_1+x_2) = k\Phi(x_1) + \Phi(x_2)$。</li>
-<li><strong>单射 (Injective)</strong>: 若 $\Phi(x) = 0$ ( $V^{<em>*}$ 中的零泛函)，则对所有 $f \in V^</em>$，$(\Phi(x))(f) = f(x) = 0$。由上面自然配对的非退化性，知 $x=0$。所以 $\ker \Phi = \{0\}$。</li>
-<li><strong>同维</strong>: 因为 $\dim V = \dim V^<em> = \dim V^{*</em>}$ (对于有限维空间)。</li>
+<li><strong>单射 (Injective)</strong>: 若 $\Phi(x) = 0$ ( $V^{**}$ 中的零泛函)，则对所有 $f \in V^{*}$，$(\Phi(x))(f) = f(x) = 0$。由上面自然配对的非退化性，知 $x=0$。所以 $\ker \Phi = \{0\}$。</li>
+<li><strong>同维</strong>: 因为 $\dim V = \dim V^{*} = \dim V^{**}$ (对于有限维空间)。</li>
 <li>因此 $\Phi$ 是一个同构。</li>
 </ol>
 </li>
-<li>由于这个同构是“自然的”（不依赖于基的选择），我们通常将 $V$ 和 $V^{<strong>}$ </strong>等同 (identify)<strong> 起来，即 $V \cong V^{</strong>}$。<br>我们可以说 $V$ 上的元素 $x$ 可以看作是 $V^*$ 上的一个线性泛函，其作用方式是 $x(f) = f(x)$。</li>
+<li>由于这个同构是“自然的”（不依赖于基的选择），我们通常将 $V$ 和 $V^{**}$ <strong>等同 (identify)</strong> 起来，即 $V \cong V^{**}$。<br>我们可以说 $V$ 上的元素 $x$ 可以看作是 $V^{*}$ 上的一个线性泛函，其作用方式是 $x(f) = f(x)$。</li>
 </ul>
 <h2 id="2-伴随算子-Adjoint-Operator"><a href="#2-伴随算子-Adjoint-Operator" class="headerlink" title="2. 伴随算子 (Adjoint Operator)"></a>2. 伴随算子 (Adjoint Operator)</h2><h3 id="2-1-定义-针对内积空间"><a href="#2-1-定义-针对内积空间" class="headerlink" title="2.1 定义 (针对内积空间)"></a>2.1 定义 (针对内积空间)</h3><ul>
 <li>设 $V$ 是一个有限维（欧几里得或酉）内积空间，$\phi: V \to V$ 是一个线性算子。</li>
-<li>存在唯一的线性算子 $\phi^<em>: V \to V$，称为 $\phi$ 的<strong>伴随算子 (Adjoint Operator)</strong>，满足对所有 $u, v \in V$：<br>$(\phi(u), v) = (u, \phi^</em>(v))$</li>
+<li>存在唯一的线性算子 $\phi^{*}: V \to V$，称为 $\phi$ 的<strong>伴随算子 (Adjoint Operator)</strong>，满足对所有 $u, v \in V$：<br>$(\phi(u), v) = (u, \phi{^*}(v))$</li>
 <li><strong>证明</strong>:<ol>
-<li><strong>存在性</strong>: 对固定的 $v \in V$，考虑映射 $L_v: u \mapsto (\phi(u), v)$。$L_v$ 是 $V$ 上的一个线性泛函。<br>由 Riesz 表示定理，存在唯一的向量 $v_1 \in V$ 使得 $L_v(u) = (\phi(u), v) = (u, v_1)$ 对所有 $u \in V$ 成立。<br>定义 $\phi^*(v) = v_1$。</li>
-<li><strong>线性</strong>: 设 $\phi^<em>(v_1) = w_1, \phi^</em>(v_2) = w_2$。则<br>$(\phi(u), kv_1+v_2) = \overline{k}(\phi(u), v_1) + (\phi(u), v_2)$ (在复空间中)<br>$= \overline{k}(u, w_1) + (u, w_2) = (u, kw_1+w_2)$。<br>所以 $\phi^<em>(kv_1+v_2) = kw_1+w_2 = k\phi^</em>(v_1) + \phi^*(v_2)$。</li>
-<li><strong>唯一性</strong>: 假设存在另一个算子 $\psi$ 满足 $(\phi(u), v) = (u, \psi(v))$。<br>则 $(u, \phi^<em>(v)) = (u, \psi(v))$ 对所有 $u,v$ 成立。即 $(u, \phi^</em>(v) - \psi(v)) = 0$。<br>取 $u = \phi^<em>(v) - \psi(v)$，得到 $\phi^</em>(v) - \psi(v) = 0$，所以 $\phi^* = \psi$。<br>□</li>
+<li><strong>存在性</strong>: 对固定的 $v \in V$，考虑映射 $L_v: u \mapsto (\phi(u), v)$。$L_v$ 是 $V$ 上的一个线性泛函。<br>由 Riesz 表示定理，存在唯一的向量 $v_1 \in V$ 使得 $L_v(u) = (\phi(u), v) = (u, v_1)$ 对所有 $u \in V$ 成立。<br>定义 $\phi{^*}(v) = v_1$。</li>
+<li><strong>线性</strong>: 设 $\phi{^*}(v_1) = w_1, \phi^{*}(v_2) = w_2$。则<br>$(\phi(u), kv_1+v_2) = \overline{k}(\phi(u), v_1) + (\phi(u), v_2)$ (在复空间中)<br>$= \overline{k}(u, w_1) + (u, w_2) = (u, kw_1+w_2)$。<br>所以 $\phi^{*}(kv_1+v_2) = kw_1+w_2 = k\phi^{*}(v_1) + \phi^{*}(v_2)$。</li>
+<li><strong>唯一性</strong>: 假设存在另一个算子 $\psi$ 满足 $(\phi(u), v) = (u, \psi(v))$。<br>则 $(u, \phi^{*}(v)) = (u, \psi(v))$ 对所有 $u,v$ 成立。即 $(u, \phi^{*}(v) - \psi(v)) = 0$。<br>取 $u = \phi^{*}(v) - \psi(v)$，得到 $\phi^{*}(v) - \psi(v) = 0$，所以 $\phi^{*} = \psi$。<br>□</li>
 </ol>
 </li>
 </ul>
@@ -106,21 +106,21 @@
 <li>设 $\varepsilon_1, \dots, \varepsilon_n$ 是 $V$ 的一组标准正交基。</li>
 <li>若 $\phi$ 在此基下的矩阵为 $A = (a_{ij})$，则 $\phi(\varepsilon_j) = \sum_k a_{kj} \varepsilon_k$。</li>
 <li>$(\phi(\varepsilon_j), \varepsilon_i) = (\sum_k a_{kj} \varepsilon_k, \varepsilon_i) = a_{ij}$。</li>
-<li>设 $\phi^<em>$ 在此基下的矩阵为 $B = (b_{ij})$，则 $\phi^</em>(\varepsilon_j) = \sum_k b_{kj} \varepsilon_k$。</li>
-<li>$(\varepsilon_j, \phi^*(\varepsilon_i)) = (\varepsilon_j, \sum_k b_{ki} \varepsilon_k) = \overline{b_{ji}}$ (在复空间中；实空间中为 $b_{ji}$)。</li>
-<li>由伴随定义 $a_{ij} = \overline{b_{ji}}$。所以 $B = A^*$ (矩阵的共轭转置，或实数域中的转置 $A^T$)。</li>
-<li><strong>结论</strong>: 在标准正交基下，伴随算子 $\phi^<em>$ 的矩阵是原算子 $\phi$ 的矩阵的共轭转置 (Hermitian transpose) $A^</em>$ (或转置 $A^T$ 如果是实空间)。</li>
+<li>设 $\phi^{*}$ 在此基下的矩阵为 $B = (b_{ij})$，则 $\phi^{*}(\varepsilon_j) = \sum_k b_{kj} \varepsilon_k$。</li>
+<li>$(\varepsilon_j, \phi^{*}(\varepsilon_i)) = (\varepsilon_j, \sum_k b_{ki} \varepsilon_k) = \overline{b_{ji}}$ (在复空间中；实空间中为 $b_{ji}$)。</li>
+<li>由伴随定义 $a_{ij} = \overline{b_{ji}}$。所以 $B = A^{*}$ (矩阵的共轭转置，或实数域中的转置 $A^T$)。</li>
+<li><strong>结论</strong>: 在标准正交基下，伴随算子 $\phi^{*}$ 的矩阵是原算子 $\phi$ 的矩阵的共轭转置 (Hermitian transpose) $A^{*}$ (或转置 $A^T$ 如果是实空间)。</li>
 </ul>
 <h3 id="2-3-伴随算子的性质"><a href="#2-3-伴随算子的性质" class="headerlink" title="2.3 伴随算子的性质"></a>2.3 伴随算子的性质</h3><ul>
-<li>$(\phi + \psi)^<em> = \phi^</em> + \psi^*$</li>
-<li>$(k\phi)^<em> = \overline{k} \phi^</em>$ (在实空间中为 $k\phi^*$)</li>
-<li>$(\phi\psi)^<em> = \psi^</em> \phi^*$</li>
-<li>$(\phi^<em>)^</em> = \phi$</li>
+<li>$(\phi + \psi)^{*} = \phi^{*} + \psi^{*}$</li>
+<li>$(k\phi)^{*} = \overline{k} \phi^{*}$ (在实空间中为 $k\phi^{*}$)</li>
+<li>$(\phi\psi)^{*} = \psi^{*} \phi^{*}$</li>
+<li>$(\phi^{*})^{*} = \phi$</li>
 </ul>
 <h3 id="2-4-自伴算子-Self-Adjoint-Operator"><a href="#2-4-自伴算子-Self-Adjoint-Operator" class="headerlink" title="2.4 自伴算子 (Self-Adjoint Operator)"></a>2.4 自伴算子 (Self-Adjoint Operator)</h3><ul>
-<li>如果 $\phi^<em> = \phi$，则称 $\phi$ 是<em>*自伴算子</em></em>。<ul>
+<li>如果 $\phi^{*} = \phi$，则称 $\phi$ 是<strong>自伴算子</strong>。<ul>
 <li>在实欧氏空间中，称为<strong>对称算子 (Symmetric Operator)</strong>。其矩阵表示为对称矩阵 $A^T=A$ (在标准正交基下)。</li>
-<li>在复酉空间中，称为<strong>埃尔米特算子 (Hermitian Operator)</strong>。其矩阵表示为埃尔米特矩阵 $A^*=A$ (在标准正交基下)。</li>
+<li>在复酉空间中，称为<strong>埃尔米特算子 (Hermitian Operator)</strong>。其矩阵表示为埃尔米特矩阵 $A^{*}=A$ (在标准正交基下)。</li>
 </ul>
 </li>
 <li><strong>性质</strong>:<ul>
@@ -133,33 +133,33 @@
 </ul>
 <h2 id="3-对偶变换-Dual-Transformation-转置映射-Transpose-Map"><a href="#3-对偶变换-Dual-Transformation-转置映射-Transpose-Map" class="headerlink" title="3. 对偶变换 (Dual Transformation) / 转置映射 (Transpose Map)"></a>3. 对偶变换 (Dual Transformation) / 转置映射 (Transpose Map)</h2><ul>
 <li>设 $U, V$ 是数域 $F$ 上的向量空间，$A: U \to V$ 是一个线性映射。</li>
-<li>定义 $A$ 的<strong>对偶变换 (Dual Transformation)</strong> 或<strong>转置映射 (Transpose Map)</strong> $A^<em>: V^</em> \to U^<em>$ (注意方向相反) 如下：<br>对于任意 $f \in V^</em>$ (即 $f: V \to F$ 是线性泛函)，$A^<em>(f)$ 是 $U^</em>$ 中的一个元素 (即 $A^<em>(f): U \to F$ 是线性泛函)，其定义为：<br>$(A^</em>(f))(x) = f(A(x))$  对所有 $x \in U$。<br>也可以写作 $A^*(f) = f \circ A$。</li>
-<li><strong>验证 $A^*$ 是线性的</strong>:<br>设 $f_1, f_2 \in V^<em>$, $k \in F$。<br>$(A^</em>(k f_1 + f_2))(x) = (k f_1 + f_2)(A(x)) = k f_1(A(x)) + f_2(A(x))$<br>$= k (A^<em>(f_1))(x) + (A^</em>(f_2))(x) = (k A^<em>(f_1) + A^</em>(f_2))(x)$。<br>所以 $A^<em>(k f_1 + f_2) = k A^</em>(f_1) + A^*(f_2)$。</li>
-<li><strong>与自然配对的关系</strong>:<br>$\langle A^<em>(f), x \rangle_U = \langle f, A(x) \rangle_V$<br>(其中 $\langle \cdot, \cdot \rangle_U$ 是 $U^</em> \times U \to F$ 的配对, $\langle \cdot, \cdot \rangle_V$ 是 $V^* \times V \to F$ 的配对)<br>这个形式非常类似于内积空间中伴随算子的定义。</li>
+<li>定义 $A$ 的<strong>对偶变换 (Dual Transformation)</strong> 或<strong>转置映射 (Transpose Map)</strong> $A^{*}: V^{*} \to U^{*}$ (注意方向相反) 如下：<br>对于任意 $f \in V^{*}$ (即 $f: V \to F$ 是线性泛函)，$A^{*}(f)$ 是 $U^{*}$ 中的一个元素 (即 $A^{*}(f): U \to F$ 是线性泛函)，其定义为：<br>$(A^{*}(f))(x) = f(A(x))$  对所有 $x \in U$。<br>也可以写作 $A^{*}(f) = f \circ A$。</li>
+<li><strong>验证 $A^{*}$ 是线性的</strong>:<br>设 $f_1, f_2 \in V^{*}$, $k \in F$。<br>$(A^{*}(k f_1 + f_2))(x) = (k f_1 + f_2)(A(x)) = k f_1(A(x)) + f_2(A(x))$<br>$= k (A^{*}(f_1))(x) + (A^{*}(f_2))(x) = (k A^{*}(f_1) + A^{*}(f_2))(x)$。<br>所以 $A^{*}(k f_1 + f_2) = k A^{*}(f_1) + A^{*}(f_2)$。</li>
+<li><strong>与自然配对的关系</strong>:<br>$\langle A^{*}(f), x \rangle_U = \langle f, A(x) \rangle_V$<br>(其中 $\langle \cdot, \cdot \rangle_U$ 是 $U^{*} \times U \to F$ 的配对, $\langle \cdot, \cdot \rangle_V$ 是 $V^{*} \times V \to F$ 的配对)<br>这个形式非常类似于内积空间中伴随算子的定义。</li>
 </ul>
 <h3 id="3-1-对偶变换的性质"><a href="#3-1-对偶变换的性质" class="headerlink" title="3.1 对偶变换的性质"></a>3.1 对偶变换的性质</h3><p>设 $A: U \to V$, $B: V \to W$ 是线性映射。</p>
 <ol>
-<li><strong>唯一性</strong>: 满足 $\langle A^<em>(f), x \rangle_U = \langle f, A(x) \rangle_V$ 的线性映射 $A^</em>: V^<em> \to U^</em>$ 是唯一的。</li>
-<li>$(BA)^<em> = A^</em> B^*$ (注意顺序)</li>
-<li>若 $I: V \to V$ 是恒等映射，则 $I^<em>: V^</em> \to V^*$ 也是恒等映射。</li>
-<li>$A$ 是单射 $\iff A^*$ 是满射。</li>
-<li>$A$ 是满射 $\iff A^*$ 是单射。</li>
-<li>$A$ 是同构 $\iff A^*$ 是同构。</li>
+<li><strong>唯一性</strong>: 满足 $\langle A^{*}(f), x \rangle_U = \langle f, A(x) \rangle_V$ 的线性映射 $A^{*}: V^{*} \to U^{*}$ 是唯一的。</li>
+<li>$(BA)^{*} = A^{*} B^{*}$ (注意顺序)</li>
+<li>若 $I: V \to V$ 是恒等映射，则 $I^{*}: V^{*} \to V^{*}$ 也是恒等映射。</li>
+<li>$A$ 是单射 $\iff A^{*}$ 是满射。</li>
+<li>$A$ 是满射 $\iff A^{*}$ 是单射。</li>
+<li>$A$ 是同构 $\iff A^{*}$ 是同构。</li>
 </ol>
 <h3 id="3-2-对偶变换的矩阵表示"><a href="#3-2-对偶变换的矩阵表示" class="headerlink" title="3.2 对偶变换的矩阵表示"></a>3.2 对偶变换的矩阵表示</h3><ul>
 <li>设 $\{e_i\}$ 是 $U$ 的基，$\{u_j\}$ 是 $V$ 的基。</li>
-<li>设 $\{f^i\}$ 是 $U^<em>$ 中 $\{e_i\}$ 的对偶基，$\{v^j\}$ 是 $V^</em>$ 中 $\{u_j\}$ 的对偶基。</li>
+<li>设 $\{f^i\}$ 是 $U^{*}$ 中 $\{e_i\}$ 的对偶基，$\{v^j\}$ 是 $V^{*}$ 中 $\{u_j\}$ 的对偶基。</li>
 <li>若 $A$ 关于基 $\{e_i\}$ 和 $\{u_j\}$ 的矩阵为 $M = (m_{ji})$ (即 $A(e_i) = \sum_j m_{ji} u_j$)。</li>
-<li>则 $A^*$ 关于基 $\{v^j\}$ 和 $\{f^i\}$ 的矩阵为 $M^T$ (矩阵的转置)。<ul>
-<li><strong>证明</strong>: 设 $A^<em>(v^k) = \sum_l c_{lk} f^l$。<br>$c_{ik} = (A^</em>(v^k))(e_i) = v^k(A(e_i)) = v^k(\sum_j m_{ji} u_j) = \sum_j m_{ji} v^k(u_j) = \sum_j m_{ji} \delta_{kj} = m_{ki}$。<br>所以 $c_{ik} = m_{ki}$，这意味着 $A^*$ 的矩阵是 $M^T$。</li>
+<li>则 $A^{*}$ 关于基 $\{v^j\}$ 和 $\{f^i\}$ 的矩阵为 $M^T$ (矩阵的转置)。<ul>
+<li><strong>证明</strong>: 设 $A^{*}(v^k) = \sum_l c_{lk} f^l$。<br>$c_{ik} = (A^{*}(v^k))(e_i) = v^k(A(e_i)) = v^k(\sum_j m_{ji} u_j) = \sum_j m_{ji} v^k(u_j) = \sum_j m_{ji} \delta_{kj} = m_{ki}$。<br>所以 $c_{ik} = m_{ki}$，这意味着 $A^{*}$ 的矩阵是 $M^T$。</li>
 </ul>
 </li>
 </ul>
 <h3 id="3-3-行向量空间与列向量空间"><a href="#3-3-行向量空间与列向量空间" class="headerlink" title="3.3 行向量空间与列向量空间"></a>3.3 行向量空间与列向量空间</h3><ul>
 <li>如果 $V = F^n$ (列向量空间)，$V_1 = F^m$ (行向量空间)。</li>
-<li>则 $V_1$ 可以看作是 $V$ 的对偶空间 $V^*$ (通过标准内积/点积 $Y X$)。</li>
+<li>则 $V_1$ 可以看作是 $V$ 的对偶空间 $V^{*}$ (通过标准内积/点积 $Y X$)。</li>
 <li>若线性映射 $A: F^n \to F^m$ 由矩阵 $M$ 定义 ($A(X) = MX$)。</li>
-<li>则其对偶变换 $A^<em>: (F^m)^</em> \to (F^n)^<em>$ 可以看作是从 $F^m$ (行向量) 到 $F^n$ (行向量) 的映射，由 $A^</em>(Y) = YM$ 定义。<br>$\langle Y, AX \rangle = Y(AX) = (YA)X = \langle YA, X \rangle$。</li>
+<li>则其对偶变换 $A^{*}: (F^m)^{*} \to (F^n)^{*}$ 可以看作是从 $F^m$ (行向量) 到 $F^n$ (行向量) 的映射，由 $A^{*}(Y) = YM$ 定义。<br>$\langle Y, AX \rangle = Y(AX) = (YA)X = \langle YA, X \rangle$。</li>
 </ul>
 <h2 id="4-双线性型-Bilinear-Form"><a href="#4-双线性型-Bilinear-Form" class="headerlink" title="4. 双线性型 (Bilinear Form)"></a>4. 双线性型 (Bilinear Form)</h2><h3 id="4-1-定义"><a href="#4-1-定义" class="headerlink" title="4.1 定义"></a>4.1 定义</h3><ul>
 <li>设 $U, V$ 是数域 $F$ 上的向量空间。一个映射 $g: U \times V \to F$ 称为一个<strong>双线性型 (Bilinear Form)</strong>，如果它对每个变量都是线性的：<ol>
@@ -199,17 +199,17 @@
 </ul>
 <h3 id="4-6-非退化双线性型与对偶空间的同构"><a href="#4-6-非退化双线性型与对偶空间的同构" class="headerlink" title="4.6 非退化双线性型与对偶空间的同构"></a>4.6 非退化双线性型与对偶空间的同构</h3><ul>
 <li>若 $g: U \times V \to F$ 是非退化双线性型。<ol>
-<li>映射 $\phi: U \to V^*$ 定义为 $(\phi(u))(v) = g(u,v)$ 是一个线性同构 (当 $\dim U = \dim V$ 时)。<ul>
+<li>映射 $\phi: U \to V^{*}$ 定义为 $(\phi(u))(v) = g(u,v)$ 是一个线性同构 (当 $\dim U = \dim V$ 时)。<ul>
 <li><strong>线性</strong>: 显然。</li>
 <li><strong>单射</strong>: 若 $\phi(u) = 0$ (零泛函)，则 $g(u,v)=0$ 对所有 $v \in V$。由于 $g$ 非退化 (右核为0，这意味着如果 $u \ne 0$，必有某个 $v$ 使 $g(u,v) \ne 0$；或者说左核为0)，所以 $u=0$。</li>
-<li>若 $\dim U = \dim V^* (= \dim V)$，则 $\phi$ 是同构。</li>
+<li>若 $\dim U = \dim V^{*} (= \dim V)$，则 $\phi$ 是同构。</li>
 </ul>
 </li>
-<li>类似地，映射 $\psi: V \to U^*$ 定义为 $(\psi(v))(u) = g(u,v)$ 也是一个线性同构。</li>
+<li>类似地，映射 $\psi: V \to U^{*}$ 定义为 $(\psi(v))(u) = g(u,v)$ 也是一个线性同构。</li>
 </ol>
 </li>
-<li>这意味着非退化双线性型在 $U$ 和 $V^<em>$ (以及 $V$ 和 $U^</em>$) 之间建立了一个自然的同构关系。</li>
-<li>特别地，内积 $(\cdot, \cdot)$ 就是一个非退化双线性型 (实数域上) 或半双线性型 (复数域上)，它建立了 $V$ 和 $V^*$ 之间的同构 (Riesz 表示定理)。</li>
+<li>这意味着非退化双线性型在 $U$ 和 $V^{*}$ (以及 $V$ 和 $U^{*}$) 之间建立了一个自然的同构关系。</li>
+<li>特别地，内积 $(\cdot, \cdot)$ 就是一个非退化双线性型 (实数域上) 或半双线性型 (复数域上)，它建立了 $V$ 和 $V^{*}$ 之间的同构 (Riesz 表示定理)。</li>
 </ul>
 <h2 id="5-特殊类型的双线性型-U-V"><a href="#5-特殊类型的双线性型-U-V" class="headerlink" title="5. 特殊类型的双线性型 ($U=V$)"></a>5. 特殊类型的双线性型 ($U=V$)</h2><p>设 $g: V \times V \to F$ 是 $V$ 上的双线性型。</p>
 <h3 id="5-1-对称双线性型-Symmetric-Bilinear-Form"><a href="#5-1-对称双线性型-Symmetric-Bilinear-Form" class="headerlink" title="5.1 对称双线性型 (Symmetric Bilinear Form)"></a>5.1 对称双线性型 (Symmetric Bilinear Form)</h3><ul>
@@ -233,10 +233,10 @@
 <h3 id="5-3-双线性型与线性算子的伴随-Adjoint-of-an-Operator-with-respect-to-a-Bilinear-Form"><a href="#5-3-双线性型与线性算子的伴随-Adjoint-of-an-Operator-with-respect-to-a-Bilinear-Form" class="headerlink" title="5.3 双线性型与线性算子的伴随 (Adjoint of an Operator with respect to a Bilinear Form)"></a>5.3 双线性型与线性算子的伴随 (Adjoint of an Operator with respect to a Bilinear Form)</h3><ul>
 <li>设 $g: V \times V \to F$ 是一个非退化双线性型。</li>
 <li>对任意线性算子 $\phi: V \to V$，存在唯一的线性算子 $\phi^{\text{adj}_g}: V \to V$，称为 $\phi$ 关于 $g$ 的<strong>伴随 (Adjoint)</strong>，使得：<br>$g(\phi(x), y) = g(x, \phi^{\text{adj}_g}(y))$ 对所有 $x,y \in V$。</li>
-<li><strong>证明</strong>: 类似内积空间伴随算子的证明，利用 $g$ 的非退化性以及 $V$ 与 $V^*$ 的同构。<ul>
+<li><strong>证明</strong>: 类似内积空间伴随算子的证明，利用 $g$ 的非退化性以及 $V$ 与 $V^{*}$ 的同构。<ul>
 <li>固定 $y$，映射 $L_y(x) = g(\phi(x),y)$ 是 $V$ 上的线性泛函。</li>
-<li>由于 $g$ 非退化，存在同构 $\Phi_g: V \to V^*$，$(\Phi_g(z))(x) = g(x,z)$。</li>
-<li>$L_y \in V^*$，所以存在唯一的 $z_y \in V$ 使得 $L_y = \Phi_g(z_y)$，即 $g(\phi(x),y) = g(x, z_y)$。</li>
+<li>由于 $g$ 非退化，存在同构 $\Phi_g: V \to V^{*}$，$(\Phi_g(z))(x) = g(x,z)$。</li>
+<li>$L_y \in V^{*}$，所以存在唯一的 $z_y \in V$ 使得 $L_y = \Phi_g(z_y)$，即 $g(\phi(x),y) = g(x, z_y)$。</li>
 <li>定义 $\phi^{\text{adj}_g}(y) = z_y$。</li>
 </ul>
 </li>
