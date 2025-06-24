@@ -1,0 +1,298 @@
+<!doctype html>
+<html lang="zh"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>Chapter6 MATH1408 - OD&#039;s blog</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="OD&#039;s blog"><meta name="msapplication-TileImage" content="/img/favicon.svg"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="OD&#039;s blog"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="description" content="矩阵函数及其应用1. 矩阵序列与矩阵级数 (Sequences and Series of Matrices)1.1 矩阵序列的极限 (Limit of a Matrix Sequence) 定义: 设 $\{A_n &amp;#x3D; (a_{ij}^{(n)})\}$ 是一个 $s \times t$ 矩阵序列。如果对所有的 $i, j$，标量序列 $\{a_{ij}^{(n)}\}$ 收敛于 $a_{ij}"><meta property="og:type" content="blog"><meta property="og:title" content="Chapter6 MATH1408"><meta property="og:url" content="http://example.com/MATH1408/Chapter6-MATH1408.html"><meta property="og:site_name" content="OD&#039;s blog"><meta property="og:description" content="矩阵函数及其应用1. 矩阵序列与矩阵级数 (Sequences and Series of Matrices)1.1 矩阵序列的极限 (Limit of a Matrix Sequence) 定义: 设 $\{A_n &amp;#x3D; (a_{ij}^{(n)})\}$ 是一个 $s \times t$ 矩阵序列。如果对所有的 $i, j$，标量序列 $\{a_{ij}^{(n)}\}$ 收敛于 $a_{ij}"><meta property="og:locale" content="zh_CN"><meta property="og:image" content="http://example.com/img/og_image.png"><meta property="article:published_time" content="2025-06-24T09:33:53.090Z"><meta property="article:modified_time" content="2025-06-24T09:33:53.090Z"><meta property="article:author" content="Jiamin Liu"><meta property="article:tag" content="矩阵序列与矩阵级数"><meta property="article:tag" content="矩阵函数"><meta property="article:tag" content="线性常系数微分方程"><meta property="twitter:card" content="summary"><meta property="twitter:image:src" content="http://example.com/img/og_image.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"http://example.com/MATH1408/Chapter6-MATH1408.html"},"headline":"Chapter6 MATH1408","image":["http://example.com/img/og_image.png"],"datePublished":"2025-06-24T09:33:53.090Z","dateModified":"2025-06-24T09:33:53.090Z","author":{"@type":"Person","name":"Jiamin Liu"},"publisher":{"@type":"Organization","name":"OD's blog","logo":{"@type":"ImageObject","url":"http://example.com/img/logo.svg"}},"description":"矩阵函数及其应用1. 矩阵序列与矩阵级数 (Sequences and Series of Matrices)1.1 矩阵序列的极限 (Limit of a Matrix Sequence) 定义: 设 $\\{A_n &#x3D; (a_{ij}^{(n)})\\}$ 是一个 $s \\times t$ 矩阵序列。如果对所有的 $i, j$，标量序列 $\\{a_{ij}^{(n)}\\}$ 收敛于 $a_{ij}"}</script><link rel="canonical" href="http://example.com/MATH1408/Chapter6-MATH1408.html"><link rel="icon" href="/img/favicon.svg"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.0.0/css/all.css"><link data-pjax rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.7.0/styles/atom-one-light.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link data-pjax rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css"><!--!--><!--!--><!--!--><!--!--><style>.pace{-webkit-pointer-events:none;pointer-events:none;-webkit-user-select:none;-moz-user-select:none;user-select:none}.pace-inactive{display:none}.pace .pace-progress{background:#3273dc;position:fixed;z-index:2000;top:0;right:100%;width:100%;height:2px}</style><script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js"></script><!--!--><!--!--><!-- hexo injector head_end start --><script>
+  (function () {
+      function switchTab() {
+          if (!location.hash) {
+            return;
+          }
+
+          const id = '#' + CSS.escape(location.hash.substring(1));
+          const $tabMenu = document.querySelector(`.tabs a[href="${id}"]`);
+          if (!$tabMenu) {
+            return;
+          }
+
+          const $tabMenuContainer = $tabMenu.parentElement.parentElement;
+          Array.from($tabMenuContainer.children).forEach($menu => $menu.classList.remove('is-active'));
+          Array.from($tabMenuContainer.querySelectorAll('a'))
+              .map($menu => document.getElementById($menu.getAttribute("href").substring(1)))
+              .forEach($content => $content.classList.add('is-hidden'));
+
+          if ($tabMenu) {
+              $tabMenu.parentElement.classList.add('is-active');
+          }
+          const $activeTab = document.querySelector(id);
+          if ($activeTab) {
+              $activeTab.classList.remove('is-hidden');
+          }
+      }
+      switchTab();
+      window.addEventListener('hashchange', switchTab, false);
+  })();
+  </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head><body class="is-2-column"><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/img/logo.svg" alt="OD&#039;s blog" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">主页</a></div><div class="navbar-end"><a class="navbar-item search" title="搜索" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-8-widescreen"><div class="card"><article class="card-content article" role="article"><h1 class="title is-3 is-size-4-mobile">Chapter6 MATH1408</h1><div class="content"><h1 id="矩阵函数及其应用"><a href="#矩阵函数及其应用" class="headerlink" title="矩阵函数及其应用"></a>矩阵函数及其应用</h1><h2 id="1-矩阵序列与矩阵级数-Sequences-and-Series-of-Matrices"><a href="#1-矩阵序列与矩阵级数-Sequences-and-Series-of-Matrices" class="headerlink" title="1. 矩阵序列与矩阵级数 (Sequences and Series of Matrices)"></a>1. 矩阵序列与矩阵级数 (Sequences and Series of Matrices)</h2><h3 id="1-1-矩阵序列的极限-Limit-of-a-Matrix-Sequence"><a href="#1-1-矩阵序列的极限-Limit-of-a-Matrix-Sequence" class="headerlink" title="1.1 矩阵序列的极限 (Limit of a Matrix Sequence)"></a>1.1 矩阵序列的极限 (Limit of a Matrix Sequence)</h3><ul>
+<li><strong>定义</strong>: 设 $\{A_n = (a_{ij}^{(n)})\}$ 是一个 $s \times t$ 矩阵序列。如果对所有的 $i, j$，标量序列 $\{a_{ij}^{(n)}\}$ 收敛于 $a_{ij}$，即 $\lim_{n \to \infty} a_{ij}^{(n)} = a_{ij}$，则称矩阵序列 $\{A_n\}$ 收敛于矩阵 $A = (a_{ij})$，记为 $\lim_{n \to \infty} A_n = A$。</li>
+<li><strong>例子</strong>:<br>$\lim_{n \to \infty} \begin{pmatrix} 1 &amp; 1 - \frac{1}{n} \\ \log(1+\frac{1}{n}) &amp; (1+\frac{1}{n})^n \end{pmatrix}^3 = \begin{pmatrix} 1 &amp; 1 \\ 0 &amp; e \end{pmatrix}^3$</li>
+</ul>
+<h3 id="1-2-矩阵序列极限的性质-Properties-of-Limits-of-Matrix-Sequences"><a href="#1-2-矩阵序列极限的性质-Properties-of-Limits-of-Matrix-Sequences" class="headerlink" title="1.2 矩阵序列极限的性质 (Properties of Limits of Matrix Sequences)"></a>1.2 矩阵序列极限的性质 (Properties of Limits of Matrix Sequences)</h3><p>设 $\lim_{n \to \infty} A_n = A$ 和 $\lim_{n \to \infty} B_n = B$。</p>
+<ul>
+<li>$\lim_{n \to \infty} (A_n \pm B_n) = A \pm B$</li>
+<li>$\lim_{n \to \infty} (A_n B_n) = AB$ (如果乘积有意义)</li>
+<li><strong>(i)</strong> $\lim_{n \to \infty} (kA_n) = kA$ (k为标量)</li>
+<li><strong>(ii)</strong> $\lim_{n \to \infty} (BA_nC) = BAC$ (B, C为常数矩阵，使得乘积有意义)</li>
+<li><strong>(iii)</strong> 如果 $f(x)$ 是一个在 $A_n$ 的特征值及 $A$ 的特征值附近解析的函数 (PPT中表述为“任何多项式$f(x)$”，更一般地，如果$f$是连续的，且$A_n \to A$，则$f(A_n) \to f(A)$，特别是对多项式成立)。则 $\lim_{n \to \infty} f(A_n) = f(\lim_{n \to \infty} A_n) = f(A)$。</li>
+</ul>
+<h3 id="1-3-矩阵级数-Series-of-Matrices"><a href="#1-3-矩阵级数-Series-of-Matrices" class="headerlink" title="1.3 矩阵级数 (Series of Matrices)"></a>1.3 矩阵级数 (Series of Matrices)</h3><ul>
+<li><strong>定义</strong>: 设 $\{A_n\}$ ($n=1, 2, \dots$) 是一个矩阵序列。考虑部分和序列 $S_n = A_1 + A_2 + \dots + A_n$。如果序列 $\{S_n\}$ 收敛于矩阵 $S$，则称矩阵级数 $\sum_{n=1}^{\infty} A_n = A_1 + A_2 + \dots + A_n + \dots$ 收敛于 $S$。</li>
+<li><strong>性质</strong>:<ul>
+<li><strong>(i)</strong> 如果矩阵级数 $\sum_{n=1}^{\infty} A_n$ 收敛，则 $\lim_{n \to \infty} A_n = O$ (零矩阵)。(这是收敛的必要条件，非充分条件)</li>
+<li><strong>(ii)</strong> 如果级数 $\sum A_n$ 和 $\sum B_n$ 都收敛，则对于任意标量 $k, l$，级数 $\sum (kA_n + lB_n)$ 收敛，且 $\sum (kA_n + lB_n) = k \sum A_n + l \sum B_n$。</li>
+</ul>
+</li>
+</ul>
+<h2 id="2-矩阵幂级数与矩阵函数-Matrix-Power-Series-and-Matrix-Functions"><a href="#2-矩阵幂级数与矩阵函数-Matrix-Power-Series-and-Matrix-Functions" class="headerlink" title="2. 矩阵幂级数与矩阵函数 (Matrix Power Series and Matrix Functions)"></a>2. 矩阵幂级数与矩阵函数 (Matrix Power Series and Matrix Functions)</h2><h3 id="2-1-矩阵幂级数-Power-Series-of-a-Matrix"><a href="#2-1-矩阵幂级数-Power-Series-of-a-Matrix" class="headerlink" title="2.1 矩阵幂级数 (Power Series of a Matrix)"></a>2.1 矩阵幂级数 (Power Series of a Matrix)</h3><ul>
+<li><strong>定义</strong>: 对于一个 $n \times n$ 的方阵 $A$，形如 $a_0 E + a_1 A + a_2 A^2 + \dots + a_k A^k + \dots = \sum_{k=0}^{\infty} a_k A^k$ 的级数称为矩阵 $A$ 的<strong>幂级数</strong>。</li>
+<li><strong>收敛性</strong>:<ul>
+<li>设标量幂级数 $f(x) = \sum_{k=0}^{\infty} a_k x^k$ 的收敛半径为 $R$。</li>
+<li>如果矩阵 $A$ 的所有特征值 $\lambda_i$ 都满足 $|\lambda_i| &lt; R$，则矩阵幂级数 $\sum_{k=0}^{\infty} a_k A^k$ 绝对收敛。(这是一个充分条件)。</li>
+<li>更准确地说，级数 $\sum a_k A^k$ 收敛的充要条件是对于 $A$ 的每个Jordan块 $J_m(\lambda)$，级数 $\sum a_k J_m^k(\lambda)$ 收敛。而后者收敛的充要条件是：<ol>
+<li>$|\lambda| &lt; R$。</li>
+<li>如果 $|\lambda| = R$，则级数 $\sum_{k=0}^{\infty} a_k x^k$ 在 $x=\lambda$ 处收敛，并且其直到 $m-1$ 阶的导数级数也在 $x=\lambda$ 处收敛。</li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="2-2-通过-Jordan-标准型定义矩阵函数"><a href="#2-2-通过-Jordan-标准型定义矩阵函数" class="headerlink" title="2.2 通过 Jordan 标准型定义矩阵函数"></a>2.2 通过 Jordan 标准型定义矩阵函数</h3><ul>
+<li>设 $f(x)$ 是一个在包含矩阵 $A$ 的所有特征值的某个区域内解析的函数。</li>
+<li><strong>关键思想</strong>: 利用 $A$ 的 Jordan 标准型 $J = P^{-1}AP = \text{diag}(J_1, J_2, \dots, J_s)$，其中 $J_i$ 是 Jordan 块。<br>则 $f(A) = P f(J) P^{-1} = P \text{diag}(f(J_1), f(J_2), \dots, f(J_s)) P^{-1}$。</li>
+<li><p><strong>计算 $f(J_i)$</strong>:<br>设 $J_i = \lambda_i E + N_i$ 是一个 $n_i \times n_i$ 的 Jordan 块，其中 $N_i$ 是相应的幂零矩阵 ($N_i^{n_i}=O$)。<br>如果 $f(x)$ 在 $\lambda_i$ 处有泰勒展开 $f(x) = f(\lambda_i) + f’(\lambda_i)(x-\lambda_i) + \frac{f’’(\lambda_i)}{2!}(x-\lambda_i)^2 + \dots$<br>则 $f(J_i) = f(\lambda_i E + N_i) = f(\lambda_i)E + f’(\lambda_i)N_i + \frac{f’’(\lambda_i)}{2!}N_i^2 + \dots + \frac{f^{(n_i-1)}(\lambda_i)}{(n_i-1)!}N_i^{n_i-1}$。<br>(因为 $N_i^k = O$ for $k \ge n_i$)。</p>
+<ul>
+<li><strong>$f(J_i)$ 的矩阵形式</strong>:<br>$f(J_i) = \begin{pmatrix}<br>f(\lambda_i) &amp; f’(\lambda_i) &amp; \frac{f’’(\lambda_i)}{2!} &amp; \dots &amp; \frac{f^{(n_i-1)}(\lambda_i)}{(n_i-1)!} \\<br>0 &amp; f(\lambda_i) &amp; f’(\lambda_i) &amp; \dots &amp; \frac{f^{(n_i-2)}(\lambda_i)}{(n_i-2)!} \\<br>\vdots &amp; \ddots &amp; \ddots &amp; \ddots &amp; \vdots \\<br>0 &amp; \dots &amp; 0 &amp; f(\lambda_i) &amp; f’(\lambda_i) \\<br>0 &amp; \dots &amp; \dots &amp; 0 &amp; f(\lambda_i)<br>\end{pmatrix}$</li>
+</ul>
+</li>
+<li><p><strong>例子</strong>:</p>
+<ul>
+<li>设 $J = \begin{pmatrix} 3 &amp; 1 &amp; 0 \\ 0 &amp; 3 &amp; 1 \\ 0 &amp; 0 &amp; 3 \end{pmatrix}$。这里 $\lambda=3, n=3$。</li>
+<li>计算 $e^J$: $f(x)=e^x, f’(x)=e^x, f’’(x)=e^x$。<br>$e^J = \begin{pmatrix}<br>e^3 &amp; e^3 &amp; \frac{e^3}{2!} \\<br>0 &amp; e^3 &amp; e^3 \\<br>0 &amp; 0 &amp; e^3<br>\end{pmatrix}$</li>
+<li>计算 $\sin J$: $f(x)=\sin x, f’(x)=\cos x, f’’(x)=-\sin x$。<br>$\sin J = \begin{pmatrix}<br>\sin 3 &amp; \cos 3 &amp; \frac{-\sin 3}{2!} \\<br>0 &amp; \sin 3 &amp; \cos 3 \\<br>0 &amp; 0 &amp; \sin 3<br>\end{pmatrix}$</li>
+</ul>
+</li>
+<li><p><strong>定理 (矩阵函数收敛性)</strong>:<br>设幂级数 $f(x) = \sum a_n x^n$ 的收敛半径为 $R$。如果矩阵 $A$ 的所有特征值的模都小于 $R$ (即谱半径 $\rho(A) &lt; R$)，则矩阵幂级数 $f(A) = \sum a_n A^n$ 收敛。</p>
+<ul>
+<li><em>证明思路</em>:<br>将 $A$ 化为 Jordan 标准型 $J = P^{-1}AP$。则 $S_N(A) = P S_N(J) P^{-1}$，其中 $S_N(x) = \sum_{k=0}^N a_k x^k$。<br>当 $N \to \infty$时，$S_N(\lambda_i) \to f(\lambda_i)$，$S_N^{(k)}(\lambda_i) \to f^{(k)}(\lambda_i)$。<br>因此 $S_N(J_i) \to f(J_i)$ 对每个 Jordan 块成立。<br>所以 $S_N(J) \to f(J)$，从而 $S_N(A) \to f(A)$。<br>□</li>
+</ul>
+</li>
+</ul>
+<h3 id="2-3-常见矩阵函数-Common-Matrix-Functions"><a href="#2-3-常见矩阵函数-Common-Matrix-Functions" class="headerlink" title="2.3 常见矩阵函数 (Common Matrix Functions)"></a>2.3 常见矩阵函数 (Common Matrix Functions)</h3><p>(定义基于其泰勒级数，收敛半径为 $\infty$)</p>
+<ol>
+<li><strong>指数函数 (Exponential Function)</strong>:<br>$e^A = \sum_{n=0}^{\infty} \frac{A^n}{n!} = E + A + \frac{A^2}{2!} + \dots$</li>
+<li><strong>正弦函数 (Sine Function)</strong>:<br>$\sin A = \sum_{n=1}^{\infty} (-1)^{n-1} \frac{A^{2n-1}}{(2n-1)!} = A - \frac{A^3}{3!} + \frac{A^5}{5!} - \dots$</li>
+<li><strong>余弦函数 (Cosine Function)</strong>:<br>$\cos A = \sum_{n=0}^{\infty} (-1)^n \frac{A^{2n}}{(2n)!} = E - \frac{A^2}{2!} + \frac{A^4}{4!} - \dots$</li>
+<li><strong>二项式级数 (Binomial Series)</strong>:<br>如果 $A$ 的所有特征值的模都小于 1 (即 $\rho(A) &lt; 1$)，则<br>$(E+A)^\alpha = \sum_{n=0}^{\infty} \binom{\alpha}{n} A^n = E + \alpha A + \frac{\alpha(\alpha-1)}{2!}A^2 + \dots$<br>特别地，$(E-A)^{-1} = \sum_{n=0}^{\infty} A^n = E + A + A^2 + \dots$ (Neumann 级数)</li>
+<li><strong>对数函数 (Logarithm Function)</strong>:<br>如果 $A$ 的所有特征值的模都小于 1 (即 $\rho(A) &lt; 1$)，则<br>$\ln(E+A) = \sum_{n=1}^{\infty} (-1)^{n-1} \frac{A^n}{n} = A - \frac{A^2}{2} + \frac{A^3}{3} - \dots$</li>
+</ol>
+<h3 id="2-4-矩阵值函数的导数-Derivative-of-a-Matrix-valued-Function"><a href="#2-4-矩阵值函数的导数-Derivative-of-a-Matrix-valued-Function" class="headerlink" title="2.4 矩阵值函数的导数 (Derivative of a Matrix-valued Function)"></a>2.4 矩阵值函数的导数 (Derivative of a Matrix-valued Function)</h3><ul>
+<li><strong>定义</strong>: 设 $A(t) = (a_{ij}(t))$ 是一个矩阵，其元素 $a_{ij}(t)$ 是变量 $t$ 的可微函数。则 $A(t)$ 的导数定义为 $\frac{d}{dt}A(t) = A’(t) = (\frac{d}{dt}a_{ij}(t))$。</li>
+<li><strong>性质</strong>:<ul>
+<li>$(e^{At})’ = A e^{At}$</li>
+<li>$(\sin(At))’ = A \cos(At)$</li>
+<li>$(\cos(At))’ = -A \sin(At)$</li>
+<li><em>证明 $(e^{At})’$</em>:<br>$e^{At} = E + At + \frac{A^2t^2}{2!} + \dots + \frac{A^n t^n}{n!} + \dots$<br>逐项求导 (在收敛域内可以这样做):<br>$\frac{d}{dt}(e^{At}) = 0 + A + \frac{A^2 \cdot 2t}{2!} + \dots + \frac{A^n \cdot nt^{n-1}}{n!} + \dots$<br>$= A + A^2t + \dots + \frac{A^n t^{n-1}}{(n-1)!} + \dots$<br>$= A (E + At + \dots + \frac{A^{n-1}t^{n-1}}{(n-1)!} + \dots) = A e^{At}$<br>□</li>
+</ul>
+</li>
+</ul>
+<h2 id="3-计算矩阵函数的其他方法-Other-Methods-for-Computing-Matrix-Functions"><a href="#3-计算矩阵函数的其他方法-Other-Methods-for-Computing-Matrix-Functions" class="headerlink" title="3. 计算矩阵函数的其他方法 (Other Methods for Computing Matrix Functions)"></a>3. 计算矩阵函数的其他方法 (Other Methods for Computing Matrix Functions)</h2><p>除了使用 Jordan 标准型，还有基于插值多项式的方法。</p>
+<h3 id="3-1-基于-Cayley-Hamilton-定理的插值-Interpolation-based-on-Cayley-Hamilton-Theorem"><a href="#3-1-基于-Cayley-Hamilton-定理的插值-Interpolation-based-on-Cayley-Hamilton-Theorem" class="headerlink" title="3.1 基于 Cayley-Hamilton 定理的插值 (Interpolation based on Cayley-Hamilton Theorem)"></a>3.1 基于 Cayley-Hamilton 定理的插值 (Interpolation based on Cayley-Hamilton Theorem)</h3><ul>
+<li><strong>核心思想</strong>: 任何矩阵 $A$ 都满足其自身的特征方程。更一般地，它满足其最小多项式 $m_A(x)$。<br>即 $m_A(A) = O$。</li>
+<li><p><strong>方法</strong>:</p>
+<ol>
+<li>找到矩阵 $A$ 的<strong>最小多项式</strong> $m_A(x)$。设 $\deg(m_A(x)) = d \le n$。</li>
+<li>构造一个次数小于 $d$ 的多项式 $p(x) = c_0 + c_1 x + \dots + c_{d-1} x^{d-1}$。</li>
+<li>使得 $p(x)$ 与函数 $f(x)$ 在 $A$ 的特征值处 “一致”。具体来说，如果 $\lambda_i$ 是 $m_A(x)$ 的一个 $k_i$ 重根 (也是 $A$ 的特征值)，则需要满足：<br>$p(\lambda_i) = f(\lambda_i)$<br>$p’(\lambda_i) = f’(\lambda_i)$<br>…<br>$p^{(k_i-1)}(\lambda_i) = f^{(k_i-1)}(\lambda_i)$<br>对 $m_A(x)$ 的所有不同根 $\lambda_i$ 及其重数 $k_i$ 都成立。</li>
+<li>解出系数 $c_0, \dots, c_{d-1}$。</li>
+<li>则 $f(A) = p(A) = c_0 E + c_1 A + \dots + c_{d-1} A^{d-1}$。</li>
+</ol>
+<ul>
+<li>这个 $p(x)$ 称为 $f(x)$ 关于矩阵 $A$ (或其最小多项式) 的<strong>插值多项式</strong> (Hermite 插值)。</li>
+</ul>
+</li>
+<li><strong>定理</strong>: 如果 $p(x)$ 是满足上述条件的插值多项式，则 $f(A)=p(A)$。<ul>
+<li><em>证明思路</em>:<br>令 $g(x) = f(x) - p(x)$。则 $g^{(j)}(\lambda_i) = 0$ for $j=0, \dots, k_i-1$ 对 $m_A(x)$ 的每个根 $\lambda_i$ 及其重数 $k_i$ 成立。<br>这意味着 $m_A(x)$ 整除 $g(x)$，即 $g(x) = m_A(x) h(x)$ 对某个多项式 $h(x)$ 成立。<br>因此 $g(A) = m_A(A) h(A) = O \cdot h(A) = O$。<br>所以 $f(A) - p(A) = O \Rightarrow f(A) = p(A)$。<br>□</li>
+</ul>
+</li>
+<li><p><strong>例子 1</strong>: $A = \begin{pmatrix} -1 &amp; 4 \\ 3 &amp; 2 \end{pmatrix}$，求 $e^A$。</p>
+<ul>
+<li>特征多项式: $|\lambda E - A| = \lambda^2 - \lambda - 10 = (\lambda-5)(\lambda+2)$。</li>
+<li>最小多项式 $m_A(x) = (x-5)(x+2)$ (因为根是单根)。</li>
+<li>设 $p(x) = ax+b$。$f(x)=e^x$。</li>
+<li>$p(5) = f(5) \Rightarrow 5a+b = e^5$</li>
+<li>$p(-2) = f(-2) \Rightarrow -2a+b = e^{-2}$</li>
+<li>解得 $a = \frac{1}{7}(e^5 - e^{-2})$, $b = \frac{1}{7}(2e^5 + 5e^{-2})$。</li>
+<li>$e^A = p(A) = aA + bE = \frac{1}{7}(e^5 - e^{-2})A + \frac{1}{7}(2e^5 + 5e^{-2})E$。</li>
+</ul>
+</li>
+<li><p><strong>例子 2</strong>: $A = \begin{pmatrix} -2 &amp; 2 &amp; -2 \\ 4 &amp; -1 &amp; 2 \\ -1 &amp; 1 &amp; 0 \\ 0 &amp; 0 &amp; 1 \\ -2 &amp; 1 &amp; -1 &amp; 4 \end{pmatrix}$ (这个矩阵似乎不完整或有误，假设是一个4x4矩阵)。<br>特征多项式 $|\lambda E - A| = (\lambda-1)^3(\lambda-2)$。<br>假设最小多项式 $m_A(x) = (\lambda-1)^2(\lambda-2)$ (这取决于Jordan块的结构)。<br>求 $\cos(\pi A)$。设 $f(x) = \cos(\pi x)$。<br>设 $p(x) = ax^2+bx+c$ (次数小于 $m_A(x)$ 的次数3)。<br>条件:</p>
+<ol>
+<li>$p(2) = f(2) \Rightarrow 4a+2b+c = \cos(2\pi) = 1$</li>
+<li>$p(1) = f(1) \Rightarrow a+b+c = \cos(\pi) = -1$</li>
+<li>$p’(1) = f’(1)$: $p’(x)=2ax+b$, $f’(x)=-\pi \sin(\pi x)$。<br>$2a+b = -\pi \sin(\pi) = 0 \Rightarrow b = -2a$。<br>代入(2): $a-2a+c = -1 \Rightarrow -a+c=-1 \Rightarrow c=a-1$。<br>代入(1): $4a+2(-2a)+(a-1) = 1 \Rightarrow 4a-4a+a-1=1 \Rightarrow a-1=1 \Rightarrow a=2$。<br>$b = -2(2) = -4$。<br>$c = 2-1 = 1$。<br>$p(x) = 2x^2 - 4x + 1$。<br>$\cos(\pi A) = p(A) = 2A^2 - 4A + E$。</li>
+</ol>
+</li>
+</ul>
+<h3 id="3-2-Lagrange-Sylvester-插值公式-Lagrange-Sylvester-Interpolation-Formula"><a href="#3-2-Lagrange-Sylvester-插值公式-Lagrange-Sylvester-Interpolation-Formula" class="headerlink" title="3.2 Lagrange-Sylvester 插值公式 (Lagrange-Sylvester Interpolation Formula)"></a>3.2 Lagrange-Sylvester 插值公式 (Lagrange-Sylvester Interpolation Formula)</h3><p>这是上述方法的一个更明确的公式化。</p>
+<ul>
+<li>设矩阵 $A$ 的最小多项式为 $m_A(x) = \prod_{i=1}^s (x-\lambda_i)^{\alpha_i}$，其中 $\lambda_i$ 是互不相同的特征值，$\sum \alpha_i = d = \deg(m_A(x))$。</li>
+<li>$f(A)$ 可以表示为：<br>$f(A) = p(A) = \sum_{i=1}^s \left[ \sum_{j=0}^{\alpha_i-1} \frac{1}{j!} \left( \frac{d^j}{dx^j} \frac{f(x)}{m_i(x)} \right)_{x=\lambda_i} (A-\lambda_i E)^j \right] m_i(A)$<br>其中 $m_i(x) = \frac{m_A(x)}{(x-\lambda_i)^{\alpha_i}}$ (即除去 $(x-\lambda_i)^{\alpha_i}$ 因子后的部分)。</li>
+<li><strong>特例 (最小多项式无重根)</strong>:<br>$m_A(x) = (x-\lambda_1)(x-\lambda_2)\dots(x-\lambda_d)$ (所有 $\alpha_i=1$, $d=s$)<br>$f(A) = \sum_{i=1}^d f(\lambda_i) Z_i(A)$<br>其中 $Z_i(x) = \frac{\prod_{j \ne i} (x-\lambda_j)}{\prod_{j \ne i} (\lambda_i-\lambda_j)}$ 是 Lagrange 插值基多项式。<br>$Z_i(A)$ 是投影算子。</li>
+<li><p><strong>例子 (最小多项式无重根)</strong>: $A = \begin{pmatrix} 2 &amp; -3 &amp; 0 \\ 1 &amp; -2 &amp; 0 \\ 2 &amp; 3 &amp; \sqrt{3} \end{pmatrix}$，求 $\arctan A$。<br>特征多项式: $|\lambda E - A| = ((\lambda-2)(\lambda+2) - (-3)(1))(\lambda-\sqrt{3}) = (\lambda^2-4+3)(\lambda-\sqrt{3}) = (\lambda^2-1)(\lambda-\sqrt{3}) = (\lambda-1)(\lambda+1)(\lambda-\sqrt{3})$。<br>这是最小多项式 (因为根是单根)。 $\lambda_1=1, \lambda_2=-1, \lambda_3=\sqrt{3}$。<br>$p_1(x) = \frac{(x+1)(x-\sqrt{3})}{(1+1)(1-\sqrt{3})} = \frac{(x+1)(x-\sqrt{3})}{2(1-\sqrt{3})}$<br>$p_2(x) = \frac{(x-1)(x-\sqrt{3})}{(-1-1)(-1-\sqrt{3})} = \frac{(x-1)(x-\sqrt{3})}{2(1+\sqrt{3})}$<br>$p_3(x) = \frac{(x-1)(x+1)}{(\sqrt{3}-1)(\sqrt{3}+1)} = \frac{x^2-1}{2}$<br>$\arctan A = (\arctan 1) p_1(A) + (\arctan(-1)) p_2(A) + (\arctan \sqrt{3}) p_3(A)$<br>$= \frac{\pi}{4} p_1(A) - \frac{\pi}{4} p_2(A) + \frac{\pi}{3} p_3(A)$<br>代入 $p_i(A)$ 并化简得到 $\frac{\pi}{24}(5A^2 + 3\sqrt{3}A - 8E)$。</p>
+</li>
+<li><p><strong>特例 (最小多项式只有一个根)</strong>:<br>$m_A(x) = (x-\lambda_1)^\alpha$。<br>则 $f(A) = p(A) = f(\lambda_1)E + f’(\lambda_1)(A-\lambda_1 E) + \dots + \frac{f^{(\alpha-1)}(\lambda_1)}{(\alpha-1)!}(A-\lambda_1 E)^{\alpha-1}$。</p>
+</li>
+<li><strong>例子</strong>: $A = \begin{pmatrix} 0 &amp; -1 \\ 4 &amp; 4 \end{pmatrix}$，求 $f(A) = \arcsin(A/4)$。<br>特征多项式: $|\lambda E - A| = \lambda(\lambda-4) - (-1)(4) = \lambda^2-4\lambda+4 = (\lambda-2)^2$。<br>最小多项式 $m_A(x) = (x-2)^2$ (因为 $A-2E = \begin{pmatrix} -2 &amp; -1 \\ 4 &amp; 2 \end{pmatrix} \ne O$ )。<br>$\lambda_1=2, \alpha=2$。<br>$f(x) = \arcsin(x/4)$。<br>$f(2) = \arcsin(2/4) = \arcsin(1/2) = \pi/6$。<br>$f’(x) = \frac{1}{4} \frac{1}{\sqrt{1-(x/4)^2}} = \frac{1}{\sqrt{16-x^2}}$。<br>$f’(2) = \frac{1}{\sqrt{16-4}} = \frac{1}{\sqrt{12}} = \frac{1}{2\sqrt{3}}$。<br>$f(A) = p(A) = f(2)E + f’(2)(A-2E) = \frac{\pi}{6}E + \frac{1}{2\sqrt{3}}(A-2E)$。</li>
+</ul>
+<h3 id="3-3-基于待定系数的插值-PPT中的”待定系数法”"><a href="#3-3-基于待定系数的插值-PPT中的”待定系数法”" class="headerlink" title="3.3 基于待定系数的插值 (PPT中的”待定系数法”)"></a>3.3 基于待定系数的插值 (PPT中的”待定系数法”)</h3><p>这是方法3.1的另一种表述，通过解线性方程组确定插值多项式的系数。</p>
+<ul>
+<li><p><strong>思想</strong>:</p>
+<ol>
+<li>找到矩阵 $A$ 的最小多项式 $m_A(x) = (x-\lambda_1)^{\alpha_1} \dots (x-\lambda_s)^{\alpha_s}$，$\deg(m_A(x))=d$。</li>
+<li>设插值多项式 $p(x) = c_0 + c_1 x + \dots + c_{d-1} x^{d-1}$。</li>
+<li>建立方程组:<br>$p^{(k)}(\lambda_i) = f^{(k)}(\lambda_i)$ for $k=0, \dots, \alpha_i-1$ and $i=1, \dots, s$。<br>这会得到 $d$ 个关于 $c_0, \dots, c_{d-1}$ 的线性方程。</li>
+<li>解出 $c_j$，则 $f(A) = p(A)$。</li>
+</ol>
+</li>
+<li><p><strong>例子</strong>: $A = \begin{pmatrix} 3 &amp; 1 &amp; -3 \\ -7 &amp; -2 &amp; 9 \\ -2 &amp; -1 &amp; 4 \end{pmatrix}$，求 $e^A$。<br>特征多项式 $|\lambda E - A| = (\lambda-1)(\lambda-2)^2$。<br>假设这就是最小多项式 $m_A(x) = (x-1)(x-2)^2$ (需要验证 $(A-E)(A-2E) \ne O$)。<br>$d=3$。设 $p(x) = ax^2+bx+c$。 $f(x)=e^x$。<br>条件:</p>
+<ol>
+<li>$p(1) = f(1) \Rightarrow a+b+c = e^1 = e$</li>
+<li>$p(2) = f(2) \Rightarrow 4a+2b+c = e^2$</li>
+<li>$p’(2) = f’(2)$: $p’(x)=2ax+b$, $f’(x)=e^x$。<br>$4a+b = e^2$<br>解这个关于 $a,b,c$ 的方程组。<br>PPT中给出的答案 $e^A = e(A-2E)^2 + e^2(A-E)$ 是错误的。它似乎试图用一种特定形式的基多项式，但系数不对。<br>正确的解法是通过解上述方程组得到 $a,b,c$，然后 $e^A = aA^2+bA+cE$。<br>或者使用 PPT 最后一种方法:<br>$f(A) = f(1)B_{10} + f(2)B_{20} + f’(2)B_{21}$，其中 $B_{ij}$ 是待定的常数矩阵。<br>选择特定的函数 $f_1(x)=(x-2)^2$, $f_2(x)=(x-1)(x-2)$, $f_3(x)=(x-1)$ (使其在特征值处取特定值和导数值) 来确定 $B_{ij}$。<br>例如，取 $f_1(x)=(x-2)^2$:<br>$f_1(1)=1, f_1(2)=0, f_1’(2)=0$。<br>则 $(A-2E)^2 = 1 \cdot B_{10} + 0 \cdot B_{20} + 0 \cdot B_{21} = B_{10}$。<br>取 $f_2(x)=(x-1)(x-2)$:<br>$f_2(1)=0, f_2(2)=0, f_2’(2)=(x-1)|_{x=2} = 1$。<br>则 $(A-E)(A-2E) = 0 \cdot B_{10} + 0 \cdot B_{20} + 1 \cdot B_{21} = B_{21}$。<br>取 $f_3(x)=x-1$:<br>$f_3(1)=0, f_3(2)=1, f_3’(2)=1$。<br>则 $A-E = 0 \cdot B_{10} + 1 \cdot B_{20} + 1 \cdot B_{21} = B_{20} + B_{21}$。<br>所以 $B_{20} = (A-E) - (A-E)(A-2E)$。<br>因此 $e^A = e^1 (A-2E)^2 + e^2 [(A-E)-(A-E)(A-2E)] + e^2 (A-E)(A-2E)$<br>$e^A = e(A-2E)^2 + e^2(A-E)$。 (PPT这个形式是对的，之前的 $f(1)B_{10}$ 等项应该对应 $e$, $e^2$, $e^2$)<br>PPT的结果 $e^A = e \begin{pmatrix} \dots \end{pmatrix}$ 给出具体数值。</li>
+</ol>
+</li>
+</ul>
+<h2 id="4-矩阵函数的性质-Properties-of-Matrix-Functions"><a href="#4-矩阵函数的性质-Properties-of-Matrix-Functions" class="headerlink" title="4. 矩阵函数的性质 (Properties of Matrix Functions)"></a>4. 矩阵函数的性质 (Properties of Matrix Functions)</h2><p>设 $f(A)$ 和 $g(A)$ 是矩阵 $A$ 的函数 (例如通过收敛幂级数定义，或通过插值多项式定义)。</p>
+<ul>
+<li><strong>可交换性</strong>: $f(A)g(A) = g(A)f(A)$。<ul>
+<li><em>证明思路</em>: 如果 $f(A)=p(A)$ 和 $g(A)=q(A)$，其中 $p, q$ 是多项式，则 $p(A)q(A)=q(A)p(A)$ 因为矩阵多项式可交换。对于更一般的函数，可以通过幂级数逼近或Jordan型证明。<br>□</li>
+</ul>
+</li>
+<li><strong>复合函数</strong>: 如果 $h(x) = f(x)g(x)$，则 $h(A) = f(A)g(A)$。<ul>
+<li><em>证明思路</em>:<br>设 $p(x), q(x), r(x)$ 分别是 $f(x), g(x), h(x)$ 关于 $A$ 的插值多项式。<br>需要证明 $r(A) = p(A)q(A)$。<br>关键在于证明 $r(x)$ 和 $p(x)q(x)$ 在 $A$ 的谱值 (特征值及其导数值) 上一致。<br>$r^{(k)}(\lambda_i) = h^{(k)}(\lambda_i) = (fg)^{(k)}(\lambda_i) = \sum_{j=0}^k \binom{k}{j} f^{(j)}(\lambda_i) g^{(k-j)}(\lambda_i)$<br>而 $(pq)^{(k)}(\lambda_i) = \sum_{j=0}^k \binom{k}{j} p^{(j)}(\lambda_i) q^{(k-j)}(\lambda_i)$。<br>由于 $p^{(j)}(\lambda_i) = f^{(j)}(\lambda_i)$ 和 $q^{(j)}(\lambda_i) = g^{(j)}(\lambda_i)$ 在谱点上成立，所以 $r(x)$ 和 $p(x)q(x)$ 在谱点上一致。<br>因此 $r(A) = (pq)(A) = p(A)q(A)$。<br>□</li>
+</ul>
+</li>
+<li><strong>逆函数</strong>: $(e^A)^{-1} = e^{-A}$。<ul>
+<li><em>证明</em>: $e^x e^{-x} = e^0 = 1$。所以 $e^A e^{-A} = E$。<br>□</li>
+</ul>
+</li>
+<li><strong>例子</strong>: $A = \begin{pmatrix} -1 &amp; 0 \\ -1 &amp; 1 \end{pmatrix}$，求 $(e^A)^{-1}$。<br>$(e^A)^{-1} = e^{-A}$。计算 $e^{-A}$。<br>$-A = \begin{pmatrix} 1 &amp; 0 \\ 1 &amp; -1 \end{pmatrix}$。<br>特征值是 $1, -1$。<br>$e^{-A} = c_1(-A) + c_0 E$。<br>$c_1(1)+c_0 = e^1$<br>$c_1(-1)+c_0 = e^{-1}$<br>$2c_1 = e-e^{-1} \Rightarrow c_1 = \frac{e-e^{-1}}{2}$<br>$2c_0 = e+e^{-1} \Rightarrow c_0 = \frac{e+e^{-1}}{2}$<br>$e^{-A} = \frac{e-e^{-1}}{2} (-A) + \frac{e+e^{-1}}{2} E = \begin{pmatrix} e &amp; 0 \\ \frac{e-e^{-1}}{2} &amp; e^{-1} \end{pmatrix}$。 (PPT的计算有误，它是对$e^A$的元素求倒数，这是错的)<br>正确的 $e^A$ 应该是 $\begin{pmatrix} e^{-1} &amp; 0 \\ \frac{e^{-1}-e}{2} &amp; e \end{pmatrix}$ (基于 $A$ 的特征值 $-1, 1$)<br>然后 $e^{-A}$ 应该是 $\begin{pmatrix} e &amp; 0 \\ \frac{e-e^{-1}}{2} &amp; e^{-1} \end{pmatrix}$。</li>
+</ul>
+<h2 id="5-线性常系数微分方程组-Systems-of-Linear-Differential-Equations-with-Constant-Coefficients"><a href="#5-线性常系数微分方程组-Systems-of-Linear-Differential-Equations-with-Constant-Coefficients" class="headerlink" title="5. 线性常系数微分方程组 (Systems of Linear Differential Equations with Constant Coefficients)"></a>5. 线性常系数微分方程组 (Systems of Linear Differential Equations with Constant Coefficients)</h2><h3 id="5-1-齐次方程组-Homogeneous-Systems"><a href="#5-1-齐次方程组-Homogeneous-Systems" class="headerlink" title="5.1 齐次方程组 (Homogeneous Systems)"></a>5.1 齐次方程组 (Homogeneous Systems)</h3><ul>
+<li>方程: $\frac{d}{dt}X(t) = AX(t)$</li>
+<li>初始条件: $X(0) = X_0 = (c_1, c_2, \dots, c_s)^T$</li>
+<li><p><strong>解</strong>: $X(t) = e^{At} X_0$</p>
+<ul>
+<li><em>验证 (唯一性)</em>:<br>设 $Y(t)$ 是另一个解。令 $Z(t) = e^{-At}Y(t)$。<br>$\frac{d}{dt}Z(t) = (\frac{d}{dt}e^{-At})Y(t) + e^{-At}(\frac{d}{dt}Y(t))$<br>$= (-Ae^{-At})Y(t) + e^{-At}(AY(t))$<br>$= -Ae^{-At}Y(t) + Ae^{-At}Y(t) = O$。<br>所以 $Z(t)$ 是一个常数向量。 $Z(t) = Z(0) = e^{-A \cdot 0}Y(0) = X_0$。<br>因此 $Y(t) = e^{At}Z(t) = e^{At}X_0$。<br>□</li>
+</ul>
+</li>
+<li><p><strong>例子</strong>: $\frac{d}{dt}X(t) = \begin{pmatrix} -7 &amp; -7 &amp; 5 \\ -8 &amp; -8 &amp; -5 \\ 0 &amp; -5 &amp; 0 \end{pmatrix} X(t)$，初始条件 $X(0) = (3, -2, 1)^T$。<br>令 $A = \begin{pmatrix} -7 &amp; -7 &amp; 5 \\ -8 &amp; -8 &amp; -5 \\ 0 &amp; -5 &amp; 0 \end{pmatrix}$。<br>特征多项式 $|\lambda E - A| = (\lambda-5)(\lambda+5)(\lambda+15)$。<br>使用 Lagrange 插值计算 $e^{At}$ (因为根是单根):<br>$e^{At} = \frac{(A+5E)(A+15E)}{(5+5)(5+15)} e^{5t} + \frac{(A-5E)(A+15E)}{(-5-5)(-5+15)} e^{-5t} + \frac{(A-5E)(A+5E)}{(-15-5)(-15+5)} e^{-15t}$<br>$= \frac{e^{5t}}{200}(A^2+20A+75E) - \frac{e^{-5t}}{100}(A^2+10A-75E) + \frac{e^{-15t}}{200}(A^2-25E)$<br>(PPT中的第二项 $A^2+20A-75E$ 应该是 $A^2+10A-75E$ 因为 $(-5+15)=10$)。<br>代入 $A, A^2$ 计算出 $e^{At}$ 的具体矩阵形式。<br>然后 $X(t) = e^{At} X_0$。</p>
+</li>
+</ul>
+<h3 id="5-2-非齐次方程组-Non-homogeneous-Systems"><a href="#5-2-非齐次方程组-Non-homogeneous-Systems" class="headerlink" title="5.2 非齐次方程组 (Non-homogeneous Systems)"></a>5.2 非齐次方程组 (Non-homogeneous Systems)</h3><ul>
+<li>方程: $\frac{d}{dt}X(t) = AX(t) + u(t)$</li>
+<li>初始条件: $X(t_0) = X_0$</li>
+<li><p><strong>解 (常数变易法 / Variation of Parameters)</strong>:<br>$X(t) = e^{A(t-t_0)}X_0 + \int_{t_0}^{t} e^{A(t-s)}u(s)ds$</p>
+<ul>
+<li><em>推导</em>:<br>设解的形式为 $X(t) = e^{At}c(t)$。<br>$\frac{d}{dt}X(t) = Ae^{At}c(t) + e^{At}c’(t)$。<br>代入原方程: $Ae^{At}c(t) + e^{At}c’(t) = A e^{At}c(t) + u(t)$。<br>$e^{At}c’(t) = u(t) \Rightarrow c’(t) = e^{-At}u(t)$。<br>$c(t) = \int_{t_0}^{t} e^{-As}u(s)ds + C_0$ (其中 $C_0$ 是常数向量)。<br>$X(t) = e^{At} \left( \int_{t_0}^{t} e^{-As}u(s)ds + C_0 \right)$<br>$= \int_{t_0}^{t} e^{A(t-s)}u(s)ds + e^{At}C_0$。<br>使用初始条件 $X(t_0)=X_0$:<br>$X_0 = e^{At_0}C_0 \Rightarrow C_0 = e^{-At_0}X_0$。<br>$X(t) = \int_{t_0}^{t} e^{A(t-s)}u(s)ds + e^{A(t-t_0)}X_0$。<br>□</li>
+</ul>
+</li>
+<li><p><strong>例子</strong>: $\frac{d}{dt}X(t) = \begin{pmatrix} 3 &amp; -1 &amp; 1 \\ 2 &amp; 0 &amp; -1 \\ 1 &amp; -1 &amp; 2 \end{pmatrix} X(t) + \begin{pmatrix} 0 \\ 0 \\ e^{2t} \end{pmatrix}$，初始条件 $X(0)=(1,1,1)^T$。<br>$A = \begin{pmatrix} 3 &amp; -1 &amp; 1 \\ 2 &amp; 0 &amp; -1 \\ 1 &amp; -1 &amp; 2 \end{pmatrix}$, $u(s) = \begin{pmatrix} 0 \\ 0 \\ e^{2s} \end{pmatrix}$。<br>特征多项式 $|\lambda E - A| = \lambda(\lambda-2)(\lambda-3)$。特征值 $0, 2, 3$。<br>找到特征向量，构造 $P$ 使得 $P^{-1}AP = D = \text{diag}(0,2,3)$。<br>$e^{At} = P e^{Dt} P^{-1} = P \text{diag}(1, e^{2t}, e^{3t}) P^{-1}$。<br>计算 $e^{At}X_0$ 和 $\int_0^t e^{A(t-s)}u(s)ds$。</p>
+</li>
+</ul>
+<h3 id="5-3-高阶线性常系数微分方程-Higher-order-Linear-ODEs-with-Constant-Coefficients"><a href="#5-3-高阶线性常系数微分方程-Higher-order-Linear-ODEs-with-Constant-Coefficients" class="headerlink" title="5.3 高阶线性常系数微分方程 (Higher-order Linear ODEs with Constant Coefficients)"></a>5.3 高阶线性常系数微分方程 (Higher-order Linear ODEs with Constant Coefficients)</h3><ul>
+<li><strong>齐次方程</strong>: $y^{(n)} + a_1 y^{(n-1)} + \dots + a_n y = 0$<br>初始条件 $y(0)=y_0, y’(0)=y_1, \dots, y^{(n-1)}(0)=y_{n-1}$。</li>
+<li><strong>转换为一阶方程组</strong>:<br>令 $x_1(t) = y(t), x_2(t) = y’(t), \dots, x_n(t) = y^{(n-1)}(t)$。<br>$X(t) = (x_1, \dots, x_n)^T$。<br>$\frac{d}{dt}X(t) = A X(t)$，其中 $A$ 是友矩阵 (Companion Matrix):<br>$A = \begin{pmatrix}<br>0 &amp; 1 &amp; 0 &amp; \dots &amp; 0 \\<br>0 &amp; 0 &amp; 1 &amp; \dots &amp; 0 \\<br>\vdots &amp; \vdots &amp; \vdots &amp; \ddots &amp; \vdots \\<br>0 &amp; 0 &amp; 0 &amp; \dots &amp; 1 \\<br>-a_n &amp; -a_{n-1} &amp; -a_{n-2} &amp; \dots &amp; -a_1<br>\end{pmatrix}$<br>初始条件 $X(0) = (y_0, y_1, \dots, y_{n-1})^T$。</li>
+<li><p><strong>解</strong>: $X(t) = e^{At}X_0$。<br>$y(t)$ 是 $X(t)$ 的第一个分量: $y(t) = (1, 0, \dots, 0) e^{At} X_0$。</p>
+</li>
+<li><p><strong>非齐次方程</strong>: $y^{(n)} + a_1 y^{(n-1)} + \dots + a_n y = u(t)$<br>转换为 $\frac{d}{dt}X(t) = AX(t) + U(t)$，其中 $U(t) = (0, \dots, 0, u(t))^T$。</p>
+</li>
+<li><p><strong>解</strong>: $y(t) = (1, 0, \dots, 0) \left( e^{At}X_0 + \int_0^t e^{A(t-s)}U(s)ds \right)$。</p>
+</li>
+<li><p><strong>例子</strong>: $y’’’ - 3y’’ - 6y’ + 8y = e^{2t}$，初始条件 $(y(0), y’(0), y’’(0)) = (1,0,1)$。<br>$A = \begin{pmatrix} 0 &amp; 1 &amp; 0 \\ 0 &amp; 0 &amp; 1 \\ -8 &amp; 6 &amp; 3 \end{pmatrix}$。<br>特征多项式 $|\lambda E - A| = \lambda^3 - 3\lambda^2 - 6\lambda + 8 = (\lambda-1)(\lambda+2)(\lambda-4)$。<br>计算 $e^{At}$，然后代入公式。</p>
+</li>
+</ul>
+<h2 id="6-与矩阵可交换的矩阵-Matrices-Commuting-with-a-Given-Matrix"><a href="#6-与矩阵可交换的矩阵-Matrices-Commuting-with-a-Given-Matrix" class="headerlink" title="6. 与矩阵可交换的矩阵 (Matrices Commuting with a Given Matrix)"></a>6. 与矩阵可交换的矩阵 (Matrices Commuting with a Given Matrix)</h2><p>这部分讨论中心化子 $C(A) = \{B \mid AB=BA\}$。</p>
+<h3 id="6-1-基本思想与-Jordan-标准型的作用"><a href="#6-1-基本思想与-Jordan-标准型的作用" class="headerlink" title="6.1 基本思想与 Jordan 标准型的作用"></a>6.1 基本思想与 Jordan 标准型的作用</h3><ul>
+<li>设 $A = PJP^{-1}$，其中 $J = \text{diag}(J_1, \dots, J_s)$ 是 $A$ 的 Jordan 标准型。<br>$B$ 与 $A$ 可交换 ($AB=BA$) 当且仅当 $PJP^{-1}B = B PJP^{-1}$。<br>令 $B_1 = P^{-1}BP$，则 $JB_1 = B_1J$。<br>即，与 $A$ 可交换的矩阵 $B$ 具有形式 $B = PB_1P^{-1}$，其中 $B_1$ 与 $J$ 可交换。</li>
+<li>将 $B_1$ 分块为 $B_1 = (B_{ij})$，与 $J$ 的分块对应。<br>$JB_1 = B_1J \iff J_i B_{ij} = B_{ij} J_j$ for all $i,j=1, \dots, s$。</li>
+</ul>
+<h3 id="6-2-J-i-B-ij-B-ij-J-j-的解"><a href="#6-2-J-i-B-ij-B-ij-J-j-的解" class="headerlink" title="6.2 $J_i B_{ij} = B_{ij} J_j$ 的解"></a>6.2 $J_i B_{ij} = B_{ij} J_j$ 的解</h3><ul>
+<li><p><strong>情况 1: $\lambda_i \ne \lambda_j$ (对应 $J_i$ 和 $J_j$ 的特征值不同)</strong><br>$J_i = \lambda_i E_{k_i} + N_i$, $J_j = \lambda_j E_{k_j} + N_j$。<br>$(\lambda_i E_{k_i} + N_i)B_{ij} = B_{ij}(\lambda_j E_{k_j} + N_j)$<br>$N_i B_{ij} - B_{ij} N_j = (\lambda_j - \lambda_i) B_{ij}$。<br>由于 $N_i$ 和 $N_j$ 是幂零的，算子 $L(X) = N_i X - X N_j$ 也是幂零的。<br>而 $(\lambda_j - \lambda_i)$ 是非零常数。<br>如果 $B_{ij} \ne O$，则 $L(B_{ij})$ 是幂零的，但 $(\lambda_j - \lambda_i)B_{ij}$ 不是幂零的 (除非 $B_{ij}=O$)。<br>因此，当 $\lambda_i \ne \lambda_j$ 时，必有 $B_{ij} = O$ (零矩阵)。<br>这意味着 $B_1$ 是一个分块对角矩阵 (如果 $A$ 的所有特征值都不同，则 $J$ 是对角阵，$B_1$ 也是对角阵)。</p>
+</li>
+<li><p><strong>情况 2: $\lambda_i = \lambda_j$ (特征值相同)</strong><br>$N_i B_{ij} = B_{ij} N_j$。<br>这种矩阵方程的解 $B_{ij}$ 是一个特定形式的上三角 Toeplitz 型矩阵 (或更复杂的结构，取决于 $N_i, N_j$ 的大小)。<br>如果 $i=j$ (对角块 $B_{ii}$)，则 $N_i B_{ii} = B_{ii} N_i$。<br>$B_{ii}$ 是一个与单个 Jordan 块 $N_i$ (或 $J_i$) 可交换的矩阵。这种矩阵具有上三角 Toeplitz 结构：<br>$B_{ii} = \begin{pmatrix}<br>b_0 &amp; b_1 &amp; \dots &amp; b_{k_i-1} \\<br>0 &amp; b_0 &amp; \dots &amp; b_{k_i-2} \\<br>\vdots &amp; \ddots &amp; \ddots &amp; \vdots \\<br>0 &amp; \dots &amp; 0 &amp; b_0<br>\end{pmatrix}$<br>(即 $B_{ii}$ 是 $N_i$ 的多项式: $B_{ii} = p(N_i)$)。</p>
+</li>
+</ul>
+<h3 id="6-3-C-C-A-二次中心化子"><a href="#6-3-C-C-A-二次中心化子" class="headerlink" title="6.3 $C(C(A))$: 二次中心化子"></a>6.3 $C(C(A))$: 二次中心化子</h3><ul>
+<li><strong>定理 (二次中心化子定理 )</strong>: 对于任何 $n \times n$ 复矩阵 $A$，$C(C(A)) = \{p(A) \mid p \text{ is a polynomial}\}$。<br>即，与所有和 $A$ 可交换的矩阵都可交换的矩阵，恰好是 $A$ 的多项式。</li>
+<li><em>证明思路 (非常复杂，依赖于上述 $B_{ij}$ 的结构分析)</em>:<ol>
+<li>$C(A)$ 中的元素 $B=PB_1P^{-1}$，其中 $B_1$ 的块 $B_{ij}$ 满足 $J_iB_{ij}=B_{ij}J_j$。</li>
+<li>考虑 $C \in C(C(A))$，则 $C$ 与 $C(A)$ 中的所有 $B$ 可交换。<br>$C = PC_1P^{-1}$，则 $C_1$ 与 $C(A)$ 对应的所有 $B_1$ 可交换。</li>
+<li>通过仔细分析 $B_{ij}$ 的结构 (特别是当 $\lambda_i=\lambda_j$ 时，这些块可以取得相当的自由度，例如可以构造出某些特定位置为1其他为0的 $B_{ij}$)，可以证明 $C_1$ 必须具有如下形式：<br>$C_1 = \text{diag}(g_1(J_1), g_2(J_2), \dots, g_s(J_s))$，其中 $g_k(x)$ 是多项式。<br>并且，如果 $\lambda_i = \lambda_j$，则 $g_i(x)$ 和 $g_j(x)$ 的系数必须满足一定关系，使得它们在谱点上一致，最终可以统一为一个多项式 $g(x)$。<br>即 $C_1 = g(J)$。</li>
+<li>因此 $C = Pg(J)P^{-1} = g(PJP^{-1}) = g(A)$。<br>□</li>
+</ol>
+</li>
+<li><strong>推论</strong>: 如果一个矩阵 $B$ 与所有和 $A$ 可交换的矩阵都可交换，那么 $B$ 一定是 $A$ 的多项式。</li>
+<li><strong>特例</strong>: 如果 $A$ 的多项式构成了 $C(A)$ (例如 $A$ 是非减损的，即最小多项式等于特征多项式)，则 $C(C(A)) = C(A)$。</li>
+</ul>
+</div><div class="article-licensing box"><div class="licensing-title"><p>Chapter6 MATH1408</p><p><a href="http://example.com/MATH1408/Chapter6-MATH1408.html">http://example.com/MATH1408/Chapter6-MATH1408.html</a></p></div><div class="licensing-meta level is-mobile"><div class="level-left"><div class="level-item is-narrow"><div><h6>作者</h6><p>Jiamin Liu</p></div></div><div class="level-item is-narrow"><div><h6>发布于</h6><p>2025-06-24</p></div></div><div class="level-item is-narrow"><div><h6>更新于</h6><p>2025-06-24</p></div></div><div class="level-item is-narrow"><div><h6>许可协议</h6><p><a class="icons" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="icon fab fa-creative-commons"></i></a><a class="icons" rel="noopener" target="_blank" title="Attribution" href="https://creativecommons.org/licenses/by/4.0/"><i class="icon fab fa-creative-commons-by"></i></a><a class="icons" rel="noopener" target="_blank" title="Noncommercial" href="https://creativecommons.org/licenses/by-nc/4.0/"><i class="icon fab fa-creative-commons-nc"></i></a></p></div></div></div></div></div><div class="article-tags is-size-7 mb-4"><span class="mr-2">#</span><a class="link-muted mr-2" rel="tag" href="/"></a><a class="link-muted mr-2" rel="tag" href="/"></a><a class="link-muted mr-2" rel="tag" href="/"></a></div><!--!--></article></div><!--!--><div class="card" id="comments"><div class="card-content"><h3 class="title is-5">评论</h3><div class="notification is-danger">You forgot to set the <code>shortname</code> for Disqus. Please set it in <code>_config.yml</code>.</div></div></div></div><div class="column column-left is-4-tablet is-4-desktop is-4-widescreen  order-1"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar" src="/img/avatar.png" alt="Jiamin Liu"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">Jiamin Liu</p><p class="is-size-6 is-block">别卷了别卷了别卷了</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>China</span></p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">文章</p><a href="/archives/"><p class="title">1</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">分类</p><a href="/categories/"><p class="title">0</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">标签</p><a href="/tags/"><p class="title">0</p></a></div></div></nav></div></div><!--!--></div><!--!--></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/img/logo.svg" alt="OD&#039;s blog" height="28"></a><p class="is-size-7"><span>&copy; 2025 Jiamin Liu</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a></p><p class="is-size-7">© 2019</p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("zh-cn");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script data-pjax src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="回到顶端" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script data-pjax src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
+      window.cookieconsent.initialise({
+        type: "info",
+        theme: "edgeless",
+        static: false,
+        position: "bottom-left",
+        content: {
+          message: "此网站使用Cookie来改善您的体验。",
+          dismiss: "知道了！",
+          allow: "允许使用Cookie",
+          deny: "拒绝",
+          link: "了解更多",
+          policy: "Cookie政策",
+          href: "https://www.cookiesandyou.com/",
+        },
+        palette: {
+          popup: {
+            background: "#edeff5",
+            text: "#838391"
+          },
+          button: {
+            background: "#4b81e8"
+          },
+        },
+      });
+    });</script><script src="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/js/lightgallery.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><script type="text/javascript" id="MathJax-script" async>MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']]
+      },
+      svg: {
+        fontCache: 'global'
+      },
+      chtml: {
+        matchFontHeight: false
+      }
+    };</script><script src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js"></script><script src="https://cdn.jsdelivr.net/npm/pjax@0.2.8/pjax.min.js"></script><script src="/js/pjax.js"></script><!--!--><!--!--><!--!--><script data-pjax src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="想要查找什么..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script data-pjax src="/js/insight.js" defer></script><script data-pjax>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"想要查找什么...","untitled":"(无标题)","posts":"文章","pages":"页面","categories":"分类","tags":"标签"});
+        });</script></body></html>

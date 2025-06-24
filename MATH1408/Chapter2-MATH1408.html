@@ -1,0 +1,355 @@
+<!doctype html>
+<html lang="zh"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>Chapter2_MATH1408 - OD&#039;s blog</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="OD&#039;s blog"><meta name="msapplication-TileImage" content="/img/favicon.svg"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="OD&#039;s blog"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="description" content="线代回顾1. 向量空间与内积空间 (Vector Spaces and Inner Product Spaces)1.1 实向量空间 $R^n$ (Real Vector Space $R^n$) 定义: $R^n$ 是所有 $n$ 维实数列向量的集合。对于 $\alpha, \beta \in R^n$, $\alpha &amp;#x3D; (x_1, x_2, \dots, x_n)^T$, $\beta &amp;#x3D;"><meta property="og:type" content="blog"><meta property="og:title" content="Chapter2_MATH1408"><meta property="og:url" content="http://example.com/MATH1408/Chapter2-MATH1408.html"><meta property="og:site_name" content="OD&#039;s blog"><meta property="og:description" content="线代回顾1. 向量空间与内积空间 (Vector Spaces and Inner Product Spaces)1.1 实向量空间 $R^n$ (Real Vector Space $R^n$) 定义: $R^n$ 是所有 $n$ 维实数列向量的集合。对于 $\alpha, \beta \in R^n$, $\alpha &amp;#x3D; (x_1, x_2, \dots, x_n)^T$, $\beta &amp;#x3D;"><meta property="og:locale" content="zh_CN"><meta property="og:image" content="http://example.com/img/og_image.png"><meta property="article:published_time" content="2025-06-24T09:10:55.662Z"><meta property="article:modified_time" content="2025-06-24T09:10:55.662Z"><meta property="article:author" content="Jiamin Liu"><meta property="article:tag" content="向量空间与内积空间"><meta property="article:tag" content="矩阵分解"><meta property="article:tag" content="线性方程组"><meta property="article:tag" content="子空间"><meta property="article:tag" content="投影"><meta property="article:tag" content="正交化"><meta property="article:tag" content="等价关系"><meta property="article:tag" content="商空间"><meta property="twitter:card" content="summary"><meta property="twitter:image:src" content="http://example.com/img/og_image.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"http://example.com/MATH1408/Chapter2-MATH1408.html"},"headline":"Chapter2_MATH1408","image":["http://example.com/img/og_image.png"],"datePublished":"2025-06-24T09:10:55.662Z","dateModified":"2025-06-24T09:10:55.662Z","author":{"@type":"Person","name":"Jiamin Liu"},"publisher":{"@type":"Organization","name":"OD's blog","logo":{"@type":"ImageObject","url":"http://example.com/img/logo.svg"}},"description":"线代回顾1. 向量空间与内积空间 (Vector Spaces and Inner Product Spaces)1.1 实向量空间 $R^n$ (Real Vector Space $R^n$) 定义: $R^n$ 是所有 $n$ 维实数列向量的集合。对于 $\\alpha, \\beta \\in R^n$, $\\alpha &#x3D; (x_1, x_2, \\dots, x_n)^T$, $\\beta &#x3D;"}</script><link rel="canonical" href="http://example.com/MATH1408/Chapter2-MATH1408.html"><link rel="icon" href="/img/favicon.svg"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.0.0/css/all.css"><link data-pjax rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.7.0/styles/atom-one-light.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link data-pjax rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css"><!--!--><!--!--><!--!--><!--!--><style>.pace{-webkit-pointer-events:none;pointer-events:none;-webkit-user-select:none;-moz-user-select:none;user-select:none}.pace-inactive{display:none}.pace .pace-progress{background:#3273dc;position:fixed;z-index:2000;top:0;right:100%;width:100%;height:2px}</style><script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js"></script><!--!--><!--!--><!-- hexo injector head_end start --><script>
+  (function () {
+      function switchTab() {
+          if (!location.hash) {
+            return;
+          }
+
+          const id = '#' + CSS.escape(location.hash.substring(1));
+          const $tabMenu = document.querySelector(`.tabs a[href="${id}"]`);
+          if (!$tabMenu) {
+            return;
+          }
+
+          const $tabMenuContainer = $tabMenu.parentElement.parentElement;
+          Array.from($tabMenuContainer.children).forEach($menu => $menu.classList.remove('is-active'));
+          Array.from($tabMenuContainer.querySelectorAll('a'))
+              .map($menu => document.getElementById($menu.getAttribute("href").substring(1)))
+              .forEach($content => $content.classList.add('is-hidden'));
+
+          if ($tabMenu) {
+              $tabMenu.parentElement.classList.add('is-active');
+          }
+          const $activeTab = document.querySelector(id);
+          if ($activeTab) {
+              $activeTab.classList.remove('is-hidden');
+          }
+      }
+      switchTab();
+      window.addEventListener('hashchange', switchTab, false);
+  })();
+  </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head><body class="is-2-column"><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/img/logo.svg" alt="OD&#039;s blog" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">主页</a></div><div class="navbar-end"><a class="navbar-item search" title="搜索" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-8-widescreen"><div class="card"><article class="card-content article" role="article"><h1 class="title is-3 is-size-4-mobile">Chapter2_MATH1408</h1><div class="content"><h1 id="线代回顾"><a href="#线代回顾" class="headerlink" title="线代回顾"></a>线代回顾</h1><h2 id="1-向量空间与内积空间-Vector-Spaces-and-Inner-Product-Spaces"><a href="#1-向量空间与内积空间-Vector-Spaces-and-Inner-Product-Spaces" class="headerlink" title="1. 向量空间与内积空间 (Vector Spaces and Inner Product Spaces)"></a>1. 向量空间与内积空间 (Vector Spaces and Inner Product Spaces)</h2><h3 id="1-1-实向量空间-R-n-Real-Vector-Space-R-n"><a href="#1-1-实向量空间-R-n-Real-Vector-Space-R-n" class="headerlink" title="1.1 实向量空间 $R^n$ (Real Vector Space $R^n$)"></a>1.1 实向量空间 $R^n$ (Real Vector Space $R^n$)</h3><ul>
+<li><strong>定义</strong>: $R^n$ 是所有 $n$ 维实数列向量的集合。<br>对于 $\alpha, \beta \in R^n$, $\alpha = (x_1, x_2, \dots, x_n)^T$, $\beta = (y_1, y_2, \dots, y_n)^T$.</li>
+<li><strong>标准内积 (点积)</strong>: $\alpha \cdot \beta = \alpha^T \beta = x_1y_1 + x_2y_2 + \dots + x_ny_n$.</li>
+<li><strong>向量的长度 (范数)</strong>: $|\alpha| = \sqrt{\alpha \cdot \alpha}$.</li>
+<li><strong>矩阵的转置</strong>: $A^T$ (原文用 $A’$).</li>
+</ul>
+<h3 id="1-2-三维向量的叉积-Cross-Product-in-R-3"><a href="#1-2-三维向量的叉积-Cross-Product-in-R-3" class="headerlink" title="1.2 三维向量的叉积 (Cross Product in $R^3$)"></a>1.2 三维向量的叉积 (Cross Product in $R^3$)</h3><ul>
+<li>对于 $\alpha = (x_1, x_2, x_3)^T$, $\beta = (y_1, y_2, y_3)^T \in R^3$:<br>$\alpha \times \beta = (x_2y_3 - x_3y_2, x_3y_1 - x_1y_3, x_1y_2 - x_2y_1)^T$.</li>
+<li><strong>几何意义</strong>:<ul>
+<li>$|\alpha \times \beta| = |\alpha| |\beta| \sin\theta$, 是由 $\alpha, \beta$ 张成的平行四边形的面积。</li>
+<li>$\alpha \times \beta$ 垂直于 $\alpha$ 和 $\beta$ 张成的平面。</li>
+</ul>
+</li>
+<li><strong>混合积 (标量三重积)</strong>: 对于 $\alpha, \beta, \gamma \in R^3$:<br>$(\alpha \times \beta) \cdot \gamma = \begin{vmatrix} x_1 &amp; y_1 &amp; z_1 \\ x_2 &amp; y_2 &amp; z_2 \\ x_3 &amp; y_3 &amp; z_3 \end{vmatrix}$<br>其绝对值是由 $\alpha, \beta, \gamma$ 张成的平行六面体的体积。</li>
+</ul>
+<h3 id="1-3-酉-内积空间-欧几里得空间-Unitary-Inner-Product-Space-Euclidean-Space"><a href="#1-3-酉-内积空间-欧几里得空间-Unitary-Inner-Product-Space-Euclidean-Space" class="headerlink" title="1.3 (酉)内积空间 / 欧几里得空间 (Unitary/Inner Product Space / Euclidean Space)"></a>1.3 (酉)内积空间 / 欧几里得空间 (Unitary/Inner Product Space / Euclidean Space)</h3><ul>
+<li><strong>定义</strong>: 一个复（或实）向量空间 $V$ 称为一个内积空间，如果存在一个映射 $\phi: V \times V \to C$ (或 $R$)，记作 $(\alpha, \beta)$，满足以下性质 (以复内积空间为例):<ol>
+<li><strong>(Hermitian对称性/共轭对称性)</strong>: $(\alpha, \beta) = \overline{(\beta, \alpha)}$ (对于实内积空间，即对称性 $(\alpha, \beta) = (\beta, \alpha)$).</li>
+<li><strong>(对第一变元的线性性)</strong>: $(k\alpha + \beta, \gamma) = k(\alpha, \gamma) + (\beta, \gamma)$.<br>(由1,2可知对第二变元共轭线性: $(\alpha, k\beta + \gamma) = \overline{(k\beta + \gamma, \alpha)} = \overline{k(\beta, \alpha) + (\gamma, \alpha)} = \bar{k}\overline{(\beta, \alpha)} + \overline{(\gamma, \alpha)} = \bar{k}(\alpha, \beta) + (\alpha, \gamma)$).</li>
+<li><strong>(正定性)</strong>: $(\alpha, \alpha) \ge 0$，且 $(\alpha, \alpha) = 0$ 当且仅当 $\alpha = 0$.</li>
+</ol>
+</li>
+<li><strong>欧几里得空间</strong>: 实内积空间。</li>
+<li><strong>酉空间</strong>: 复内积空间。</li>
+<li><strong>$C^n$ 中的标准内积</strong>: 对于 $\alpha = (x_1, \dots, x_n)^T, \beta = (y_1, \dots, y_n)^T \in C^n$:<br>$(\alpha, \beta) = \beta^<em> \alpha = x_1\bar{y}_1 + x_2\bar{y}_2 + \dots + x_n\bar{y}_n$. (注意原文 $\alpha \cdot \beta = \beta^T \alpha$ 可能是针对实数，此处为复数标准内积，$\beta^</em>$ 是 $\beta$ 的共轭转置)。</li>
+<li><strong>矩阵的共轭转置</strong>: $A^*$ (原文用 $A^T$ 可能指实数情况，或需区分)。</li>
+</ul>
+<h2 id="2-矩阵分解-Matrix-Factorization"><a href="#2-矩阵分解-Matrix-Factorization" class="headerlink" title="2. 矩阵分解 (Matrix Factorization)"></a>2. 矩阵分解 (Matrix Factorization)</h2><h3 id="2-1-Hermite标准形-Hermite-Normal-Form-Row-Echelon-Form"><a href="#2-1-Hermite标准形-Hermite-Normal-Form-Row-Echelon-Form" class="headerlink" title="2.1 Hermite标准形 (Hermite Normal Form / Row Echelon Form)"></a>2.1 Hermite标准形 (Hermite Normal Form / Row Echelon Form)</h3><ul>
+<li><strong>定义</strong>: 通过初等行变换可以将任何矩阵化为Hermite标准形（行最简形矩阵）。</li>
+<li><strong>特点</strong>:<ol>
+<li>若有零行，则零行在非零行的下方。</li>
+<li>非零行的第一个非零元素（称为主元）为1。</li>
+<li>主元所在列的其他元素均为0。</li>
+<li>各非零行的主元所在列的列标随行标的增加而严格递增。</li>
+</ol>
+</li>
+<li><strong>应用</strong>: 求解线性方程组 $AX=\beta$ (如高斯消元法)。</li>
+</ul>
+<h3 id="2-2-满秩分解-Full-Rank-Factorization"><a href="#2-2-满秩分解-Full-Rank-Factorization" class="headerlink" title="2.2 满秩分解 (Full Rank Factorization)"></a>2.2 满秩分解 (Full Rank Factorization)</h3><ul>
+<li><strong>定理</strong>: 若 $m \times n$ 矩阵 $A$ 的秩为 $r$ ($r &gt; 0$)，则存在 $m \times r$ 的列满秩矩阵 $L$ 和 $r \times n$ 的行满秩矩阵 $R$，使得 $A = LR$。这个分解称为矩阵 $A$ 的一个满秩分解。</li>
+<li><strong>构造一种满秩分解</strong>:<br>设 $A$ 通过初等行变换化为 Hermite 标准形 $H = \begin{pmatrix} H_r \\ O \end{pmatrix}$，其中 $H_r$ 是 $r \times n$ 的行满秩矩阵，其主元分别在第 $j_1, j_2, \dots, j_r$ 列。<br>令 $L = (A_{j_1}, A_{j_2}, \dots, A_{j_r})$ (即 $A$ 中对应 $H$ 主元列的那些列向量组成的矩阵)。<br>令 $R = H_r$ (即 $H$ 的非零行组成的矩阵)。<br>则 $A = LR$ 是一个满秩分解。<ul>
+<li><strong>证明思路</strong>:<br>初等行变换不改变列向量之间的线性关系。$H$ 的第 $k$ 列 $H_k$ 可以由 $H$ 的主元列 $H_{j_1}, \dots, H_{j_r}$ 线性表示，即 $H_k = \sum_{s=1}^r c_s H_{j_s}$。那么 $A$ 的第 $k$ 列 $A_k$ 也满足 $A_k = \sum_{s=1}^r c_s A_{j_s}$。这表明 $A_k = L (H_r)_k$，其中 $(H_r)_k$ 是 $H_r$ 的第 $k$ 列。因此 $A=LR$。<br>$L$ 的列向量是 $A$ 的 $r$ 个线性无关的列向量（因为它们对应 Hermite 形的主元列），所以 $L$ 列满秩。$H_r$ 是 Hermite 形的非零部分，显然行满秩。</li>
+</ul>
+</li>
+<li><strong>应用</strong>: 求解线性方程组，理论分析。</li>
+<li><strong>示例</strong>:<br>$A = \begin{pmatrix} 3 &amp; -1 &amp; 3 &amp; 2 &amp; 5 \\ 5 &amp; -3 &amp; 2 &amp; 3 &amp; 4 \\ 1 &amp; -3 &amp; -5 &amp; 0 &amp; -7 \\ 2 &amp; -2 &amp; -1 &amp; 1 &amp; -1 \end{pmatrix}$ 求一个满秩分解。<br>(需要通过行变换得到Hermite标准形，然后找出主元列来构造 $L$ 和 $R$)</li>
+</ul>
+<h3 id="2-3-LU-分解-LU-Decomposition"><a href="#2-3-LU-分解-LU-Decomposition" class="headerlink" title="2.3 LU 分解 (LU Decomposition)"></a>2.3 LU 分解 (LU Decomposition)</h3><ul>
+<li><strong>定义</strong>: 若方阵 $A$ 可以分解为一个下三角矩阵 $L$ (通常主对角线元素为1) 和一个上三角矩阵 $U$ 的乘积，即 $A=LU$，则称其为 $A$ 的 LU 分解。</li>
+<li><strong>存在性</strong>: 如果方阵 $A$ 的所有顺序主子式均非零，则 $A$ 有唯一的 $LDU$ 分解，其中 $L$ 是单位下三角阵， $D$ 是对角阵， $U$ 是单位上三角阵。若 $A$ 可逆，则 $A$ 有 $LU$ 分解（$L$为单位下三角阵）。</li>
+<li><strong>应用</strong>: 求解线性方程组 $AX=\beta$ 可转化为 $LY=\beta$ 和 $UX=Y$。计算行列式 $|A|=|L||U|=|U|$ (当 $L$ 为单位下三角时)。</li>
+<li><strong>高斯消元法与LU分解</strong>: 高斯消元的过程（不进行行交换时）可以看作是在构造LU分解。</li>
+<li><strong>带行交换的LU分解 (PA=LU)</strong>: 对于任意可逆方阵 $A$，都存在一个置换矩阵 $P$，使得 $PA$ 有 $LU$ 分解。</li>
+<li><strong>LDU分解</strong>: $A=LDU$，其中 $L$ 是单位下三角矩阵， $D$ 是对角矩阵， $U$ 是单位上三角矩阵。</li>
+</ul>
+<h3 id="2-4-Cholesky-分解-Cholesky-Decomposition"><a href="#2-4-Cholesky-分解-Cholesky-Decomposition" class="headerlink" title="2.4 Cholesky 分解 (Cholesky Decomposition)"></a>2.4 Cholesky 分解 (Cholesky Decomposition)</h3><ul>
+<li><strong>定义</strong>: 若 $A$ 是一个对称正定矩阵 (Hermitian 正定矩阵)，则 $A$ 可以唯一地分解为一个下三角矩阵 $G$ 和其共轭转置 $G^<em>$ (对于实对称矩阵是 $G^T$) 的乘积，即 $A=GG^</em>$ (或 $A=GG^T$ 对于实数情况)。$G$ 通常要求对角线元素为正。</li>
+<li><strong>与LU分解的关系</strong>: Cholesky 分解可以看作是对称正定矩阵的一种特殊的 LU 分解 ($L=G, U=G^T$)。</li>
+<li><strong>优点</strong>: 计算效率高，数值稳定性好。</li>
+</ul>
+<h3 id="2-5-置换矩阵-Permutation-Matrix"><a href="#2-5-置换矩阵-Permutation-Matrix" class="headerlink" title="2.5 置换矩阵 (Permutation Matrix)"></a>2.5 置换矩阵 (Permutation Matrix)</h3><ul>
+<li><strong>定义</strong>: 置换矩阵是由单位矩阵经过行（或列）的若干次交换得到的方阵。</li>
+<li><strong>性质</strong>:<ol>
+<li>每一行和每一列只有一个元素为1，其余元素为0。</li>
+<li>$P^{-1} = P^T$ (置换矩阵是正交矩阵)。</li>
+<li>任意置换矩阵可以表示为若干个对换矩阵（交换两行的初等矩阵）的乘积。</li>
+</ol>
+</li>
+<li><strong>应用</strong>: 在LU分解中处理行交换 (PA=LU)。</li>
+</ul>
+<h2 id="3-线性方程组-Systems-of-Linear-Equations"><a href="#3-线性方程组-Systems-of-Linear-Equations" class="headerlink" title="3. 线性方程组 (Systems of Linear Equations)"></a>3. 线性方程组 (Systems of Linear Equations)</h2><h3 id="3-1-单个线性方程"><a href="#3-1-单个线性方程" class="headerlink" title="3.1 单个线性方程"></a>3.1 单个线性方程</h3><ul>
+<li>方程 $a_1x_1 + a_2x_2 + \dots + a_nx_n = b$ 可以表示为 $\alpha^T X = b$，其中 $\alpha=(a_1, \dots, a_n)^T, X=(x_1, \dots, x_n)^T$。</li>
+<li><strong>几何意义 ($n=2,3$)</strong>:<ul>
+<li>$n=2$: 平面上一条直线。</li>
+<li>$n=3$: 空间中一个平面。</li>
+</ul>
+</li>
+<li><strong>解的结构</strong>:<ul>
+<li>若 $b=0$ (齐次方程)，解集是与向量 $\alpha$ 正交的向量组成的子空间（超平面）。</li>
+<li>若 $b \ne 0$ (非齐次方程)，解集是一个仿射子空间（平移的超平面）。</li>
+</ul>
+</li>
+</ul>
+<h3 id="3-2-线性方程组-AX-beta"><a href="#3-2-线性方程组-AX-beta" class="headerlink" title="3.2 线性方程组 $AX=\beta$"></a>3.2 线性方程组 $AX=\beta$</h3><ul>
+<li>可以写成向量形式: $x_1\alpha_1 + x_2\alpha_2 + \dots + x_n\alpha_n = \beta$，其中 $\alpha_j$ 是 $A$ 的列向量。</li>
+<li><strong>有解的充要条件</strong>: $\beta \in \text{span}\{\alpha_1, \dots, \alpha_n\}$，即 $\beta$ 可以由 $A$ 的列向量线性表示。<br>等价于 $\text{rank}(A) = \text{rank}(A|\beta)$ (Rouché-Capelli 定理)。</li>
+<li><strong>列空间 (Column Space)</strong>: $C(A) = \text{span}\{\alpha_1, \dots, \alpha_n\}$。方程组有解当且仅当 $\beta \in C(A)$。</li>
+<li><strong>行空间 (Row Space)</strong>: $R(A) = C(A^T)$。</li>
+<li><strong>零空间 (Null Space)</strong>: $N(A) = \{X | AX=0\}$。<br>$N(A)$ 是 $R^n$ 的一个子空间。</li>
+<li><strong>左零空间 (Left Null Space)</strong>: $N(A^T) = \{Y | A^TY=0 \text{ or } Y^TA=0\}$。</li>
+</ul>
+<h3 id="3-3-四个基本子空间-Four-Fundamental-Subspaces"><a href="#3-3-四个基本子空间-Four-Fundamental-Subspaces" class="headerlink" title="3.3 四个基本子空间 (Four Fundamental Subspaces)"></a>3.3 四个基本子空间 (Four Fundamental Subspaces)</h3><p>对于 $m \times n$ 矩阵 $A$:</p>
+<ol>
+<li><strong>列空间 (Column Space)</strong> $C(A) \subseteq R^m$ (由 $A$ 的列向量张成)</li>
+<li><strong>零空间 (Null Space)</strong> $N(A) \subseteq R^n$ (齐次方程 $AX=0$ 的解空间)</li>
+<li><strong>行空间 (Row Space)</strong> $R(A) = C(A^T) \subseteq R^n$ (由 $A$ 的行向量张成)</li>
+<li><strong>左零空间 (Left Null Space)</strong> $N(A^T) \subseteq R^m$ (齐次方程 $A^TY=0$ 的解空间)</li>
+</ol>
+<ul>
+<li><strong>基本子空间的正交性</strong>:<ul>
+<li>行空间 $R(A)$ 与零空间 $N(A)$ 正交 ($R(A) \perp N(A)$)。<ul>
+<li><strong>证明</strong>: 若 $y \in R(A)$, $x \in N(A)$。则 $y = A^T z$ 对于某个 $z$，且 $Ax=0$。<br>$(y, x) = y^T x = (A^T z)^T x = z^T A x = z^T (Ax) = z^T 0 = 0$.</li>
+</ul>
+</li>
+<li>列空间 $C(A)$ 与左零空间 $N(A^T)$ 正交 ($C(A) \perp N(A^T)$)。<br>(应用上一条到 $A^T$ 即可)</li>
+</ul>
+</li>
+<li><strong>维数定理 (Rank-Nullity Theorem)</strong>:<ul>
+<li>$\text{dim } R(A) + \text{dim } N(A) = n$ (列数)</li>
+<li>$\text{dim } C(A) + \text{dim } N(A^T) = m$ (行数)</li>
+</ul>
+</li>
+<li>且有 $\text{dim } R(A) = \text{dim } C(A) = \text{rank}(A)$.</li>
+<li><strong>直和分解</strong>:<ul>
+<li>$R^n = R(A) \oplus N(A)$</li>
+<li>$R^m = C(A) \oplus N(A^T)$</li>
+</ul>
+</li>
+</ul>
+<h2 id="4-子空间-Subspaces"><a href="#4-子空间-Subspaces" class="headerlink" title="4. 子空间 (Subspaces)"></a>4. 子空间 (Subspaces)</h2><h3 id="4-1-子空间的并集与和"><a href="#4-1-子空间的并集与和" class="headerlink" title="4.1 子空间的并集与和"></a>4.1 子空间的并集与和</h3><p>证明是子空间需要：零向量，加法封闭，数乘封闭。</p>
+<ul>
+<li><strong>子空间的并集</strong>: 若干个子空间的并集通常不是子空间，除非其中一个包含其他所有子空间。<ul>
+<li><strong>引理</strong>: 若 $U_1, U_2, \dots, U_m$ 是向量空间 $V$ 的真子空间，则 $\bigcup_{i=1}^m U_i \neq V$ (如果域 $F$ 是无限域，或者 $V$ 的维数大于1且 $m &lt; |F|+1$)。<ul>
+<li><strong>证明 (m=2, $U_1 \not\subseteq U_2, U_2 \not\subseteq U_1$)</strong>:<br>取 $\alpha \in U_1 \setminus U_2$, $\beta \in U_2 \setminus U_1$。<br>考虑向量 $\alpha + \beta$。<br>若 $\alpha + \beta \in U_1$，则 $\beta = (\alpha+\beta) - \alpha \in U_1$，与假设矛盾。<br>若 $\alpha + \beta \in U_2$，则 $\alpha = (\alpha+\beta) - \beta \in U_2$，与假设矛盾。<br>因此 $\alpha + \beta \notin U_1 \cup U_2$。所以 $U_1 \cup U_2$ 不是子空间，且 $U_1 \cup U_2 \neq V$ (如果V中还有其他元素)。<br>PPT中的证明思路更一般，用了反证法和构造特定线性组合。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>子空间的和</strong>: 若 $W, U$ 是 $V$ 的子空间，则它们的和 $W+U = \{w+u | w \in W, u \in U\}$ 也是 $V$ 的一个子空间。<ul>
+<li><strong>证明</strong>:<ol>
+<li>零向量: $0 \in W, 0 \in U \implies 0+0=0 \in W+U$.</li>
+<li>加法封闭: 取 $\alpha_1 = w_1+u_1, \alpha_2 = w_2+u_2 \in W+U$.<br>$\alpha_1 + \alpha_2 = (w_1+w_2) + (u_1+u_2)$. 因为 $w_1+w_2 \in W, u_1+u_2 \in U$，所以 $\alpha_1+\alpha_2 \in W+U$.</li>
+<li>数乘封闭: 取 $\alpha = w+u \in W+U$, $k \in F$.<br>$k\alpha = k(w+u) = kw + ku$. 因为 $kw \in W, ku \in U$，所以 $k\alpha \in W+U$.</li>
+</ol>
+</li>
+</ul>
+</li>
+<li><strong>子空间和的维数公式</strong>:<br>$\text{dim}(W+U) = \text{dim } W + \text{dim } U - \text{dim}(W \cap U)$.<ul>
+<li><strong>证明思路</strong>:<br>取 $W \cap U$ 的一组基 $\{ \gamma_1, \dots, \gamma_k \}$.<br>将其扩充为 $W$ 的一组基 $\{ \gamma_1, \dots, \gamma_k, w_1, \dots, w_s \}$.<br>将其扩充为 $U$ 的一组基 $\{ \gamma_1, \dots, \gamma_k, u_1, \dots, u_t \}$.<br>可以证明 $\{ \gamma_1, \dots, \gamma_k, w_1, \dots, w_s, u_1, \dots, u_t \}$ 是 $W+U$ 的一组基。<br>因此 $\text{dim}(W+U) = k+s+t$.<br>$\text{dim } W = k+s$, $\text{dim } U = k+t$, $\text{dim}(W \cap U) = k$.<br>所以 $\text{dim } W + \text{dim } U - \text{dim}(W \cap U) = (k+s) + (k+t) - k = k+s+t = \text{dim}(W+U)$.</li>
+</ul>
+</li>
+</ul>
+<h3 id="4-2-直和-Direct-Sum"><a href="#4-2-直和-Direct-Sum" class="headerlink" title="4.2 直和 (Direct Sum)"></a>4.2 直和 (Direct Sum)</h3><ul>
+<li><strong>定义</strong>: 若 $W, U$ 是 $V$ 的子空间，且 $W \cap U = \{0\}$，则称 $W+U$ 为 $W$ 和 $U$ 的直和，记作 $W \oplus U$.</li>
+<li><strong>等价条件</strong>:<ol>
+<li>$W+U$ 是直和。</li>
+<li>$\forall \alpha \in W+U$，$\alpha$ 可以唯一地表示为 $w+u$，其中 $w \in W, u \in U$.<ul>
+<li><strong>证明 (1 $\implies$ 2)</strong>: 假设 $\alpha = w_1+u_1 = w_2+u_2$. 则 $w_1-w_2 = u_2-u_1$.<br>因为 $w_1-w_2 \in W$ 且 $u_2-u_1 \in U$, 所以 $w_1-w_2 \in W \cap U = \{0\}$.<br>故 $w_1-w_2=0 \implies w_1=w_2$. 类似地 $u_1=u_2$. 唯一性得证。</li>
+<li><strong>证明 (2 $\implies$ 1)</strong>: 若 $W \cap U \neq \{0\}$, 取非零向量 $x \in W \cap U$.<br>则 $0 = x + (-x)$, 其中 $x \in W, -x \in U$.<br>也有 $0 = 0 + 0$, 其中 $0 \in W, 0 \in U$.<br>这样零向量的表示不唯一，与条件2矛盾。所以 $W \cap U = \{0\}$.</li>
+</ul>
+</li>
+<li>若 $0 = w+u$ 且 $w \in W, u \in U$，则 $w=0, u=0$. (这是条件2的特例)</li>
+<li>$\text{dim}(W+U) = \text{dim } W + \text{dim } U$. (由维数公式和 $W \cap U = \{0\}$ 直接得到)</li>
+</ol>
+</li>
+</ul>
+<h3 id="4-3-补子空间-Complementary-Subspace"><a href="#4-3-补子空间-Complementary-Subspace" class="headerlink" title="4.3 补子空间 (Complementary Subspace)"></a>4.3 补子空间 (Complementary Subspace)</h3><ul>
+<li><strong>定义</strong>: 若 $U$ 是 $V$ 的子空间，如果存在子空间 $W$ 使得 $V = W \oplus U$，则称 $W$ 是 $U$ 的一个补子空间。</li>
+<li><strong>存在性</strong>: 对于 $V$ 的任意子空间 $U$，其补子空间总是存在的（但不唯一，除非 $U=\{0\}$ 或 $U=V$）。</li>
+<li><strong>正交补 (Orthogonal Complement)</strong>: 在内积空间中，对于子空间 $U$，其正交补 $U^\perp = \{v \in V | (v,u)=0, \forall u \in U\}$ 是 $U$ 的一个补子空间，即 $V = U \oplus U^\perp$.<ul>
+<li>正交补是唯一的。</li>
+</ul>
+</li>
+</ul>
+<h2 id="5-投影-Projection"><a href="#5-投影-Projection" class="headerlink" title="5. 投影 (Projection)"></a>5. 投影 (Projection)</h2><h3 id="5-1-向量到向量的投影-Projection-of-a-vector-onto-another-vector"><a href="#5-1-向量到向量的投影-Projection-of-a-vector-onto-another-vector" class="headerlink" title="5.1 向量到向量的投影 (Projection of a vector onto another vector)"></a>5.1 向量到向量的投影 (Projection of a vector onto another vector)</h3><ul>
+<li>向量 $\beta$ 在向量 $\alpha$ 方向上的投影向量 $\gamma$ (或 $\text{proj}_\alpha \beta$):<br>$\gamma = \frac{(\beta, \alpha)}{(\alpha, \alpha)} \alpha = \frac{\alpha^T \beta}{\alpha^T \alpha} \alpha$ (对于实向量空间标准内积)。</li>
+<li>$\eta = \beta - \gamma$ 是与 $\alpha$ 正交的向量。</li>
+<li><strong>投影矩阵 (onto a line spanned by $\alpha$)</strong>: $P = \frac{\alpha \alpha^T}{\alpha^T \alpha}$.<br>则 $\gamma = P \beta$.</li>
+<li><strong>性质</strong>: $P^2=P$ (幂等性)，$P^T=P$ (对称性，因为 $\alpha \alpha^T$ 是对称的)。</li>
+<li>$E-P$ 是投影到 $\alpha$ 的正交补空间上的投影矩阵。</li>
+</ul>
+<h3 id="5-2-向量到子空间的投影-Projection-of-a-vector-onto-a-subspace"><a href="#5-2-向量到子空间的投影-Projection-of-a-vector-onto-a-subspace" class="headerlink" title="5.2 向量到子空间的投影 (Projection of a vector onto a subspace)"></a>5.2 向量到子空间的投影 (Projection of a vector onto a subspace)</h3><ul>
+<li>设 $W$ 是一个子空间，其一组基为 $\{\alpha_1, \dots, \alpha_m\}$. 令 $A = (\alpha_1, \dots, \alpha_m)$ (列向量构成矩阵 $A$)。</li>
+<li>向量 $\beta$ 在子空间 $W = C(A)$ 上的投影 $\gamma = \text{proj}_W \beta$ 是 $W$ 中离 $\beta$ 最近的向量。</li>
+<li>$\beta - \gamma$ 必须与 $W$ 中的所有向量正交，即 $(\beta-\gamma, w)=0, \forall w \in W$.<br>特别地，$(\beta-\gamma, \alpha_i)=0$ 对所有基向量 $\alpha_i$ 成立。</li>
+<li>$\gamma$ 可以表示为 $Ax$ 的形式，其中 $x=(x_1, \dots, x_m)^T$ 是坐标。<br>$\alpha_i^T (\beta - Ax) = 0 \implies A^T(\beta - Ax) = 0 \implies A^T Ax = A^T \beta$.<br>这个方程称为<strong>正规方程 (Normal Equations)</strong>。</li>
+<li>如果 $A$ 的列向量线性无关 (即 $\{\alpha_i\}$ 确实是基)，则 $A^T A$ 是可逆的 $m \times m$ 矩阵。<br>$x = (A^T A)^{-1} A^T \beta$.<br>$\gamma = Ax = A(A^T A)^{-1} A^T \beta$.</li>
+<li><strong>投影矩阵 (onto subspace $W=C(A)$)</strong>: $P_W = A(A^T A)^{-1} A^T$.</li>
+<li><strong>性质</strong>: $P_W^2 = P_W$ (幂等性)，$P_W^T = P_W$ (对称性)。</li>
+<li>$E-P_W$ 是投影到 $W$ 的正交补空间 $W^\perp$ 上的投影矩阵。</li>
+</ul>
+<h3 id="5-3-最小二乘法-Least-Squares"><a href="#5-3-最小二乘法-Least-Squares" class="headerlink" title="5.3 最小二乘法 (Least Squares)"></a>5.3 最小二乘法 (Least Squares)</h3><ul>
+<li>对于无解的线性方程组 $AX=\beta$ (即 $\beta \notin C(A)$)，我们寻找一个“最佳”近似解 $\hat{X}$，使得 $|AX - \beta|$ 最小。</li>
+<li>这个最小化问题等价于找到 $\beta$ 在 $A$ 的列空间 $C(A)$ 上的投影 $A\hat{X}$。</li>
+<li>因此，最小二乘解 $\hat{X}$ 满足正规方程: $A^T A \hat{X} = A^T \beta$.</li>
+<li>如果 $A$ 列满秩，则 $\hat{X} = (A^T A)^{-1} A^T \beta$ 是唯一的最小二乘解。</li>
+<li>如果 $A$ 不是列满秩，则 $A^T A$ 不可逆，最小二乘解有无穷多个。通常取其中的范数最小解（使用伪逆）。</li>
+</ul>
+<h2 id="6-Gram-Schmidt-正交化过程-Gram-Schmidt-Orthogonalization"><a href="#6-Gram-Schmidt-正交化过程-Gram-Schmidt-Orthogonalization" class="headerlink" title="6. Gram-Schmidt 正交化过程 (Gram-Schmidt Orthogonalization)"></a>6. Gram-Schmidt 正交化过程 (Gram-Schmidt Orthogonalization)</h2><ul>
+<li><strong>目的</strong>: 将一组线性无关的向量 $\{\alpha_1, \dots, \alpha_m\}$ 转化为一组正交向量 $\{\beta_1, \dots, \beta_m\}$，使得 $\text{span}\{\alpha_1, \dots, \alpha_k\} = \text{span}\{\beta_1, \dots, \beta_k\}$ 对所有 $k=1, \dots, m$ 成立。<br>进一步单位化可得到标准正交基。</li>
+<li><strong>过程</strong>:<ol>
+<li>$\beta_1 = \alpha_1$.</li>
+<li>$\beta_2 = \alpha_2 - \text{proj}_{\beta_1} \alpha_2 = \alpha_2 - \frac{(\alpha_2, \beta_1)}{(\beta_1, \beta_1)} \beta_1$.</li>
+<li>$\beta_3 = \alpha_3 - \text{proj}_{\beta_1} \alpha_3 - \text{proj}_{\beta_2} \alpha_3 = \alpha_3 - \frac{(\alpha_3, \beta_1)}{(\beta_1, \beta_1)} \beta_1 - \frac{(\alpha_3, \beta_2)}{(\beta_2, \beta_2)} \beta_2$.</li>
+<li>…</li>
+<li>$\beta_k = \alpha_k - \sum_{j=1}^{k-1} \text{proj}_{\beta_j} \alpha_k = \alpha_k - \sum_{j=1}^{k-1} \frac{(\alpha_k, \beta_j)}{(\beta_j, \beta_j)} \beta_j$.</li>
+</ol>
+</li>
+<li><strong>单位化</strong>: $\varepsilon_k = \frac{\beta_k}{|\beta_k|}$. 则 $\{\varepsilon_1, \dots, \varepsilon_m\}$ 是一组标准正交向量。</li>
+</ul>
+<h3 id="6-1-QR-分解-QR-Decomposition"><a href="#6-1-QR-分解-QR-Decomposition" class="headerlink" title="6.1 QR 分解 (QR Decomposition)"></a>6.1 QR 分解 (QR Decomposition)</h3><ul>
+<li><strong>定理</strong>: 任何 $m \times n$ ($m \ge n$) 的列满秩矩阵 $A$ (即 $A$ 的列向量线性无关) 可以分解为一个 $m \times n$ 的正交列矩阵 $Q$ (其列向量构成标准正交组，即 $Q^T Q = I_n$) 和一个 $n \times n$ 的可逆上三角矩阵 $R$ (通常要求对角线元素为正) 的乘积，即 $A=QR$.</li>
+<li><strong>与Gram-Schmidt的关系</strong>: Gram-Schmidt 正交化过程是QR分解的一种构造方法。<br>设 $A = (\alpha_1, \dots, \alpha_n)$，$Q = (\varepsilon_1, \dots, \varepsilon_n)$。<br>由Gram-Schmidt过程:<br>$\alpha_1 = r_{11}\varepsilon_1$<br>$\alpha_2 = r_{12}\varepsilon_1 + r_{22}\varepsilon_2$<br>…<br>$\alpha_k = \sum_{j=1}^k r_{jk}\varepsilon_j$<br>其中 $r_{jj} = |\beta_j|$ 且 $r_{ij} = (\alpha_j, \varepsilon_i)$ for $i &lt; j$.<br>写成矩阵形式即 $A=QR$.<br>$R = Q^T A$.</li>
+</ul>
+<h2 id="7-等价关系与商空间-Equivalence-Relations-and-Quotient-Spaces"><a href="#7-等价关系与商空间-Equivalence-Relations-and-Quotient-Spaces" class="headerlink" title="7. 等价关系与商空间 (Equivalence Relations and Quotient Spaces)"></a>7. 等价关系与商空间 (Equivalence Relations and Quotient Spaces)</h2><h3 id="7-1-等价关系-Equivalence-Relation"><a href="#7-1-等价关系-Equivalence-Relation" class="headerlink" title="7.1 等价关系 (Equivalence Relation)"></a>7.1 等价关系 (Equivalence Relation)</h3><ul>
+<li><strong>定义</strong>: 集合 $S$ 上的一个二元关系 $\sim$ 称为等价关系，如果它满足:<ol>
+<li><strong>自反性 (Reflexivity)</strong>: $\forall a \in S, a \sim a$.</li>
+<li><strong>对称性 (Symmetry)</strong>: $\forall a, b \in S$, if $a \sim b$, then $b \sim a$.</li>
+<li><strong>传递性 (Transitivity)</strong>: $\forall a, b, c \in S$, if $a \sim b$ and $b \sim c$, then $a \sim c$.</li>
+</ol>
+</li>
+<li><strong>等价类 (Equivalence Class)</strong>: 对于 $a \in S$，其等价类 $\bar{a}$ (或 $[a]$) 定义为 $\bar{a} = \{x \in S | x \sim a\}$.</li>
+<li><strong>性质</strong>:<ol>
+<li>$\forall a \in S, a \in \bar{a}$.</li>
+<li>$\bar{a} = \bar{b} \iff a \sim b$.</li>
+<li>任意两个等价类要么相等，要么不相交。</li>
+</ol>
+</li>
+<li><strong>划分 (Partition)</strong>: 等价关系将集合 $S$ 划分为互不相交的等价类的并集。</li>
+<li><strong>商集 (Quotient Set)</strong>: $S/\sim = \{\bar{a} | a \in S\}$，即所有等价类的集合。</li>
+</ul>
+<h3 id="7-2-商空间-Quotient-Space"><a href="#7-2-商空间-Quotient-Space" class="headerlink" title="7.2 商空间 (Quotient Space)"></a>7.2 商空间 (Quotient Space)</h3><ul>
+<li>设 $V$ 是域 $F$ 上的向量空间，$W$ 是 $V$ 的一个子空间。</li>
+<li>在 $V$ 上定义关系 $\sim$: $\alpha \sim \beta \iff \alpha - \beta \in W$.<ul>
+<li><strong>证明 (这是一个等价关系)</strong>:<ol>
+<li>自反性: $\alpha - \alpha = 0 \in W \implies \alpha \sim \alpha$.</li>
+<li>对称性: 若 $\alpha \sim \beta \implies \alpha - \beta \in W$. 则 $\beta - \alpha = -(\alpha - \beta) \in W$ (因为 $W$ 是子空间). 所以 $\beta \sim \alpha$.</li>
+<li>传递性: 若 $\alpha \sim \beta, \beta \sim \gamma \implies \alpha - \beta \in W, \beta - \gamma \in W$.<br>则 $\alpha - \gamma = (\alpha - \beta) + (\beta - \gamma) \in W$. 所以 $\alpha \sim \gamma$.</li>
+</ol>
+</li>
+</ul>
+</li>
+<li>向量 $\alpha$ 所在的等价类记为 $\alpha+W = \{\alpha+w | w \in W\}$，称为 $W$ 的一个 <strong>陪集 (coset)</strong>。</li>
+<li><strong>商空间 $V/W$</strong>: 所有陪集构成的集合 $V/W = \{\alpha+W | \alpha \in V\}$.</li>
+<li><strong>$V/W$ 上的向量空间结构</strong>:<ul>
+<li>加法: $(\alpha+W) + (\beta+W) = (\alpha+\beta)+W$.</li>
+<li>数乘: $k(\alpha+W) = (k\alpha)+W$.</li>
+<li>(需要验证这些运算是良定义的，即不依赖于陪集代表元的选取)。<ul>
+<li><strong>证明 (加法良定义)</strong>: 设 $\alpha+W = \alpha’+W$ 且 $\beta+W = \beta’+W$.<br>则 $\alpha-\alpha’ \in W$ 且 $\beta-\beta’ \in W$.<br>我们想证明 $(\alpha+\beta)+W = (\alpha’+\beta’)+W$, 即 $(\alpha+\beta) - (\alpha’+\beta’) \in W$.<br>$(\alpha+\beta) - (\alpha’+\beta’) = (\alpha-\alpha’) + (\beta-\beta’)$.<br>因为 $\alpha-\alpha’ \in W$ 且 $\beta-\beta’ \in W$，且 $W$ 是子空间，所以它们的和也在 $W$ 中。故加法良定义。<br>数乘类似可证。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>零元素</strong>: $0+W = W$.</li>
+<li><strong>负元素</strong>: $-(\alpha+W) = (-\alpha)+W$.</li>
+<li><strong>商空间的维数</strong>:<ul>
+<li><strong>定理</strong>: 若 $V$ 是有限维向量空间，$W$ 是其子空间，则 $\text{dim}(V/W) = \text{dim } V - \text{dim } W$.<ul>
+<li><strong>证明思路</strong>:<br>设 $\text{dim } W = s$, $\text{dim } V = n$.<br>取 $W$ 的一组基 $\{\alpha_1, \dots, \alpha_s\}$.<br>将其扩充为 $V$ 的一组基 $\{\alpha_1, \dots, \alpha_s, \alpha_{s+1}, \dots, \alpha_n\}$.<br>可以证明 $\{\alpha_{s+1}+W, \dots, \alpha_n+W\}$ 构成 $V/W$ 的一组基。<ol>
+<li>张成性: 对任意 $\beta+W \in V/W$, $\beta = \sum_{i=1}^n b_i \alpha_i$.<br>$\beta+W = (\sum_{i=1}^s b_i \alpha_i + \sum_{i=s+1}^n b_i \alpha_i) + W = (\sum_{i=s+1}^n b_i \alpha_i) + W = \sum_{i=s+1}^n b_i (\alpha_i+W)$.</li>
+<li>线性无关性: 设 $\sum_{i=s+1}^n k_i (\alpha_i+W) = 0+W = W$.<br>则 $(\sum_{i=s+1}^n k_i \alpha_i) + W = W \implies \sum_{i=s+1}^n k_i \alpha_i \in W$.<br>所以 $\sum_{i=s+1}^n k_i \alpha_i = \sum_{j=1}^s c_j \alpha_j$ 对某些 $c_j$ 成立。<br>即 $\sum_{j=1}^s (-c_j) \alpha_j + \sum_{i=s+1}^n k_i \alpha_i = 0$.<br>因为 $\{\alpha_1, \dots, \alpha_n\}$ 线性无关，所以所有系数 $k_i=0$ (以及 $c_j=0$)。<br>因此 $V/W$ 的维数为 $n-s$.</li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>余维数 (Codimension)</strong>: $\text{codim}_V W = \text{dim}(V/W)$.</li>
+</ul>
+<h3 id="7-3-商空间与直和的同构"><a href="#7-3-商空间与直和的同构" class="headerlink" title="7.3 商空间与直和的同构"></a>7.3 商空间与直和的同构</h3><ul>
+<li><strong>定理 (第一同构定理的某种形式或推论)</strong>: 若 $V$ 是向量空间，$W$ 是其子空间。如果 $U$ 是 $W$ 在 $V$ 中的一个补子空间 (即 $V = W \oplus U$)，则 $U \cong V/W$ ( $U$ 与 $V/W$同构)。<ul>
+<li><strong>证明思路</strong>:<br>定义映射 $\phi: U \to V/W$ 为 $\phi(u) = u+W$.<ol>
+<li>$\phi$ 是线性映射:<br>$\phi(k u_1 + u_2) = (k u_1 + u_2) + W = k(u_1+W) + (u_2+W) = k\phi(u_1) + \phi(u_2)$.</li>
+<li>$\phi$ 是单射 (ker $\phi = \{0\}$):<br>若 $\phi(u) = 0+W = W$, 则 $u+W = W \implies u \in W$.<br>因为 $u \in U$ 且 $V=W \oplus U \implies W \cap U = \{0\}$, 所以 $u=0$.</li>
+<li>$\phi$ 是满射:<br>对任意 $\alpha+W \in V/W$. 因为 $V=W+U$, 所以 $\alpha = w+u$ 对某个 $w \in W, u \in U$.<br>则 $\alpha+W = (w+u)+W = u+W = \phi(u)$.<br>因此 $\phi$ 是同构映射。</li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+</div><div class="article-licensing box"><div class="licensing-title"><p>Chapter2_MATH1408</p><p><a href="http://example.com/MATH1408/Chapter2-MATH1408.html">http://example.com/MATH1408/Chapter2-MATH1408.html</a></p></div><div class="licensing-meta level is-mobile"><div class="level-left"><div class="level-item is-narrow"><div><h6>作者</h6><p>Jiamin Liu</p></div></div><div class="level-item is-narrow"><div><h6>发布于</h6><p>2025-06-24</p></div></div><div class="level-item is-narrow"><div><h6>更新于</h6><p>2025-06-24</p></div></div><div class="level-item is-narrow"><div><h6>许可协议</h6><p><a class="icons" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="icon fab fa-creative-commons"></i></a><a class="icons" rel="noopener" target="_blank" title="Attribution" href="https://creativecommons.org/licenses/by/4.0/"><i class="icon fab fa-creative-commons-by"></i></a><a class="icons" rel="noopener" target="_blank" title="Noncommercial" href="https://creativecommons.org/licenses/by-nc/4.0/"><i class="icon fab fa-creative-commons-nc"></i></a></p></div></div></div></div></div><div class="article-tags is-size-7 mb-4"><span class="mr-2">#</span><a class="link-muted mr-2" rel="tag" href="/"></a><a class="link-muted mr-2" rel="tag" href="/"></a><a class="link-muted mr-2" rel="tag" href="/"></a><a class="link-muted mr-2" rel="tag" href="/"></a><a class="link-muted mr-2" rel="tag" href="/"></a><a class="link-muted mr-2" rel="tag" href="/"></a><a class="link-muted mr-2" rel="tag" href="/"></a><a class="link-muted mr-2" rel="tag" href="/"></a></div><!--!--></article></div><!--!--><div class="card" id="comments"><div class="card-content"><h3 class="title is-5">评论</h3><div class="notification is-danger">You forgot to set the <code>shortname</code> for Disqus. Please set it in <code>_config.yml</code>.</div></div></div></div><div class="column column-left is-4-tablet is-4-desktop is-4-widescreen  order-1"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar" src="/img/avatar.png" alt="Jiamin Liu"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">Jiamin Liu</p><p class="is-size-6 is-block">别卷了别卷了别卷了</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>China</span></p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">文章</p><a href="/archives/"><p class="title">1</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">分类</p><a href="/categories/"><p class="title">0</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">标签</p><a href="/tags/"><p class="title">0</p></a></div></div></nav></div></div><!--!--></div><!--!--></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/img/logo.svg" alt="OD&#039;s blog" height="28"></a><p class="is-size-7"><span>&copy; 2025 Jiamin Liu</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a></p><p class="is-size-7">© 2019</p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("zh-cn");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script data-pjax src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="回到顶端" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script data-pjax src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
+      window.cookieconsent.initialise({
+        type: "info",
+        theme: "edgeless",
+        static: false,
+        position: "bottom-left",
+        content: {
+          message: "此网站使用Cookie来改善您的体验。",
+          dismiss: "知道了！",
+          allow: "允许使用Cookie",
+          deny: "拒绝",
+          link: "了解更多",
+          policy: "Cookie政策",
+          href: "https://www.cookiesandyou.com/",
+        },
+        palette: {
+          popup: {
+            background: "#edeff5",
+            text: "#838391"
+          },
+          button: {
+            background: "#4b81e8"
+          },
+        },
+      });
+    });</script><script src="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/js/lightgallery.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><script type="text/javascript" id="MathJax-script" async>MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']]
+      },
+      svg: {
+        fontCache: 'global'
+      },
+      chtml: {
+        matchFontHeight: false
+      }
+    };</script><script src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js"></script><script src="https://cdn.jsdelivr.net/npm/pjax@0.2.8/pjax.min.js"></script><script src="/js/pjax.js"></script><!--!--><!--!--><!--!--><script data-pjax src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="想要查找什么..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script data-pjax src="/js/insight.js" defer></script><script data-pjax>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"想要查找什么...","untitled":"(无标题)","posts":"文章","pages":"页面","categories":"分类","tags":"标签"});
+        });</script></body></html>

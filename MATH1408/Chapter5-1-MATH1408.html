@@ -1,0 +1,269 @@
+<!doctype html>
+<html lang="zh"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>Chapter5-1 MATH1408 - OD&#039;s blog</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="OD&#039;s blog"><meta name="msapplication-TileImage" content="/img/favicon.svg"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="OD&#039;s blog"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="description" content="矩阵多项式与Jordan标准型1. 矩阵多项式 (Matrix Polynomial) 与零化多项式 (Annihilating Polynomial)1.1 矩阵多项式 定义: 设 $f(x) &amp;#x3D; c_m x^m + c_{m-1} x^{m-1} + \dots + c_1 x + c_0$ 是一个数域 $F$ 上的多项式。对于 $n$ 阶方阵 $A$，定义矩阵多项式为：$f(A) &amp;#x3D; c_m"><meta property="og:type" content="blog"><meta property="og:title" content="Chapter5-1 MATH1408"><meta property="og:url" content="http://example.com/MATH1408/Chapter5-1-MATH1408.html"><meta property="og:site_name" content="OD&#039;s blog"><meta property="og:description" content="矩阵多项式与Jordan标准型1. 矩阵多项式 (Matrix Polynomial) 与零化多项式 (Annihilating Polynomial)1.1 矩阵多项式 定义: 设 $f(x) &amp;#x3D; c_m x^m + c_{m-1} x^{m-1} + \dots + c_1 x + c_0$ 是一个数域 $F$ 上的多项式。对于 $n$ 阶方阵 $A$，定义矩阵多项式为：$f(A) &amp;#x3D; c_m"><meta property="og:locale" content="zh_CN"><meta property="og:image" content="http://example.com/img/og_image.png"><meta property="article:published_time" content="2025-06-24T09:23:05.897Z"><meta property="article:modified_time" content="2025-06-24T09:23:05.897Z"><meta property="article:author" content="Jiamin Liu"><meta property="article:tag" content="矩阵多项式"><meta property="article:tag" content="最小多项式与零化多项式"><meta property="article:tag" content="Cayley-Hamilton定理"><meta property="article:tag" content="不变子空间"><meta property="article:tag" content="Jordan链与Jordan块"><meta property="article:tag" content="广义特征向量与特征子空间"><meta property="twitter:card" content="summary"><meta property="twitter:image:src" content="http://example.com/img/og_image.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"http://example.com/MATH1408/Chapter5-1-MATH1408.html"},"headline":"Chapter5-1 MATH1408","image":["http://example.com/img/og_image.png"],"datePublished":"2025-06-24T09:23:05.897Z","dateModified":"2025-06-24T09:23:05.897Z","author":{"@type":"Person","name":"Jiamin Liu"},"publisher":{"@type":"Organization","name":"OD's blog","logo":{"@type":"ImageObject","url":"http://example.com/img/logo.svg"}},"description":"矩阵多项式与Jordan标准型1. 矩阵多项式 (Matrix Polynomial) 与零化多项式 (Annihilating Polynomial)1.1 矩阵多项式 定义: 设 $f(x) &#x3D; c_m x^m + c_{m-1} x^{m-1} + \\dots + c_1 x + c_0$ 是一个数域 $F$ 上的多项式。对于 $n$ 阶方阵 $A$，定义矩阵多项式为：$f(A) &#x3D; c_m"}</script><link rel="canonical" href="http://example.com/MATH1408/Chapter5-1-MATH1408.html"><link rel="icon" href="/img/favicon.svg"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.0.0/css/all.css"><link data-pjax rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.7.0/styles/atom-one-light.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link data-pjax rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css"><!--!--><!--!--><!--!--><!--!--><style>.pace{-webkit-pointer-events:none;pointer-events:none;-webkit-user-select:none;-moz-user-select:none;user-select:none}.pace-inactive{display:none}.pace .pace-progress{background:#3273dc;position:fixed;z-index:2000;top:0;right:100%;width:100%;height:2px}</style><script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js"></script><!--!--><!--!--><!-- hexo injector head_end start --><script>
+  (function () {
+      function switchTab() {
+          if (!location.hash) {
+            return;
+          }
+
+          const id = '#' + CSS.escape(location.hash.substring(1));
+          const $tabMenu = document.querySelector(`.tabs a[href="${id}"]`);
+          if (!$tabMenu) {
+            return;
+          }
+
+          const $tabMenuContainer = $tabMenu.parentElement.parentElement;
+          Array.from($tabMenuContainer.children).forEach($menu => $menu.classList.remove('is-active'));
+          Array.from($tabMenuContainer.querySelectorAll('a'))
+              .map($menu => document.getElementById($menu.getAttribute("href").substring(1)))
+              .forEach($content => $content.classList.add('is-hidden'));
+
+          if ($tabMenu) {
+              $tabMenu.parentElement.classList.add('is-active');
+          }
+          const $activeTab = document.querySelector(id);
+          if ($activeTab) {
+              $activeTab.classList.remove('is-hidden');
+          }
+      }
+      switchTab();
+      window.addEventListener('hashchange', switchTab, false);
+  })();
+  </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head><body class="is-2-column"><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/img/logo.svg" alt="OD&#039;s blog" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">主页</a></div><div class="navbar-end"><a class="navbar-item search" title="搜索" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-8-widescreen"><div class="card"><article class="card-content article" role="article"><h1 class="title is-3 is-size-4-mobile">Chapter5-1 MATH1408</h1><div class="content"><h1 id="矩阵多项式与Jordan标准型"><a href="#矩阵多项式与Jordan标准型" class="headerlink" title="矩阵多项式与Jordan标准型"></a>矩阵多项式与Jordan标准型</h1><h2 id="1-矩阵多项式-Matrix-Polynomial-与零化多项式-Annihilating-Polynomial"><a href="#1-矩阵多项式-Matrix-Polynomial-与零化多项式-Annihilating-Polynomial" class="headerlink" title="1. 矩阵多项式 (Matrix Polynomial) 与零化多项式 (Annihilating Polynomial)"></a>1. 矩阵多项式 (Matrix Polynomial) 与零化多项式 (Annihilating Polynomial)</h2><h3 id="1-1-矩阵多项式"><a href="#1-1-矩阵多项式" class="headerlink" title="1.1 矩阵多项式"></a>1.1 矩阵多项式</h3><ul>
+<li><p><strong>定义</strong>: 设 $f(x) = c_m x^m + c_{m-1} x^{m-1} + \dots + c_1 x + c_0$ 是一个数域 $F$ 上的多项式。对于 $n$ 阶方阵 $A$，定义<strong>矩阵多项式</strong>为：<br>$f(A) = c_m A^m + c_{m-1} A^{m-1} + \dots + c_1 A + c_0 E$<br>其中 $E$ 是 $n$ 阶单位矩阵。</p>
+</li>
+<li><p><strong>性质</strong>:</p>
+<ul>
+<li>若 $f(x) = g(x) + h(x)$，则 $f(A) = g(A) + h(A)$。</li>
+<li>若 $f(x) = g(x)h(x)$，则 $f(A) = g(A)h(A)$。</li>
+<li>由于矩阵乘法一般不可交换，所以 $g(A)h(A)$ 通常不等于 $h(A)g(A)$。但如果 $g(x)$ 和 $h(x)$ 是关于 $x$ 的多项式，则 $g(A)$ 和 $h(A)$ 是可交换的，因为它们都是 $A$ 的幂和单位矩阵的线性组合。</li>
+</ul>
+</li>
+</ul>
+<h3 id="1-2-零化多项式-Annihilating-Polynomial-Nullifying-Polynomial"><a href="#1-2-零化多项式-Annihilating-Polynomial-Nullifying-Polynomial" class="headerlink" title="1.2 零化多项式 (Annihilating Polynomial / Nullifying Polynomial)"></a>1.2 零化多项式 (Annihilating Polynomial / Nullifying Polynomial)</h3><ul>
+<li><p><strong>定义</strong>: 设 $A$ 是一个 $n$ 阶方阵， $f(x)$ 是一个数域 $F$ 上的多项式。如果 $f(A) = O$ (零矩阵)，则称 $f(x)$ 是矩阵 $A$ 的一个<strong>零化多项式</strong>。</p>
+</li>
+<li><p><strong>存在性</strong>: 对于任意 $n$ 阶方阵 $A$，其零化多项式总是存在的。</p>
+<ul>
+<li>考虑矩阵序列 $E, A, A^2, \dots, A^{n^2}$。这些是 $n^2+1$ 个 $n \times n$ 矩阵。</li>
+<li>$n \times n$ 矩阵构成的线性空间 $M_n(F)$ 的维数是 $n^2$。</li>
+<li>因此，上述 $n^2+1$ 个矩阵在线性空间 $M_n(F)$ 中必定线性相关。</li>
+<li>即存在不全为零的标量 $c_0, c_1, \dots, c_{n^2}$ 使得 $c_0 E + c_1 A + \dots + c_{n^2} A^{n^2} = O$。</li>
+<li>令 $f(x) = c_{n^2} x^{n^2} + \dots + c_1 x + c_0$，则 $f(x)$ 是 $A$ 的一个非零零化多项式。</li>
+<li>(Cayley-Hamilton 定理给出了一个次数最高为 $n$ 的零化多项式)。</li>
+</ul>
+</li>
+<li><p><strong>若 $B$ 是可逆矩阵，$f(x)$ 是 $A$ 的零化多项式，则 $f(x)$ 也是 $B^{-1}AB$ 的零化多项式。</strong></p>
+<ul>
+<li><em>证明</em>: $f(B^{-1}AB) = B^{-1}f(A)B = B^{-1}OB = O$。</li>
+</ul>
+</li>
+</ul>
+<h2 id="2-Cayley-Hamilton-定理-Cayley-Hamilton-Theorem"><a href="#2-Cayley-Hamilton-定理-Cayley-Hamilton-Theorem" class="headerlink" title="2. Cayley-Hamilton 定理 (Cayley-Hamilton Theorem)"></a>2. Cayley-Hamilton 定理 (Cayley-Hamilton Theorem)</h2><ul>
+<li><p><strong>定理叙述</strong>: 每个方阵 $A$ 都是其自身特征多项式的根。<br>即，若 $f_A(\lambda) = |\lambda E - A| = \lambda^n + a_{n-1}\lambda^{n-1} + \dots + a_1\lambda + a_0$ 是 $A$ 的特征多项式，则 $f_A(A) = A^n + a_{n-1}A^{n-1} + \dots + a_1A + a_0E = O$。</p>
+</li>
+<li><p><strong>证明思路</strong>:<br>令 $B(\lambda) = \text{adj}(\lambda E - A)$ 是 $\lambda E - A$ 的伴随矩阵。<br>伴随矩阵的元素是 $\lambda E - A$ 的代数余子式，它们是关于 $\lambda$ 的次数不超过 $n-1$ 的多项式。<br>因此， $B(\lambda)$ 可以表示为：<br>$B(\lambda) = B_{n-1}\lambda^{n-1} + B_{n-2}\lambda^{n-2} + \dots + B_1\lambda + B_0$<br>其中 $B_j$ 是 $n$ 阶常数矩阵 (其元素是 $A$ 中元素的某些组合)。<br>根据伴随矩阵的性质：$(\lambda E - A) \text{adj}(\lambda E - A) = |\lambda E - A| E$。<br>即 $(\lambda E - A) B(\lambda) = f_A(\lambda) E$。<br>$(\lambda E - A)(B_{n-1}\lambda^{n-1} + \dots + B_0) = (\lambda^n + a_{n-1}\lambda^{n-1} + \dots + a_0)E$<br>展开左边：<br>$\lambda B_{n-1}\lambda^{n-1} + \lambda B_{n-2}\lambda^{n-2} + \dots + \lambda B_0 - A B_{n-1}\lambda^{n-1} - A B_{n-2}\lambda^{n-2} - \dots - A B_0$<br>$= B_{n-1}\lambda^n + (B_{n-2} - A B_{n-1})\lambda^{n-1} + \dots + (B_0 - A B_1)\lambda - A B_0$<br>比较两边 $\lambda$ 的同次幂的系数矩阵：</p>
+<ul>
+<li>$\lambda^n$: $B_{n-1} = E$</li>
+<li>$\lambda^{n-1}$: $B_{n-2} - A B_{n-1} = a_{n-1}E$</li>
+<li>…</li>
+<li>$\lambda^1$: $B_0 - A B_1 = a_1E$</li>
+<li>$\lambda^0$: $- A B_0 = a_0E$</li>
+</ul>
+<p>将上述等式依次左乘 $A^n, A^{n-1}, \dots, A, E$：</p>
+<ul>
+<li>$A^n B_{n-1} = A^n E$</li>
+<li>$A^{n-1}(B_{n-2} - A B_{n-1}) = A^{n-1} a_{n-1}E \Rightarrow A^{n-1}B_{n-2} - A^n B_{n-1} = a_{n-1}A^{n-1}$</li>
+<li>…</li>
+<li>$A(B_0 - A B_1) = A a_1E \Rightarrow AB_0 - A^2 B_1 = a_1A$</li>
+<li>$E(- A B_0) = E a_0E \Rightarrow -A B_0 = a_0E$</li>
+</ul>
+<p>将这些等式全部相加，左边的项会成对抵消：<br>$(A^n B_{n-1}) + (A^{n-1}B_{n-2} - A^n B_{n-1}) + \dots + (AB_0 - A^2 B_1) + (-A B_0)$<br>$= A^n E + a_{n-1}A^{n-1} + \dots + a_1A + a_0E$<br>左边化简后为 $0$。 （这里有个更简洁的看法：直接在 $B_{n-1} = E, B_{k-1} - AB_k = a_k E, -AB_0 = a_0E$ 中，将 $A$ “代入” $\lambda$）<br>更直接地，将 $B_{n-1}=E$ 代入第二个式子得 $B_{n-2} - A = a_{n-1}E$, 即 $B_{n-2} = A + a_{n-1}E$。<br>代入 $B_{k-1} = A B_k + a_k E$ 的关系。<br>将 $(\lambda E - A) B(\lambda) = f_A(\lambda) E$ 这个关于多项式矩阵的恒等式，直接看作一个“值”为 $A$ 的替换 (虽然严格来说不能直接代入矩阵，但可以通过构造一个以矩阵为系数的多项式环来理解，或者通过元素来证明)。<br>$f_A(A) = A^n + a_{n-1}A^{n-1} + \dots + a_1A + a_0E = O$。<br>□</p>
+<p><em>注意</em>: 不能简单地在 $|\lambda E - A|=0$ 中直接令 $\lambda = A$ 得到 $|A \cdot E - A| = |O| = 0$。行列式是一个数，而 $f_A(A)$ 是一个矩阵。</p>
+</li>
+</ul>
+<h2 id="3-最小多项式-Minimal-Polynomial"><a href="#3-最小多项式-Minimal-Polynomial" class="headerlink" title="3. 最小多项式 (Minimal Polynomial)"></a>3. 最小多项式 (Minimal Polynomial)</h2><ul>
+<li><p><strong>定义</strong>: 设 $A$ 是一个 $n$ 阶方阵。在 $A$ 的所有非零零化多项式中，次数最低且首项系数为1的多项式称为 $A$ 的<strong>最小多项式</strong>，记为 $m_A(x)$ 或 $m(x)$。</p>
+</li>
+<li><p><strong>性质</strong>:</p>
+<ol>
+<li><strong>唯一性</strong>: 对任意方阵 $A$，其最小多项式是唯一的。<ul>
+<li><em>证明</em>: 假设 $m_1(x)$ 和 $m_2(x)$ 都是 $A$ 的最小多项式。则它们的次数相同，首项系数都为1。<br>令 $d(x) = m_1(x) - m_2(x)$。则 $d(A) = m_1(A) - m_2(A) = O - O = O$。<br>如果 $d(x) \ne 0$，则 $\text{deg}(d(x)) &lt; \text{deg}(m_1(x))$ (因为首项抵消)。<br>如果 $d(x) \ne 0$，可以将 $d(x)$ 除以其首项系数得到一个首项为1的零化多项式，其次数严格小于最小多项式的次数，矛盾。<br>因此 $d(x) = 0$，即 $m_1(x) = m_2(x)$。<br>□</li>
+</ul>
+</li>
+<li><strong>整除性</strong>: 任何 $A$ 的零化多项式 $g(x)$ 都能被 $A$ 的最小多项式 $m_A(x)$ 整除。<br>即，若 $g(A)=O$，则 $m_A(x) | g(x)$。<ul>
+<li><em>证明</em>: 用 $g(x)$ 除以 $m_A(x)$，得 $g(x) = q(x)m_A(x) + r(x)$，其中 $r(x)=0$ 或 $\text{deg}(r(x)) &lt; \text{deg}(m_A(x))$。<br>代入 $A$：$g(A) = q(A)m_A(A) + r(A)$。<br>因为 $g(A)=O$ 且 $m_A(A)=O$，所以 $r(A)=O$。<br>如果 $r(x) \ne 0$，则 $r(x)$ 是一个次数低于 $m_A(x)$ 的零化多项式。将 $r(x)$ 首项系数化为1后，就得到了一个次数更低的零化多项式，与 $m_A(x)$ 的最小性矛盾。<br>因此 $r(x) = 0$，即 $m_A(x)$ 整除 $g(x)$。<br>□</li>
+</ul>
+</li>
+<li><strong>特征多项式与最小多项式关系</strong>: $A$ 的最小多项式 $m_A(x)$ 整除其特征多项式 $f_A(x)$。<ul>
+<li><em>证明</em>: 由 Cayley-Hamilton 定理，$f_A(A)=O$，所以 $f_A(x)$ 是 $A$ 的一个零化多项式。根据性质2，$m_A(x) | f_A(x)$。<br>□</li>
+</ul>
+</li>
+<li><strong>根的性质</strong>: $A$ 的最小多项式 $m_A(x)$ 与特征多项式 $f_A(x)$ 有相同的根 (即 $A$ 的所有特征值)，只是重数可能不同。<ul>
+<li><em>证明</em>:<br>设 $\lambda_0$ 是 $A$ 的一个特征值，$m_A(x)$ 是最小多项式。<br>$m_A(A)=O$。若 $\alpha$ 是对应于 $\lambda_0$ 的特征向量，则 $m_A(A)\alpha = O\alpha = 0$。<br>又 $m_A(A)\alpha = m_A(\lambda_0)\alpha$ (因为 $A^k \alpha = \lambda_0^k \alpha$)。<br>所以 $m_A(\lambda_0)\alpha = 0$。因为 $\alpha \ne 0$，所以 $m_A(\lambda_0) = 0$。<br>这表明 $A$ 的每个特征值都是 $m_A(x)$ 的根。<br>反之，若 $\mu$ 是 $m_A(x)$ 的根，即 $m_A(\mu)=0$。则 $m_A(x) = (x-\mu)q(x)$。<br>由于 $m_A(x)|f_A(x)$，所以 $(x-\mu)|f_A(x)$，即 $\mu$ 也是特征多项式的根，从而是 $A$ 的特征值。<br>□</li>
+</ul>
+</li>
+<li><strong>相似不变量</strong>: 相似矩阵有相同的最小多项式。<ul>
+<li><em>证明</em>: 设 $A \sim C$，即 $C = P^{-1}AP$。<br>$m_A(C) = m_A(P^{-1}AP) = P^{-1}m_A(A)P = P^{-1}OP = O$。<br>所以 $m_A(x)$ 是 $C$ 的一个零化多项式。因此 $m_C(x) | m_A(x)$。<br>同理， $m_B(x)$ 是 $A$ 的一个零化多项式，所以 $m_A(x) | m_C(x)$。<br>由于它们都是首1多项式，所以 $m_A(x) = m_C(x)$。<br>□</li>
+</ul>
+</li>
+<li><strong>对角化条件</strong>: 矩阵 $A$ 可对角化的充要条件是其最小多项式 $m_A(x)$ 无重根。<br>即 $m_A(x) = (x-\lambda_1)(x-\lambda_2)\dots(x-\lambda_s)$，其中 $\lambda_i$ 互不相同。<br>(这个定理非常重要，但证明较复杂，通常在更高级的线性代数中给出)。</li>
+</ol>
+</li>
+<li><p><strong>计算最小多项式</strong>:<br>由于 $m_A(x) | f_A(x)$ 且它们有相同的根，所以如果 $f_A(x) = \prod (x-\lambda_i)^{k_i}$，则 $m_A(x) = \prod (x-\lambda_i)^{r_i}$，其中 $1 \le r_i \le k_i$。<br>可以通过尝试 $f_A(x)$ 的不同次数的因子来找到满足 $g(A)=O$ 且次数最低的那个。</p>
+</li>
+</ul>
+<h2 id="4-线性变换的零化多项式与不变子空间"><a href="#4-线性变换的零化多项式与不变子空间" class="headerlink" title="4. 线性变换的零化多项式与不变子空间"></a>4. 线性变换的零化多项式与不变子空间</h2><p>(这部分内容在原始PPT中似乎用更抽象的线性变换语言描述，我尝试对应到矩阵上)</p>
+<ul>
+<li><p><strong>B-不变子空间 (B-invariant subspace)</strong>: 设 $B$ 是一个线性变换 (或矩阵)。子空间 $W$ 称为 $B$-不变的，如果对任意 $\alpha \in W$，都有 $B(\alpha) \in W$ (或 $B\alpha \in W$)。</p>
+</li>
+<li><p><strong>向量 $\alpha$ 关于变换 $B$ 的零化多项式 / $B$-次数 ($B$-order of $\alpha$)</strong>:<br>对于非零向量 $\alpha$，考虑序列 $\alpha, B(\alpha), B^2(\alpha), \dots$。由于向量空间维数有限，这个序列最终会线性相关。<br>存在一个次数最小的、首项为1的多项式 $m_{B,\alpha}(x)$ 使得 $m_{B,\alpha}(B)(\alpha) = 0$。这个多项式称为 $\alpha$ 关于 $B$ 的<strong>零化多项式</strong>或<strong>最小多项式</strong>。<br>其次数 $t = \text{deg}(m_{B,\alpha}(x))$ 称为 $\alpha$ 的 <strong>$B$-次数</strong>。这意味着 $B^t(\alpha)$ 可以被 $\alpha, B(\alpha), \dots, B^{t-1}(\alpha)$ 线性表示，且这 $t$ 个向量是线性无关的。<br>即 $B^t(\alpha) + c_{t-1}B^{t-1}(\alpha) + \dots + c_0\alpha = 0$。<br>$m_{B,\alpha}(x) = x^t + c_{t-1}x^{t-1} + \dots + c_0$。</p>
+</li>
+<li><p><strong>性质</strong>:</p>
+<ol>
+<li>如果 $\alpha$ 的 $B$-次数为 $t$，则 $B(\alpha)$ 的 $B$-次数为 $t-1$ (除非 $t=0$ 或 $B(\alpha)=0$ 导致次数更低)。 (更准确地说，如果 $m_{B,\alpha}(B)(\alpha)=0$，则 $B \cdot m_{B,\alpha}(B)(\alpha) = m_{B,\alpha}(B)(B\alpha) = 0$。若 $m_{B,\alpha}(x) = x \cdot q(x)$，则 $q(B)(B\alpha)=0$。)</li>
+<li>特征向量的 $B$-次数为 1 (因为 $(B-\lambda E)(\alpha)=0$，所以 $m_{B,\alpha}(x) = x-\lambda$)。</li>
+<li>若 $\alpha_1, \dots, \alpha_s$ 的 $B$-次数均为 $t_1$，则它们的线性组合 $\sum k_i \alpha_i$ 的 $B$-次数 $\le t_1$。</li>
+</ol>
+</li>
+</ul>
+<h2 id="5-Jordan-链与-Jordan-块"><a href="#5-Jordan-链与-Jordan-块" class="headerlink" title="5. Jordan 链与 Jordan 块"></a>5. Jordan 链与 Jordan 块</h2><ul>
+<li><p><strong>Jordan 链 (Jordan Chain)</strong>:<br>设 $B$ 是一个线性变换 (通常考虑 $B = A - \lambda E$ 这样一个幂零变换)。<br>一个由向量 $\alpha_1, \alpha_2, \dots, \alpha_t$ 组成的序列称为一个长度为 $t$ 的 <strong>Jordan 链</strong> (对应于特征值 $\lambda$，如果 $B=A-\lambda E$)，如果：</p>
+<ul>
+<li>$B(\alpha_1) = 0$ ($\alpha_1$ 是特征向量)</li>
+<li>$B(\alpha_2) = \alpha_1$</li>
+<li>$B(\alpha_3) = \alpha_2$</li>
+<li>…</li>
+<li>$B(\alpha_t) = \alpha_{t-1}$</li>
+<li>且 $\alpha_t \ne 0$。<br>向量 $\alpha_t$ 称为链首 (generating vector)，$\alpha_1$ 称为链尾。<br>注意：有时定义是从 $\alpha_t$ 开始：$B(\alpha_t) = \alpha_{t-1}, \dots, B(\alpha_2)=\alpha_1, B(\alpha_1)=0$。<br>在这种定义下，$\alpha_t$ 的 $(A-\lambda E)$-次数 (或 $B$-次数) 是 $t$，且 $(A-\lambda E)^t(\alpha_t)=0$ 但 $(A-\lambda E)^{t-1}(\alpha_t)=\alpha_1 \ne 0$。<br>向量组 $\{\alpha_1, \dots, \alpha_t\}$ 是线性无关的。</li>
+</ul>
+</li>
+<li><p><strong>循环子空间 (Cyclic Subspace) / Jordan 链生成的子空间</strong>:<br>由 Jordan 链 $\{\alpha_1, \dots, \alpha_t\}$ (其中 $(A-\lambda E)\alpha_k = \alpha_{k-1}$ for $k&gt;1$, $(A-\lambda E)\alpha_1=0$) 张成的子空间 $L(\alpha_t) = \text{span}\{\alpha_1, \dots, \alpha_t\}$ 是 $A$-不变的。<br>(因为 $A\alpha_k = \lambda\alpha_k + \alpha_{k-1} \in L(\alpha_t)$, $A\alpha_1 = \lambda\alpha_1 \in L(\alpha_t)$)。<br>在这组基 $\{\alpha_1, \dots, \alpha_t\}$ 下，线性变换 $A$ 限制在 $L(\alpha_t)$ 上的矩阵表示为 <strong>Jordan 块</strong>:<br>$J_t(\lambda) = \begin{pmatrix}<br>\lambda &amp; 1 &amp; &amp; &amp; \\<br>&amp; \lambda &amp; 1 &amp; &amp; \\<br>&amp; &amp; \ddots &amp; \ddots &amp; \\<br>&amp; &amp; &amp; \lambda &amp; 1 \\<br>&amp; &amp; &amp; &amp; \lambda<br>\end{pmatrix}_{t \times t}$<br>(如果基的顺序是 $\alpha_t, \alpha_{t-1}, \dots, \alpha_1$，则1在主对角线上方；如果基是 $\alpha_1, \alpha_2, \dots, \alpha_t$，则1在主对角线下方，具体看定义)。<br>PPT中似乎暗示 $B\alpha = B\alpha$, $B$ 限制在 $L(\alpha_t)$ (这里 $\alpha_t$ 是链首，即 $B^{t-1}\alpha_t \ne 0, B^t \alpha_t = 0$) 上的矩阵是 $J(0)$ (即特征值为0的Jordan块)。这是因为他们考虑的是幂零变换 $B = A-\lambda_i E$。<br>$B(\alpha_t) = \alpha_{t-1}$<br>…<br>$B(\alpha_2) = \alpha_1$<br>$B(\alpha_1) = 0$<br>若基为 $\{\alpha_1, \alpha_2, \dots, \alpha_t\}$，则 $B$ 在此基下的矩阵为：<br>$B \rightarrow \begin{pmatrix}<br>0 &amp; 1 &amp; &amp; &amp; \\<br>&amp; 0 &amp; 1 &amp; &amp; \\<br>&amp; &amp; \ddots &amp; \ddots &amp; \\<br>&amp; &amp; &amp; 0 &amp; 1 \\<br>&amp; &amp; &amp; &amp; 0<br>\end{pmatrix}$ (1在主对角线上方)。</p>
+</li>
+</ul>
+<h2 id="6-广义特征子空间-Generalized-Eigenspace-与-Jordan-标准型定理"><a href="#6-广义特征子空间-Generalized-Eigenspace-与-Jordan-标准型定理" class="headerlink" title="6. 广义特征子空间 (Generalized Eigenspace) 与 Jordan 标准型定理"></a>6. 广义特征子空间 (Generalized Eigenspace) 与 Jordan 标准型定理</h2><h3 id="6-1-广义特征向量与广义特征子空间"><a href="#6-1-广义特征向量与广义特征子空间" class="headerlink" title="6.1 广义特征向量与广义特征子空间"></a>6.1 广义特征向量与广义特征子空间</h3><ul>
+<li><strong>广义特征向量 (Generalized Eigenvector)</strong>: 对应于特征值 $\lambda$ 的广义特征向量 $\alpha$ 是指存在某个正整数 $m$ 使得 $(A-\lambda E)^m \alpha = 0$。</li>
+<li><strong>广义特征子空间 (Generalized Eigenspace)</strong>: 对应于特征值 $\lambda_i$ 的广义特征子空间 $R_{\lambda_i}$ (或 $K_{\lambda_i}$) 定义为：<br>$R_{\lambda_i} = \{ \alpha \in V \mid (A-\lambda_i E)^m \alpha = 0 \text{ for some positive integer } m \}$<br>等价地，$R_{\lambda_i} = \text{ker}((A-\lambda_i E)^{k_i})$，其中 $k_i$ 是 $\lambda_i$ 在特征多项式中的代数重数 (或者取足够大的 $m$，例如 $m=n$)。</li>
+<li>$R_{\lambda_i}$ 是 $A$-不变子空间。</li>
+</ul>
+<h3 id="6-2-空间分解定理-Primary-Decomposition-Theorem"><a href="#6-2-空间分解定理-Primary-Decomposition-Theorem" class="headerlink" title="6.2 空间分解定理 (Primary Decomposition Theorem)"></a>6.2 空间分解定理 (Primary Decomposition Theorem)</h3><ul>
+<li><p><strong>定理</strong>: 设 $V$ 是一个 $n$ 维复向量空间，$A: V \to V$ 是一个线性变换。设 $f_A(x) = (x-\lambda_1)^{k_1}(x-\lambda_2)^{k_2}\dots(x-\lambda_s)^{k_s}$ 是 $A$ 的特征多项式，其中 $\lambda_i$ 是互异的特征值，$k_i$ 是代数重数。<br>则 $V$ 可以分解为广义特征子空间的直和：<br>$V = R_{\lambda_1} \oplus R_{\lambda_2} \oplus \dots \oplus R_{\lambda_s}$<br>并且 $\text{dim}(R_{\lambda_i}) = k_i$。</p>
+</li>
+<li><p><em>证明概要</em>:</p>
+<ol>
+<li>令 $f_i(x) = f_A(x) / (x-\lambda_i)^{k_i}$。则 $f_1(x), \dots, f_s(x)$ 互质。</li>
+<li>因此存在多项式 $u_1(x), \dots, u_s(x)$ 使得 $\sum_{j=1}^s u_j(x)f_j(x) = 1$。</li>
+<li>对任意 $\alpha \in V$，$\alpha = \sum_{j=1}^s u_j(A)f_j(A)(\alpha)$。</li>
+<li>令 $\alpha_j = u_j(A)f_j(A)(\alpha)$。可以证明 $\alpha_j \in R_{\lambda_j}$ (因为 $(A-\lambda_j E)^{k_j} \alpha_j = (A-\lambda_j E)^{k_j} u_j(A)f_j(A)(\alpha) = u_j(A)f_A(A)(\alpha) = 0$ by Cayley-Hamilton)。</li>
+<li>这表明 $V = R_{\lambda_1} + \dots + R_{\lambda_s}$。</li>
+<li>再证明这个和是直和。设 $\sum \gamma_j = 0$ 且 $\gamma_j \in R_{\lambda_j}$。通过乘以适当的 $(A-\lambda_k E)^{m_k}$ 并利用 $\lambda_i$ 互异的性质，可以证明每个 $\gamma_j=0$。</li>
+<li>最后证明 $\text{dim}(R_{\lambda_i}) = k_i$。</li>
+</ol>
+</li>
+</ul>
+<h3 id="6-3-Jordan-标准型定理"><a href="#6-3-Jordan-标准型定理" class="headerlink" title="6.3 Jordan 标准型定理"></a>6.3 Jordan 标准型定理</h3><ul>
+<li><p><strong>定理</strong>: 任何一个定义在代数闭域 (如复数域 $\mathbb{C}$) 上的 $n$ 阶方阵 $A$ 都相似于一个 <strong>Jordan 标准型矩阵</strong> $J$。<br>$P^{-1}AP = J = \text{diag}(J_1, J_2, \dots, J_q)$<br>其中每个 $J_k$ 是一个 Jordan 块，形如 $J_{m_k}(\lambda_{i_k})$，对应某个特征值 $\lambda_{i_k}$。<br>$J$ 中的 Jordan 块的结构 (大小和对应的特征值) 在不计排列顺序的情况下是唯一的。</p>
+</li>
+<li><p><strong>构造 Jordan 标准型 (对幂零变换)</strong>:<br>Jordan 标准型理论的核心在于处理幂零变换 (nilpotent transformation)，即某个幂次为零矩阵的变换 $B$ ($B^t=O$)。</p>
+<ol>
+<li>对每个广义特征子空间 $R_{\lambda_i}$，考虑变换 $B_i = A - \lambda_i E$ 限制在 $R_{\lambda_i}$ 上。则 $B_i$ 是幂零变换。</li>
+<li>对每个幂零变换 $B_i$ 作用在 $R_{\lambda_i}$ 上，可以找到一组基，使得 $B_i$ 在这组基下的矩阵是 Jordan 块 $J(\mathbf{0})$ (对角元为0) 的直和。</li>
+<li>这组基是由若干条 Jordan 链的向量组成的。</li>
+<li>$A$ 限制在 $R_{\lambda_i}$ 上的矩阵将是 $J(\lambda_i)$ (对角元为 $\lambda_i$) 的直和。</li>
+<li>将所有 $R_{\lambda_i}$ 的 Jordan 基合并起来，就得到 $A$ 的 Jordan 标准型。</li>
+</ol>
+</li>
+<li><p><strong>Jordan 块的个数和大小</strong>:<br>对于特征值 $\lambda_i$：</p>
+<ul>
+<li>尺寸至少为 $k$ 的 Jordan 块的个数为 $\text{rank}((A-\lambda_i E)^{k-1}) - \text{rank}((A-\lambda_i E)^k)$。</li>
+<li>尺寸恰好为 $k$ 的 Jordan 块的个数 $N_k(\lambda_i)$ 可以通过以下公式计算：<br>$N_k(\lambda_i) = \text{rank}((A-\lambda_i E)^{k-1}) - 2 \cdot \text{rank}((A-\lambda_i E)^k) + \text{rank}((A-\lambda_i E)^{k+1})$<br>(需要 $N_0=0$ 和 $(A-\lambda_i E)^0 = E$)。</li>
+<li>对应于 $\lambda_i$ 的 Jordan 块的总个数 (即 Jordan 链的条数) 等于 $\lambda_i$ 的几何重数，即 $\text{dim}(\text{ker}(A-\lambda_i E)) = n - \text{rank}(A-\lambda_i E)$。</li>
+</ul>
+</li>
+</ul>
+<h3 id="6-4-Jordan-标准型的唯一性"><a href="#6-4-Jordan-标准型的唯一性" class="headerlink" title="6.4 Jordan 标准型的唯一性"></a>6.4 Jordan 标准型的唯一性</h3><ul>
+<li>Jordan 标准型在不计 Jordan 块排列顺序的情况下是唯一的。这意味着对于给定的矩阵 $A$，其 Jordan 块的个数、每个 Jordan 块的大小以及对应的特征值都是唯一确定的。</li>
+</ul>
+<h3 id="6-5-例子-PPT-中的例子"><a href="#6-5-例子-PPT-中的例子" class="headerlink" title="6.5 例子 (PPT 中的例子)"></a>6.5 例子 (PPT 中的例子)</h3><p>PPT 中给出了几个计算 Jordan 标准型的例子，步骤通常是：</p>
+<ol>
+<li>计算特征多项式 $f_A(\lambda)$，找出所有特征值 $\lambda_i$ 及其代数重数 $k_i$。</li>
+<li>对每个特征值 $\lambda_i$，考虑 $B_i = A - \lambda_i E$。</li>
+<li>计算 $B_i, B_i^2, B_i^3, \dots$ 的秩，直到秩不再变化 (或幂为零)。</li>
+<li>根据秩的变化情况确定 Jordan 块的大小和个数。<br>例如，对于特征值 $\lambda$：<ul>
+<li>$d_1 = \text{dim}(\text{ker}(A-\lambda E)) = n - \text{rank}(A-\lambda E)$ 是 $\lambda$ 对应的 Jordan 块总数。</li>
+<li>$d_2 = \text{dim}(\text{ker}((A-\lambda E)^2)) = n - \text{rank}((A-\lambda E)^2)$。</li>
+<li>$d_j - d_{j-1}$ 表示长度至少为 $j$ 的 Jordan 链的数目。</li>
+<li>一个 $m \times m$ 的 Jordan 块 $J_m(\lambda)$ 贡献给 $\text{dim}(\text{ker}((A-\lambda E)^j))$ 的维度是 $\min(j, m)$。</li>
+</ul>
+</li>
+<li>构造 Jordan 链：<ul>
+<li>从 $\text{ker}((A-\lambda E)^p) / \text{ker}((A-\lambda E)^{p-1})$ 中选取向量作为长度为 $p$ 的链的链首。</li>
+<li>通过 $(A-\lambda E)$ 作用得到链中其他向量。</li>
+</ul>
+</li>
+<li>将所有 Jordan 链的基向量组合起来构成相似变换矩阵 $P$。<br>$P^{-1}AP = J$。</li>
+</ol>
+<p>PPT 中还提到了 $A$ 和 $A^T$ 有相同的 Jordan 标准型 (因为它们相似于同一个 Jordan 标准型的转置，而 Jordan 块的转置可以通过改变基的顺序变回原来的 Jordan 块，或者说它们有相同的初等因子和不变因子)。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>这一部分是线性代数中比较高级和核心的内容。</p>
+<ul>
+<li><strong>Cayley-Hamilton 定理</strong> 表明每个矩阵都满足其自身的特征方程。</li>
+<li><strong>最小多项式</strong> 是次数最低的零化多项式，它包含了关于矩阵代数性质的关键信息，尤其是与可对角化的关系。</li>
+<li><strong>Jordan 标准型</strong> 揭示了任何复方阵在相似变换下的最简形式，即使矩阵不可对角化。它由对应于特征值的Jordan块构成。</li>
+<li>理解<strong>广义特征子空间</strong>和<strong>Jordan链</strong>是构造Jordan标准型的基础。</li>
+</ul>
+<p>这部分内容对于理解矩阵的深层结构、求解常系数线性微分方程组等都有重要应用。</p>
+</div><div class="article-licensing box"><div class="licensing-title"><p>Chapter5-1 MATH1408</p><p><a href="http://example.com/MATH1408/Chapter5-1-MATH1408.html">http://example.com/MATH1408/Chapter5-1-MATH1408.html</a></p></div><div class="licensing-meta level is-mobile"><div class="level-left"><div class="level-item is-narrow"><div><h6>作者</h6><p>Jiamin Liu</p></div></div><div class="level-item is-narrow"><div><h6>发布于</h6><p>2025-06-24</p></div></div><div class="level-item is-narrow"><div><h6>更新于</h6><p>2025-06-24</p></div></div><div class="level-item is-narrow"><div><h6>许可协议</h6><p><a class="icons" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="icon fab fa-creative-commons"></i></a><a class="icons" rel="noopener" target="_blank" title="Attribution" href="https://creativecommons.org/licenses/by/4.0/"><i class="icon fab fa-creative-commons-by"></i></a><a class="icons" rel="noopener" target="_blank" title="Noncommercial" href="https://creativecommons.org/licenses/by-nc/4.0/"><i class="icon fab fa-creative-commons-nc"></i></a></p></div></div></div></div></div><div class="article-tags is-size-7 mb-4"><span class="mr-2">#</span><a class="link-muted mr-2" rel="tag" href="/"></a><a class="link-muted mr-2" rel="tag" href="/"></a><a class="link-muted mr-2" rel="tag" href="/"></a><a class="link-muted mr-2" rel="tag" href="/"></a><a class="link-muted mr-2" rel="tag" href="/"></a><a class="link-muted mr-2" rel="tag" href="/"></a></div><!--!--></article></div><!--!--><div class="card" id="comments"><div class="card-content"><h3 class="title is-5">评论</h3><div class="notification is-danger">You forgot to set the <code>shortname</code> for Disqus. Please set it in <code>_config.yml</code>.</div></div></div></div><div class="column column-left is-4-tablet is-4-desktop is-4-widescreen  order-1"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar" src="/img/avatar.png" alt="Jiamin Liu"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">Jiamin Liu</p><p class="is-size-6 is-block">别卷了别卷了别卷了</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>China</span></p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">文章</p><a href="/archives/"><p class="title">1</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">分类</p><a href="/categories/"><p class="title">0</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">标签</p><a href="/tags/"><p class="title">0</p></a></div></div></nav></div></div><!--!--></div><!--!--></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/img/logo.svg" alt="OD&#039;s blog" height="28"></a><p class="is-size-7"><span>&copy; 2025 Jiamin Liu</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a></p><p class="is-size-7">© 2019</p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("zh-cn");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script data-pjax src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="回到顶端" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script data-pjax src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
+      window.cookieconsent.initialise({
+        type: "info",
+        theme: "edgeless",
+        static: false,
+        position: "bottom-left",
+        content: {
+          message: "此网站使用Cookie来改善您的体验。",
+          dismiss: "知道了！",
+          allow: "允许使用Cookie",
+          deny: "拒绝",
+          link: "了解更多",
+          policy: "Cookie政策",
+          href: "https://www.cookiesandyou.com/",
+        },
+        palette: {
+          popup: {
+            background: "#edeff5",
+            text: "#838391"
+          },
+          button: {
+            background: "#4b81e8"
+          },
+        },
+      });
+    });</script><script src="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/js/lightgallery.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><script type="text/javascript" id="MathJax-script" async>MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']]
+      },
+      svg: {
+        fontCache: 'global'
+      },
+      chtml: {
+        matchFontHeight: false
+      }
+    };</script><script src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js"></script><script src="https://cdn.jsdelivr.net/npm/pjax@0.2.8/pjax.min.js"></script><script src="/js/pjax.js"></script><!--!--><!--!--><!--!--><script data-pjax src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="想要查找什么..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script data-pjax src="/js/insight.js" defer></script><script data-pjax>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"想要查找什么...","untitled":"(无标题)","posts":"文章","pages":"页面","categories":"分类","tags":"标签"});
+        });</script></body></html>

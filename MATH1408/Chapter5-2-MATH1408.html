@@ -1,0 +1,216 @@
+<!doctype html>
+<html lang="zh"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>Chapter5-2 MATH1408 - OD&#039;s blog</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="OD&#039;s blog"><meta name="msapplication-TileImage" content="/img/favicon.svg"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="OD&#039;s blog"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="description" content="λ-矩阵理论与矩阵标准型1. λ-矩阵 (λ-Matrix &amp;#x2F; Polynomial Matrix)1.1 定义 一个λ-矩阵 (或称多项式矩阵) 是指其元素是关于变量 λ 的多项式的矩阵。$A(\lambda) &amp;#x3D; \begin{pmatrix}a_{11}(\lambda) &amp;amp; a_{12}(\lambda) &amp;amp; \dots &amp;amp; a_{1n}(\lambda) \\a_"><meta property="og:type" content="blog"><meta property="og:title" content="Chapter5-2 MATH1408"><meta property="og:url" content="http://example.com/MATH1408/Chapter5-2-MATH1408.html"><meta property="og:site_name" content="OD&#039;s blog"><meta property="og:description" content="λ-矩阵理论与矩阵标准型1. λ-矩阵 (λ-Matrix &amp;#x2F; Polynomial Matrix)1.1 定义 一个λ-矩阵 (或称多项式矩阵) 是指其元素是关于变量 λ 的多项式的矩阵。$A(\lambda) &amp;#x3D; \begin{pmatrix}a_{11}(\lambda) &amp;amp; a_{12}(\lambda) &amp;amp; \dots &amp;amp; a_{1n}(\lambda) \\a_"><meta property="og:locale" content="zh_CN"><meta property="og:image" content="http://example.com/img/og_image.png"><meta property="article:published_time" content="2025-06-24T09:28:28.295Z"><meta property="article:modified_time" content="2025-06-24T09:28:28.295Z"><meta property="article:author" content="Jiamin Liu"><meta property="article:tag" content="λ-矩阵"><meta property="article:tag" content="相似关系"><meta property="article:tag" content="Smith标准型"><meta property="article:tag" content="行列式因子，不变因子与初等因子"><meta property="article:tag" content="Frobenius标准型"><meta property="article:tag" content="Jordan标准型"><meta property="twitter:card" content="summary"><meta property="twitter:image:src" content="http://example.com/img/og_image.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"http://example.com/MATH1408/Chapter5-2-MATH1408.html"},"headline":"Chapter5-2 MATH1408","image":["http://example.com/img/og_image.png"],"datePublished":"2025-06-24T09:28:28.295Z","dateModified":"2025-06-24T09:28:28.295Z","author":{"@type":"Person","name":"Jiamin Liu"},"publisher":{"@type":"Organization","name":"OD's blog","logo":{"@type":"ImageObject","url":"http://example.com/img/logo.svg"}},"description":"λ-矩阵理论与矩阵标准型1. λ-矩阵 (λ-Matrix &#x2F; Polynomial Matrix)1.1 定义 一个λ-矩阵 (或称多项式矩阵) 是指其元素是关于变量 λ 的多项式的矩阵。$A(\\lambda) &#x3D; \\begin{pmatrix}a_{11}(\\lambda) &amp; a_{12}(\\lambda) &amp; \\dots &amp; a_{1n}(\\lambda) \\\\a_"}</script><link rel="canonical" href="http://example.com/MATH1408/Chapter5-2-MATH1408.html"><link rel="icon" href="/img/favicon.svg"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.0.0/css/all.css"><link data-pjax rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.7.0/styles/atom-one-light.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link data-pjax rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css"><!--!--><!--!--><!--!--><!--!--><style>.pace{-webkit-pointer-events:none;pointer-events:none;-webkit-user-select:none;-moz-user-select:none;user-select:none}.pace-inactive{display:none}.pace .pace-progress{background:#3273dc;position:fixed;z-index:2000;top:0;right:100%;width:100%;height:2px}</style><script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js"></script><!--!--><!--!--><!-- hexo injector head_end start --><script>
+  (function () {
+      function switchTab() {
+          if (!location.hash) {
+            return;
+          }
+
+          const id = '#' + CSS.escape(location.hash.substring(1));
+          const $tabMenu = document.querySelector(`.tabs a[href="${id}"]`);
+          if (!$tabMenu) {
+            return;
+          }
+
+          const $tabMenuContainer = $tabMenu.parentElement.parentElement;
+          Array.from($tabMenuContainer.children).forEach($menu => $menu.classList.remove('is-active'));
+          Array.from($tabMenuContainer.querySelectorAll('a'))
+              .map($menu => document.getElementById($menu.getAttribute("href").substring(1)))
+              .forEach($content => $content.classList.add('is-hidden'));
+
+          if ($tabMenu) {
+              $tabMenu.parentElement.classList.add('is-active');
+          }
+          const $activeTab = document.querySelector(id);
+          if ($activeTab) {
+              $activeTab.classList.remove('is-hidden');
+          }
+      }
+      switchTab();
+      window.addEventListener('hashchange', switchTab, false);
+  })();
+  </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head><body class="is-2-column"><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/img/logo.svg" alt="OD&#039;s blog" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">主页</a></div><div class="navbar-end"><a class="navbar-item search" title="搜索" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-8-widescreen"><div class="card"><article class="card-content article" role="article"><h1 class="title is-3 is-size-4-mobile">Chapter5-2 MATH1408</h1><div class="content"><h1 id="λ-矩阵理论与矩阵标准型"><a href="#λ-矩阵理论与矩阵标准型" class="headerlink" title="λ-矩阵理论与矩阵标准型"></a>λ-矩阵理论与矩阵标准型</h1><h2 id="1-λ-矩阵-λ-Matrix-Polynomial-Matrix"><a href="#1-λ-矩阵-λ-Matrix-Polynomial-Matrix" class="headerlink" title="1. λ-矩阵 (λ-Matrix / Polynomial Matrix)"></a>1. λ-矩阵 (λ-Matrix / Polynomial Matrix)</h2><h3 id="1-1-定义"><a href="#1-1-定义" class="headerlink" title="1.1 定义"></a>1.1 定义</h3><ul>
+<li>一个<strong>λ-矩阵</strong> (或称多项式矩阵) 是指其元素是关于变量 λ 的多项式的矩阵。<br>$A(\lambda) = \begin{pmatrix}<br>a_{11}(\lambda) &amp; a_{12}(\lambda) &amp; \dots &amp; a_{1n}(\lambda) \\<br>a_{21}(\lambda) &amp; a_{22}(\lambda) &amp; \dots &amp; a_{2n}(\lambda) \\<br>\vdots &amp; \vdots &amp; \ddots &amp; \vdots \\<br>a_{m1}(\lambda) &amp; a_{m2}(\lambda) &amp; \dots &amp; a_{mn}(\lambda)<br>\end{pmatrix}$<br>其中 $a_{ij}(\lambda)$ 是数域 $F$ (通常是复数域 $\mathbb{C}$ 或实数域 $\mathbb{R}$) 上的 λ 的多项式。</li>
+<li>λ-矩阵的<strong>次数</strong>是指其所有元素多项式中的最高次数。</li>
+</ul>
+<h3 id="1-2-λ-矩阵的初等变换-Elementary-Operations-for-λ-Matrices"><a href="#1-2-λ-矩阵的初等变换-Elementary-Operations-for-λ-Matrices" class="headerlink" title="1.2 λ-矩阵的初等变换 (Elementary Operations for λ-Matrices)"></a>1.2 λ-矩阵的初等变换 (Elementary Operations for λ-Matrices)</h3><p>λ-矩阵的初等变换类似于常数矩阵的初等变换，但涉及多项式：</p>
+<ol>
+<li><strong>第一类 (行/列交换)</strong>: 交换 λ-矩阵的两行 (或两列)。</li>
+<li><strong>第二类 (行/列倍乘)</strong>: 将 λ-矩阵的某一行 (或某一列) 乘以一个<strong>非零常数</strong> $c \in F, c \ne 0$。 (注意：不是乘以一个λ的多项式，除非该多项式是可逆的，即非零常数)。</li>
+<li><strong>第三类 (行/列倍加)</strong>: 将 λ-矩阵的某一行 (或某一列) 乘以一个<strong>任意的 λ-多项式</strong> $f(\lambda)$ 后加到另一行 (或另一列) 上。</li>
+</ol>
+<h3 id="1-3-λ-矩阵的等价-Equivalence-of-λ-Matrices"><a href="#1-3-λ-矩阵的等价-Equivalence-of-λ-Matrices" class="headerlink" title="1.3 λ-矩阵的等价 (Equivalence of λ-Matrices)"></a>1.3 λ-矩阵的等价 (Equivalence of λ-Matrices)</h3><ul>
+<li>如果 λ-矩阵 $A(\lambda)$ 可以通过一系列<strong>有限次 λ-矩阵初等变换</strong>得到 λ-矩阵 $B(\lambda)$，则称 $A(\lambda)$ 与 $B(\lambda)$ <strong>等价</strong>，记为 $A(\lambda) \sim B(\lambda)$ 或 $A(\lambda) \xrightarrow{\text{初等变换}} B(\lambda)$。</li>
+<li>等价关系具有反身性、对称性和传递性。</li>
+</ul>
+<h3 id="1-4-可逆λ-矩阵-Unimodular-λ-Matrix-Invertible-λ-Matrix"><a href="#1-4-可逆λ-矩阵-Unimodular-λ-Matrix-Invertible-λ-Matrix" class="headerlink" title="1.4 可逆λ-矩阵 (Unimodular λ-Matrix / Invertible λ-Matrix)"></a>1.4 可逆λ-矩阵 (Unimodular λ-Matrix / Invertible λ-Matrix)</h3><ul>
+<li>一个 $n \times n$ 的 λ-方阵 $A(\lambda)$ 称为<strong>可逆λ-矩阵</strong> (或幺模λ-矩阵)，如果存在另一个 $n \times n$ 的 λ-方阵 $B(\lambda)$ 使得 $A(\lambda)B(\lambda) = B(\lambda)A(\lambda) = E_n$ (单位矩阵)。</li>
+<li><strong>定理</strong>: $n \times n$ λ-方阵 $A(\lambda)$ 是可逆λ-矩阵的充要条件是其行列式 $|A(\lambda)|$ 是一个<strong>非零常数</strong>。<ul>
+<li><em>证明思路</em>:<ul>
+<li>($\Rightarrow$) 若 $A(\lambda)B(\lambda)=E_n$，则 $|A(\lambda)||B(\lambda)| = |E_n|=1$。因为 $|A(\lambda)|$ 和 $|B(\lambda)|$ 都是 λ 的多项式，它们相乘为1，则它们必须都是非零常数。</li>
+<li>($\Leftarrow$) 若 $|A(\lambda)|=c \ne 0$ (常数)，则 $A(\lambda)^{-1} = \frac{1}{|A(\lambda)|} \text{adj}(A(\lambda)) = \frac{1}{c} \text{adj}(A(\lambda))$。由于伴随矩阵 $\text{adj}(A(\lambda))$ 的元素也是 λ 的多项式，所以 $A(\lambda)^{-1}$ 是一个 λ-矩阵。<br>□</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>定理</strong>: 任何可逆λ-矩阵都可以表示为有限个<strong>初等λ-矩阵</strong>的乘积。初等λ-矩阵是指由单位矩阵经过一次λ-矩阵初等变换得到的矩阵。</li>
+<li><strong>定理</strong>: λ-矩阵 $A(\lambda)$ 与 $B(\lambda)$ 等价的充要条件是存在可逆λ-矩阵 $P(\lambda)$ 和 $Q(\lambda)$ 使得 $P(\lambda)A(\lambda)Q(\lambda) = B(\lambda)$。</li>
+</ul>
+<h3 id="1-5-矩阵多项式-Polynomials-of-Matrices-Matrix-Polynomials-in-a-different-sense"><a href="#1-5-矩阵多项式-Polynomials-of-Matrices-Matrix-Polynomials-in-a-different-sense" class="headerlink" title="1.5 矩阵多项式 (Polynomials of Matrices / Matrix Polynomials in a different sense)"></a>1.5 矩阵多项式 (Polynomials of Matrices / Matrix Polynomials in a different sense)</h3><p>(这部分PPT的表述似乎混淆了“元素是多项式的矩阵”和“以矩阵为变量的多项式”，这里按前者理解，但提到了带余除法，这通常用于后者)</p>
+<ul>
+<li><strong>定义</strong>: 形如 $M(\lambda) = M_m \lambda^m + M_{m-1} \lambda^{m-1} + \dots + M_1 \lambda + M_0$ 的表达式，其中 $M_i$ 是 $n \times n$ 的<strong>常数矩阵</strong>，$M_m \ne O$ (零矩阵)（如果 $m&gt;0$）。$m$ 称为该矩阵多项式的次数。</li>
+<li><strong>带余除法</strong>: 对于矩阵多项式 $M(\lambda)$ 和 $N(\lambda) = \lambda E - A$ (其中 $A$ 是常数矩阵)，存在唯一的矩阵多项式 $Q(\lambda)$ (商式) 和常数矩阵 $R$ (余式) 使得：<br>$M(\lambda) = Q(\lambda)(\lambda E - A) + R$  (右除法)<br>且存在唯一的矩阵多项式 $S(\lambda)$ (商式) 和常数矩阵 $T$ (余式) 使得：<br>$N(\lambda) = (\lambda E - B)S(\lambda) + T$ (这里应该是 $M(\lambda) = (\lambda E - B)S(\lambda) + T$ 左除法)<ul>
+<li><em>证明思路 (右除法)</em>:<br>设 $M(\lambda) = M_m \lambda^m + \dots + M_0$。<br>如果 $m=0$, $M(\lambda)=M_0$, 则 $Q(\lambda)=O, R=M_0$。<br>如果 $m \ge 1$。令 $Q_1(\lambda) = M_m \lambda^{m-1}$。<br>$M(\lambda) - Q_1(\lambda)(\lambda E - A) = (M_m \lambda^m + \dots) - (M_m \lambda^m - M_m A \lambda^{m-1}) = (M_{m-1} + M_m A)\lambda^{m-1} + \dots$<br>这是一个次数严格小于 $m$ 的矩阵多项式。重复此过程，直到余式的次数为0 (即常数矩阵) 或余式为零矩阵。<br>□</li>
+</ul>
+</li>
+<li><strong>推论 (矩阵余数定理)</strong>: 矩阵多项式 $M(\lambda)$ 右除以 $\lambda E - A$ 的余矩阵是 $M(A) = M_m A^m + \dots + M_0$ (即把 $A$ “代入” $M(\lambda)$，但这里是右代入)。<br>$M(\lambda) = Q(\lambda)(\lambda E - A) + M(A)_{right}$<br>左除以 $\lambda E - A$ 的余矩阵是 $M(A)_{left}$ (左代入)。</li>
+</ul>
+<h2 id="2-相似关系与λ-矩阵的等价"><a href="#2-相似关系与λ-矩阵的等价" class="headerlink" title="2. 相似关系与λ-矩阵的等价"></a>2. 相似关系与λ-矩阵的等价</h2><ul>
+<li><strong>定理</strong>: $n \times n$ 常数矩阵 $A$ 与 $B$ 相似 ($A \sim B$) 的充要条件是它们的特征矩阵 $\lambda E - A$ 与 $\lambda E - B$ 作为 λ-矩阵是等价的。<br>即，$A \sim B \iff \lambda E - A \sim \lambda E - B$。<ul>
+<li><em>证明</em>:<br>($\Rightarrow$) 若 $A \sim B$，则存在可逆常数矩阵 $P$ 使得 $P^{-1}AP = B$。<br>则 $P^{-1}(\lambda E - A)P = \lambda P^{-1}EP - P^{-1}AP = \lambda E - B$。<br>由于 $P$ 和 $P^{-1}$ 都是常数矩阵，它们也是可逆λ-矩阵 (行列式为非零常数)。<br>因此 $\lambda E - A \sim \lambda E - B$。<br>($\Leftarrow$) 若 $\lambda E - A \sim \lambda E - B$，则存在可逆λ-矩阵 $M(\lambda)$ 和 $N(\lambda)$ 使得<br>$M(\lambda)(\lambda E - A)N(\lambda) = \lambda E - B$  (<em>)<br>PPT中有一段较复杂的证明，试图说明 $M(\lambda)$ 和 $N(\lambda)$ 实际上必须是常数矩阵且 $N(\lambda) = M(\lambda)^{-1}$。<br>关键步骤是利用带余除法：<br>$M(\lambda) = (\lambda E - B)Q_M(\lambda) + R_M$<br>$N(\lambda) = Q_N(\lambda)(\lambda E - A) + R_N$ (这里应该是 $(\lambda E - B)Q_N(\lambda) + R_N$ 或 $Q_N(\lambda)(\lambda E - A)$ for $N(\lambda)^{-1}$)<br>代入(</em>)并比较系数。PPT 的推导过程比较难以辨认，但最终结论是 $M(\lambda)$ 和 $N(\lambda)$ 必须是常数可逆矩阵 $P$ 和 $P^{-1}$。<br>更标准的证明通常依赖于不变因子或初等因子理论：$\lambda E - A \sim \lambda E - B$ 意味着它们有相同的Smith标准型，这进一步意味着它们有相同的不变因子，从而 $A$ 和 $B$ 相似。<br>□</li>
+</ul>
+</li>
+</ul>
+<h2 id="3-λ-矩阵的Smith标准型-Smith-Normal-Form"><a href="#3-λ-矩阵的Smith标准型-Smith-Normal-Form" class="headerlink" title="3. λ-矩阵的Smith标准型 (Smith Normal Form)"></a>3. λ-矩阵的Smith标准型 (Smith Normal Form)</h2><ul>
+<li><p><strong>定理 (Smith标准型定理)</strong>: 任何一个非零的 $m \times n$ λ-矩阵 $A(\lambda)$ 都等价于一个唯一的对角形λ-矩阵：<br>$S(\lambda) = \text{diag}(d_1(\lambda), d_2(\lambda), \dots, d_r(\lambda), 0, \dots, 0)$<br>$S(\lambda) = \begin{pmatrix}<br>d_1(\lambda) &amp; &amp; &amp; &amp; &amp; \\<br>&amp; d_2(\lambda) &amp; &amp; &amp; &amp; \\<br>&amp; &amp; \ddots &amp; &amp; &amp; \\<br>&amp; &amp; &amp; d_r(\lambda) &amp; &amp; \\<br>&amp; &amp; &amp; &amp; 0 &amp; \\<br>&amp; &amp; &amp; &amp; &amp; \ddots \\<br>&amp; &amp; &amp; &amp; &amp; &amp; 0<br>\end{pmatrix}$<br>其中：</p>
+<ol>
+<li>$r = \text{rank}(A(\lambda))$ 是 $A(\lambda)$ 的秩 (秩是指其行列式不恒为零的最高阶子式的阶数)。</li>
+<li>每个 $d_i(\lambda)$ 是首项系数为1的λ-多项式 (monic polynomial)。</li>
+<li>$d_i(\lambda)$ 整除 $d_{i+1}(\lambda)$ (即 $d_i(\lambda) | d_{i+1}(\lambda)$) 对 $i=1, 2, \dots, r-1$ 成立。</li>
+</ol>
+</li>
+<li><p>这个唯一的对角形矩阵 $S(\lambda)$ 称为 $A(\lambda)$ 的 <strong>Smith标准型</strong>。</p>
+</li>
+<li><p>$d_i(\lambda)$ 称为 $A(\lambda)$ 的<strong>不变因子 (invariant factors)</strong>。</p>
+</li>
+<li><p><strong>对于特征矩阵 $\lambda E - A$ ($A$ 是 $n \times n$ 常数矩阵)</strong>:<br>其Smith标准型为：<br>$S(\lambda) = \text{diag}(1, \dots, 1, d_1(\lambda), d_2(\lambda), \dots, d_m(\lambda))$<br>其中 $d_i(\lambda)$ 是次数 $\ge 1$ 的首1多项式，且 $d_i(\lambda) | d_{i+1}(\lambda)$。<br>这里，前 $n-m$ 个不变因子是1。<br>最后一个不变因子 $d_m(\lambda)$ 实际上等于 $A$ 的最小多项式 $m_A(\lambda)$ (如果规范化为首1)。<br>所有不变因子的乘积 $\prod d_i(\lambda)$ (包括那些为1的) 等于 $\lambda E - A$ 的行列式 (即 $A$ 的特征多项式 $f_A(\lambda)$)，除了一个常数因子外。如果 $d_i(\lambda)$ 都是首1的，则 $\prod d_i(\lambda) = f_A(\lambda)$。</p>
+</li>
+<li><p><strong>例子</strong>:<br>PPT中给出了一个例子：<br>$A = \begin{pmatrix} 0 &amp; 1 &amp; -1 \\ 3 &amp; -2 &amp; 0 \\ -1 &amp; 1 &amp; -1 \end{pmatrix}$<br>$\lambda E - A = \begin{pmatrix} \lambda &amp; -1 &amp; 1 \\ -3 &amp; \lambda+2 &amp; 0 \\ 1 &amp; -1 &amp; \lambda+1 \end{pmatrix}$<br>通过初等变换化为 Smith 标准型：<br>$\sim \begin{pmatrix} 1 &amp; 0 &amp; 0 \\ 0 &amp; 1 &amp; 0 \\ 0 &amp; 0 &amp; (\lambda-1)(\lambda^2+4\lambda+2) \end{pmatrix}$<br>(PPT中的结果是 $(\lambda-1)(\lambda^2+4\lambda+2)$, 可能计算有误或抄录有误，标准做法应是 $(\lambda-1)(\lambda^2+4\lambda+7)$ 或者其他形式，具体取决于 $A$。这里的多项式是 $f_A(\lambda)$)。<br>不变因子是: $1, 1, (\lambda-1)(\lambda^2+4\lambda+2)$。</p>
+</li>
+</ul>
+<h2 id="4-行列式因子、不变因子与初等因子"><a href="#4-行列式因子、不变因子与初等因子" class="headerlink" title="4. 行列式因子、不变因子与初等因子"></a>4. 行列式因子、不变因子与初等因子</h2><h3 id="4-1-k阶行列式因子-D-k-lambda"><a href="#4-1-k阶行列式因子-D-k-lambda" class="headerlink" title="4.1 k阶行列式因子 ($D_k(\lambda)$)"></a>4.1 k阶行列式因子 ($D_k(\lambda)$)</h3><ul>
+<li><strong>定义</strong>: λ-矩阵 $A(\lambda)$ 的 $k$ <strong>阶行列式因子</strong> $D_k(\lambda)$ 是 $A(\lambda)$ 中所有 $k \times k$ 子式的最大公因式 (GCD)，并规范化为首项系数为1。<br>如果 $A(\lambda)$ 中所有 $k \times k$ 子式都为0，则 $D_k(\lambda)=0$。<br>约定 $D_0(\lambda) = 1$。</li>
+<li><strong>性质</strong>:<ul>
+<li>λ-矩阵初等变换不改变其各阶行列式因子 (这是一个非常重要的性质，用于证明Smith标准型的唯一性)。</li>
+<li>$D_k(\lambda) | D_{k+1}(\lambda)$。</li>
+</ul>
+</li>
+</ul>
+<h3 id="4-2-不变因子-d-k-lambda-与行列式因子的关系"><a href="#4-2-不变因子-d-k-lambda-与行列式因子的关系" class="headerlink" title="4.2 不变因子 ($d_k(\lambda)$) 与行列式因子的关系"></a>4.2 不变因子 ($d_k(\lambda)$) 与行列式因子的关系</h3><ul>
+<li>不变因子可以通过行列式因子计算得到：<br>$d_1(\lambda) = D_1(\lambda)$<br>$d_k(\lambda) = \frac{D_k(\lambda)}{D_{k-1}(\lambda)}$ for $k=2, \dots, r$ (其中 $r = \text{rank}(A(\lambda))$)</li>
+<li>这就是为什么 $d_k(\lambda)$ 也被称为“不变的”，因为 $D_k(\lambda)$ 在初等变换下不变。</li>
+</ul>
+<h3 id="4-3-初等因子-Elementary-Divisors"><a href="#4-3-初等因子-Elementary-Divisors" class="headerlink" title="4.3 初等因子 (Elementary Divisors)"></a>4.3 初等因子 (Elementary Divisors)</h3><ul>
+<li><strong>定义</strong>: 将 λ-矩阵 $A(\lambda)$ (通常指 $\lambda E - A$) 的每个次数 $\ge 1$ 的不变因子 $d_i(\lambda)$ 在复数域 (或适当的数域) 上分解为互不相同的一次不可约因式 (即 $x-\lambda_j$) 的幂的乘积：<br>$d_i(\lambda) = ( \lambda - \lambda_1 )^{e_{i1}} ( \lambda - \lambda_2 )^{e_{i2}} \dots ( \lambda - \lambda_s )^{e_{is}}$<br>所有这些形如 $(\lambda - \lambda_j)^{e_{ij}}$ 且 $e_{ij} &gt; 0$ 的因式称为 $A(\lambda)$ (或对应矩阵 $A$) 的<strong>初等因子</strong>。</li>
+<li>同一个 $(\lambda - \lambda_j)$ 的不同次幂若出现多次，则它们都是初等因子。</li>
+<li><strong>性质</strong>:<ul>
+<li>相似的常数矩阵有相同的初等因子集合 (因为它们有相同的不变因子)。</li>
+<li>反之，如果两个常数矩阵有相同的初等因子集合，则它们相似 (在复数域上)。</li>
+</ul>
+</li>
+<li><strong>不变因子与初等因子的关系</strong>:<ul>
+<li>$d_r(\lambda)$ (最后一个不变因子，对应最小多项式) 是所有不同根的初等因子的最高次幂的乘积。<br>例如，如果初等因子是 $(\lambda-\lambda_1)^{k_1}, (\lambda-\lambda_1)^{j_1}, (\lambda-\lambda_2)^{k_2}$ (其中 $k_1 \ge j_1$)，则 $d_r(\lambda)$ 包含 $(\lambda-\lambda_1)^{k_1}$ 和 $(\lambda-\lambda_2)^{k_2}$。</li>
+<li>$d_{r-1}(\lambda)$ 是除去每个根的最高次幂后，剩余初等因子中每个根的最高次幂的乘积。</li>
+<li>以此类推，直到 $d_1(\lambda)$。</li>
+<li>简单来说，对每个素因子 $p(\lambda) = \lambda - \lambda_j$，将其在所有不变因子分解式中的指数 $e_{ij}$ 按非增序列排列，这些 $p(\lambda)^{e_{ij}}$ ($e_{ij}&gt;0$) 就是初等因子。</li>
+</ul>
+</li>
+</ul>
+<h2 id="5-Frobenius-标准型-Rational-Canonical-Form-Frobenius-Normal-Form"><a href="#5-Frobenius-标准型-Rational-Canonical-Form-Frobenius-Normal-Form" class="headerlink" title="5. Frobenius 标准型 (Rational Canonical Form / Frobenius Normal Form)"></a>5. Frobenius 标准型 (Rational Canonical Form / Frobenius Normal Form)</h2><ul>
+<li><strong>友矩阵 (Companion Matrix)</strong>: 对于首1多项式 $p(\lambda) = \lambda^r + a_{r-1}\lambda^{r-1} + \dots + a_1\lambda + a_0$，其<strong>友矩阵</strong>定义为：<br>$F_p = \begin{pmatrix}<br>0 &amp; 0 &amp; \dots &amp; 0 &amp; -a_0 \\<br>1 &amp; 0 &amp; \dots &amp; 0 &amp; -a_1 \\<br>0 &amp; 1 &amp; \dots &amp; 0 &amp; -a_2 \\<br>\vdots &amp; \vdots &amp; \ddots &amp; \vdots &amp; \vdots \\<br>0 &amp; 0 &amp; \dots &amp; 1 &amp; -a_{r-1}<br>\end{pmatrix}_{r \times r}$<br>(友矩阵有几种形式，这是常见的一种。另一种是将负系数放在第一行)。</li>
+<li><p><strong>性质</strong>: 友矩阵 $F_p$ 的特征多项式和最小多项式都是 $p(\lambda)$。其不变因子是 $1, \dots, 1, p(\lambda)$。</p>
+</li>
+<li><p><strong>Frobenius 标准型定理</strong>: 任何一个 $n \times n$ 复 (或实) 矩阵 $A$ 都相似于一个分块对角矩阵 $F = \text{diag}(F_1, F_2, \dots, F_k)$，其中每个 $F_i$ 是对应于 $A$ 的一个非常数不变因子 $d_i(\lambda)$ (即次数 $\ge 1$ 的那些) 的友矩阵。<br>$F = \begin{pmatrix} F_{d_1(\lambda)} &amp; &amp; \\ &amp; F_{d_2(\lambda)} &amp; \\ &amp; &amp; \ddots \\ &amp; &amp; &amp; F_{d_k(\lambda)} \end{pmatrix}$<br>其中 $d_1(\lambda) | d_2(\lambda) | \dots | d_k(\lambda)$ 是 $\lambda E - A$ 的非常数首1不变因子。<br>这个 $F$ 称为 $A$ 的 <strong>Frobenius 标准型</strong> (或有理标准型，因为它可以在定义矩阵的域 $F$ 上实现，不需要扩域)。</p>
+</li>
+<li>Frobenius 标准型在不计块的排列顺序下是唯一的。</li>
+<li>$A$ 的最小多项式是 $d_k(\lambda)$ (最后一个最大的不变因子)。</li>
+<li><p>$A$ 的特征多项式是 $\prod_{i=1}^k d_i(\lambda)$。</p>
+</li>
+<li><p><strong>例子</strong>:<br>如果 $A$ 的不变因子是 $1, 1, \lambda-1, (\lambda-1)^2, (\lambda-1)^2(\lambda+1)$。<br>非常数不变因子是 $d_1(\lambda) = \lambda-1$, $d_2(\lambda) = (\lambda-1)^2 = \lambda^2-2\lambda+1$, $d_3(\lambda) = (\lambda-1)^2(\lambda+1) = (\lambda^2-2\lambda+1)(\lambda+1) = \lambda^3 - \lambda^2 - \lambda + 1$。<br>Frobenius 标准型为:<br>$F = \text{diag} \left(<br>\begin{pmatrix} 1 \end{pmatrix},<br>\begin{pmatrix} 0 &amp; -1 \\ 1 &amp; 2 \end{pmatrix},<br>\begin{pmatrix} 0 &amp; 0 &amp; -1 \\ 1 &amp; 0 &amp; 1 \\ 0 &amp; 1 &amp; 1 \end{pmatrix}<br>\right)$<br>(这里友矩阵的系数是对应多项式中除去最高次项后各项系数的相反数)。</p>
+</li>
+</ul>
+<h2 id="6-Jordan-标准型-Jordan-Canonical-Form-Jordan-Normal-Form"><a href="#6-Jordan-标准型-Jordan-Canonical-Form-Jordan-Normal-Form" class="headerlink" title="6. Jordan 标准型 (Jordan Canonical Form / Jordan Normal Form)"></a>6. Jordan 标准型 (Jordan Canonical Form / Jordan Normal Form)</h2><h3 id="6-1-从不变因子到初等因子-回顾"><a href="#6-1-从不变因子到初等因子-回顾" class="headerlink" title="6.1 从不变因子到初等因子 (回顾)"></a>6.1 从不变因子到初等因子 (回顾)</h3><p>如前所述，将每个不变因子 $d_i(\lambda)$ 分解成素多项式 (在复数域上是 $\lambda - \lambda_j$) 的幂。这些幂就是初等因子。</p>
+<h3 id="6-2-Jordan-块"><a href="#6-2-Jordan-块" class="headerlink" title="6.2 Jordan 块"></a>6.2 Jordan 块</h3><ul>
+<li>对应于初等因子 $(\lambda - \lambda_0)^r$ 的 <strong>Jordan 块</strong>是一个 $r \times r$ 矩阵：<br>$J_r(\lambda_0) = \begin{pmatrix}<br>\lambda_0 &amp; 1 &amp; &amp; &amp; \\<br>&amp; \lambda_0 &amp; 1 &amp; &amp; \\<br>&amp; &amp; \ddots &amp; \ddots &amp; \\<br>&amp; &amp; &amp; \lambda_0 &amp; 1 \\<br>&amp; &amp; &amp; &amp; \lambda_0<br>\end{pmatrix}$</li>
+<li>Jordan 块 $J_r(\lambda_0)$ 的唯一初等因子是 $(\lambda - \lambda_0)^r$。其不变因子也是 $1, \dots, 1, (\lambda-\lambda_0)^r$。</li>
+</ul>
+<h3 id="6-3-Jordan-标准型定理"><a href="#6-3-Jordan-标准型定理" class="headerlink" title="6.3 Jordan 标准型定理"></a>6.3 Jordan 标准型定理</h3><ul>
+<li>任何一个 $n \times n$ 复矩阵 $A$ (或定义在代数闭域上的矩阵) 都相似于一个分块对角矩阵 $J$，称为 $A$ 的 <strong>Jordan 标准型</strong>:<br>$J = \text{diag}(J_1, J_2, \dots, J_s)$<br>其中每个 $J_k$ 是一个 Jordan 块，对应于 $A$ 的一个初等因子。<br>具体地，如果 $A$ 的初等因子集合是 $\{ (\lambda-\lambda_1)^{r_1}, (\lambda-\lambda_2)^{r_2}, \dots, (\lambda-\lambda_s)^{r_s} \}$ (这里 $\lambda_i$ 可能相同)，则 Jordan 标准型由 Jordan 块 $J_{r_1}(\lambda_1), J_{r_2}(\lambda_2), \dots, J_{r_s}(\lambda_s)$ 组成。</li>
+<li>Jordan 标准型在不计 Jordan 块排列顺序的情况下是唯一的。</li>
+<li>$A$ 的特征多项式是所有初等因子的乘积。</li>
+<li>$A$ 的最小多项式是每个不同根 $(\lambda-\lambda_j)$ 对应的最高次幂初等因子的乘积。</li>
+</ul>
+<h3 id="6-4-从-Smith-标准型-不变因子直接得到-Jordan-标准型"><a href="#6-4-从-Smith-标准型-不变因子直接得到-Jordan-标准型" class="headerlink" title="6.4 从 Smith 标准型/不变因子直接得到 Jordan 标准型"></a>6.4 从 Smith 标准型/不变因子直接得到 Jordan 标准型</h3><p>如果 $\lambda E - A$ 的 Smith 标准型是 $\text{diag}(1, \dots, 1, d_1(\lambda), \dots, d_m(\lambda))$。<br>对每个非常数不变因子 $d_i(\lambda)$，将其分解为 $d_i(\lambda) = \prod_j (\lambda - \lambda_{ij})^{e_{ij}}$。<br>则 $A$ 的 Jordan 标准型由对应于每个 $(\lambda - \lambda_{ij})^{e_{ij}}$ 的 Jordan 块 $J_{e_{ij}}(\lambda_{ij})$ 构成。<br>(这种说法不完全准确，更准确的是通过所有初等因子来构造)。<br>正确做法是：</p>
+<ol>
+<li>求出 $\lambda E - A$ 的所有初等因子。</li>
+<li>对每个初等因子 $(\lambda - \lambda_0)^k$，Jordan 标准型中就有一个 $k \times k$ 的 Jordan 块 $J_k(\lambda_0)$。</li>
+</ol>
+<h3 id="6-5-例子"><a href="#6-5-例子" class="headerlink" title="6.5 例子"></a>6.5 例子</h3><p>如果 $A$ 的初等因子是 $(\lambda-1)^2, (\lambda-1)^2, \lambda+2, (\lambda-1)$。<br>(这里特征值 1 对应几何重数为3，代数重数为 $2+2+1=5$；特征值 -2 对应几何重数和代数重数都为1)。<br>Jordan 标准型是 (不计顺序):<br>$J = \text{diag}( J_2(1), J_2(1), J_1(-2), J_1(1) )$<br>$J = \text{diag} \left(<br>\begin{pmatrix} 1 &amp; 1 \\ 0 &amp; 1 \end{pmatrix},<br>\begin{pmatrix} 1 &amp; 1 \\ 0 &amp; 1 \end{pmatrix},<br>\begin{pmatrix} -2 \end{pmatrix},<br>\begin{pmatrix} 1 \end{pmatrix}<br>\right)$</p>
+<h3 id="6-6-寻找相似变换矩阵-P-P-1-AP-J"><a href="#6-6-寻找相似变换矩阵-P-P-1-AP-J" class="headerlink" title="6.6 寻找相似变换矩阵 P ($P^{-1}AP=J$)"></a>6.6 寻找相似变换矩阵 P ($P^{-1}AP=J$)</h3><p>PPT中提到了如何通过解方程组 $(A-\lambda_i E)x = 0$ (找特征向量) 和 $(A-\lambda_i E)x = y$ (找广义特征向量，形成Jordan链) 来构造矩阵 $P$。<br>对于每个 Jordan 块 $J_k(\lambda_0)$，对应 $P$ 中的 $k$ 列向量 $v_1, \dots, v_k$ (Jordan 链)，满足：<br>$(A-\lambda_0 E)v_1 = 0$<br>$(A-\lambda_0 E)v_2 = v_1$<br>…<br>$(A-\lambda_0 E)v_k = v_{k-1}$<br>然后 $P = (v_1, v_2, \dots, v_k, \dots)$。</p>
+<h2 id="总结与关系"><a href="#总结与关系" class="headerlink" title="总结与关系"></a>总结与关系</h2><ul>
+<li><strong>λ-矩阵的初等变换</strong> 是核心工具。</li>
+<li><strong>Smith标准型</strong> 给出了λ-矩阵在等价关系下的最简形式，其对角线元素是<strong>不变因子</strong>。</li>
+<li><strong>行列式因子</strong> 用于计算不变因子。</li>
+<li><strong>不变因子</strong> 分解得到<strong>初等因子</strong>。</li>
+<li>对于常数矩阵 $A$，其特征矩阵 $\lambda E - A$ 的<ul>
+<li><strong>不变因子</strong> 决定了 $A$ 的 <strong>Frobenius 标准型</strong>。</li>
+<li><strong>初等因子</strong> 决定了 $A$ 的 <strong>Jordan 标准型</strong> (在代数闭域上)。</li>
+</ul>
+</li>
+<li>Frobenius 标准型在原域上总存在，Jordan 标准型需要域是代数闭的 (例如复数域)。</li>
+</ul>
+</div><div class="article-licensing box"><div class="licensing-title"><p>Chapter5-2 MATH1408</p><p><a href="http://example.com/MATH1408/Chapter5-2-MATH1408.html">http://example.com/MATH1408/Chapter5-2-MATH1408.html</a></p></div><div class="licensing-meta level is-mobile"><div class="level-left"><div class="level-item is-narrow"><div><h6>作者</h6><p>Jiamin Liu</p></div></div><div class="level-item is-narrow"><div><h6>发布于</h6><p>2025-06-24</p></div></div><div class="level-item is-narrow"><div><h6>更新于</h6><p>2025-06-24</p></div></div><div class="level-item is-narrow"><div><h6>许可协议</h6><p><a class="icons" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="icon fab fa-creative-commons"></i></a><a class="icons" rel="noopener" target="_blank" title="Attribution" href="https://creativecommons.org/licenses/by/4.0/"><i class="icon fab fa-creative-commons-by"></i></a><a class="icons" rel="noopener" target="_blank" title="Noncommercial" href="https://creativecommons.org/licenses/by-nc/4.0/"><i class="icon fab fa-creative-commons-nc"></i></a></p></div></div></div></div></div><div class="article-tags is-size-7 mb-4"><span class="mr-2">#</span><a class="link-muted mr-2" rel="tag" href="/"></a><a class="link-muted mr-2" rel="tag" href="/"></a><a class="link-muted mr-2" rel="tag" href="/"></a><a class="link-muted mr-2" rel="tag" href="/"></a><a class="link-muted mr-2" rel="tag" href="/"></a><a class="link-muted mr-2" rel="tag" href="/"></a></div><!--!--></article></div><!--!--><div class="card" id="comments"><div class="card-content"><h3 class="title is-5">评论</h3><div class="notification is-danger">You forgot to set the <code>shortname</code> for Disqus. Please set it in <code>_config.yml</code>.</div></div></div></div><div class="column column-left is-4-tablet is-4-desktop is-4-widescreen  order-1"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar" src="/img/avatar.png" alt="Jiamin Liu"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">Jiamin Liu</p><p class="is-size-6 is-block">别卷了别卷了别卷了</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>China</span></p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">文章</p><a href="/archives/"><p class="title">1</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">分类</p><a href="/categories/"><p class="title">0</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">标签</p><a href="/tags/"><p class="title">0</p></a></div></div></nav></div></div><!--!--></div><!--!--></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/img/logo.svg" alt="OD&#039;s blog" height="28"></a><p class="is-size-7"><span>&copy; 2025 Jiamin Liu</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a></p><p class="is-size-7">© 2019</p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("zh-cn");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script data-pjax src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="回到顶端" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script data-pjax src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
+      window.cookieconsent.initialise({
+        type: "info",
+        theme: "edgeless",
+        static: false,
+        position: "bottom-left",
+        content: {
+          message: "此网站使用Cookie来改善您的体验。",
+          dismiss: "知道了！",
+          allow: "允许使用Cookie",
+          deny: "拒绝",
+          link: "了解更多",
+          policy: "Cookie政策",
+          href: "https://www.cookiesandyou.com/",
+        },
+        palette: {
+          popup: {
+            background: "#edeff5",
+            text: "#838391"
+          },
+          button: {
+            background: "#4b81e8"
+          },
+        },
+      });
+    });</script><script src="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/js/lightgallery.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><script type="text/javascript" id="MathJax-script" async>MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']]
+      },
+      svg: {
+        fontCache: 'global'
+      },
+      chtml: {
+        matchFontHeight: false
+      }
+    };</script><script src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js"></script><script src="https://cdn.jsdelivr.net/npm/pjax@0.2.8/pjax.min.js"></script><script src="/js/pjax.js"></script><!--!--><!--!--><!--!--><script data-pjax src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="想要查找什么..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script data-pjax src="/js/insight.js" defer></script><script data-pjax>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"想要查找什么...","untitled":"(无标题)","posts":"文章","pages":"页面","categories":"分类","tags":"标签"});
+        });</script></body></html>

@@ -1,0 +1,642 @@
+<!doctype html>
+<html lang="zh"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>Chapter1_MATH1408 - OD&#039;s blog</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="OD&#039;s blog"><meta name="msapplication-TileImage" content="/img/favicon.svg"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="OD&#039;s blog"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="description" content="多项式的基本概念1.1 多项式的定义 设 $F$ 是一个数域 (Field) (例如实数域 $\mathbb{R}$ 或复数域 $\mathbb{C}$)。 一个以 $x$ 为不定元 (indeterminate) 的 $F$ 上的多项式 (polynomial) 是形如：$f(x) &amp;#x3D; a_n x^n + a_{n-1} x^{n-1} + \dots + a_1 x + a_0$的表达式，其中"><meta property="og:type" content="blog"><meta property="og:title" content="Chapter1_MATH1408"><meta property="og:url" content="http://example.com/MATH1408/Chapter1-MATH1408.html"><meta property="og:site_name" content="OD&#039;s blog"><meta property="og:description" content="多项式的基本概念1.1 多项式的定义 设 $F$ 是一个数域 (Field) (例如实数域 $\mathbb{R}$ 或复数域 $\mathbb{C}$)。 一个以 $x$ 为不定元 (indeterminate) 的 $F$ 上的多项式 (polynomial) 是形如：$f(x) &amp;#x3D; a_n x^n + a_{n-1} x^{n-1} + \dots + a_1 x + a_0$的表达式，其中"><meta property="og:locale" content="zh_CN"><meta property="og:image" content="http://example.com/img/og_image.png"><meta property="article:published_time" content="2025-06-24T11:27:36.260Z"><meta property="article:modified_time" content="2025-06-24T11:27:36.260Z"><meta property="article:author" content="Jiamin Liu"><meta property="article:tag" content="多项式计算"><meta property="twitter:card" content="summary"><meta property="twitter:image:src" content="http://example.com/img/og_image.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"http://example.com/MATH1408/Chapter1-MATH1408.html"},"headline":"Chapter1_MATH1408","image":["http://example.com/img/og_image.png"],"datePublished":"2025-06-24T11:27:36.260Z","dateModified":"2025-06-24T11:27:36.260Z","author":{"@type":"Person","name":"Jiamin Liu"},"publisher":{"@type":"Organization","name":"OD's blog","logo":{"@type":"ImageObject","url":"http://example.com/img/logo.svg"}},"description":"多项式的基本概念1.1 多项式的定义 设 $F$ 是一个数域 (Field) (例如实数域 $\\mathbb{R}$ 或复数域 $\\mathbb{C}$)。 一个以 $x$ 为不定元 (indeterminate) 的 $F$ 上的多项式 (polynomial) 是形如：$f(x) &#x3D; a_n x^n + a_{n-1} x^{n-1} + \\dots + a_1 x + a_0$的表达式，其中"}</script><link rel="canonical" href="http://example.com/MATH1408/Chapter1-MATH1408.html"><link rel="icon" href="/img/favicon.svg"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.0.0/css/all.css"><link data-pjax rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.7.0/styles/atom-one-light.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link data-pjax rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css"><!--!--><!--!--><!--!--><!--!--><style>.pace{-webkit-pointer-events:none;pointer-events:none;-webkit-user-select:none;-moz-user-select:none;user-select:none}.pace-inactive{display:none}.pace .pace-progress{background:#3273dc;position:fixed;z-index:2000;top:0;right:100%;width:100%;height:2px}</style><script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js"></script><!--!--><!--!--><!-- hexo injector head_end start --><script>
+  (function () {
+      function switchTab() {
+          if (!location.hash) {
+            return;
+          }
+
+          const id = '#' + CSS.escape(location.hash.substring(1));
+          const $tabMenu = document.querySelector(`.tabs a[href="${id}"]`);
+          if (!$tabMenu) {
+            return;
+          }
+
+          const $tabMenuContainer = $tabMenu.parentElement.parentElement;
+          Array.from($tabMenuContainer.children).forEach($menu => $menu.classList.remove('is-active'));
+          Array.from($tabMenuContainer.querySelectorAll('a'))
+              .map($menu => document.getElementById($menu.getAttribute("href").substring(1)))
+              .forEach($content => $content.classList.add('is-hidden'));
+
+          if ($tabMenu) {
+              $tabMenu.parentElement.classList.add('is-active');
+          }
+          const $activeTab = document.querySelector(id);
+          if ($activeTab) {
+              $activeTab.classList.remove('is-hidden');
+          }
+      }
+      switchTab();
+      window.addEventListener('hashchange', switchTab, false);
+  })();
+  </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head><body class="is-2-column"><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/img/logo.svg" alt="OD&#039;s blog" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">主页</a></div><div class="navbar-end"><a class="navbar-item search" title="搜索" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-8-widescreen"><div class="card"><article class="card-content article" role="article"><h1 class="title is-3 is-size-4-mobile">Chapter1_MATH1408</h1><div class="content"><h1 id="多项式的基本概念"><a href="#多项式的基本概念" class="headerlink" title="多项式的基本概念"></a>多项式的基本概念</h1><h2 id="1-1-多项式的定义"><a href="#1-1-多项式的定义" class="headerlink" title="1.1 多项式的定义"></a>1.1 多项式的定义</h2><ul>
+<li>设 $F$ 是一个数域 (Field) (例如实数域 $\mathbb{R}$ 或复数域 $\mathbb{C}$)。</li>
+<li>一个以 $x$ 为不定元 (indeterminate) 的 $F$ 上的<strong>多项式 (polynomial)</strong> 是形如：<br>$f(x) = a_n x^n + a_{n-1} x^{n-1} + \dots + a_1 x + a_0$<br>的表达式，其中 $0 \le n &lt; \infty$ 是一个非负整数，$a_i \in F$ 称为多项式的<strong>系数 (coefficients)</strong>。</li>
+<li>如果 $a_n \ne 0$，则称 $n$ 为多项式 $f(x)$ 的<strong>次数 (degree)</strong>，记作 $\deg f(x) = n$。<ul>
+<li>$a_n$ 称为<strong>首项系数 (leading coefficient)</strong>。</li>
+<li>$a_n x^n$ 称为<strong>首项 (leading term)</strong>。</li>
+<li>$a_0$ 称为<strong>常数项 (constant term)</strong>。</li>
+</ul>
+</li>
+<li><strong>零多项式 (Zero Polynomial)</strong>: 所有系数都为 0 的多项式，记作 $0$。其次数通常定义为 $-\infty$ 或不定义。</li>
+<li><strong>常数多项式 (Constant Polynomial)</strong>: $f(x) = a_0$，其中 $a_0 \ne 0$。其次数为 0。</li>
+<li>$F$ 上所有以 $x$ 为不定元的多项式的集合记作 $F[x]$。</li>
+</ul>
+<h2 id="1-2-环-Ring-的概念-PPT中提及的代数结构"><a href="#1-2-环-Ring-的概念-PPT中提及的代数结构" class="headerlink" title="1.2 环 (Ring) 的概念 (PPT中提及的代数结构)"></a>1.2 环 (Ring) 的概念 (PPT中提及的代数结构)</h2><ul>
+<li>一个集合 $R$ 配备两个二元运算 “+” (加法) 和 “•” (乘法)，称为一个<strong>环 (Ring)</strong>，如果满足：<ol>
+<li>$(R, +)$ 是一个阿贝尔群 (Abelian group)：<ul>
+<li>加法结合律: $(a+b)+c = a+(b+c)$</li>
+<li>加法交换律: $a+b = b+a$</li>
+<li>存在加法单位元 (零元) $0_R$: $a+0_R = a$</li>
+<li>对任意 $a \in R$，存在加法逆元 $-a$: $a+(-a) = 0_R$</li>
+</ul>
+</li>
+<li>$(R, \cdot)$ 满足乘法结合律: $(a \cdot b) \cdot c = a \cdot (b \cdot c)$</li>
+<li>乘法对加法分配律成立：<ul>
+<li>$a \cdot (b+c) = a \cdot b + a \cdot c$</li>
+<li>$(b+c) \cdot a = b \cdot a + c \cdot a$</li>
+</ul>
+</li>
+</ol>
+</li>
+<li>如果乘法还满足交换律 ($a \cdot b = b \cdot a$)，则称 $R$ 是<strong>交换环 (Commutative Ring)</strong>。</li>
+<li>如果存在乘法单位元 $1_R$ ($a \cdot 1_R = 1_R \cdot a = a$)，则称 $R$ 是<strong>含幺环 (Ring with Unity)</strong> 或<strong>单位环 (Unit Ring)</strong>。</li>
+<li>一个非零交换含幺环 $R$，如果其每个非零元都有乘法逆元，则称 $R$ 是一个<strong>域 (Field)</strong>。</li>
+<li>$F[x]$ (系数在域 $F$ 上的多项式集合) 关于通常的多项式加法和乘法构成一个交换含幺环，称为<strong>多项式环 (Polynomial Ring)</strong>。</li>
+</ul>
+<h2 id="1-3-多项式的运算"><a href="#1-3-多项式的运算" class="headerlink" title="1.3 多项式的运算"></a>1.3 多项式的运算</h2><p>设 $f(x) = a_n x^n + \dots + a_0$ 和 $g(x) = b_m x^m + \dots + b_0$ 是 $F[x]$ 中的两个多项式。不妨设 $n \ge m$，并令 $b_k = 0$ 当 $k &gt; m$ 时。</p>
+<ul>
+<li><strong>加法 (Addition)</strong>:<br>$f(x) + g(x) = (a_n+b_n)x^n + (a_{n-1}+b_{n-1})x^{n-1} + \dots + (a_0+b_0)$</li>
+<li><strong>减法 (Subtraction)</strong>:<br>$f(x) - g(x) = (a_n-b_n)x^n + (a_{n-1}-b_{n-1})x^{n-1} + \dots + (a_0-b_0)$</li>
+<li><p><strong>标量乘法 (Scalar Multiplication)</strong>: 若 $k \in F$，<br>$k f(x) = (ka_n)x^n + (ka_{n-1})x^{n-1} + \dots + (ka_0)$</p>
+<ul>
+<li>$F[x]$ 关于多项式加法和标量乘法构成数域 $F$ 上的一个<strong>向量空间 (Vector Space)</strong>。</li>
+</ul>
+</li>
+<li><p><strong>乘法 (Multiplication)</strong>:<br>$f(x) \cdot g(x) = c_{m+n} x^{m+n} + c_{m+n-1} x^{m+n-1} + \dots + c_1 x + c_0$<br>其中 $c_k = \sum_{i+j=k} a_i b_j$ (柯西乘积)。</p>
+<ul>
+<li>乘法满足结合律和交换律。</li>
+<li>乘法对加法满足分配律。</li>
+<li>$1$ (常数多项式) 是乘法单位元。</li>
+</ul>
+</li>
+</ul>
+<h2 id="1-4-多项式的次数性质"><a href="#1-4-多项式的次数性质" class="headerlink" title="1.4 多项式的次数性质"></a>1.4 多项式的次数性质</h2><p>设 $f(x), g(x) \in F[x]$ 且它们都不是零多项式。</p>
+<ol>
+<li>$\deg(f(x) g(x)) = \deg f(x) + \deg g(x)$<ul>
+<li><strong>证明</strong>: 设 $\deg f(x) = n$ (首项 $a_n x^n, a_n \ne 0$)，$\deg g(x) = m$ (首项 $b_m x^m, b_m \ne 0$)。<br>则 $f(x)g(x)$ 的首项是 $(a_n b_m) x^{n+m}$。因为 $F$ 是一个域，所以 $a_n b_m \ne 0$。<br>因此 $\deg(f(x)g(x)) = n+m = \deg f(x) + \deg g(x)$。<br>□</li>
+</ul>
+</li>
+<li>若 $k \in F, k \ne 0$，则 $\deg(k f(x)) = \deg f(x)$。</li>
+<li>$\deg(f(x) \pm g(x)) \le \max\{\deg f(x), \deg g(x)\}$。<ul>
+<li>等号成立的条件是 $\deg f(x) \ne \deg g(x)$，或者 $\deg f(x) = \deg g(x)$ 但它们的最高次项系数之和（或差）不为零。</li>
+</ul>
+</li>
+</ol>
+<ul>
+<li><strong>推论 (整环性)</strong>: 如果 $F$ 是一个域，则 $F[x]$ 是一个<strong>整环 (Integral Domain)</strong>，即 $F[x]$ 中没有零因子 (若 $f(x)g(x)=0$，则 $f(x)=0$ 或 $g(x)=0$)。<ul>
+<li><strong>证明</strong>: 若 $f(x) \ne 0, g(x) \ne 0$，则 $\deg(f(x)g(x)) = \deg f(x) + \deg g(x) \ge 0$。<br>而零多项式的次数是 $-\infty$。所以 $f(x)g(x) \ne 0$。<br>□</li>
+</ul>
+</li>
+</ul>
+<h2 id="1-5-多项式分式域-Field-of-Rational-Functions-PPT中提及"><a href="#1-5-多项式分式域-Field-of-Rational-Functions-PPT中提及" class="headerlink" title="1.5 多项式分式域 (Field of Rational Functions) (PPT中提及)"></a>1.5 多项式分式域 (Field of Rational Functions) (PPT中提及)</h2><ul>
+<li>类似于从整数环 $\mathbb{Z}$ 构造有理数域 $\mathbb{Q}$，我们可以从多项式环 $F[x]$ 构造其<strong>分式域 (Field of Fractions)</strong>，称为<strong>有理函数域 (Field of Rational Functions)</strong>，记作 $F(x)$。</li>
+<li>$F(x)$ 中的元素形如 $\frac{f(x)}{g(x)}$，其中 $f(x), g(x) \in F[x]$ 且 $g(x) \ne 0$。</li>
+<li>等价关系定义为：$\frac{f_1(x)}{g_1(x)} \sim \frac{f_2(x)}{g_2(x)}$ 当且仅当 $f_1(x)g_2(x) = f_2(x)g_1(x)$。</li>
+<li>$F(x)$ 关于通常的分式加法和乘法构成一个域。</li>
+</ul>
+<h1 id="2-整除性-Divisibility"><a href="#2-整除性-Divisibility" class="headerlink" title="2. 整除性 (Divisibility)"></a>2. 整除性 (Divisibility)</h1><h2 id="2-1-定义"><a href="#2-1-定义" class="headerlink" title="2.1 定义"></a>2.1 定义</h2><ul>
+<li>设 $f(x), g(x) \in F[x]$。如果存在 $h(x) \in F[x]$ 使得 $f(x) = g(x)h(x)$，则称 $g(x)$ <strong>整除 (divides)</strong> $f(x)$，或者说 $g(x)$ 是 $f(x)$ 的一个<strong>因式 (factor/divisor)</strong>，或者说 $f(x)$ 是 $g(x)$ 的一个<strong>倍式 (multiple)</strong>。</li>
+<li>记作 $g(x) | f(x)$。</li>
+<li>如果 $g(x)$ 不整除 $f(x)$，记作 $g(x) \nmid f(x)$。</li>
+<li><strong>平凡因式</strong>: 任何非零常数多项式和 $f(x)$ 的伴随式 (形如 $cf(x)$, $c \in F, c \ne 0$) 都是 $f(x)$ 的平凡因式。</li>
+<li><strong>真因式 (Proper Divisor)</strong>: 如果 $g(x) | f(x)$ 且 $g(x)$ 不是 $f(x)$ 的伴随式也不是单位 (非零常数)，则称 $g(x)$ 是 $f(x)$ 的真因式。</li>
+</ul>
+<h2 id="2-2-整除性的基本性质"><a href="#2-2-整除性的基本性质" class="headerlink" title="2.2 整除性的基本性质"></a>2.2 整除性的基本性质</h2><p>设 $f(x), g(x), h(x) \in F[x]$。</p>
+<ol>
+<li>若 $f(x)|g(x)$，则对任意非零常数 $k \in F$，$kf(x)|g(x)$ 且 $f(x)|kg(x)$。</li>
+<li>$f(x)|f(x)$ (自反性)。</li>
+<li>若 $f(x)|g(x)$ 且 $g(x)|h(x)$，则 $f(x)|h(x)$ (传递性)。</li>
+<li>若 $f(x)|g(x)$ 且 $f(x)|h(x)$，则对任意 $u(x), v(x) \in F[x]$，$f(x) | (u(x)g(x) + v(x)h(x))$。<ul>
+<li><strong>证明</strong>: $g(x)=f(x)s(x)$, $h(x)=f(x)t(x)$。<br>$u(x)g(x)+v(x)h(x) = u(x)f(x)s(x)+v(x)f(x)t(x) = f(x)(u(x)s(x)+v(x)t(x))$。<br>所以 $f(x)|(u(x)g(x)+v(x)h(x))$。<br>□</li>
+</ul>
+</li>
+<li>若 $f(x)|g(x)$ 且 $g(x)|f(x)$，则存在非零常数 $c \in F$ 使得 $f(x) = cg(x)$。<br>称 $f(x)$ 和 $g(x)$ 是<strong>相伴的 (associated)</strong>。<ul>
+<li><strong>证明</strong>: $f(x)=g(x)h_1(x)$，$g(x)=f(x)h_2(x)$。<br>$f(x) = f(x)h_2(x)h_1(x)$。若 $f(x) \ne 0$，则 $1 = h_1(x)h_2(x)$。<br>这意味着 $h_1(x)$ 和 $h_2(x)$ 都是非零常数。<br>□</li>
+</ul>
+</li>
+</ol>
+<h1 id="3-带余除法-Division-Algorithm"><a href="#3-带余除法-Division-Algorithm" class="headerlink" title="3. 带余除法 (Division Algorithm)"></a>3. 带余除法 (Division Algorithm)</h1><h2 id="3-1-定理-带余除法-Euclidean-Division"><a href="#3-1-定理-带余除法-Euclidean-Division" class="headerlink" title="3.1 定理 (带余除法 / Euclidean Division)"></a>3.1 定理 (带余除法 / Euclidean Division)</h2><ul>
+<li>设 $f(x), g(x) \in F[x]$ 且 $g(x) \ne 0$。则存在<strong>唯一</strong>的多项式 $q(x)$ (商式, quotient) 和 $r(x)$ (余式, remainder) 使得：<br>$f(x) = q(x)g(x) + r(x)$<br>并且 $\deg r(x) &lt; \deg g(x)$ (或者 $r(x)=0$，此时 $\deg r(x) = -\infty &lt; \deg g(x)$ 只要 $\deg g(x) \ge 0$)。</li>
+</ul>
+<h2 id="3-2-存在性证明-构造性-归纳法"><a href="#3-2-存在性证明-构造性-归纳法" class="headerlink" title="3.2 存在性证明 (构造性/归纳法)"></a>3.2 存在性证明 (构造性/归纳法)</h2><ul>
+<li><strong>情况1</strong>: 若 $\deg f(x) &lt; \deg g(x)$ (或 $f(x)=0$)。<br>取 $q(x)=0, r(x)=f(x)$。显然 $\deg r(x) &lt; \deg g(x)$。</li>
+<li><strong>情况2</strong>: 若 $\deg f(x) \ge \deg g(x)$。<br>设 $f(x) = a_n x^n + \dots + a_0$ ($a_n \ne 0$)，<br>$g(x) = b_m x^m + \dots + b_0$ ($b_m \ne 0$)，且 $n \ge m$。<br>构造 $f_1(x) = f(x) - \frac{a_n}{b_m} x^{n-m} g(x)$。<br>则 $f_1(x)$ 的 $x^n$ 项的系数为 $a_n - \frac{a_n}{b_m} b_m = 0$。<br>所以 $\deg f_1(x) &lt; n$。<br>对 $f_1(x)$ 和 $g(x)$ 应用归纳假设 (或重复此过程)。<br>如果 $\deg f_1(x) &lt; \deg g(x)$，则令 $q_1(x) = \frac{a_n}{b_m} x^{n-m}$，$r(x)=f_1(x)$。<br>$f(x) = q_1(x)g(x) + r(x)$。<br>如果 $\deg f_1(x) \ge \deg g(x)$，根据归纳假设，存在 $q_2(x), r(x)$ 使得<br>$f_1(x) = q_2(x)g(x) + r(x)$ 且 $\deg r(x) &lt; \deg g(x)$。<br>则 $f(x) = \frac{a_n}{b_m} x^{n-m} g(x) + q_2(x)g(x) + r(x) = (\frac{a_n}{b_m} x^{n-m} + q_2(x))g(x) + r(x)$。<br>令 $q(x) = \frac{a_n}{b_m} x^{n-m} + q_2(x)$。<br>这个过程最终会停止，因为每次 $f_i(x)$ 的次数都严格降低。<br>□<br><em>(PPT中给出了一个例子：$3x^4 - 4x^3 + 5x - 1 = (3x^2 - x - 4)(x^2 - x + 1) + (2x + 3)$)</em></li>
+</ul>
+<h2 id="3-3-唯一性证明"><a href="#3-3-唯一性证明" class="headerlink" title="3.3 唯一性证明"></a>3.3 唯一性证明</h2><ul>
+<li>假设存在两组这样的商和余式：<br>$f(x) = q_1(x)g(x) + r_1(x)$，其中 $\deg r_1(x) &lt; \deg g(x)$<br>$f(x) = q_2(x)g(x) + r_2(x)$，其中 $\deg r_2(x) &lt; \deg g(x)$</li>
+<li>则 $(q_1(x) - q_2(x))g(x) = r_2(x) - r_1(x)$。</li>
+<li>如果 $q_1(x) \ne q_2(x)$，则 $q_1(x) - q_2(x) \ne 0$。<br>那么 $\deg((q_1(x) - q_2(x))g(x)) = \deg(q_1(x) - q_2(x)) + \deg g(x) \ge \deg g(x)$。<br>而 $\deg(r_2(x) - r_1(x)) \le \max\{\deg r_2(x), \deg r_1(x)\} &lt; \deg g(x)$。</li>
+<li>这就产生了矛盾 ($\ge \deg g(x)$ 和 $&lt; \deg g(x)$ 不能同时成立)。</li>
+<li>因此，必然有 $q_1(x) - q_2(x) = 0$，即 $q_1(x) = q_2(x)$。</li>
+<li>从而 $r_2(x) - r_1(x) = 0$，即 $r_1(x) = r_2(x)$。<br>□</li>
+</ul>
+<h1 id="4-最大公因式-Greatest-Common-Divisor-GCD"><a href="#4-最大公因式-Greatest-Common-Divisor-GCD" class="headerlink" title="4. 最大公因式 (Greatest Common Divisor, GCD)"></a>4. 最大公因式 (Greatest Common Divisor, GCD)</h1><h2 id="4-1-定义"><a href="#4-1-定义" class="headerlink" title="4.1 定义"></a>4.1 定义</h2><ul>
+<li>设 $f(x), g(x) \in F[x]$。如果 $F[x]$ 中的多项式 $h(x)$ 满足：<ol>
+<li>$h(x) | f(x)$ 且 $h(x) | g(x)$ (即 $h(x)$ 是 $f(x)$ 和 $g(x)$ 的一个<strong>公因式 (common divisor)</strong>)。</li>
+</ol>
+</li>
+<li>称 $f(x)$ 和 $g(x)$ 的公因式中次数最高的<strong>首一多项式 (monic polynomial)</strong> 为 $f(x)$ 和 $g(x)$ 的<strong>最大公因式 (greatest common divisor, GCD)</strong>，记作 $d(x) = (f(x), g(x))$ 或 $\text{gcd}(f(x), g(x))$。<ul>
+<li>首一多项式是指首项系数为 1 的多项式。</li>
+<li>如果 $f(x)=g(x)=0$，则 GCD 定义为 0。如果只有一个是0，比如 $f(x) \ne 0, g(x)=0$，则 GCD 是 $f(x)$ 的首一伴随式。</li>
+</ul>
+</li>
+<li><strong>等价定义</strong>: $d(x)$ 是 $f(x), g(x)$ 的 GCD，如果<ol>
+<li>$d(x)$ 是首一的。</li>
+<li>$d(x)|f(x)$ 且 $d(x)|g(x)$。</li>
+<li>若任意 $h(x)|f(x)$ 且 $h(x)|g(x)$，则 $h(x)|d(x)$。</li>
+</ol>
+</li>
+</ul>
+<h2 id="4-2-欧几里得算法-Euclidean-Algorithm"><a href="#4-2-欧几里得算法-Euclidean-Algorithm" class="headerlink" title="4.2 欧几里得算法 (Euclidean Algorithm)"></a>4.2 欧几里得算法 (Euclidean Algorithm)</h2><ul>
+<li>用于计算两个多项式 $f(x)$ 和 $g(x)$ (不妨设 $g(x) \ne 0$) 的 GCD。</li>
+<li>基于性质：$(f(x), g(x)) = (g(x), r(x))$，其中 $f(x) = q(x)g(x) + r(x)$。<ul>
+<li><strong>证明</strong>:<br>设 $d_1(x) = (f(x),g(x))$，$d_2(x) = (g(x),r(x))$。<br>因为 $d_1|f$ 且 $d_1|g$，所以 $d_1|(f-qg)$，即 $d_1|r$。因此 $d_1$ 是 $g,r$ 的公因式，所以 $d_1|d_2$。<br>因为 $d_2|g$ 且 $d_2|r$，所以 $d_2|(qg+r)$，即 $d_2|f$。因此 $d_2$ 是 $f,g$ 的公因式，所以 $d_2|d_1$。<br>由于 $d_1,d_2$ 都是首一的且互相整除，所以 $d_1=d_2$。<br>□</li>
+</ul>
+</li>
+<li><strong>算法步骤</strong>:<ol>
+<li>$f(x) = q_1(x)g(x) + r_1(x)$,  $\deg r_1(x) &lt; \deg g(x)$</li>
+<li>$g(x) = q_2(x)r_1(x) + r_2(x)$,  $\deg r_2(x) &lt; \deg r_1(x)$</li>
+<li>$r_1(x) = q_3(x)r_2(x) + r_3(x)$,  $\deg r_3(x) &lt; \deg r_2(x)$</li>
+<li>…</li>
+<li>$r_{s-1}(x) = q_{s+1}(x)r_s(x) + r_{s+1}(x)$,  $\deg r_{s+1}(x) &lt; \deg r_s(x)$</li>
+<li>$r_s(x) = q_{s+2}(x)r_{s+1}(x) + 0$ (余式为0)</li>
+</ol>
+</li>
+<li>则最后一个非零余式 $r_{s+1}(x)$ 的首一伴随式就是 $(f(x), g(x))$。<br>即 $c r_{s+1}(x)$ 是 GCD，其中 $c$ 是使 $cr_{s+1}(x)$ 首一的常数。<br>$(f,g) = (g,r_1) = (r_1,r_2) = \dots = (r_s, r_{s+1}) = (r_{s+1}, 0)$。<br>$r_{s+1}(x)$ 的首一伴随式就是 $(f(x),g(x))$。</li>
+</ul>
+<h2 id="4-3-扩展欧几里得算法-Extended-Euclidean-Algorithm-与-Bezout-恒等式"><a href="#4-3-扩展欧几里得算法-Extended-Euclidean-Algorithm-与-Bezout-恒等式" class="headerlink" title="4.3 扩展欧几里得算法 (Extended Euclidean Algorithm) 与 Bézout 恒等式"></a>4.3 扩展欧几里得算法 (Extended Euclidean Algorithm) 与 Bézout 恒等式</h2><ul>
+<li><strong>定理 (Bézout’s Identity for Polynomials)</strong>: 对任意 $f(x), g(x) \in F[x]$，存在 $u(x), v(x) \in F[x]$ 使得：<br>$d(x) = (f(x), g(x)) = u(x)f(x) + v(x)g(x)$</li>
+<li>$u(x), v(x)$ 可以通过欧几里得算法反向代换得到。</li>
+<li><strong>推论</strong>: 任意 $f(x), g(x)$ 的公因式都是其最大公因式 $d(x)$ 的因式。<ul>
+<li><strong>证明</strong>: 若 $h(x)|f(x)$ 且 $h(x)|g(x)$，则 $h(x)|(u(x)f(x)+v(x)g(x))$，即 $h(x)|d(x)$。<br>□</li>
+</ul>
+</li>
+<li><em>(PPT中例子: $(x^4 - x^3 - x^2 + 2x - 1, x^3 - 2x + 1) = x - 1$。<br>且 $u(x) = x+1, v(x) = -x^2$ 使得 $(x+1)(x^4 - x^3 - x^2 + 2x - 1) + (-x^2)(x^3 - 2x + 1) = x-1$。)</em></li>
+</ul>
+<h2 id="4-4-GCD-的另一种刻画"><a href="#4-4-GCD-的另一种刻画" class="headerlink" title="4.4 GCD 的另一种刻画"></a>4.4 GCD 的另一种刻画</h2><ul>
+<li><strong>定理</strong>: 对任意非零多项式 $f(x), g(x) \in F[x]$，其最大公因式 $d(x)$ 是集合<br>$S = \{ h(x) \mid h(x) = u(x)f(x) + v(x)g(x), u(x),v(x) \in F[x], \deg h(x) \ge 0 \}$<br>中次数最低的首一多项式。</li>
+<li><strong>证明思路</strong>:<ol>
+<li>设 $h_0(x)$ 是 $S$ 中次数最低的非零多项式 (可以将其化为首一)。</li>
+<li>证明 $h_0(x)|f(x)$ 和 $h_0(x)|g(x)$。<br>用带余除法：$f(x) = q(x)h_0(x) + r(x)$。<br>$r(x) = f(x) - q(x)h_0(x) = f(x) - q(x)(u_0(x)f(x)+v_0(x)g(x)) = (1-q(x)u_0(x))f(x) - q(x)v_0(x)g(x)$。<br>所以 $r(x) \in S$。由于 $\deg r(x) &lt; \deg h_0(x)$ 且 $h_0(x)$ 是 $S$ 中次数最低的非零多项式，所以 $r(x)=0$。<br>因此 $h_0(x)|f(x)$。同理 $h_0(x)|g(x)$。</li>
+<li>证明 $h_0(x)$ 是次数最高的。若 $d’(x)$ 是任意公因式，则 $d’(x)|(u(x)f(x)+v(x)g(x))$，所以 $d’(x)|h_0(x)$。<br>因此 $\deg d’(x) \le \deg h_0(x)$。<br>□</li>
+</ol>
+</li>
+<li>多个多项式的 GCD 可以递归定义：<br>$(f_1(x), f_2(x), \dots, f_k(x)) = ((f_1(x), f_2(x)), \dots, f_k(x)) = (f_1(x), (f_2(x), \dots, f_k(x)))$。</li>
+</ul>
+<h1 id="5-互素多项式-Relatively-Prime-Polynomials"><a href="#5-互素多项式-Relatively-Prime-Polynomials" class="headerlink" title="5. 互素多项式 (Relatively Prime Polynomials)"></a>5. 互素多项式 (Relatively Prime Polynomials)</h1><h2 id="5-1-定义"><a href="#5-1-定义" class="headerlink" title="5.1 定义"></a>5.1 定义</h2><ul>
+<li>如果 $(f(x), g(x)) = 1$ (常数多项式1)，则称 $f(x)$ 和 $g(x)$ <strong>互素 (relatively prime / coprime)</strong>。</li>
+<li><strong>定理</strong>: $f(x), g(x)$ 互素当且仅当存在 $u(x), v(x) \in F[x]$ 使得 $u(x)f(x) + v(x)g(x) = 1$。<br>(这是 Bézout 恒等式的直接推论)</li>
+</ul>
+<h2 id="5-2-互素的性质"><a href="#5-2-互素的性质" class="headerlink" title="5.2 互素的性质"></a>5.2 互素的性质</h2><ol>
+<li><strong>欧几里得引理的推广</strong>: 若 $f_1(x)|g(x)$，$f_2(x)|g(x)$ 且 $(f_1(x), f_2(x))=1$，则 $f_1(x)f_2(x)|g(x)$。<ul>
+<li><strong>证明</strong>: $u(x)f_1(x) + v(x)f_2(x) = 1$。<br>$g(x) = g(x)(u(x)f_1(x) + v(x)f_2(x)) = g(x)u(x)f_1(x) + g(x)v(x)f_2(x)$。<br>因为 $f_2(x)|g(x)$，所以 $g(x)=s(x)f_2(x)$。代入第一项：$s(x)f_2(x)u(x)f_1(x)$，可被 $f_1(x)f_2(x)$ 整除。<br>因为 $f_1(x)|g(x)$，所以 $g(x)=t(x)f_1(x)$。代入第二项：$t(x)f_1(x)v(x)f_2(x)$，可被 $f_1(x)f_2(x)$ 整除。<br>所以 $f_1(x)f_2(x) | g(x)$。<br>□</li>
+</ul>
+</li>
+<li>若 $(f(x), g(x))=1$ 且 $f(x)|g(x)h(x)$，则 $f(x)|h(x)$。<ul>
+<li><strong>证明</strong>: $u(x)f(x) + v(x)g(x) = 1$。<br>$h(x) = h(x)(u(x)f(x) + v(x)g(x)) = h(x)u(x)f(x) + g(x)h(x)v(x)$。<br>第一项显然被 $f(x)$ 整除。第二项 $g(x)h(x)v(x)$ 因为 $f(x)|g(x)h(x)$，所以也被 $f(x)$ 整除。<br>因此 $f(x)|h(x)$。<br>□</li>
+</ul>
+</li>
+<li>若 $(f(x), g(x)) = d(x)$，令 $f(x) = f_1(x)d(x)$，$g(x) = g_1(x)d(x)$，则 $(f_1(x), g_1(x)) = 1$。<ul>
+<li><strong>证明</strong>: $u(x)f(x) + v(x)g(x) = d(x)$。<br>$u(x)f_1(x)d(x) + v(x)g_1(x)d(x) = d(x)$。<br>若 $d(x) \ne 0$，两边除以 $d(x)$，得 $u(x)f_1(x) + v(x)g_1(x) = 1$。<br>所以 $(f_1(x), g_1(x))=1$。<br>□</li>
+</ul>
+</li>
+<li>若 $(f(x), g(x)) = d(x)$，则对任意非零多项式 $h(x)$，$(h(x)f(x), h(x)g(x)) = c \cdot h(x)d(x)$ (其中 $c$ 是使结果首一的常数)。通常写为 $(h(x)f(x), h(x)g(x)) = \text{monic}(h(x)d(x))$。<ul>
+<li><strong>证明思路</strong>:<br>$u(x)f(x) + v(x)g(x) = d(x)$。<br>两边乘以 $h(x)$: $u(x)(h(x)f(x)) + v(x)(h(x)g(x)) = h(x)d(x)$。<br>这表明 $h(x)d(x)$ 是 $h(x)f(x)$ 和 $h(x)g(x)$ 的一个线性组合，因此任何 $(h(x)f(x), h(x)g(x))$ 的公因式都必须整除 $h(x)d(x)$。<br>另一方面，$h(x)d(x)$ 显然是 $h(x)f(x)$ 和 $h(x)g(x)$ 的公因式。<br>所以 $h(x)d(x)$ 的首一伴随式就是 GCD。<br>□</li>
+</ul>
+</li>
+<li>若 $(f_1(x), g(x))=1$ 且 $(f_2(x), g(x))=1$，则 $(f_1(x)f_2(x), g(x))=1$。<ul>
+<li><strong>证明</strong>:<br>$u_1(x)f_1(x) + v_1(x)g(x) = 1$  (1)<br>$u_2(x)f_2(x) + v_2(x)g(x) = 1$  (2)<br>将 (1) 和 (2) 相乘：<br>$(u_1(x)f_1(x) + v_1(x)g(x))(u_2(x)f_2(x) + v_2(x)g(x)) = 1 \cdot 1 = 1$<br>展开左边：<br>$u_1(x)u_2(x)f_1(x)f_2(x) + u_1(x)f_1(x)v_2(x)g(x) + v_1(x)g(x)u_2(x)f_2(x) + v_1(x)v_2(x)g(x)g(x) = 1$<br>$u_1(x)u_2(x)(f_1(x)f_2(x)) + (u_1(x)f_1(x)v_2(x) + v_1(x)u_2(x)f_2(x) + v_1(x)v_2(x)g(x))g(x) = 1$<br>这是 $f_1(x)f_2(x)$ 和 $g(x)$ 的一个等于1的线性组合，所以它们互素。<br>□</li>
+</ul>
+</li>
+</ol>
+<h1 id="6-不可约多项式与唯一因子分解"><a href="#6-不可约多项式与唯一因子分解" class="headerlink" title="6. 不可约多项式与唯一因子分解"></a>6. 不可约多项式与唯一因子分解</h1><h2 id="6-1-不可约多项式-Irreducible-Polynomial"><a href="#6-1-不可约多项式-Irreducible-Polynomial" class="headerlink" title="6.1 不可约多项式 (Irreducible Polynomial)"></a>6.1 不可约多项式 (Irreducible Polynomial)</h2><ul>
+<li>设 $f(x)$ 是数域 $F$ 上的一个<strong>非常数多项式</strong> (即 $\deg f(x) \ge 1$)。</li>
+<li>如果 $f(x)$ 不能表示为 $F$ 上两个次数都低于 $\deg f(x)$ 的多项式的乘积，则称 $f(x)$ 在数域 $F$ 上是<strong>不可约的 (irreducible over F)</strong> 或称其为 $F$ 上的<strong>不可约多项式</strong>。</li>
+<li>否则，称 $f(x)$ 在 $F$ 上是<strong>可约的 (reducible over F)</strong>。</li>
+<li><strong>注意</strong>: 不可约性依赖于系数所在的数域 $F$。<ul>
+<li>例如，$x^2-2$ 在 $\mathbb{Q}$ (有理数域) 上不可约，但在 $\mathbb{R}$ (实数域) 上可约，因为 $x^2-2 = (x-\sqrt{2})(x+\sqrt{2})$。</li>
+<li>$x^2+1$ 在 $\mathbb{R}$ 上不可约，但在 $\mathbb{C}$ (复数域) 上可约，因为 $x^2+1 = (x-i)(x+i)$。</li>
+</ul>
+</li>
+<li>如果一个多项式是不可约的，它的因式只有常数和它自身的伴随式。</li>
+</ul>
+<h2 id="6-2-不可约多项式的性质-类比素数"><a href="#6-2-不可约多项式的性质-类比素数" class="headerlink" title="6.2 不可约多项式的性质 (类比素数)"></a>6.2 不可约多项式的性质 (类比素数)</h2><ul>
+<li><strong>引理 (Euclid’s Lemma for Polynomials)</strong>: 设 $p(x)$ 是 $F[x]$ 中的不可约多项式。若 $p(x) | f(x)g(x)$，其中 $f(x), g(x) \in F[x]$，则 $p(x)|f(x)$ 或 $p(x)|g(x)$。<ul>
+<li><strong>证明</strong>:<br>假设 $p(x) \nmid f(x)$。<br>因为 $p(x)$ 不可约，所以 $(p(x), f(x))$ 只能是 $1$ (首一常数) 或 $p(x)$ 的首一伴随式。<br>由于 $p(x) \nmid f(x)$，所以 $(p(x), f(x)) = 1$。<br>根据互素的性质 (若 $(a,b)=1$ 且 $a|bc$，则 $a|c$)，因为 $p(x)|f(x)g(x)$ 且 $(p(x),f(x))=1$，所以 $p(x)|g(x)$。<br>□</li>
+</ul>
+</li>
+<li><strong>推广</strong>: 若 $p(x)$ 是 $F[x]$ 中的不可约多项式，且 $p(x) | f_1(x)f_2(x)\dots f_s(x)$，则存在某个 $i$ 使得 $p(x)|f_i(x)$。</li>
+<li><strong>注意</strong>: 次数为0 (非零常数) 或次数为1的多项式通常不被认为是不可约的 (定义要求非常数)。但有时为了叙述方便，1次多项式在某些上下文中可以视为不可约的，因为它不能再分解为次数更低的多项式乘积。严格定义依赖于教科书。通常，不可约多项式的次数 $\ge 1$。</li>
+</ul>
+<h2 id="6-3-唯一因子分解定理-Unique-Factorization-Theorem-for-Polynomials"><a href="#6-3-唯一因子分解定理-Unique-Factorization-Theorem-for-Polynomials" class="headerlink" title="6.3 唯一因子分解定理 (Unique Factorization Theorem for Polynomials)"></a>6.3 唯一因子分解定理 (Unique Factorization Theorem for Polynomials)</h2><ul>
+<li><strong>定理</strong>: 数域 $F$ 上的任一个非常数多项式 $f(x) \in F[x]$ 都可以唯一地 (不计因式顺序和常数因子的不同) 分解为 $F$ 上有限个首一不可约多项式的乘积。<br>即，对任意首项系数为 $a_n$ 的 $f(x)$，存在唯一的分解：<br>$f(x) = a_n p_1(x) p_2(x) \dots p_s(x)$<br>其中 $p_i(x)$ 是 $F$ 上的首一不可约多项式 (它们之间可能相同)。</li>
+<li>如果将相同的不可约因式合并，则可以写成标准分解式：<br>$f(x) = a_n [p_1(x)]^{\alpha_1} [p_2(x)]^{\alpha_2} \dots [p_k(x)]^{\alpha_k}$<br>其中 $p_i(x)$ 是互不相伴的首一不可约多项式，$\alpha_i \ge 1$ 是整数。</li>
+<li><strong>存在性证明 (对次数归纳)</strong>:<ul>
+<li>$\deg f(x) = 1$: $f(x) = ax+b = a(x+b/a)$。$x+b/a$ 是首一不可约的。</li>
+<li>假设对所有次数 $&lt;\deg f(x)$ 的多项式结论成立。</li>
+<li>若 $f(x)$ 不可约，将其化为首一形式 $a_n p(x)$ 即可。</li>
+<li>若 $f(x)$ 可约，则 $f(x) = g(x)h(x)$，其中 $\deg g(x) &lt; \deg f(x)$ 且 $\deg h(x) &lt; \deg f(x)$。<br>根据归纳假设，$g(x)$ 和 $h(x)$ 都可以分解为首一不可约多项式的乘积。将这些乘积合并即可得到 $f(x)$ 的分解。</li>
+</ul>
+</li>
+<li><strong>唯一性证明 (利用Euclid引理)</strong>:<ul>
+<li>假设 $f(x) = a_n p_1 \dots p_s = a_n q_1 \dots q_t$ 是两种分解。</li>
+<li>$p_1 | (q_1 \dots q_t)$。由于 $p_1$ 不可约，根据Euclid引理的推广，$p_1$ 必须整除某个 $q_j$。</li>
+<li>由于 $q_j$ 也是不可约且首一的，所以 $p_1 = q_j$ (不计顺序，可重排 $q_k$ 使 $q_1=p_1$)。</li>
+<li>两边消去 $p_1$ (和 $q_1$)，得到 $p_2 \dots p_s = q_2 \dots q_t$。</li>
+<li>重复此过程，直到所有因式都被匹配。</li>
+</ul>
+</li>
+<li><strong>重因式 (Multiple Factor)</strong>: 在标准分解式中，如果某个不可约因式 $p_i(x)$ 的指数 $\alpha_i &gt; 1$，则称 $p_i(x)$ 是 $f(x)$ 的一个<strong>$\alpha_i$重因式 (factor of multiplicity $\alpha_i$)</strong>。</li>
+</ul>
+<h1 id="7-多项式的导数-Derivative-of-a-Polynomial"><a href="#7-多项式的导数-Derivative-of-a-Polynomial" class="headerlink" title="7. 多项式的导数 (Derivative of a Polynomial)"></a>7. 多项式的导数 (Derivative of a Polynomial)</h1><h2 id="7-1-定义"><a href="#7-1-定义" class="headerlink" title="7.1 定义"></a>7.1 定义</h2><ul>
+<li>设 $f(x) = a_n x^n + a_{n-1} x^{n-1} + \dots + a_1 x + a_0 \in F[x]$。</li>
+<li>$f(x)$ 的<strong>导数 (derivative)</strong> 定义为：<br>$f’(x) = \frac{df}{dx} = n a_n x^{n-1} + (n-1)a_{n-1} x^{n-2} + \dots + 2a_2 x + a_1$<br>(常数项 $a_0$ 的导数为0)。</li>
+<li>这是一个形式上的定义，不依赖于微积分中的极限概念，在任何数域 $F$ 上都有定义。<br>(注意：如果数域 $F$ 的特征 $p &gt; 0$，则 $p \cdot a = 0$。例如，在 $F_2$ (特征为2的域) 中，$x^2$ 的导数是 $2x = 0$)。</li>
+</ul>
+<h2 id="7-2-导数的性质"><a href="#7-2-导数的性质" class="headerlink" title="7.2 导数的性质"></a>7.2 导数的性质</h2><ol>
+<li>$(f(x) + g(x))’ = f’(x) + g’(x)$</li>
+<li>$(f(x)g(x))’ = f’(x)g(x) + f(x)g’(x)$ (乘法法则)</li>
+<li>$(cf(x))’ = cf’(x)$ (对 $c \in F$)</li>
+<li>$(f(x)^m)’ = m f(x)^{m-1} f’(x)$ (链式法则的特例)</li>
+</ol>
+<h2 id="7-3-重因式与导数的关系"><a href="#7-3-重因式与导数的关系" class="headerlink" title="7.3 重因式与导数的关系"></a>7.3 重因式与导数的关系</h2><ul>
+<li><strong>定理</strong>: 多项式 $f(x)$ 含有重因式当且仅当 $f(x)$ 与其导数 $f’(x)$ 不互素，即 $(f(x), f’(x)) \ne 1$。</li>
+<li><strong>证明</strong>:<ul>
+<li>($\Rightarrow$) 设 $f(x) = [p(x)]^m g(x)$，其中 $p(x)$ 是不可约因式，$m &gt; 1$，且 $p(x) \nmid g(x)$。<br>$f’(x) = m[p(x)]^{m-1}p’(x)g(x) + [p(x)]^m g’(x)$。<br>由于 $m-1 \ge 1$，所以 $[p(x)]^{m-1}$ 是 $f(x)$ 和 $f’(x)$ 的公因式。<br>因此 $(f(x), f’(x))$ 至少是 $[p(x)]^{m-1}$ 的倍式，所以不为1。</li>
+<li>($\Leftarrow$) 假设 $(f(x), f’(x)) = d(x) \ne 1$。<br>设 $p(x)$ 是 $d(x)$ 的一个不可约因式。则 $p(x)|f(x)$ 且 $p(x)|f’(x)$。<br>由 $p(x)|f(x)$，可写 $f(x) = p(x)h(x)$。<br>$f’(x) = p’(x)h(x) + p(x)h’(x)$。<br>因为 $p(x)|f’(x)$，所以 $p(x)|(p’(x)h(x) + p(x)h’(x))$。<br>由于 $p(x)|p(x)h’(x)$，所以必有 $p(x)|p’(x)h(x)$。<br>如果 $F$ 的特征为0或不整除 $\deg p(x)$，则 $p’(x) \ne 0$ 且 $\deg p’(x) &lt; \deg p(x)$。<br>由于 $p(x)$ 不可约，所以 $p(x) \nmid p’(x)$。<br>因此，根据Euclid引理，$p(x)|h(x)$。<br>所以 $h(x) = p(x)k(x)$。<br>代回 $f(x) = p(x)h(x) = [p(x)]^2 k(x)$。<br>这意味着 $p(x)$ 是 $f(x)$ 的至少2重的因式，即 $f(x)$ 有重因式。<br>(如果数域特征 $p&gt;0$ 且 $p|\deg p(x)$，则 $p’(x)=0$，此时 $p(x)|f’(x)$ 自动成立，需要更细致的讨论，但结论通常仍然成立，除非 $f(x)$ 是 $x^p$ 的多项式。)<br>□</li>
+</ul>
+</li>
+</ul>
+<h2 id="7-4-消除重因式"><a href="#7-4-消除重因式" class="headerlink" title="7.4 消除重因式"></a>7.4 消除重因式</h2><ul>
+<li>设 $d(x) = (f(x), f’(x))$。</li>
+<li>则多项式 $f_0(x) = f(x)/d(x)$ 与 $f(x)$ 有相同的不可约因式，但 $f_0(x)$ 的所有不可约因式都是单重的 (即 $f_0(x)$ 无重因式)。</li>
+<li><strong>证明思路</strong>:<br>设 $f(x) = a_n [p_1(x)]^{\alpha_1} [p_2(x)]^{\alpha_2} \dots [p_s(x)]^{\alpha_s}$ 是 $f(x)$ 的标准分解。<br>则 $(f(x), f’(x)) = c \cdot [p_1(x)]^{\alpha_1-1} [p_2(x)]^{\alpha_2-1} \dots [p_s(x)]^{\alpha_s-1}$ (首项系数为 $c$) (假设特征为0或与所有 $\alpha_i$ 互素)。<br>所以 $f(x) / (f(x),f’(x))$ (的伴随式) 就是 $a_n’ p_1(x) p_2(x) \dots p_s(x)$，它没有重因式。<br>这个过程可以用来获得一个与原多项式有相同根集但所有根都是单根的多项式。</li>
+</ul>
+<h1 id="8-多项式的值与根-Roots-of-Polynomials"><a href="#8-多项式的值与根-Roots-of-Polynomials" class="headerlink" title="8. 多项式的值与根 (Roots of Polynomials)"></a>8. 多项式的值与根 (Roots of Polynomials)</h1><h2 id="8-1-多项式的值-Value-of-a-Polynomial"><a href="#8-1-多项式的值-Value-of-a-Polynomial" class="headerlink" title="8.1 多项式的值 (Value of a Polynomial)"></a>8.1 多项式的值 (Value of a Polynomial)</h2><ul>
+<li>设 $f(x) = a_n x^n + \dots + a_0 \in F[x]$。</li>
+<li>对任意 $c \in F$ (或 $F$ 的某个扩域中的元素)，<strong>$f(x)$ 在 $c$ 处的值</strong> 定义为：<br>$f(c) = a_n c^n + a_{n-1} c^{n-1} + \dots + a_1 c + a_0 \in F$ (或扩域)。<br>这相当于将不定元 $x$ 替换为具体的值 $c$。</li>
+</ul>
+<h2 id="8-2-根-Root-零点-Zero"><a href="#8-2-根-Root-零点-Zero" class="headerlink" title="8.2 根 (Root) / 零点 (Zero)"></a>8.2 根 (Root) / 零点 (Zero)</h2><ul>
+<li>如果 $f(c) = 0$，则称 $c$ 是多项式 $f(x)$ 的一个<strong>根 (root)</strong> 或<strong>零点 (zero)</strong>。</li>
+<li><strong>余数定理 (Remainder Theorem)</strong>: 设 $f(x) \in F[x]$，$c \in F$。则 $f(x)$ 除以 $(x-c)$ 的余式是 $f(c)$。<br>即，存在 $q(x) \in F[x]$ 使得 $f(x) = (x-c)q(x) + f(c)$。<ul>
+<li><strong>证明</strong>: 根据带余除法，$f(x) = (x-c)q(x) + r(x)$，其中 $\deg r(x) &lt; \deg(x-c)=1$。<br>所以 $r(x)$ 必须是一个常数，设为 $r_0$。<br>$f(x) = (x-c)q(x) + r_0$。<br>令 $x=c$，则 $f(c) = (c-c)q(c) + r_0 = 0 \cdot q(c) + r_0 = r_0$。<br>所以余式是 $f(c)$。<br>□</li>
+</ul>
+</li>
+<li><strong>因式定理 (Factor Theorem)</strong>: $c$ 是 $f(x)$ 的根当且仅当 $(x-c)$ 是 $f(x)$ 的因式。<ul>
+<li><strong>证明</strong>:<br>($\Rightarrow$) 若 $c$ 是根，则 $f(c)=0$。由余数定理，$f(x)=(x-c)q(x)+0$，所以 $(x-c)|f(x)$。<br>($\Leftarrow$) 若 $(x-c)|f(x)$，则 $f(x)=(x-c)q(x)$。令 $x=c$，则 $f(c)=(c-c)q(c)=0$，所以 $c$ 是根。<br>□</li>
+</ul>
+</li>
+</ul>
+<h2 id="8-3-根的个数与多项式次数"><a href="#8-3-根的个数与多项式次数" class="headerlink" title="8.3 根的个数与多项式次数"></a>8.3 根的个数与多项式次数</h2><ul>
+<li><strong>定理</strong>: 数域 $F$ 上的一个 $n$ 次多项式在 $F$ 中至多有 $n$ 个不同的根。<ul>
+<li><strong>证明 (归纳法)</strong>:<br>若 $n=0$, $f(x)=a_0 \ne 0$，没有根。<br>若 $n=1$, $f(x)=ax+b$ ($a \ne 0$)，有唯一的根 $x=-b/a$。<br>假设对 $n-1$ 次多项式成立。<br>若 $f(x)$ 没有根，则结论成立 ($0 \le n$)。<br>若 $f(x)$ 有一个根 $c_1$，则 $f(x)=(x-c_1)q(x)$，其中 $\deg q(x) = n-1$。<br>$f(x)$ 的任何其他根 $c \ne c_1$ 必须是 $q(x)$ 的根 (因为 $f(c)=(c-c_1)q(c)=0 \Rightarrow q(c)=0$)。<br>根据归纳假设，$q(x)$ 至多有 $n-1$ 个根。<br>所以 $f(x)$ 至多有 $1 + (n-1) = n$ 个根。<br>□</li>
+</ul>
+</li>
+<li><strong>推论</strong>: 若 $f(x)$ 和 $g(x)$ 是数域 $F$ 上次数都不超过 $n$ 的多项式，且它们在 $F$ 中至少有 $n+1$ 个不同的点 $c_i$ 处取值相同 ($f(c_i)=g(c_i)$)，则 $f(x)=g(x)$ (作为多项式恒等)。<ul>
+<li><strong>证明</strong>: 考虑 $h(x) = f(x)-g(x)$。$\deg h(x) \le n$。<br>$h(c_i) = f(c_i)-g(c_i) = 0$ 对至少 $n+1$ 个 $c_i$ 成立。<br>这意味着 $h(x)$ 有至少 $n+1$ 个根。<br>但如果 $h(x)$ 非零，其次数 $\le n$，则它至多有 $n$ 个根，矛盾。<br>所以 $h(x)$ 必须是零多项式，即 $f(x)=g(x)$。<br>□</li>
+<li><strong>注意</strong>: 这个推论要求 $F$ 是一个域 (或至少是一个整环)。如果 $F$ 只是一个环且有零因子，结论不一定成立。例如，在 $Z_6[x]$ (系数在模6整数环上) 中，$x^2-5x$ 的根有 $0,1,2,3,4,5$ (6个根)，但次数是2。</li>
+</ul>
+</li>
+</ul>
+<h2 id="8-4-重根-Multiple-Root"><a href="#8-4-重根-Multiple-Root" class="headerlink" title="8.4 重根 (Multiple Root)"></a>8.4 重根 (Multiple Root)</h2><ul>
+<li>如果 $(x-c)^k | f(x)$ 但 $(x-c)^{k+1} \nmid f(x)$ (其中 $k \ge 1$)，则称 $c$ 是 $f(x)$ 的一个 <strong>$k$ 重根 (root of multiplicity $k$)</strong>。<ul>
+<li>$k=1$ 时为单根 (simple root)。</li>
+<li>$k&gt;1$ 时为重根。</li>
+</ul>
+</li>
+<li><strong>定理</strong>: 数域 $F$ (特征为0或与所有重数互素) 上的 $n$ 次多项式在 $F$ (或其代数闭包) 中恰好有 $n$ 个根 (计重数)。</li>
+<li><strong>定理</strong>: $c$ 是 $f(x)$ 的 $k$ 重根 ($k \ge 1$) 当且仅当<br>$f(c) = f’(c) = \dots = f^{(k-1)}(c) = 0$ 且 $f^{(k)}(c) \ne 0$。<br>(其中 $f^{(j)}(c)$ 是 $f(x)$ 的 $j$ 阶导数在 $c$ 处的值)。<ul>
+<li><strong>证明思路</strong>:<br>($\Rightarrow$) 若 $c$ 是 $k$ 重根，则 $f(x)=(x-c)^k g(x)$ 且 $g(c) \ne 0$。<br>对 $f(x)$ 求导 $k-1$ 次，每次都会留下 $(x-c)$ 因子。<br>$f^{(j)}(x)$ 的形式为 $(x-c)^{k-j} h_j(x) + \text{terms divisible by } (x-c)^{k-j+1}$，其中 $h_j(c) \ne 0$ (除非 $k-j=0$)。<br>所以 $f^{(j)}(c)=0$ for $j=0, \dots, k-1$。<br>$f^{(k)}(x) = k! g(x) + (x-c) (\dots)$。所以 $f^{(k)}(c) = k! g(c) \ne 0$ (假设特征为0或不整除 $k!$)。<br>($\Leftarrow$) 用泰勒展开式在 $c$ 点展开 $f(x)$ (形式上的)：<br>$f(x) = f(c) + f’(c)(x-c) + \frac{f’’(c)}{2!}(x-c)^2 + \dots + \frac{f^{(k)}(c)}{k!}(x-c)^k + \dots$<br>若 $f(c)=\dots=f^{(k-1)}(c)=0$ 且 $f^{(k)}(c) \ne 0$，则<br>$f(x) = \frac{f^{(k)}(c)}{k!}(x-c)^k + \frac{f^{(k+1)}(c)}{(k+1)!}(x-c)^{k+1} + \dots$<br>$f(x) = (x-c)^k [\frac{f^{(k)}(c)}{k!} + \frac{f^{(k+1)}(c)}{(k+1)!}(x-c) + \dots]$<br>令 $g(x) = [\dots]$。则 $g(c) = \frac{f^{(k)}(c)}{k!} \ne 0$。<br>所以 $c$ 是 $k$ 重根。<br>□</li>
+</ul>
+</li>
+</ul>
+<h1 id="9-复数域与实数域上的多项式"><a href="#9-复数域与实数域上的多项式" class="headerlink" title="9. 复数域与实数域上的多项式"></a>9. 复数域与实数域上的多项式</h1><h2 id="9-1-代数基本定理-Fundamental-Theorem-of-Algebra"><a href="#9-1-代数基本定理-Fundamental-Theorem-of-Algebra" class="headerlink" title="9.1 代数基本定理 (Fundamental Theorem of Algebra)"></a>9.1 代数基本定理 (Fundamental Theorem of Algebra)</h2><ul>
+<li><strong>定理</strong>: 任何复系数 (或实系数，因为实数是复数的子集) 的非常数多项式在复数域 $\mathbb{C}$ 中至少有一个根。</li>
+<li><strong>证明</strong>: 通常需要复分析的工具 (如Liouville定理或最大模原理的推论)，或拓扑学方法。<br>PPT中给出了一个基于 $|f(z)|$ 在 $|z| \to \infty$ 时趋于 $\infty$，以及 $|f(z)|$ 在某点 $z_0$ 达到最小值的分析思路，然后论证若 $|f(z_0)| \ne 0$，则可以找到 $z_0+h$ 使得 $|f(z_0+h)| &lt; |f(z_0)|$，从而导出矛盾。这个证明的核心在于展示多项式函数模的最小值必为0。<ul>
+<li><strong>思路</strong>:<ol>
+<li>$|f(z)| \to \infty$ as $|z| \to \infty$。这意味着存在一个足够大的闭圆盘 $D_R = \{z \mid |z| \le R\}$，使得 $|f(z)|$ 在 $D_R$ 外部的值都大于 $|f(0)|$。</li>
+<li>由于 $D_R$ 是紧集且 $|f(z)|$ 是连续函数，所以 $|f(z)|$ 在 $D_R$ 上必达到其最小值，设在 $z_0 \in D_R$ 处达到。这个最小值也是 $|f(z)|$ 在整个复平面上的最小值。</li>
+<li>假设 $f(z_0) \ne 0$。<br>考虑 $f(z_0+h)$ 在 $h$ 较小时的泰勒展开（或直接代数展开）：<br>$f(z_0+h) = f(z_0) + b_k h^k + b_{k+1} h^{k+1} + \dots + b_n h^n$，其中 $b_k = \frac{f^{(k)}(z_0)}{k!} \ne 0$ 是第一个非零系数 (因为 $f$ 不是常数)。<br>$\frac{f(z_0+h)}{f(z_0)} = 1 + \frac{b_k}{f(z_0)} h^k + O(h^{k+1}) = 1 + c_k h^k + \dots$<br>可以选择 $h$ (一个小的复数，其幅角使得 $c_k h^k$ 为负实数，例如 $h = \delta (-\frac{1}{c_k})^{1/k}$，其中 $\delta$ 是小的正实数)，使得 $|1+c_k h^k + \dots| &lt; 1$。<br>这意味着 $|\frac{f(z_0+h)}{f(z_0)}| &lt; 1$，即 $|f(z_0+h)| &lt; |f(z_0)|$。<br>这与 $z_0$ 是最小值点矛盾。</li>
+<li>因此，假设 $f(z_0) \ne 0$ 是错误的。所以 $f(z_0)=0$。<br>□</li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="9-2-推论"><a href="#9-2-推论" class="headerlink" title="9.2 推论"></a>9.2 推论</h2><ul>
+<li><strong>推论 1 (Vieta 定理的前提)</strong>: 复系数 $n$ 次多项式在复数域 $\mathbb{C}$ 中恰好有 $n$ 个根 (计重数)。</li>
+<li><strong>推论 2</strong>: 复数域 $\mathbb{C}$ 上的不可约多项式都是一次多项式。</li>
+<li><strong>推论 3</strong>: 复数域 $\mathbb{C}$ 上的任一多项式都可以唯一地分解为一次因式的乘积。</li>
+</ul>
+<h2 id="9-3-韦达定理-Vieta’s-Formulas"><a href="#9-3-韦达定理-Vieta’s-Formulas" class="headerlink" title="9.3 韦达定理 (Vieta’s Formulas)"></a>9.3 韦达定理 (Vieta’s Formulas)</h2><ul>
+<li>设首一多项式 $f(x) = x^n + a_{n-1}x^{n-1} + \dots + a_1 x + a_0 \in F[x]$ 在 $F$ (或其扩域) 中有 $n$ 个根 $x_1, x_2, \dots, x_n$ (计重数)。</li>
+<li>则根与系数之间有如下关系：<ul>
+<li>$\sum_{1 \le i_1 &lt; \dots &lt; i_k \le n} x_{i_1} x_{i_2} \dots x_{i_k} = (-1)^k a_{n-k}$  (对 $k=1, \dots, n$)</li>
+</ul>
+</li>
+<li>特别地：<ul>
+<li>$x_1 + x_2 + \dots + x_n = -a_{n-1}$ (所有根之和)</li>
+<li>$\sum_{i&lt;j} x_i x_j = a_{n-2}$ (所有根两两乘积之和)</li>
+<li>…</li>
+<li>$x_1 x_2 \dots x_n = (-1)^n a_0$ (所有根之积)</li>
+</ul>
+</li>
+</ul>
+<h2 id="9-4-三次方程求根公式-Cardano’s-Formula-PPT中提及"><a href="#9-4-三次方程求根公式-Cardano’s-Formula-PPT中提及" class="headerlink" title="9.4 三次方程求根公式 (Cardano’s Formula) (PPT中提及)"></a>9.4 三次方程求根公式 (Cardano’s Formula) (PPT中提及)</h2><ul>
+<li>对于一般三次方程 $x^3 + ax^2 + bx + c = 0$。</li>
+<li>通过代换 $x = y - \frac{a}{3}$，可以化为标准形式 (没有二次项)：<br>$y^3 + py + q = 0$<br>其中 $p = b - \frac{a^2}{3}$，$q = c - \frac{ab}{3} + \frac{2a^3}{27}$。</li>
+<li><strong>解法思路</strong>:<ol>
+<li>设 $y = u+v$。代入方程：<br>$(u+v)^3 + p(u+v) + q = 0$<br>$u^3+v^3+3uv(u+v) + p(u+v) + q = 0$<br>$u^3+v^3 + (3uv+p)(u+v) + q = 0$</li>
+<li>令 $3uv+p=0$，即 $uv = -\frac{p}{3}$。<br>则方程变为 $u^3+v^3+q=0$，即 $u^3+v^3 = -q$。</li>
+<li>我们有方程组：<br>$\begin{cases} u^3 v^3 = (-\frac{p}{3})^3 = -\frac{p^3}{27} \\ u^3 + v^3 = -q \end{cases}$</li>
+<li>$u^3$ 和 $v^3$ 可以看作是一个二次方程 $t^2 - (u^3+v^3)t + u^3v^3 = 0$ 的两个根。<br>即 $t^2 - (-q)t + (-\frac{p^3}{27}) = 0 \Rightarrow t^2 + qt - \frac{p^3}{27} = 0$。</li>
+<li>解此二次方程得到 $t = \frac{-q \pm \sqrt{q^2 + 4(p^3/27)}}{2} = -\frac{q}{2} \pm \sqrt{(\frac{q}{2})^2 + (\frac{p}{3})^3}$。</li>
+<li>令 $\Delta = (\frac{q}{2})^2 + (\frac{p}{3})^3$ (判别式的一部分)。<br>$u^3 = -\frac{q}{2} + \sqrt{\Delta}$<br>$v^3 = -\frac{q}{2} - \sqrt{\Delta}$</li>
+<li>取 $u$ 为 $-\frac{q}{2} + \sqrt{\Delta}$ 的一个立方根，则 $v = -\frac{p}{3u}$。<br>$y_1 = u+v$<br>$y_2 = \omega u + \omega^2 v$<br>$y_3 = \omega^2 u + \omega v$<br>其中 $\omega = -\frac{1}{2} + i\frac{\sqrt{3}}{2}$ 是单位复根。</li>
+</ol>
+</li>
+<li><strong>判别式 $\Delta$ 的作用</strong>:<ul>
+<li>$\Delta &gt; 0$: 一个实根，两个共轭复根。</li>
+<li>$\Delta = 0$: 至少两个相等的实根 (可能是三重实根)。</li>
+<li>$\Delta &lt; 0$: 三个不相等的实根 (Casus irreducibilis，此时 $\sqrt{\Delta}$ 是纯虚数，但最终结果是实数)。</li>
+</ul>
+</li>
+</ul>
+<h2 id="9-5-四次方程求根公式-Ferrari’s-Method-PPT中提及"><a href="#9-5-四次方程求根公式-Ferrari’s-Method-PPT中提及" class="headerlink" title="9.5 四次方程求根公式 (Ferrari’s Method) (PPT中提及)"></a>9.5 四次方程求根公式 (Ferrari’s Method) (PPT中提及)</h2><ul>
+<li>对于一般四次方程，可以先通过线性代换消去三次项，得到 $x^4 + ax^2 + bx + c = 0$。</li>
+<li><strong>解法思路 (Ferrari)</strong>:<ol>
+<li>移项并配方：<br>$x^4 + ax^2 = -bx - c$<br>$(x^2 + \frac{a}{2})^2 = -bx - c + (\frac{a}{2})^2 = (\frac{a}{2}-a)x^2 -bx + (\frac{a}{2})^2 - c = -\frac{a}{2}x^2 -bx + (\frac{a^2}{4}-c)$ (这里PPT的推导可能略有不同，核心是引入一个参数使其变成完全平方)<br>PPT中的方法是：<br>$x^4 = -ax^2 - bx - c$<br>两边加 $ux^2 + \frac{u^2}{4}$ (PPT中可能写成 $2ux^2+u^2$ 然后调整)，目标是使右边也变成完全平方。<br>$(x^2 + \frac{u}{2})^2 = (u-a)x^2 - bx + (\frac{u^2}{4}-c)$ (PPT的 $(x^2+u)^2 = (2u-a)x^2 -bx + (u^2-c)$ 更常见)</li>
+<li>选择参数 $u$ 使得右边 $(u-a)x^2 - bx + (\frac{u^2}{4}-c)$ 是关于 $x$ 的完全平方式。<br>这要求其判别式为0：<br>$(-b)^2 - 4(u-a)(\frac{u^2}{4}-c) = 0$<br>$b^2 - (u-a)(u^2-4c) = 0$<br>这是一个关于 $u$ 的三次方程，称为<strong>预解三次方程 (resolvent cubic)</strong>。</li>
+<li>解出这个三次方程的一个根 $u_0$。</li>
+<li>代回 $(x^2 + \frac{u_0}{2})^2 = (u_0-a)x^2 - bx + (\frac{u_0^2}{4}-c)$。<br>右边现在是 $(Kx+L)^2$ 的形式。</li>
+<li>于是 $x^2 + \frac{u_0}{2} = \pm (Kx+L)$。<br>得到两个关于 $x$ 的二次方程，分别求解即可得到四个根。</li>
+</ol>
+</li>
+<li>五次及更高次的方程一般没有根式解 (Abel-Ruffini 定理，由Galois理论阐明)。</li>
+</ul>
+<h2 id="9-6-实系数多项式的根"><a href="#9-6-实系数多项式的根" class="headerlink" title="9.6 实系数多项式的根"></a>9.6 实系数多项式的根</h2><ul>
+<li><strong>定理</strong>: 若 $f(x)$ 是实系数多项式，且复数 $z$ 是 $f(x)$ 的一个根，则其共轭复数 $\bar{z}$ 也是 $f(x)$ 的一个根。<ul>
+<li><strong>证明</strong>: $f(x) = a_n x^n + \dots + a_0$，其中 $a_i \in \mathbb{R}$。<br>若 $f(z) = a_n z^n + \dots + a_0 = 0$。<br>取共轭：$\overline{f(z)} = \overline{a_n z^n + \dots + a_0} = \overline{0} = 0$。<br>$\overline{a_n} \overline{z^n} + \dots + \overline{a_0} = 0$。<br>因为 $a_i \in \mathbb{R}$，所以 $\overline{a_i}=a_i$。且 $\overline{z^k} = (\bar{z})^k$。<br>$a_n (\bar{z})^n + a_{n-1} (\bar{z})^{n-1} + \dots + a_0 = 0$。<br>即 $f(\bar{z}) = 0$。所以 $\bar{z}$ 也是根。<br>□</li>
+</ul>
+</li>
+<li><strong>推论</strong>: 实系数多项式的虚根成对出现。</li>
+<li><strong>推论</strong>: 实数域 $\mathbb{R}$ 上的不可约多项式只能是一次或二次的。<ul>
+<li>一次：$ax+b$</li>
+<li>二次：$ax^2+bx+c$ 且判别式 $b^2-4ac &lt; 0$ (否则它在实数域有根，可分解为一次因式)。</li>
+</ul>
+</li>
+<li><strong>推论</strong>: 任何实系数多项式都可以分解为实系数的一次因式和二次不可约因式的乘积。</li>
+</ul>
+<h2 id="9-7-实根的界-Bounds-for-Real-Roots-PPT中提及一种"><a href="#9-7-实根的界-Bounds-for-Real-Roots-PPT中提及一种" class="headerlink" title="9.7 实根的界 (Bounds for Real Roots) (PPT中提及一种)"></a>9.7 实根的界 (Bounds for Real Roots) (PPT中提及一种)</h2><ul>
+<li><strong>定理 (Lagrange’s Bound - 类似思想)</strong>: 设 $f(x) = a_n x^n + \dots + a_0$ 是实系数多项式，$a_n &gt; 0$。<br>如果 $k$ 是使得 $a_{n-1}, a_{n-2}, \dots, a_{n-k+1} \ge 0$ 而 $a_{n-k} &lt; 0$ 的第一个负系数的下标 (即 $a_n, \dots, a_{n-k+1}$ 是首项之后第一个非负系数序列，然后遇到第一个负系数 $a_{n-k}$)。<br>令 $B$ 是 $f(x)$ 中所有负系数的绝对值的最大值。<br>则 $f(x)$ 的所有正实根 $c$ 都满足 $c &lt; 1 + \sqrt[k]{\frac{B}{a_n}}$。<br>(PPT中的公式是 $c &lt; 1 + \sqrt[k]{\frac{b}{a_n}}$，其中 $b$ 可能是负系数绝对值的最大值，需要核对PPT的具体定义)</li>
+<li><strong>证明思路 (PPT中给出了一种推导)</strong>:<br>假设 $d &gt; 1 + \sqrt[k]{B/a_n}$。要证明 $f(d)&gt;0$。<br>$(d-1)^k &gt; B/a_n \Rightarrow a_n(d-1)^k &gt; B$。<br>$f(d) = a_n d^n + \dots + a_{n-k+1}d^{n-k+1} + a_{n-k}d^{n-k} + \dots + a_0$<br>$f(d) \ge a_n d^n - B(d^{n-k} + d^{n-k-1} + \dots + d + 1)$ (将所有负系数替换为 $-B$，非负系数保留或设为0)<br>$f(d) &gt; a_n d^n - B \frac{d^{n-k+1}-1}{d-1}$<br>$f(d) &gt; a_n d^n - B \frac{d^{n-k+1}}{d-1}$ (因为 $d&gt;1$)<br>$f(d) &gt; \frac{d^{n-k+1}}{d-1} [a_n d^{k-1}(d-1) - B]$<br>考虑 $a_n d^{k-1}(d-1)^k (d-1)^{-(k-1)} (d-1) - B = a_n (d-1)^k d^{k-1} - B$。<br>PPT中的推导是：<br>$f(d) = d^{n-k+1} [a_n d^{k-1} + \dots + a_{n-k+1}] + a_{n-k}d^{n-k} + \dots + a_0$<br>$f(d) &gt; a_n d^n - B \sum_{j=0}^{n-k} d^j = a_n d^n - B \frac{d^{n-k+1}-1}{d-1}$<br>$f(d) &gt; \frac{1}{d-1} [a_n d^n(d-1) - B d^{n-k+1} + B]$<br>$f(d) &gt; \frac{d^{n-k+1}}{d-1} [a_n d^{k-1}(d-1) - B] + \frac{B}{d-1}$<br>如果 $a_n (d-1)^k &gt; B$，则 $a_n d^{k-1}(d-1) &gt; B \frac{(d-1)^{1-k}}{d^{k-1}}$。这个推导比较复杂，需要严格按照PPT的步骤。<br>核心思想是当 $d$ 足够大时，首项 $a_n d^n$ 会主导其他项，使得 $f(d)&gt;0$。</li>
+<li><strong>应用</strong>: 可以通过 $f(-x)$ 来找负根的下界。</li>
+</ul>
+<h2 id="9-8-Sturm-定理-Sturm’s-Theorem-用于确定实根个数"><a href="#9-8-Sturm-定理-Sturm’s-Theorem-用于确定实根个数" class="headerlink" title="9.8 Sturm 定理 (Sturm’s Theorem) (用于确定实根个数)"></a>9.8 Sturm 定理 (Sturm’s Theorem) (用于确定实根个数)</h2><ul>
+<li>用于确定实系数多项式 $f(x)$ 在给定区间 $(a,b)$ 内不同实根的个数。</li>
+<li><p><strong>Sturm 序列的构造</strong>:<br>假设 $f(x)$ 没有重根 (若有，先用 $f(x)/(f(x),f’(x))$ 替换)。</p>
+<ol>
+<li>$g_0(x) = f(x)$</li>
+<li>$g_1(x) = f’(x)$</li>
+<li>$g_0(x) = q_1(x)g_1(x) - g_2(x)$  (注意是<strong>减去</strong>余式)</li>
+<li>$g_1(x) = q_2(x)g_2(x) - g_3(x)$</li>
+<li>…</li>
+<li>$g_{k-1}(x) = q_k(x)g_k(x) - g_{k+1}(x)$</li>
+<li>…</li>
+<li>$g_{s-1}(x) = q_s(x)g_s(x)$ (最后一个非零余式 $g_s(x)$ 是一个常数，因为 $f(x)$ 和 $f’(x)$ 互素)。<br>这个序列 $g_0(x), g_1(x), \dots, g_s(x)$ 称为 $f(x)$ 的<strong>Sturm 序列 (Sturm sequence)</strong>。</li>
+</ol>
+</li>
+<li><p><strong>变号数 (Number of Sign Changes)</strong>:<br>给定一个实数 $c$，计算序列 $g_0(c), g_1(c), \dots, g_s(c)$ 中符号变化的次数 (忽略0)。记作 $V(c)$。</p>
+</li>
+<li><p><strong>Sturm 定理</strong>:<br>设 $f(x)$ 是实系数多项式且无重根。设 $a &lt; b$ 且 $f(a) \ne 0, f(b) \ne 0$。<br>则 $f(x)$ 在开区间 $(a,b)$ 内不同实根的个数等于 $V(a) - V(b)$。</p>
+</li>
+<li><p><strong>Sturm 序列的性质</strong>:</p>
+<ol>
+<li>$g_s(x)$ (最后一个多项式) 不变号 (因为它是一个非零常数)。</li>
+<li>序列中相邻两项 $g_k(x), g_{k+1}(x)$ 不会同时为零。<br>(若 $g_k(c)=g_{k+1}(c)=0$，则由构造 $g_{k-1}(c)=0, \dots, g_0(c)=g_1(c)=0$，与无重根矛盾)。</li>
+<li>若 $g_k(c)=0$ ($0 &lt; k &lt; s$)，则 $g_{k-1}(c)$ 和 $g_{k+1}(c)$ 异号。<br>(因为 $g_{k-1}(x) = q_k(x)g_k(x) - g_{k+1}(x)$，在 $c$ 点 $g_{k-1}(c) = -g_{k+1}(c)$)。</li>
+<li>当 $x$ 经过 $f(x)$ 的一个根 $c$ 时：<ul>
+<li>若 $f’(c) &gt; 0$ ($f$ 在 $c$ 递增)，则 $g_0(x)=f(x)$ 从负变到正，$g_1(x)=f’(x)$ 在 $c$ 附近为正。<br>符号序列 $(g_0, g_1)$ 从 $(-,+)$ 变为 $(+,+)$，变号数减少1。</li>
+<li>若 $f’(c) &lt; 0$ ($f$ 在 $c$ 递减)，则 $g_0(x)=f(x)$ 从正变到负，$g_1(x)=f’(x)$ 在 $c$ 附近为负。<br>符号序列 $(g_0, g_1)$ 从 $(+,-)$ 变为 $(-,-)$，变号数减少1。<br>在这两种情况下，$V(x)$ 都减少1。</li>
+</ul>
+</li>
+</ol>
+</li>
+<li><p><strong>证明概要</strong>:<br>当 $x$ 从 $a$ 连续变化到 $b$ 时：</p>
+<ol>
+<li>如果 $x$ 经过一个 $g_k(x)$ ($k&gt;0$) 的根 $c$，但不是 $f(x)$ 的根。<br>根据性质3，$g_{k-1}(c)$ 和 $g_{k+1}(c)$ 异号。<br>在 $c$ 的小邻域内，$g_{k-1}(x)$ 和 $g_{k+1}(x)$ 的符号不变。<br>$g_k(x)$ 在 $c$ 点变号。<br>序列片段 $(g_{k-1}, g_k, g_{k+1})$ 的符号可能是 $(+, \pm, -)$ 或 $(-, \pm, +)$。<br>例如，从 $(+,+,-)$ 变为 $(+,-,-)$，或从 $(+,-,-)$ 变为 $(+,+,-)$。<br>变号数在 $c$ 点局部不变 ($V(c-\epsilon) = V(c+\epsilon)$ 对这个片段而言)。</li>
+<li>如果 $x$ 经过 $f(x)$ 的一个根 $c$ (即 $g_0(c)=0$)。<br>根据性质4，序列 $g_0(x), g_1(x)$ 的符号变化导致 $V(x)$ 减少1。<br>因此，总的变号数变化 $V(a)-V(b)$ 就等于 $(a,b)$ 内根的个数。</li>
+</ol>
+</li>
+<li><p><em>(PPT中例子: $f(x) = x^5 - 3x + 1$。Sturm序列是 $x^5-3x+1$, $5x^4-3$, $\frac{12}{5}x-1$, $\frac{59083}{20736}$ (这里应该是正的，因为是最后一个非零余式的相反数)。<br>在 $x=0$: $(1, -3, -1, \text{pos}) \implies V(0)=2$ (例如 $(+,-,-,+)$ 变号2次)。<br>在 $x=1$: $(-1, 2, \frac{7}{5}, \text{pos}) \implies V(1)=1$ (例如 $(-,+,+,+)$ 变号1次)。<br>$V(0)-V(1)=2-1=1$。所以 $(0,1)$ 内有1个根。)</em></p>
+</li>
+</ul>
+<h1 id="10-有理系数与整系数多项式"><a href="#10-有理系数与整系数多项式" class="headerlink" title="10. 有理系数与整系数多项式"></a>10. 有理系数与整系数多项式</h1><h2 id="10-1-有理根定理-Rational-Root-Theorem"><a href="#10-1-有理根定理-Rational-Root-Theorem" class="headerlink" title="10.1 有理根定理 (Rational Root Theorem)"></a>10.1 有理根定理 (Rational Root Theorem)</h2><ul>
+<li>设 $f(x) = a_n x^n + \dots + a_1 x + a_0$ 是一个<strong>整系数多项式</strong>。</li>
+<li>如果一个既约分数 $\frac{p}{q}$ (即 $p,q \in \mathbb{Z}, q \ne 0, \text{gcd}(p,q)=1$) 是 $f(x)$ 的一个有理根，则必有：<ul>
+<li>$p | a_0$ (分子整除常数项)</li>
+<li>$q | a_n$ (分母整除首项系数)</li>
+</ul>
+</li>
+<li><strong>证明</strong>:<br>将 $\frac{p}{q}$ 代入 $f(x)=0$：<br>$a_n (\frac{p}{q})^n + a_{n-1}(\frac{p}{q})^{n-1} + \dots + a_1(\frac{p}{q}) + a_0 = 0$<br>两边乘以 $q^n$：<br>$a_n p^n + a_{n-1} p^{n-1}q + \dots + a_1 p q^{n-1} + a_0 q^n = 0$<ol>
+<li>移项 $a_0 q^n = -(a_n p^n + \dots + a_1 p q^{n-1}) = -p(a_n p^{n-1} + \dots + a_1 q^{n-1})$。<br>所以 $p | a_0 q^n$。因为 $\text{gcd}(p,q)=1$，所以 $\text{gcd}(p,q^n)=1$。<br>因此 $p | a_0$。</li>
+<li>移项 $a_n p^n = -(a_{n-1}p^{n-1}q + \dots + a_0 q^n) = -q(a_{n-1}p^{n-1} + \dots + a_0 q^{n-1})$。<br>所以 $q | a_n p^n$。因为 $\text{gcd}(p,q)=1$，所以 $\text{gcd}(q,p^n)=1$。<br>因此 $q | a_n$。<br>□</li>
+</ol>
+</li>
+<li><strong>应用</strong>: 可以列出所有可能的有理根的候选者，然后逐一检验。</li>
+<li><em>(PPT中例子: $2x^3+x^2-3x+1$。可能有理根 $\pm 1, \pm \frac{1}{2}$。检验知 $\frac{1}{2}$ 是根。)</em></li>
+</ul>
+<h2 id="10-2-本原多项式-Primitive-Polynomial"><a href="#10-2-本原多项式-Primitive-Polynomial" class="headerlink" title="10.2 本原多项式 (Primitive Polynomial)"></a>10.2 本原多项式 (Primitive Polynomial)</h2><ul>
+<li>一个<strong>整系数多项式</strong> $f(x) = a_n x^n + \dots + a_0$ 称为<strong>本原的 (primitive)</strong>，如果其所有系数 $a_0, a_1, \dots, a_n$ 的最大公约数是1。<br>(即 $\text{gcd}(a_0, \dots, a_n)=1$)。</li>
+<li>任何非零整系数多项式 $f(x)$ 都可以表示为 $f(x) = c \cdot f_0(x)$，其中 $c$ 是 $f(x)$ 系数的最大公约数 (称为 $f(x)$ 的<strong>容度 (content)</strong>)，$f_0(x)$ 是本原多项式。这个表示在差一个符号的意义下是唯一的。</li>
+</ul>
+<h2 id="10-3-高斯引理-Gauss’s-Lemma-for-Polynomials"><a href="#10-3-高斯引理-Gauss’s-Lemma-for-Polynomials" class="headerlink" title="10.3 高斯引理 (Gauss’s Lemma for Polynomials)"></a>10.3 高斯引理 (Gauss’s Lemma for Polynomials)</h2><ul>
+<li><strong>引理</strong>: 两个本原多项式 (整系数) 的乘积仍然是本原多项式。</li>
+<li><strong>证明</strong>:<br>设 $f(x) = a_n x^n + \dots + a_0$ 和 $g(x) = b_m x^m + \dots + b_0$ 都是本原的。<br>令 $h(x) = f(x)g(x) = c_k x^k + \dots + c_0$。<br>假设 $h(x)$ 不是本原的，则存在一个素数 $p$ 整除 $h(x)$ 的所有系数 $c_j$。<br>因为 $f(x)$ 本原，所以 $p$ 不整除 $f(x)$ 的所有系数。设 $a_i$ 是第一个不被 $p$ 整除的 $f(x)$ 的系数 (即 $p|a_0, \dots, p|a_{i-1}$ 但 $p \nmid a_i$)。<br>同理，设 $b_j$ 是第一个不被 $p$ 整除的 $g(x)$ 的系数 (即 $p|b_0, \dots, p|b_{j-1}$ 但 $p \nmid b_j$)。<br>考虑 $h(x)$ 的系数 $c_{i+j}$:<br>$c_{i+j} = (a_0 b_{i+j} + \dots + a_{i-1}b_{j+1}) + a_i b_j + (a_{i+1}b_{j-1} + \dots + a_{i+j}b_0)$。<br>括号中的每一项都含有 $a_0, \dots, a_{i-1}$ 中的一个或 $b_0, \dots, b_{j-1}$ 中的一个，所以它们都被 $p$ 整除。<br>因此 $p | (c_{i+j} - a_i b_j)$。<br>又因为我们假设 $p|c_{i+j}$，所以 $p | a_i b_j$。<br>但 $p$ 是素数，且 $p \nmid a_i$，$p \nmid b_j$，这与 $p|a_i b_j$ 矛盾 (根据素数的性质)。<br>所以假设 $h(x)$ 不是本原的是错误的。因此 $h(x)$ 必须是本原的。<br>□</li>
+</ul>
+<h2 id="10-4-有理数域上的可约性与整系数环上的可约性"><a href="#10-4-有理数域上的可约性与整系数环上的可约性" class="headerlink" title="10.4 有理数域上的可约性与整系数环上的可约性"></a>10.4 有理数域上的可约性与整系数环上的可约性</h2><ul>
+<li><strong>定理</strong>: 如果一个整系数多项式 $f(x)$ 在有理数域 $\mathbb{Q}$ 上可约，那么它在整数环 $\mathbb{Z}$ 上也一定可以分解为两个次数更低的<strong>整系数</strong>多项式的乘积。<br>(换句话说，如果一个整系数多项式在 $\mathbb{Z}[x]$ 中不可约，那么它在 $\mathbb{Q}[x]$ 中也一定不可约，除非它能分解出一个非单位常数因子。)<br>更准确地说：如果 $f(x) \in \mathbb{Z}[x]$ 且 $f(x)$ 在 $\mathbb{Q}[x]$ 中可约，即 $f(x) = g(x)h(x)$ 其中 $g(x),h(x) \in \mathbb{Q}[x]$ 且 $\deg g, \deg h &lt; \deg f$，则存在 $g_0(x), h_0(x) \in \mathbb{Z}[x]$ 使得 $f(x)=g_0(x)h_0(x)$ 且 $\deg g_0 = \deg g, \deg h_0 = \deg h$。</li>
+<li><strong>证明思路</strong>:<ol>
+<li>设 $f(x) = g(x)h(x)$，其中 $f(x) \in \mathbb{Z}[x]$，$g(x),h(x) \in \mathbb{Q}[x]$。</li>
+<li>可以将 $g(x)$ 和 $h(x)$ 的系数通分，写成 $g(x) = \frac{a}{b} g_1(x)$ 和 $h(x) = \frac{c}{d} h_1(x)$，其中 $a,b,c,d \in \mathbb{Z}$，$g_1(x), h_1(x)$ 是本原的整系数多项式。</li>
+<li>$f(x) = \frac{ac}{bd} g_1(x)h_1(x)$。</li>
+<li>令 $\frac{ac}{bd} = \frac{P}{Q}$ (既约分数)。则 $Q f(x) = P g_1(x)h_1(x)$。</li>
+<li>$g_1(x)h_1(x)$ 根据高斯引理是本原的。</li>
+<li>$Q f(x)$ 的容度是 $Q \cdot \text{content}(f)$。$P g_1(x)h_1(x)$ 的容度是 $P$ (因为 $g_1h_1$ 本原)。</li>
+<li>所以 $Q \cdot \text{content}(f) = \pm P$。由于 $\text{gcd}(P,Q)=1$，所以 $Q$ 必须整除 $\text{content}(f)$ 的符号，且 $P$ 必须整除 $\text{content}(f)$ 的符号 (这里不严谨，应该是 $Q|\text{content}(f)$ 且 $\text{content}(f) = \pm P/Q \cdot 1 = \pm P/Q$)。<br>更简单地说：$Q f(x)$ 和 $P g_1(x)h_1(x)$ 是相伴的整系数多项式。由于 $g_1h_1$ 本原，所以 $P$ 是 $P g_1h_1$ 的容度。<br>$Q f(x)$ 的容度是 $|Q| \cdot \text{content}(f)$。<br>所以 $|Q| \cdot \text{content}(f) = |P|$。<br>由于 $\text{gcd}(P,Q)=1$，所以 $Q$ 必须是 $\pm 1$。</li>
+<li>因此 $\frac{ac}{bd}$ 是一个整数或一个整数除以容度。<br>实际上，$f(x) = (\frac{ac}{bd} \cdot \text{content}(g_1 h_1)) \cdot (\text{primitive part of } g_1 h_1)$<br>可以证明 $\frac{ac}{bd}$ 必须是一个整数乘以 $f(x)$ 的容度的倒数。<br>结论是 $f(x)$ 可以分解为两个整系数多项式的乘积，其次数与 $g(x), h(x)$ 相同。<br>一个更清晰的论证是：$f(x) = r \cdot G(x)H(x)$ 其中 $r \in \mathbb{Q}$, $G,H \in \mathbb{Z}[x]$ 且本原。<br>$f(x)$ 的容度 $c(f)$ 必须等于 $r$ 的容度 $c(r)$ 乘以 $G(x)H(x)$ 的容度 (为1)。<br>所以 $r$ 必须是 $c(f)$。因此 $f(x) = c(f) G(x)H(x)$。<br>如果 $f(x)$ 本身是本原的，则 $r=\pm 1$。</li>
+</ol>
+</li>
+</ul>
+<h2 id="10-5-艾森斯坦判别法-Eisenstein’s-Criterion"><a href="#10-5-艾森斯坦判别法-Eisenstein’s-Criterion" class="headerlink" title="10.5 艾森斯坦判别法 (Eisenstein’s Criterion)"></a>10.5 艾森斯坦判别法 (Eisenstein’s Criterion)</h2><ul>
+<li><strong>定理</strong>: 设 $f(x) = a_n x^n + a_{n-1} x^{n-1} + \dots + a_1 x + a_0$ 是一个<strong>整系数多项式</strong>。<br>如果存在一个素数 $p$ 使得：<ol>
+<li>$p | a_0, p | a_1, \dots, p | a_{n-1}$ (p 整除除首项系数外的所有系数)</li>
+<li>$p \nmid a_n$ (p 不整除首项系数)</li>
+<li>$p^2 \nmid a_0$ (p的平方不整除常数项)<br>则 $f(x)$ 在有理数域 $\mathbb{Q}$ 上是<strong>不可约的</strong> (因此，如果它是本原的，在 $\mathbb{Z}$ 上也除了平凡因子外不可约)。</li>
+</ol>
+</li>
+<li><strong>证明 (反证法)</strong>:<br>假设 $f(x)$ 在 $\mathbb{Q}$ 上可约。根据上面的定理，它可以分解为两个次数更低的整系数多项式的乘积：<br>$f(x) = g(x)h(x) = (b_r x^r + \dots + b_0)(c_s x^s + \dots + c_0)$<br>其中 $r,s \ge 1$，$r+s=n$，$b_i, c_j \in \mathbb{Z}$。<br>$a_n = b_r c_s$<br>$a_0 = b_0 c_0$<br>由于 $p|a_0$ 且 $p^2 \nmid a_0$，所以 $p$ 必然恰好整除 $b_0, c_0$ 中的一个。<br>不妨设 $p|b_0$ 且 $p \nmid c_0$。<br>由于 $p \nmid a_n$，所以 $p \nmid b_r$ 且 $p \nmid c_s$。<br>考虑 $b_i$ 的系数。因为 $p|b_0$ 且 $p \nmid b_r$ (因为 $r \ge 1$)，所以存在一个最小的下标 $k$ ($0 \le k \le r$) 使得 $p \nmid b_k$ (且 $p|b_0, \dots, p|b_{k-1}$)。<br>因为 $p|b_0$，所以这个 $k \ge 1$。<br>现在看 $a_k = b_k c_0 + b_{k-1}c_1 + \dots + b_0 c_k$。<ul>
+<li>$b_k c_0$: 因为 $p \nmid b_k$ 且 $p \nmid c_0$，所以 $p \nmid b_k c_0$。</li>
+<li>$b_{k-1}c_1 + \dots + b_0 c_k$: 每一项都含有 $b_0, \dots, b_{k-1}$ 中的一个，所以每一项都被 $p$ 整除。<br>因此 $a_k \equiv b_k c_0 \pmod p$。由于 $p \nmid b_k c_0$，所以 $p \nmid a_k$。<br>但是，根据艾森斯坦判别法的条件，如果 $k &lt; n$ (即 $a_k$ 不是首项系数 $a_n$)，则 $p|a_k$。<br>这就产生了矛盾，除非 $k=n$。<br>如果 $k=n$，则意味着 $p|b_0, p|b_1, \dots, p|b_{n-1}$ 且 $p \nmid b_n$ (这里 $r=n, s=0$，与 $s \ge 1$ 矛盾，除非 $g(x)=f(x)$ 是平凡分解)。<br>更准确的论证：<br>$a_k = \sum_{i=0}^k b_i c_{k-i}$。<br>我们有 $p|b_0, \dots, p|b_{k-1}$ 但 $p \nmid b_k$。<br>$a_k = (b_0 c_k + \dots + b_{k-1}c_1) + b_k c_0$。<br>第一部分被 $p$ 整除。因为 $p \nmid b_k$ 且 $p \nmid c_0$，所以 $p \nmid b_k c_0$。<br>因此 $p \nmid a_k$。<br>根据判别法条件，这要求 $k=n$ (即 $a_k=a_n$)。<br>如果 $k=n$，那么 $r=n, s=0$。这意味着 $h(x)=c_0$ 是一个常数。<br>由于 $f(x)$ 在 $\mathbb{Q}$ 上可约，我们假设了 $r,s \ge 1$，所以这里导致矛盾。<br>因此，原假设 $f(x)$ 可约是错误的。<br>□</li>
+</ul>
+</li>
+<li><strong>应用</strong>:<ul>
+<li>对任意 $n \ge 1$，$x^n-2$ 在 $\mathbb{Q}$ 上不可约 (取 $p=2$)。</li>
+<li>对任意素数 $p$，$f(x) = x^{p-1} + x^{p-2} + \dots + x + 1$ (分圆多项式 $\Phi_p(x)$) 在 $\mathbb{Q}$ 上不可约。<br><strong>证明</strong>: 做代换 $x = y+1$。<br>$f(x) = \frac{x^p-1}{x-1}$。<br>$g(y) = f(y+1) = \frac{(y+1)^p-1}{(y+1)-1} = \frac{y^p + \binom{p}{1}y^{p-1} + \dots + \binom{p}{p-1}y + 1 - 1}{y}$<br>$g(y) = y^{p-1} + \binom{p}{1}y^{p-2} + \dots + \binom{p}{p-2}y + \binom{p}{p-1}$。<br>首项系数是1 (不被 $p$ 整除)。<br>常数项是 $\binom{p}{p-1} = p$ (被 $p$ 整除，但不被 $p^2$ 整除)。<br>中间项的系数 $\binom{p}{k}$ ($1 \le k \le p-1$) 都可以被 $p$ 整除 (因为 $p$ 是素数)。<br>所以 $g(y)$ 满足艾森斯坦判别法条件 (对素数 $p$)，因此 $g(y)$ 在 $\mathbb{Q}$ 上不可约。<br>如果 $f(x)$ 可约 $f(x)=A(x)B(x)$，则 $g(y)=f(y+1)=A(y+1)B(y+1)$ 也可约，矛盾。<br>所以 $f(x)$ 在 $\mathbb{Q}$ 上不可约。<br>□</li>
+</ul>
+</li>
+</ul>
+<h1 id="11-多元多项式-Polynomials-in-Multiple-Variables"><a href="#11-多元多项式-Polynomials-in-Multiple-Variables" class="headerlink" title="11. 多元多项式 (Polynomials in Multiple Variables)"></a>11. 多元多项式 (Polynomials in Multiple Variables)</h1><h2 id="11-1-定义"><a href="#11-1-定义" class="headerlink" title="11.1 定义"></a>11.1 定义</h2><ul>
+<li>设 $F$ 是一个数域，$x_1, x_2, \dots, x_n$ 是 $n$ 个独立的不定元。</li>
+<li>一个<strong>单项式 (monomial)</strong> 形如 $a x_1^{k_1} x_2^{k_2} \dots x_n^{k_n}$，其中 $a \in F$ 是系数，$k_j \ge 0$ 是整数。</li>
+<li>如果 $a \ne 0$，该单项式的<strong>次数 (degree)</strong> 是 $k = k_1 + k_2 + \dots + k_n$。</li>
+<li>一个<strong>多元多项式 (polynomial in $n$ variables)</strong> 是有限个单项式的和：<br>$f(x_1, x_2, \dots, x_n) = \sum a_{j_1 j_2 \dots j_n} x_1^{j_1} x_2^{j_2} \dots x_n^{j_n}$</li>
+<li><strong>齐次多项式 (Homogeneous Polynomial)</strong>: 如果一个多项式中所有非零单项式的次数都相同，则称其为齐次多项式。这个共同的次数称为齐次多项式的次数。</li>
+</ul>
+<h2 id="11-2-多元多项式的运算"><a href="#11-2-多元多项式的运算" class="headerlink" title="11.2 多元多项式的运算"></a>11.2 多元多项式的运算</h2><ul>
+<li>加法、减法、乘法定义类似于一元多项式，通过合并同类项 (相同 $x_1^{k_1}\dots x_n^{k_n}$ 部分的项)。</li>
+<li>$F[x_1, \dots, x_n]$ (系数在 $F$ 上的所有 $n$ 元多项式的集合) 关于这些运算构成一个交换含幺环。</li>
+<li>$F[x_1, \dots, x_n]$ 也是一个整环。</li>
+</ul>
+<h2 id="11-3-字典序-Lexicographical-Order"><a href="#11-3-字典序-Lexicographical-Order" class="headerlink" title="11.3 字典序 (Lexicographical Order)"></a>11.3 字典序 (Lexicographical Order)</h2><ul>
+<li>用于比较单项式，从而可以定义多元多项式的首项。</li>
+<li>单项式 $x_1^{k_1} \dots x_n^{k_n}$ 大于 $x_1^{j_1} \dots x_n^{j_n}$ (记作 $&gt;_{lex}$)，如果从左到右比较指数序列 $(k_1, \dots, k_n)$ 和 $(j_1, \dots, j_n)$，第一个不同的指数是前者较大。<br>即，存在 $s$ 使得 $k_1=j_1, \dots, k_{s-1}=j_{s-1}$ 且 $k_s &gt; j_s$。</li>
+<li>例如，$x_1^2 x_2 &gt;_{lex} x_1 x_2^3$ 因为第一个指数 $2&gt;1$。</li>
+<li>一个多元多项式的<strong>首项 (leading term)</strong> 是其在字典序下最大的非零单项式。</li>
+</ul>
+<h2 id="11-4-多元多项式环的性质"><a href="#11-4-多元多项式环的性质" class="headerlink" title="11.4 多元多项式环的性质"></a>11.4 多元多项式环的性质</h2><ul>
+<li><strong>定理 (Hilbert’s Basis Theorem - 的推论)</strong>: 如果 $F$ 是一个域，则 $F[x_1, \dots, x_n]$ 是一个<strong>唯一因子分解整环 (Unique Factorization Domain, UFD)</strong>。这意味着每个非常数多项式都可以唯一地 (不计顺序和单位元因子) 分解为不可约多项式的乘积。</li>
+<li><strong>定理</strong>: 若 $f(x_1, \dots, x_n)$ 是数域 $F$ 上的一个非零多元多项式，则存在 $c_1, \dots, c_n \in F$ (如果 $F$ 是无限域) 使得 $f(c_1, \dots, c_n) \ne 0$。<ul>
+<li><strong>证明 (对变量个数 $n$ 归纳)</strong>:<br>$n=1$: 非零一元多项式至多有有限个根，所以总能找到使其不为0的值 (如果 $F$ 无限)。<br>假设对 $n-1$ 个变量成立。<br>将 $f(x_1, \dots, x_n)$ 看作是关于 $x_n$ 的多项式，其系数是 $x_1, \dots, x_{n-1}$ 的多项式：<br>$f(x_1, \dots, x_n) = A_k(x_1, \dots, x_{n-1}) x_n^k + \dots + A_0(x_1, \dots, x_{n-1})$。<br>由于 $f$ 非零，所以至少有一个系数 $A_j(x_1, \dots, x_{n-1})$ 是非零的。<br>根据归纳假设 (如果 $F$ 无限)，存在 $c_1, \dots, c_{n-1} \in F$ 使得 $A_j(c_1, \dots, c_{n-1}) \ne 0$ (特别是对于最高次项系数 $A_k$ 如果它非零)。<br>代入这些值，得到一个关于 $x_n$ 的非零一元多项式 $f(c_1, \dots, c_{n-1}, x_n)$。<br>这个一元多项式至多有有限个根，所以 (如果 $F$ 无限) 存在 $c_n \in F$ 使得 $f(c_1, \dots, c_{n-1}, c_n) \ne 0$。<br>□</li>
+</ul>
+</li>
+<li><strong>推论 (多项式恒等)</strong>: 如果数域 $F$ 是无限域，两个多元多项式 $f(x_1, \dots, x_n)$ 和 $g(x_1, \dots, x_n)$ 相等 (作为函数，即对所有 $(c_1, \dots, c_n) \in F^n$ 都有 $f(c_1, \dots, c_n) = g(c_1, \dots, c_n)$) 当且仅当它们作为形式多项式是相等的 (即对应项系数都相同)。<ul>
+<li><strong>证明</strong>: 考虑 $h=f-g$。如果 $h$ 作为函数为0，则 $h$ 在所有点取值为0。如果 $h$ 不是零多项式，根据上一定理，它不可能在所有点为0 (矛盾)。所以 $h$ 必须是零多项式。<br>□</li>
+</ul>
+</li>
+</ul>
+<h2 id="11-5-对称多项式-Symmetric-Polynomials"><a href="#11-5-对称多项式-Symmetric-Polynomials" class="headerlink" title="11.5 对称多项式 (Symmetric Polynomials)"></a>11.5 对称多项式 (Symmetric Polynomials)</h2><ul>
+<li>一个多元多项式 $f(x_1, \dots, x_n)$ 称为<strong>对称的 (symmetric)</strong>，如果对任意的下标置换 $\sigma \in S_n$ (作用于不定元)，都有：<br>$f(x_{\sigma(1)}, x_{\sigma(2)}, \dots, x_{\sigma(n)}) = f(x_1, x_2, \dots, x_n)$。<br>(即，任意交换两个变量的位置，多项式不变)。</li>
+<li><strong>初等对称多项式 (Elementary Symmetric Polynomials)</strong>:<br>$\sigma_1 = x_1 + x_2 + \dots + x_n$<br>$\sigma_2 = \sum_{1 \le i &lt; j \le n} x_i x_j$<br>…<br>$\sigma_k = \sum_{1 \le i_1 &lt; \dots &lt; i_k \le n} x_{i_1} x_{i_2} \dots x_{i_k}$<br>…<br>$\sigma_n = x_1 x_2 \dots x_n$</li>
+<li><strong>对称多项式基本定理 (Fundamental Theorem of Symmetric Polynomials)</strong>:<br>任何数域 $F$ 上的对称多项式 $f(x_1, \dots, x_n)$ 都可以唯一地表示为初等对称多项式 $\sigma_1, \dots, \sigma_n$ 的一个多项式。<br>即，存在唯一的 $g(y_1, \dots, y_n) \in F[y_1, \dots, y_n]$ 使得<br>$f(x_1, \dots, x_n) = g(\sigma_1(x_1,\dots,x_n), \dots, \sigma_n(x_1,\dots,x_n))$。</li>
+<li><strong>证明思路 (构造性，基于字典序)</strong>:<ol>
+<li>取 $f(x_1, \dots, x_n)$ 在字典序下的首项 $L(f) = a x_1^{k_1} x_2^{k_2} \dots x_n^{k_n}$。<br>由于 $f$ 对称，其首项的指数必然满足 $k_1 \ge k_2 \ge \dots \ge k_n \ge 0$。<br>(否则，若 $k_s &lt; k_{s+1}$，交换 $x_s, x_{s+1}$ 会得到一个字典序更大的项 $a x_1^{k_1} \dots x_s^{k_{s+1}} x_{s+1}^{k_s} \dots$，与 $L(f)$ 是首项矛盾)。</li>
+<li>构造一个初等对称多项式的乘积 $h = a \sigma_1^{k_1-k_2} \sigma_2^{k_2-k_3} \dots \sigma_{n-1}^{k_{n-1}-k_n} \sigma_n^{k_n}$。</li>
+<li>$h$ 也是一个对称多项式。其字典序下的首项 $L(h)$ 恰好等于 $L(f)$。<ul>
+<li>$L(\sigma_1) = x_1$</li>
+<li>$L(\sigma_2) = x_1 x_2$</li>
+<li>…</li>
+<li>$L(\sigma_j) = x_1 x_2 \dots x_j$</li>
+<li>$L(h) = a (L(\sigma_1))^{k_1-k_2} \dots (L(\sigma_n))^{k_n}$<br>$= a (x_1)^{k_1-k_2} (x_1x_2)^{k_2-k_3} \dots (x_1\dots x_n)^{k_n}$<br>$= a x_1^{(k_1-k_2)+(k_2-k_3)+\dots+k_n} x_2^{(k_2-k_3)+\dots+k_n} \dots x_n^{k_n}$<br>$= a x_1^{k_1} x_2^{k_2} \dots x_n^{k_n} = L(f)$。</li>
+</ul>
+</li>
+<li>考虑 $f_1 = f - h$。$f_1$ 仍然是对称多项式，且其字典序首项 $L(f_1)$ 严格小于 $L(f)$。</li>
+<li>对 $f_1$ 重复此过程。由于字典序良序，这个过程必然在有限步内终止 (当 $f_k=0$ 时)。<br>最终得到 $f = h_1 + h_2 + \dots + h_m$，其中每个 $h_j$ 都是初等对称多项式的多项式。</li>
+</ol>
+</li>
+<li><strong>唯一性证明</strong>:<br>假设 $g(\sigma_1, \dots, \sigma_n) = h(\sigma_1, \dots, \sigma_n)$ 且 $g \ne h$。<br>令 $\phi = g-h \ne 0$。则 $\phi(\sigma_1, \dots, \sigma_n) = 0$ (作为 $x_i$ 的多项式恒为0)。<br>取 $\phi(y_1, \dots, y_n)$ 中字典序最高的一个非零单项式 $c y_1^{k_1} \dots y_n^{k_n}$。<br>将其代入 $\sigma_i$ (即 $y_i \leftarrow \sigma_i$)，得到关于 $x_i$ 的多项式。<br>$\phi(\sigma_1, \dots, \sigma_n)$ 的字典序首项是由 $c \sigma_1^{k_1} \dots \sigma_n^{k_n}$ 的首项决定的，即 $c (x_1)^{k_1} (x_1x_2)^{k_2} \dots (x_1\dots x_n)^{k_n}$ 的首项，这个首项不为0，与 $\phi(\sigma_1, \dots, \sigma_n)=0$ 矛盾。<br>所以 $\phi$ 必须是零多项式，即 $g=h$。<br>□</li>
+<li><em>(PPT中例子: $f(x_1,x_2,x_3) = x_1^2 x_2 + x_1^2 x_3 + x_1 x_2^2 + x_1 x_2 x_3 + x_2^2 x_3 + x_2 x_3^2$ (这似乎不是对称的，PPT例子可能是 $x_1^2x_2 + x_1x_2^2 + x_1^2x_3 + x_1x_3^2 + x_2^2x_3 + x_2x_3^2$)<br>如果 $f(x_1,x_2,x_3) = x_1^2x_2 + x_1x_2^2 + x_1^2x_3 + x_1x_3^2 + x_2^2x_3 + x_2x_3^2$<br>首项是 $x_1^2 x_2$ (按字典序 $x_1 &gt; x_2 &gt; x_3$)<br>$k_1=2, k_2=1, k_3=0$。<br>$h_1 = \sigma_1^{2-1} \sigma_2^{1-0} \sigma_3^0 = \sigma_1 \sigma_2 = (x_1+x_2+x_3)(x_1x_2+x_1x_3+x_2x_3)$<br>$= (x_1^2x_2 + x_1^2x_3 + x_1x_2^2 + x_1x_3^2 + x_2^2x_3 + x_2x_3^2) + 3x_1x_2x_3$<br>$f_1 = f - h_1 = -3x_1x_2x_3 = -3\sigma_3$。<br>所以 $f = \sigma_1\sigma_2 - 3\sigma_3$。)</em></li>
+</ul>
+<h1 id="12-结式与判别式-Resultant-and-Discriminant"><a href="#12-结式与判别式-Resultant-and-Discriminant" class="headerlink" title="12. 结式与判别式 (Resultant and Discriminant)"></a>12. 结式与判别式 (Resultant and Discriminant)</h1><h2 id="12-1-两个多项式有公共根的条件"><a href="#12-1-两个多项式有公共根的条件" class="headerlink" title="12.1 两个多项式有公共根的条件"></a>12.1 两个多项式有公共根的条件</h2><ul>
+<li>设 $f(x), g(x) \in F[x]$。$f(x)$ 和 $g(x)$ 有公共根 $d(x) \ne 1$ (即 $(f(x), g(x))$ 的次数 $\ge 1$) 当且仅当存在非零多项式 $u(x), v(x) \in F[x]$ 使得：<ol>
+<li>$\deg u(x) &lt; \deg g(x)$</li>
+<li>$\deg v(x) &lt; \deg f(x)$</li>
+<li>$f(x)u(x) = g(x)v(x)$ (或者 $f(x)u(x) + g(x)v(x) = 0$ 如果 $v(x)$ 取相反数)</li>
+</ol>
+</li>
+<li><strong>证明</strong>:<br>($\Rightarrow$) 若 $(f,g)=d(x)$ 且 $\deg d(x) \ge 1$。<br>则 $f(x) = d(x)f_1(x)$，$g(x) = d(x)g_1(x)$。<br>令 $u(x) = g_1(x)$，$v(x) = f_1(x)$。<br>则 $\deg u(x) = \deg g(x) - \deg d(x) &lt; \deg g(x)$。<br>$\deg v(x) = \deg f(x) - \deg d(x) &lt; \deg f(x)$。<br>$f(x)u(x) = d(x)f_1(x)g_1(x)$<br>$g(x)v(x) = d(x)g_1(x)f_1(x)$。所以 $f(x)u(x) = g(x)v(x)$。<br>($\Leftarrow$) 若 $f(x)u(x) = g(x)v(x)$ 且 $u,v$ 非零且次数受限。<br>$f(x)u(x) - g(x)v(x) = 0$。<br>假设 $(f,g)=1$ (互素)。<br>则由 $f|gv$ 可得 $f|v$ (因为 $(f,g)=1$)。<br>但 $\deg v &lt; \deg f$，所以这只有当 $v(x)=0$ 时才可能。<br>如果 $v(x)=0$，则 $f(x)u(x)=0$。由于 $f(x)$ (如果非零) 不是零因子，则 $u(x)=0$。<br>这与 $u,v$ 非零矛盾。<br>所以 $(f,g) \ne 1$，即它们有公共因式 (因此有公共根，如果在代数闭包中)。<br>□</li>
+</ul>
+<h2 id="12-2-Sylvester-矩阵与结式-Resultant"><a href="#12-2-Sylvester-矩阵与结式-Resultant" class="headerlink" title="12.2 Sylvester 矩阵与结式 (Resultant)"></a>12.2 Sylvester 矩阵与结式 (Resultant)</h2><ul>
+<li>设 $f(x) = a_n x^n + \dots + a_0$ ($a_n \ne 0$)<br>$g(x) = b_m x^m + \dots + b_0$ ($b_m \ne 0$)</li>
+<li>我们寻找 $u(x) = t_{m-1}x^{m-1} + \dots + t_0$ 和 $v(x) = s_{n-1}x^{n-1} + \dots + s_0$ (PPT中 $v(x)$ 的系数是 $t_{m+n-1}, \dots, t_m$) 使得 $f(x)u(x) + g(x)v(x) = 0$ (这里 $v(x)$ 带负号)。<br>将 $f(x)u(x) = -g(x)v(x)$ (或 $f(x)u(x) - g(x)v_0(x) = 0$ 如果 $v_0 = -v$) 展开，比较 $x^{m+n-1}, \dots, x^1, x^0$ 的系数，得到一个关于 $t_i$ 和 $s_j$ (或PPT中的 $t_i$) 的 $m+n$ 个线性方程的齐次方程组。<br>这个方程组有非零解 (即 $u,v$ 不全为0) 当且仅当其系数矩阵的行列式为0。</li>
+<li><p>这个 $(m+n) \times (m+n)$ 的系数矩阵称为 $f(x)$ 和 $g(x)$ 的<strong>Sylvester 矩阵 (Sylvester Matrix)</strong>。<br>它的行列式称为 $f(x)$ 和 $g(x)$ 的<strong>结式 (Resultant)</strong>，记作 $R(f,g)$ 或 $\text{Res}(f,g)$。</p>
+<p>$R(f,g) = \det \begin{pmatrix}<br>a_n &amp; a_{n-1} &amp; \dots &amp; a_1 &amp; a_0 &amp; 0 &amp; \dots &amp; 0 \\<br>0 &amp; a_n &amp; a_{n-1} &amp; \dots &amp; a_1 &amp; a_0 &amp; \dots &amp; 0 \\<br>\vdots &amp; \vdots &amp; \ddots &amp; &amp; &amp; &amp; \ddots &amp; \vdots \\<br>0 &amp; \dots &amp; 0 &amp; a_n &amp; a_{n-1} &amp; \dots &amp; a_1 &amp; a_0 \\<br>b_m &amp; b_{m-1} &amp; \dots &amp; b_1 &amp; b_0 &amp; 0 &amp; \dots &amp; 0 \\<br>0 &amp; b_m &amp; b_{m-1} &amp; \dots &amp; b_1 &amp; b_0 &amp; \dots &amp; 0 \\<br>\vdots &amp; \vdots &amp; \ddots &amp; &amp; &amp; &amp; \ddots &amp; \vdots \\<br>0 &amp; \dots &amp; 0 &amp; b_m &amp; b_{m-1} &amp; \dots &amp; b_1 &amp; b_0<br>\end{pmatrix}$<br>(上面 $m$ 行 $a_i$，下面 $n$ 行 $b_j$)</p>
+</li>
+<li><p><strong>定理</strong>: $f(x)$ 和 $g(x)$ (在某个代数闭包中) 有公共根当且仅当 $R(f,g)=0$。<br>(假设 $a_n \ne 0, b_m \ne 0$)</p>
+</li>
+</ul>
+<h2 id="12-3-结式与根的关系"><a href="#12-3-结式与根的关系" class="headerlink" title="12.3 结式与根的关系"></a>12.3 结式与根的关系</h2><ul>
+<li><strong>定理</strong>: 若 $f(x) = a_n \prod_{i=1}^n (x-x_i)$ 且 $g(x) = b_m \prod_{j=1}^m (x-y_j)$，则<br>$R(f,g) = a_n^m b_m^n \prod_{i=1}^n \prod_{j=1}^m (x_i - y_j)$<br>或者，更常用的形式是：<br>$R(f,g) = a_n^m \prod_{i=1}^n g(x_i)$<br>$R(f,g) = (-1)^{nm} b_m^n \prod_{j=1}^m f(y_j)$</li>
+<li><strong>证明思路</strong>:<br>将 $R(f,g)$ 看作是 $a_i, b_j$ 的多项式。<br>如果某个 $x_i = y_j$，则 $f,g$ 有公共根，$R(f,g)=0$。所以 $(x_i-y_j)$ 必须是 $R(f,g)$ 的因式 (作为根的多项式)。<br>$R(f,g)$ 关于 $a_i$ 是 $m$ 次齐次的，关于 $b_j$ 是 $n$ 次齐次的。<br>$g(x_i) = b_m \prod (x_i-y_j)$。<br>$a_n^m \prod g(x_i) = a_n^m \prod_{i=1}^n (b_m \prod_{j=1}^m (x_i-y_j)) = a_n^m b_m^n \prod_i \prod_j (x_i-y_j)$。<br>比较次数和首项系数 (例如当 $g(x)=x^m$ 时) 可以确定常数因子。<br>当 $g(x)=x^m$ ($b_m=1$, 其他 $b_j=0$)，$g(x_i)=x_i^m$。<br>$R(f,x^m)$ 通过Laplace展开 Sylvester 矩阵可以得到 $a_0^m$ (或 $(-1)^{nm}a_0^m$)。<br>$a_0 = a_n \prod (-x_i)$。<br>所以 $a_n^m \prod g(x_i) = a_n^m \prod x_i^m = a_n^m ((-1)^n a_0/a_n)^m = a_n^{m-m} (-1)^{nm} a_0^m = (-1)^{nm} a_0^m$。<br>这与直接计算 $R(f,x^m)$ 相符。<br>□</li>
+</ul>
+<h2 id="12-4-判别式-Discriminant"><a href="#12-4-判别式-Discriminant" class="headerlink" title="12.4 判别式 (Discriminant)"></a>12.4 判别式 (Discriminant)</h2><ul>
+<li>多项式 $f(x) = a_n x^n + \dots + a_0$ ($a_n \ne 0$) 有重根当且仅当 $f(x)$ 与其导数 $f’(x)$ 有公共根。</li>
+<li>$f(x)$ 的<strong>判别式 (Discriminant)</strong> 定义为：<br>$\Delta(f) = \frac{(-1)^{n(n-1)/2}}{a_n} R(f, f’)$<br>(分母 $a_n$ 是为了使判别式成为系数的整系数多项式，并且与经典定义匹配)。</li>
+<li><strong>定理</strong>: $f(x)$ 有重根当且仅当 $\Delta(f)=0$。</li>
+<li><em>(PPT中例子: 二次 $ax^2+bx+c$，判别式是 $b^2-4ac$。三次 $x^3+px+q$，判别式是 $-4p^3-27q^2$。)</em></li>
+</ul>
+<h2 id="12-5-判别式与根的关系"><a href="#12-5-判别式与根的关系" class="headerlink" title="12.5 判别式与根的关系"></a>12.5 判别式与根的关系</h2><ul>
+<li>若 $f(x) = a_n \prod_{i=1}^n (x-x_i)$，则<br>$\Delta(f) = a_n^{2n-2} \prod_{1 \le i &lt; j \le n} (x_i - x_j)^2$</li>
+<li><strong>证明思路</strong>:<br>$R(f,f’) = a_n^{n-1} \prod_{i=1}^n f’(x_i)$。<br>$f’(x) = a_n \sum_{k=1}^n \prod_{j \ne k} (x-x_j)$。<br>$f’(x_i) = a_n \prod_{j \ne i} (x_i-x_j)$。<br>$R(f,f’) = a_n^{n-1} \prod_{i=1}^n [a_n \prod_{j \ne i} (x_i-x_j)]$<br>$= a_n^{n-1} a_n^n \prod_{i=1}^n \prod_{j \ne i} (x_i-x_j)$<br>$= a_n^{2n-1} \prod_{i \ne j} (x_i-x_j)$<br>$= a_n^{2n-1} \prod_{i&lt;j} (x_i-x_j) \prod_{j&lt;i} (x_j-x_i)$<br>$= a_n^{2n-1} \prod_{i&lt;j} (x_i-x_j) \prod_{i&lt;j} (-(x_i-x_j))$<br>$= a_n^{2n-1} (-1)^{n(n-1)/2} \prod_{i&lt;j} (x_i-x_j)^2$。<br>代入 $\Delta(f) = \frac{(-1)^{n(n-1)/2}}{a_n} R(f, f’)$ 即可得到公式。<br>□</li>
+</ul>
+<h2 id="12-6-应用-消元法"><a href="#12-6-应用-消元法" class="headerlink" title="12.6 应用 (消元法)"></a>12.6 应用 (消元法)</h2><ul>
+<li>结式可以用于求解多元多项式方程组，通过消去变量。</li>
+<li>例如，求解方程组 $\{f(x,y)=0, g(x,y)=0\}$。<br>将 $f,g$ 看作是关于 $x$ 的多项式，其系数是 $y$ 的多项式：<br>$f(x,y) = A_n(y)x^n + \dots + A_0(y)$<br>$g(x,y) = B_m(y)x^m + \dots + B_0(y)$<br>计算关于 $x$ 的结式 $R_x(f,g)$。这将得到一个只含 $y$ 的多项式 (或多项式方程 $R_x(f,g)(y)=0$)。<br>这个方程的根 $y_k$ 是使得原方程组有公共解 $(x^<em>, y_k)$ 的 $y$ 值。<br>然后可以将 $y_k$ 代回原方程组求对应的 $x^</em>$。</li>
+<li>这是一种将多元问题降维的方法。</li>
+</ul>
+</div><div class="article-licensing box"><div class="licensing-title"><p>Chapter1_MATH1408</p><p><a href="http://example.com/MATH1408/Chapter1-MATH1408.html">http://example.com/MATH1408/Chapter1-MATH1408.html</a></p></div><div class="licensing-meta level is-mobile"><div class="level-left"><div class="level-item is-narrow"><div><h6>作者</h6><p>Jiamin Liu</p></div></div><div class="level-item is-narrow"><div><h6>发布于</h6><p>2025-06-24</p></div></div><div class="level-item is-narrow"><div><h6>更新于</h6><p>2025-06-24</p></div></div><div class="level-item is-narrow"><div><h6>许可协议</h6><p><a class="icons" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="icon fab fa-creative-commons"></i></a><a class="icons" rel="noopener" target="_blank" title="Attribution" href="https://creativecommons.org/licenses/by/4.0/"><i class="icon fab fa-creative-commons-by"></i></a><a class="icons" rel="noopener" target="_blank" title="Noncommercial" href="https://creativecommons.org/licenses/by-nc/4.0/"><i class="icon fab fa-creative-commons-nc"></i></a></p></div></div></div></div></div><div class="article-tags is-size-7 mb-4"><span class="mr-2">#</span><a class="link-muted mr-2" rel="tag" href="/"></a></div><!--!--></article></div><!--!--><div class="card" id="comments"><div class="card-content"><h3 class="title is-5">评论</h3><div class="notification is-danger">You forgot to set the <code>shortname</code> for Disqus. Please set it in <code>_config.yml</code>.</div></div></div></div><div class="column column-left is-4-tablet is-4-desktop is-4-widescreen  order-1"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar" src="/img/avatar.png" alt="Jiamin Liu"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">Jiamin Liu</p><p class="is-size-6 is-block">别卷了别卷了别卷了</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>China</span></p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">文章</p><a href="/archives/"><p class="title">1</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">分类</p><a href="/categories/"><p class="title">0</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">标签</p><a href="/tags/"><p class="title">0</p></a></div></div></nav></div></div><!--!--></div><!--!--></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/img/logo.svg" alt="OD&#039;s blog" height="28"></a><p class="is-size-7"><span>&copy; 2025 Jiamin Liu</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a></p><p class="is-size-7">© 2019</p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("zh-cn");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script data-pjax src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="回到顶端" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script data-pjax src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
+      window.cookieconsent.initialise({
+        type: "info",
+        theme: "edgeless",
+        static: false,
+        position: "bottom-left",
+        content: {
+          message: "此网站使用Cookie来改善您的体验。",
+          dismiss: "知道了！",
+          allow: "允许使用Cookie",
+          deny: "拒绝",
+          link: "了解更多",
+          policy: "Cookie政策",
+          href: "https://www.cookiesandyou.com/",
+        },
+        palette: {
+          popup: {
+            background: "#edeff5",
+            text: "#838391"
+          },
+          button: {
+            background: "#4b81e8"
+          },
+        },
+      });
+    });</script><script src="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/js/lightgallery.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><script type="text/javascript" id="MathJax-script" async>MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']]
+      },
+      svg: {
+        fontCache: 'global'
+      },
+      chtml: {
+        matchFontHeight: false
+      }
+    };</script><script src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js"></script><script src="https://cdn.jsdelivr.net/npm/pjax@0.2.8/pjax.min.js"></script><script src="/js/pjax.js"></script><!--!--><!--!--><!--!--><script data-pjax src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="想要查找什么..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script data-pjax src="/js/insight.js" defer></script><script data-pjax>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"想要查找什么...","untitled":"(无标题)","posts":"文章","pages":"页面","categories":"分类","tags":"标签"});
+        });</script></body></html>

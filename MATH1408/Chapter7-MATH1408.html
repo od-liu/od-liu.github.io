@@ -1,0 +1,254 @@
+<!doctype html>
+<html lang="zh"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>Chapter7 MATH1408 - OD&#039;s blog</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="OD&#039;s blog"><meta name="msapplication-TileImage" content="/img/favicon.svg"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="OD&#039;s blog"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="description" content="奇异值分解1. 引言与动机 回顾特征值分解: 对于方阵 $A$ (特别是对称阵或可对角化阵)，我们有特征值分解 $A &amp;#x3D; P D P^{-1}$ (或 $A &amp;#x3D; U \Lambda U^T$ 对于对称阵，其中 $U$ 是正交阵，$\Lambda$ 是对角阵)。特征值分解在理解线性变换、解微分方程等方面非常有用。 问题: 对于任意的 $m \times n$ 矩阵 $A$ (不一定是方阵，也不一定对"><meta property="og:type" content="blog"><meta property="og:title" content="Chapter7 MATH1408"><meta property="og:url" content="http://example.com/MATH1408/Chapter7-MATH1408.html"><meta property="og:site_name" content="OD&#039;s blog"><meta property="og:description" content="奇异值分解1. 引言与动机 回顾特征值分解: 对于方阵 $A$ (特别是对称阵或可对角化阵)，我们有特征值分解 $A &amp;#x3D; P D P^{-1}$ (或 $A &amp;#x3D; U \Lambda U^T$ 对于对称阵，其中 $U$ 是正交阵，$\Lambda$ 是对角阵)。特征值分解在理解线性变换、解微分方程等方面非常有用。 问题: 对于任意的 $m \times n$ 矩阵 $A$ (不一定是方阵，也不一定对"><meta property="og:locale" content="zh_CN"><meta property="og:image" content="http://example.com/img/og_image.png"><meta property="article:published_time" content="2025-06-24T09:35:03.451Z"><meta property="article:modified_time" content="2025-06-24T09:35:03.451Z"><meta property="article:author" content="Jiamin Liu"><meta property="article:tag" content="奇异值分解"><meta property="twitter:card" content="summary"><meta property="twitter:image:src" content="http://example.com/img/og_image.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"http://example.com/MATH1408/Chapter7-MATH1408.html"},"headline":"Chapter7 MATH1408","image":["http://example.com/img/og_image.png"],"datePublished":"2025-06-24T09:35:03.451Z","dateModified":"2025-06-24T09:35:03.451Z","author":{"@type":"Person","name":"Jiamin Liu"},"publisher":{"@type":"Organization","name":"OD's blog","logo":{"@type":"ImageObject","url":"http://example.com/img/logo.svg"}},"description":"奇异值分解1. 引言与动机 回顾特征值分解: 对于方阵 $A$ (特别是对称阵或可对角化阵)，我们有特征值分解 $A &#x3D; P D P^{-1}$ (或 $A &#x3D; U \\Lambda U^T$ 对于对称阵，其中 $U$ 是正交阵，$\\Lambda$ 是对角阵)。特征值分解在理解线性变换、解微分方程等方面非常有用。 问题: 对于任意的 $m \\times n$ 矩阵 $A$ (不一定是方阵，也不一定对"}</script><link rel="canonical" href="http://example.com/MATH1408/Chapter7-MATH1408.html"><link rel="icon" href="/img/favicon.svg"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.0.0/css/all.css"><link data-pjax rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.7.0/styles/atom-one-light.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link data-pjax rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css"><!--!--><!--!--><!--!--><!--!--><style>.pace{-webkit-pointer-events:none;pointer-events:none;-webkit-user-select:none;-moz-user-select:none;user-select:none}.pace-inactive{display:none}.pace .pace-progress{background:#3273dc;position:fixed;z-index:2000;top:0;right:100%;width:100%;height:2px}</style><script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js"></script><!--!--><!--!--><!-- hexo injector head_end start --><script>
+  (function () {
+      function switchTab() {
+          if (!location.hash) {
+            return;
+          }
+
+          const id = '#' + CSS.escape(location.hash.substring(1));
+          const $tabMenu = document.querySelector(`.tabs a[href="${id}"]`);
+          if (!$tabMenu) {
+            return;
+          }
+
+          const $tabMenuContainer = $tabMenu.parentElement.parentElement;
+          Array.from($tabMenuContainer.children).forEach($menu => $menu.classList.remove('is-active'));
+          Array.from($tabMenuContainer.querySelectorAll('a'))
+              .map($menu => document.getElementById($menu.getAttribute("href").substring(1)))
+              .forEach($content => $content.classList.add('is-hidden'));
+
+          if ($tabMenu) {
+              $tabMenu.parentElement.classList.add('is-active');
+          }
+          const $activeTab = document.querySelector(id);
+          if ($activeTab) {
+              $activeTab.classList.remove('is-hidden');
+          }
+      }
+      switchTab();
+      window.addEventListener('hashchange', switchTab, false);
+  })();
+  </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head><body class="is-2-column"><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/img/logo.svg" alt="OD&#039;s blog" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">主页</a></div><div class="navbar-end"><a class="navbar-item search" title="搜索" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-8-widescreen"><div class="card"><article class="card-content article" role="article"><h1 class="title is-3 is-size-4-mobile">Chapter7 MATH1408</h1><div class="content"><h1 id="奇异值分解"><a href="#奇异值分解" class="headerlink" title="奇异值分解"></a>奇异值分解</h1><h2 id="1-引言与动机"><a href="#1-引言与动机" class="headerlink" title="1. 引言与动机"></a>1. 引言与动机</h2><ul>
+<li><strong>回顾特征值分解</strong>: 对于方阵 $A$ (特别是对称阵或可对角化阵)，我们有特征值分解 $A = P D P^{-1}$ (或 $A = U \Lambda U^T$ 对于对称阵，其中 $U$ 是正交阵，$\Lambda$ 是对角阵)。特征值分解在理解线性变换、解微分方程等方面非常有用。</li>
+<li><strong>问题</strong>: 对于任意的 $m \times n$ 矩阵 $A$ (不一定是方阵，也不一定对称)，是否存在类似的分解，能够揭示其内在结构？</li>
+<li><strong>目标</strong>: 找到两个正交矩阵 $U$ ($m \times m$) 和 $V$ ($n \times n$) 以及一个“对角”矩阵 $\Sigma$ ($m \times n$)，使得 $A = U \Sigma V^T$。<ul>
+<li>这里的“对角”矩阵 $\Sigma$ 指的是其主对角线上的元素 $\sigma_1 \ge \sigma_2 \ge \dots \ge \sigma_r &gt; 0$ (其中 $r = \text{rank}(A)$)，其余元素为0。这些 $\sigma_i$ 称为<strong>奇异值 (Singular Values)</strong>。</li>
+</ul>
+</li>
+<li><strong>历史</strong>: Beltrami (1873) 等人早期对二次型和双线性型进行研究时有所涉及。</li>
+<li><strong>几何意义 (初步)</strong>: 考虑双线性型 $f(X,Y) = X^T A Y$。通过坐标变换 $X = U\xi$ 和 $Y = V\eta$ (其中 $U, V$ 是正交的)，我们希望 $f(X,Y) = \xi^T (U^T A V) \eta = \xi^T \Sigma \eta$，其中 $\Sigma$ 是对角形式。这启发了 $A = U \Sigma V^T$ 的形式。</li>
+</ul>
+<h2 id="2-奇异值分解定理-SVD-Theorem"><a href="#2-奇异值分解定理-SVD-Theorem" class="headerlink" title="2. 奇异值分解定理 (SVD Theorem)"></a>2. 奇异值分解定理 (SVD Theorem)</h2><h3 id="2-1-定理叙述"><a href="#2-1-定理叙述" class="headerlink" title="2.1 定理叙述"></a>2.1 定理叙述</h3><p>任何 $m \times n$ 的实矩阵 $A$ (秩为 $r$) 都可以分解为：<br>$A = U \Sigma V^T$<br>其中：</p>
+<ul>
+<li>$U$ 是一个 $m \times m$ 的<strong>正交矩阵 (Orthogonal Matrix)</strong>。$U$ 的列向量 $u_1, u_2, \dots, u_m$ 称为 $A$ 的<strong>左奇异向量 (Left Singular Vectors)</strong>。</li>
+<li>$V$ 是一个 $n \times n$ 的<strong>正交矩阵 (Orthogonal Matrix)</strong>。$V$ 的列向量 $v_1, v_2, \dots, v_n$ 称为 $A$ 的<strong>右奇异向量 (Right Singular Vectors)</strong>。</li>
+<li>$\Sigma$ 是一个 $m \times n$ 的<strong>对角矩阵</strong>，其形式为：<br>$\Sigma = \begin{pmatrix}<br>D &amp; O \\<br>O &amp; O<br>\end{pmatrix}$<br>其中 $D = \text{diag}(\sigma_1, \sigma_2, \dots, \sigma_r)$ 是一个 $r \times r$ 的对角矩阵，且<strong>奇异值 (Singular Values)</strong> $\sigma_1 \ge \sigma_2 \ge \dots \ge \sigma_r &gt; 0$。<br>$O$ 代表零矩阵块。$\Sigma$ 的具体形式取决于 $m, n, r$ 的关系：<ul>
+<li>如果 $m=n=r$: $\Sigma = D$</li>
+<li>如果 $m &gt; r, n = r$: $\Sigma = \begin{pmatrix} D \\ O \end{pmatrix}$</li>
+<li>如果 $m = r, n &gt; r$: $\Sigma = \begin{pmatrix} D &amp; O \end{pmatrix}$</li>
+<li>一般形式 (如PPT所示，假设 $m \ge n$):<br>$\Sigma = \begin{pmatrix}<br>\sigma_1 &amp; 0 &amp; \dots &amp; 0 &amp; 0 &amp; \dots &amp; 0 \\<br>0 &amp; \sigma_2 &amp; \dots &amp; 0 &amp; 0 &amp; \dots &amp; 0 \\<br>\vdots &amp; \vdots &amp; \ddots &amp; \vdots &amp; \vdots &amp; &amp; \vdots \\<br>0 &amp; 0 &amp; \dots &amp; \sigma_r &amp; 0 &amp; \dots &amp; 0 \\<br>0 &amp; 0 &amp; \dots &amp; 0 &amp; 0 &amp; \dots &amp; 0 \\<br>\vdots &amp; \vdots &amp; &amp; \vdots &amp; \vdots &amp; \ddots &amp; \vdots \\<br>0 &amp; 0 &amp; \dots &amp; 0 &amp; 0 &amp; \dots &amp; 0<br>\end{pmatrix}_{m \times n}$</li>
+</ul>
+</li>
+</ul>
+<h3 id="2-2-奇异值与-A-T-A-和-A-A-T-的关系"><a href="#2-2-奇异值与-A-T-A-和-A-A-T-的关系" class="headerlink" title="2.2 奇异值与 $A^T A$ 和 $A A^T$ 的关系"></a>2.2 奇异值与 $A^T A$ 和 $A A^T$ 的关系</h3><ul>
+<li>考虑矩阵 $B = A^T A$ (这是一个 $n \times n$ 的对称半正定矩阵)。</li>
+<li>$B$ 的特征值 $\lambda_i \ge 0$。</li>
+<li>由于 $V^T (A^T A) V = V^T (U \Sigma V^T)^T (U \Sigma V^T) V = V^T (V \Sigma^T U^T U \Sigma V^T) V = \Sigma^T \Sigma$。<br>而 $\Sigma^T \Sigma$ 是一个 $n \times n$ 的对角矩阵，其对角元素为 $\sigma_1^2, \sigma_2^2, \dots, \sigma_r^2, 0, \dots, 0$。<br>因此，$A^T A$ 的非零特征值恰好是 $A$ 的非零奇异值的平方，即 $\lambda_i = \sigma_i^2$。<br>$V$ 的列向量 $v_i$ 是 $A^T A$ 的（标准正交）特征向量。</li>
+<li>类似地，考虑 $A A^T$ (这是一个 $m \times m$ 的对称半正定矩阵)。</li>
+<li><p>$A A^T = (U \Sigma V^T)(U \Sigma V^T)^T = U \Sigma V^T V \Sigma^T U^T = U (\Sigma \Sigma^T) U^T$。<br>$\Sigma \Sigma^T$ 是一个 $m \times m$ 的对角矩阵，其对角元素为 $\sigma_1^2, \sigma_2^2, \dots, \sigma_r^2, 0, \dots, 0$。<br>因此，$A A^T$ 的非零特征值也恰好是 $A$ 的非零奇异值的平方。<br>$U$ 的列向量 $u_i$ 是 $A A^T$ 的（标准正交）特征向量。</p>
+</li>
+<li><p><strong>结论</strong>:</p>
+<ol>
+<li>$A$ 的奇异值 $\sigma_i$ 是 $A^T A$ (或 $A A^T$) 的非零特征值的正平方根。</li>
+<li>右奇异向量 $v_i$ 是 $A^T A$ 对应于特征值 $\sigma_i^2$ 的特征向量。</li>
+<li>左奇异向量 $u_i$ 是 $A A^T$ 对应于特征值 $\sigma_i^2$ 的特征向量。</li>
+</ol>
+</li>
+</ul>
+<h3 id="2-3-SVD定理的证明思路-PPT中的推导"><a href="#2-3-SVD定理的证明思路-PPT中的推导" class="headerlink" title="2.3 SVD定理的证明思路 (PPT中的推导)"></a>2.3 SVD定理的证明思路 (PPT中的推导)</h3><ol>
+<li><p><strong>构造 $V$</strong>:</p>
+<ul>
+<li>考虑 $n \times n$ 对称半正定矩阵 $B = A^T A$。</li>
+<li>$B$ 可以被正交对角化: $V^T B V = \text{diag}(\lambda_1, \lambda_2, \dots, \lambda_n)$，其中 $\lambda_1 \ge \lambda_2 \ge \dots \ge \lambda_n \ge 0$ 是 $B$ 的特征值， $V$ 是由 $B$ 的标准正交特征向量构成的正交矩阵。</li>
+<li>由于 $\text{rank}(A^T A) = \text{rank}(A) = r$，所以 $B$ 恰好有 $r$ 个正特征值。<br>令 $\sigma_i = \sqrt{\lambda_i}$ for $i=1, \dots, r$。则 $\sigma_1 \ge \sigma_2 \ge \dots \ge \sigma_r &gt; 0$。<br>其余 $\lambda_{r+1} = \dots = \lambda_n = 0$。</li>
+<li>将 $V$ 的列向量分块为 $V = [V_1 | V_2]$，其中 $V_1 = [v_1, \dots, v_r]$ 对应非零特征值， $V_2 = [v_{r+1}, \dots, v_n]$ 对应零特征值。</li>
+<li>我们有 $A^T A V_1 = V_1 \Lambda^2_D$ (其中 $\Lambda_D = \text{diag}(\sigma_1, \dots, \sigma_r)$，所以 $\Lambda_D^2 = \text{diag}(\sigma_1^2, \dots, \sigma_r^2)$)</li>
+<li>并且 $A^T A V_2 = O$。由于 $N(A^T A) = N(A)$ (零空间相同)，所以 $A V_2 = O$。</li>
+</ul>
+</li>
+<li><p><strong>构造 $U_1$</strong>:</p>
+<ul>
+<li>令 $U_1 = A V_1 \Lambda_D^{-1}$ (这是一个 $m \times r$ 的矩阵)。<br>(注意 $\Lambda_D^{-1} = \text{diag}(1/\sigma_1, \dots, 1/\sigma_r)$ 是存在的，因为 $\sigma_i &gt; 0$)</li>
+<li>验证 $U_1$ 的列是标准正交的：<br>$U_1^T U_1 = (\Lambda_D^{-1})^T V_1^T A^T A V_1 \Lambda_D^{-1}$<br>$= \Lambda_D^{-1} V_1^T (V_1 \Lambda_D^2) \Lambda_D^{-1}$ (因为 $V_1^T V_1 = E_r$ 且 $\Lambda_D$ 是对角的)<br>$= \Lambda_D^{-1} (V_1^T V_1) \Lambda_D^2 \Lambda_D^{-1}$<br>$= \Lambda_D^{-1} E_r \Lambda_D^2 \Lambda_D^{-1} = \Lambda_D^{-1} \Lambda_D = E_r$。</li>
+<li>所以 $U_1$ 的 $r$ 个列向量是标准正交的。</li>
+</ul>
+</li>
+<li><p><strong>构造 $U$</strong>:</p>
+<ul>
+<li>$U_1$ 的列向量张成了 $A$ 的列空间 $C(A)$ 的一个标准正交基。</li>
+<li>如果 $r &lt; m$，则 $C(A)$ 的维数是 $r$。我们可以将 $U_1$ 的 $r$ 个列向量扩展为 $m$ 维空间 $\mathbb{R}^m$ 的一个标准正交基，得到 $U = [U_1 | U_2]$，其中 $U_2$ 是一个 $m \times (m-r)$ 的矩阵，其列向量与 $U_1$ 的列向量正交，并且自身也是标准正交的。$U_2$ 的列张成了 $N(A^T)$ (A的左零空间)。</li>
+<li>这样构造的 $U$ 是一个 $m \times m$ 的正交矩阵。</li>
+</ul>
+</li>
+<li><p><strong>验证分解</strong>:</p>
+<ul>
+<li>$U^T A V = \begin{pmatrix} U_1^T \\ U_2^T \end{pmatrix} A [V_1 | V_2] = \begin{pmatrix} U_1^T A V_1 &amp; U_1^T A V_2 \\ U_2^T A V_1 &amp; U_2^T A V_2 \end{pmatrix}$</li>
+<li>$U_1^T A V_1 = (A V_1 \Lambda_D^{-1})^T A V_1 = (\Lambda_D^{-1})^T V_1^T A^T A V_1 = \Lambda_D^{-1} (V_1^T V_1 \Lambda_D^2) = \Lambda_D^{-1} \Lambda_D^2 = \Lambda_D = \text{diag}(\sigma_1, \dots, \sigma_r)$。</li>
+<li>$A V_2 = O$ (如步骤1所述)，所以 $U_1^T A V_2 = O$ 和 $U_2^T A V_2 = O$。</li>
+<li>$U_2^T A V_1$: 由于 $U_1$ 的列张成 $C(A)$，而 $U_2$ 的列与 $U_1$ 的列正交，所以 $U_2$ 的列位于 $C(A)$ 的正交补 $N(A^T)$ 中。<br>$A V_1 = U_1 \Lambda_D$ (来自 $U_1$ 的定义)。$A V_1$ 的列在 $C(A)$ 中。<br>因此 $U_2^T (A V_1) = O$。</li>
+<li>所以 $U^T A V = \begin{pmatrix} \Lambda_D &amp; O \\ O &amp; O \end{pmatrix} = \Sigma$。</li>
+<li>因此 $A = U \Sigma V^T$。<br>□</li>
+</ul>
+</li>
+</ol>
+<h3 id="2-4-奇异向量之间的关系"><a href="#2-4-奇异向量之间的关系" class="headerlink" title="2.4 奇异向量之间的关系"></a>2.4 奇异向量之间的关系</h3><p>从 $A = U \Sigma V^T$ 可以得到：</p>
+<ul>
+<li>$A V = U \Sigma$</li>
+<li>$A^T U = V \Sigma^T$</li>
+</ul>
+<p>写成分量形式：</p>
+<ul>
+<li>$A v_i = \sigma_i u_i$ for $i=1, \dots, r$</li>
+<li>$A v_i = 0$ for $i=r+1, \dots, n$ (因为 $\sigma_i=0$ for $i&gt;r$)</li>
+<li>$A^T u_i = \sigma_i v_i$ for $i=1, \dots, r$</li>
+<li>$A^T u_i = 0$ for $i=r+1, \dots, m$</li>
+</ul>
+<p>这表明：</p>
+<ul>
+<li>右奇异向量 $v_i$ (来自 $V_1$) 被 $A$ 映射到左奇异向量 $u_i$ (来自 $U_1$) 的 $\sigma_i$ 倍。</li>
+<li>右奇异向量 $v_i$ (来自 $V_2$) 位于 $A$ 的零空间 $N(A)$。</li>
+<li>左奇异向量 $u_i$ (来自 $U_1$) 被 $A^T$ 映射到右奇异向量 $v_i$ (来自 $V_1$) 的 $\sigma_i$ 倍。</li>
+<li>左奇异向量 $u_i$ (来自 $U_2$) 位于 $A^T$ 的零空间 $N(A^T)$ (也称为 $A$ 的左零空间)。</li>
+</ul>
+<h2 id="3-SVD-的几何解释"><a href="#3-SVD-的几何解释" class="headerlink" title="3. SVD 的几何解释"></a>3. SVD 的几何解释</h2><ul>
+<li>SVD 将一个线性变换 $X \mapsto AX$ 分解为三个几何操作：<ol>
+<li><strong>旋转/反射 (Rotation/Reflection)</strong>: $V^T X$。将输入向量 $X$ 在 $\mathbb{R}^n$ 中进行旋转或反射，将其与 $V$ 的列向量（右奇异向量，构成标准正交基）对齐。</li>
+<li><strong>缩放 (Scaling)</strong>: $\Sigma (V^T X)$。将旋转后的向量的每个分量沿着新的轴（由 $V$ 的列定义）进行缩放。前 $r$ 个分量按 $\sigma_i$ 缩放，其余分量变为0。结果向量在 $\mathbb{R}^m$ 中。</li>
+<li><strong>旋转/反射 (Rotation/Reflection)</strong>: $U (\Sigma V^T X)$。将缩放后的向量在 $\mathbb{R}^m$ 中进行旋转或反射，将其与 $U$ 的列向量（左奇异向量，构成标准正交基）对齐。</li>
+</ol>
+</li>
+<li><strong>例子</strong>: 考虑 $\mathbb{R}^2$ 中的单位圆。<ul>
+<li>$V^T$ 旋转单位圆。</li>
+<li>$\Sigma$ 将旋转后的圆（仍然是圆）沿着主轴拉伸/压缩成一个椭圆（如果 $\sigma_1 \ne \sigma_2$）。如果某个 $\sigma_i=0$，则降维。</li>
+<li>$U$ 再将这个椭圆在 $\mathbb{R}^m$ (这里是 $\mathbb{R}^2$) 中旋转。</li>
+</ul>
+</li>
+<li>最终结果是，SVD 表明任何线性变换 $A$ 将 $\mathbb{R}^n$ 中的单位球体（或超球体）映射为 $\mathbb{R}^m$ 中的一个椭球体（或超椭球体，可能退化）。椭球体的主轴方向由左奇异向量 $u_i$ 给出，主轴的半轴长度由奇异值 $\sigma_i$ 给出。</li>
+</ul>
+<h2 id="4-SVD-的性质与应用"><a href="#4-SVD-的性质与应用" class="headerlink" title="4. SVD 的性质与应用"></a>4. SVD 的性质与应用</h2><h3 id="4-1-外积展开-Outer-Product-Expansion"><a href="#4-1-外积展开-Outer-Product-Expansion" class="headerlink" title="4.1 外积展开 (Outer Product Expansion)"></a>4.1 外积展开 (Outer Product Expansion)</h3><p>$A = U \Sigma V^T = \sum_{i=1}^r \sigma_i u_i v_i^T$</p>
+<ul>
+<li>这是一个非常重要的性质，它将矩阵 $A$ 表示为 $r$ 个秩为1的矩阵之和。</li>
+<li>每个 $u_i v_i^T$ 是一个 $m \times n$ 的秩1矩阵。</li>
+<li>这个展开式对于低秩近似非常关键。</li>
+</ul>
+<h3 id="4-2-低秩近似-Low-Rank-Approximation-Eckart-Young-Mirsky-定理"><a href="#4-2-低秩近似-Low-Rank-Approximation-Eckart-Young-Mirsky-定理" class="headerlink" title="4.2 低秩近似 (Low-Rank Approximation) - Eckart-Young-Mirsky 定理"></a>4.2 低秩近似 (Low-Rank Approximation) - Eckart-Young-Mirsky 定理</h3><ul>
+<li><strong>定理</strong>: 设 $A$ 的SVD为 $A = \sum_{i=1}^r \sigma_i u_i v_i^T$。对于任意 $k &lt; r$，矩阵 $A_k = \sum_{i=1}^k \sigma_i u_i v_i^T$ 是秩为 $k$ 的矩阵中，与 $A$ 在 Frobenius 范数意义下最接近的矩阵。<br>即，$\min_{\text{rank}(B)=k} |A-B|_F = |A-A_k|_F = \sqrt{\sum_{i=k+1}^r \sigma_i^2}$。<br>（对于谱范数也有类似结论：$\min_{\text{rank}(B)=k} |A-B|_2 = |A-A_k|_2 = \sigma_{k+1}$）。</li>
+<li><strong>应用</strong>:<ul>
+<li><strong>数据压缩</strong>: 图像、信号等可以表示为矩阵。通过SVD找到最重要的奇异值和奇异向量，用 $A_k$ 近似 $A$，可以大大减少存储需求。PPT中提到存储 $A_k$ 需要 $k(m+n+1)$ 个数值，而存储 $A$ 需要 $mn$ 个数值。</li>
+<li><strong>降噪</strong>: 较小的奇异值通常对应于数据中的噪声，将其去除可以得到更清晰的信号。</li>
+<li><strong>主成分分析 (PCA)</strong>: SVD与PCA密切相关。$A^T A$ 的特征向量（即 $V$）是数据的主成分方向。</li>
+</ul>
+</li>
+</ul>
+<h3 id="4-3-其他应用"><a href="#4-3-其他应用" class="headerlink" title="4.3 其他应用"></a>4.3 其他应用</h3><ul>
+<li><strong>伪逆 (Pseudoinverse)</strong>: $A^+ = V \Sigma^+ U^T$，其中 $\Sigma^+$ 是将 $\Sigma$ 中的非零奇异值 $\sigma_i$ 替换为 $1/\sigma_i$ 再转置得到的。伪逆用于解线性最小二乘问题。</li>
+<li><strong>推荐系统</strong>: SVD被用于协同过滤算法，如Netflix Prize。</li>
+<li><strong>数值稳定性</strong>: SVD是计算矩阵的秩、解线性方程组、最小二乘问题等最稳健的方法之一。</li>
+<li><strong>求解齐次线性方程组</strong>: $N(A)$ 由对应于零奇异值的右奇异向量 $v_{r+1}, \dots, v_n$ 张成。</li>
+<li><strong>确定四个基本子空间</strong>:<ul>
+<li>$C(A)$ (列空间) 的标准正交基是 $u_1, \dots, u_r$。</li>
+<li>$N(A^T)$ (左零空间) 的标准正交基是 $u_{r+1}, \dots, u_m$。</li>
+<li>$C(A^T)$ (行空间) 的标准正交基是 $v_1, \dots, v_r$。</li>
+<li>$N(A)$ (零空间) 的标准正交基是 $v_{r+1}, \dots, v_n$。</li>
+</ul>
+</li>
+</ul>
+<h2 id="5-例子-PPT中的例子"><a href="#5-例子-PPT中的例子" class="headerlink" title="5. 例子 (PPT中的例子)"></a>5. 例子 (PPT中的例子)</h2><ul>
+<li><p><strong>例1</strong>: $A = \begin{pmatrix} 1 &amp; 0 &amp; 1 \\ 0 &amp; 1 &amp; -1 \end{pmatrix}$</p>
+<ul>
+<li>计算 $A^T A = \begin{pmatrix} 1 &amp; 0 \\ 0 &amp; 1 \\ 1 &amp; -1 \end{pmatrix} \begin{pmatrix} 1 &amp; 0 &amp; 1 \\ 0 &amp; 1 &amp; -1 \end{pmatrix} = \begin{pmatrix} 1 &amp; 0 &amp; 1 \\ 0 &amp; 1 &amp; -1 \\ 1 &amp; -1 &amp; 2 \end{pmatrix}$。<br>(PPT这里直接给出了 $A A^T$ 或其他矩阵，应从 $A^T A$ 开始找 $V$ 和 $\sigma_i$)<br>正确的做法是：<br>$A^T A = \begin{pmatrix} 1 &amp; 0 &amp; 1 \\ 0 &amp; 1 &amp; -1 \\ 1 &amp; -1 &amp; 2 \end{pmatrix}$ (这是一个3x3矩阵)<br>特征值方程 $|\lambda I - A^T A|=0$ 解出来是 $\lambda_1=3, \lambda_2=1, \lambda_3=0$。<br>所以奇异值 $\sigma_1=\sqrt{3}, \sigma_2=1$。 ($r=2$)<br>$\Sigma = \begin{pmatrix} \sqrt{3} &amp; 0 &amp; 0 \\ 0 &amp; 1 &amp; 0 \end{pmatrix}$。<br>找到对应的 $A^T A$ 的特征向量 $v_1, v_2, v_3$ 组成 $V$。<br>然后 $u_1 = \frac{1}{\sigma_1}Av_1$, $u_2 = \frac{1}{\sigma_2}Av_2$ 组成 $U$ (因为 $m=2, r=2$，所以 $U_2$ 不存在)。</li>
+<li>PPT中似乎直接给出了一个分解，需要验证。它提到了 $A = U^T \Lambda U$ (这更像是对称阵的谱分解，如果 $A$ 是对称的)。然后又提到了 $D = \Lambda W^T$。这部分表述比较混乱，应遵循标准的SVD步骤。</li>
+</ul>
+</li>
+<li><p><strong>例2 (几何变换)</strong>: 变换 $S_1: x^2+y^2=1$ (单位圆) 到由矩阵 $A = \begin{pmatrix} 2 &amp; 2 \\ 1 &amp; -1 \end{pmatrix}$ 作用后的图形。</p>
+<ul>
+<li>需要计算 $A$ 的SVD。</li>
+<li>$A^T A = \begin{pmatrix} 2 &amp; 1 \\ 2 &amp; -1 \end{pmatrix} \begin{pmatrix} 2 &amp; 2 \\ 1 &amp; -1 \end{pmatrix} = \begin{pmatrix} 5 &amp; 3 \\ 3 &amp; 5 \end{pmatrix}$。<br>特征值: $(5-\lambda)^2 - 9 = 0 \Rightarrow \lambda^2 - 10\lambda + 16 = 0 \Rightarrow (\lambda-8)(\lambda-2)=0$。<br>$\lambda_1=8, \lambda_2=2$。<br>奇异值 $\sigma_1 = \sqrt{8} = 2\sqrt{2}$, $\sigma_2 = \sqrt{2}$。<br>$\Sigma = \begin{pmatrix} 2\sqrt{2} &amp; 0 \\ 0 &amp; \sqrt{2} \end{pmatrix}$。</li>
+<li>找到 $A^T A$ 的特征向量 $v_1, v_2$ 组成 $V$。</li>
+<li>$u_1 = \frac{1}{2\sqrt{2}}Av_1$, $u_2 = \frac{1}{\sqrt{2}}Av_2$ 组成 $U$。</li>
+<li>变换后的椭圆的主轴由 $u_1, u_2$ 决定，半轴长为 $\sigma_1, \sigma_2$。</li>
+</ul>
+</li>
+<li><p><strong>例3 (特殊矩阵)</strong>: $A = \begin{pmatrix} 0 &amp; 1 \\ -1 &amp; 0 \end{pmatrix}$ (旋转 $-\pi/2$)</p>
+<ul>
+<li>$A^T A = \begin{pmatrix} 0 &amp; -1 \\ 1 &amp; 0 \end{pmatrix} \begin{pmatrix} 0 &amp; 1 \\ -1 &amp; 0 \end{pmatrix} = \begin{pmatrix} 1 &amp; 0 \\ 0 &amp; 1 \end{pmatrix} = I$。<br>特征值 $\lambda_1=1, \lambda_2=1$。<br>奇异值 $\sigma_1=1, \sigma_2=1$。 $\Sigma = I$。</li>
+<li>$V$ 可以是任意正交矩阵，例如 $V=I$。</li>
+<li>则 $U = A V \Sigma^{-1} = A I I = A = \begin{pmatrix} 0 &amp; 1 \\ -1 &amp; 0 \end{pmatrix}$。</li>
+<li>所以 $A = U \Sigma V^T = A I I^T = A$。</li>
+<li>PPT中给出的分解是 $A = \begin{pmatrix} 0 &amp; 1 \\ -1 &amp; 0 \end{pmatrix} = \frac{1}{\sqrt{2}}\begin{pmatrix} 1 &amp; 1 \\ -1 &amp; 1 \end{pmatrix} \begin{pmatrix} 1 &amp; 0 \\ 0 &amp; 1 \end{pmatrix} \frac{1}{\sqrt{2}}\begin{pmatrix} -1 &amp; 1 \\ 1 &amp; 1 \end{pmatrix}$。<br>这里的 $U = \frac{1}{\sqrt{2}}\begin{pmatrix} 1 &amp; 1 \\ -1 &amp; 1 \end{pmatrix}$, $V^T = \frac{1}{\sqrt{2}}\begin{pmatrix} -1 &amp; 1 \\ 1 &amp; 1 \end{pmatrix} \Rightarrow V = \frac{1}{\sqrt{2}}\begin{pmatrix} -1 &amp; 1 \\ 1 &amp; 1 \end{pmatrix}$。<br>$U$ 和 $V$ 都是正交的。这个分解也是有效的，说明SVD对于某些情况（如奇异值有重根）不是唯一的 (U和V的列可以乘以-1，或者在对应相同奇异值的子空间内旋转)。</li>
+</ul>
+</li>
+</ul>
+<h2 id="6-总结"><a href="#6-总结" class="headerlink" title="6. 总结"></a>6. 总结</h2><p>奇异值分解 $A = U \Sigma V^T$ 是一个极其强大的工具，它：</p>
+<ul>
+<li>适用于任何 $m \times n$ 矩阵。</li>
+<li>揭示了矩阵的内在几何结构和代数性质 (秩、四个基本子空间)。</li>
+<li>提供了最佳低秩近似的方法。</li>
+<li>在数据科学、工程、统计学等领域有广泛应用。</li>
+</ul>
+</div><div class="article-licensing box"><div class="licensing-title"><p>Chapter7 MATH1408</p><p><a href="http://example.com/MATH1408/Chapter7-MATH1408.html">http://example.com/MATH1408/Chapter7-MATH1408.html</a></p></div><div class="licensing-meta level is-mobile"><div class="level-left"><div class="level-item is-narrow"><div><h6>作者</h6><p>Jiamin Liu</p></div></div><div class="level-item is-narrow"><div><h6>发布于</h6><p>2025-06-24</p></div></div><div class="level-item is-narrow"><div><h6>更新于</h6><p>2025-06-24</p></div></div><div class="level-item is-narrow"><div><h6>许可协议</h6><p><a class="icons" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="icon fab fa-creative-commons"></i></a><a class="icons" rel="noopener" target="_blank" title="Attribution" href="https://creativecommons.org/licenses/by/4.0/"><i class="icon fab fa-creative-commons-by"></i></a><a class="icons" rel="noopener" target="_blank" title="Noncommercial" href="https://creativecommons.org/licenses/by-nc/4.0/"><i class="icon fab fa-creative-commons-nc"></i></a></p></div></div></div></div></div><div class="article-tags is-size-7 mb-4"><span class="mr-2">#</span><a class="link-muted mr-2" rel="tag" href="/"></a></div><!--!--></article></div><!--!--><div class="card" id="comments"><div class="card-content"><h3 class="title is-5">评论</h3><div class="notification is-danger">You forgot to set the <code>shortname</code> for Disqus. Please set it in <code>_config.yml</code>.</div></div></div></div><div class="column column-left is-4-tablet is-4-desktop is-4-widescreen  order-1"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar" src="/img/avatar.png" alt="Jiamin Liu"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">Jiamin Liu</p><p class="is-size-6 is-block">别卷了别卷了别卷了</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>China</span></p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">文章</p><a href="/archives/"><p class="title">1</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">分类</p><a href="/categories/"><p class="title">0</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">标签</p><a href="/tags/"><p class="title">0</p></a></div></div></nav></div></div><!--!--></div><!--!--></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/img/logo.svg" alt="OD&#039;s blog" height="28"></a><p class="is-size-7"><span>&copy; 2025 Jiamin Liu</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a></p><p class="is-size-7">© 2019</p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("zh-cn");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script data-pjax src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="回到顶端" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script data-pjax src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
+      window.cookieconsent.initialise({
+        type: "info",
+        theme: "edgeless",
+        static: false,
+        position: "bottom-left",
+        content: {
+          message: "此网站使用Cookie来改善您的体验。",
+          dismiss: "知道了！",
+          allow: "允许使用Cookie",
+          deny: "拒绝",
+          link: "了解更多",
+          policy: "Cookie政策",
+          href: "https://www.cookiesandyou.com/",
+        },
+        palette: {
+          popup: {
+            background: "#edeff5",
+            text: "#838391"
+          },
+          button: {
+            background: "#4b81e8"
+          },
+        },
+      });
+    });</script><script src="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/js/lightgallery.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><script type="text/javascript" id="MathJax-script" async>MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']]
+      },
+      svg: {
+        fontCache: 'global'
+      },
+      chtml: {
+        matchFontHeight: false
+      }
+    };</script><script src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js"></script><script src="https://cdn.jsdelivr.net/npm/pjax@0.2.8/pjax.min.js"></script><script src="/js/pjax.js"></script><!--!--><!--!--><!--!--><script data-pjax src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="想要查找什么..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script data-pjax src="/js/insight.js" defer></script><script data-pjax>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"想要查找什么...","untitled":"(无标题)","posts":"文章","pages":"页面","categories":"分类","tags":"标签"});
+        });</script></body></html>

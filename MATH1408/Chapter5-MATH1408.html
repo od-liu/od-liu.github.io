@@ -1,0 +1,274 @@
+<!doctype html>
+<html lang="zh"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>Chapter5 MATH1408 - OD&#039;s blog</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="OD&#039;s blog"><meta name="msapplication-TileImage" content="/img/favicon.svg"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="OD&#039;s blog"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="description" content="矩阵的相似变换与特征值理论1. 矩阵的相似 (Similarity) 与对角化 (Diagonalization)1.1 相似矩阵 (Similar Matrices) 定义: 设 $A, B$ 都是 $n$ 阶方阵。如果存在一个 $n$ 阶可逆矩阵 $P$，使得$P^{-1}AP &amp;#x3D; B$则称矩阵 $A$ 相似于 (similar to) 矩阵 $B$，记作 $A \sim B$。称 $P$ 为"><meta property="og:type" content="blog"><meta property="og:title" content="Chapter5 MATH1408"><meta property="og:url" content="http://example.com/MATH1408/Chapter5-MATH1408.html"><meta property="og:site_name" content="OD&#039;s blog"><meta property="og:description" content="矩阵的相似变换与特征值理论1. 矩阵的相似 (Similarity) 与对角化 (Diagonalization)1.1 相似矩阵 (Similar Matrices) 定义: 设 $A, B$ 都是 $n$ 阶方阵。如果存在一个 $n$ 阶可逆矩阵 $P$，使得$P^{-1}AP &amp;#x3D; B$则称矩阵 $A$ 相似于 (similar to) 矩阵 $B$，记作 $A \sim B$。称 $P$ 为"><meta property="og:locale" content="zh_CN"><meta property="og:image" content="http://example.com/img/og_image.png"><meta property="article:published_time" content="2025-06-24T09:17:43.414Z"><meta property="article:modified_time" content="2025-06-24T09:17:43.414Z"><meta property="article:author" content="Jiamin Liu"><meta property="article:tag" content="相似矩阵"><meta property="article:tag" content="特征值与特征向量"><meta property="article:tag" content="可对角化条件"><meta property="article:tag" content="特征值估计"><meta property="article:tag" content="Schur定理"><meta property="article:tag" content="正规矩阵"><meta property="twitter:card" content="summary"><meta property="twitter:image:src" content="http://example.com/img/og_image.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"http://example.com/MATH1408/Chapter5-MATH1408.html"},"headline":"Chapter5 MATH1408","image":["http://example.com/img/og_image.png"],"datePublished":"2025-06-24T09:17:43.414Z","dateModified":"2025-06-24T09:17:43.414Z","author":{"@type":"Person","name":"Jiamin Liu"},"publisher":{"@type":"Organization","name":"OD's blog","logo":{"@type":"ImageObject","url":"http://example.com/img/logo.svg"}},"description":"矩阵的相似变换与特征值理论1. 矩阵的相似 (Similarity) 与对角化 (Diagonalization)1.1 相似矩阵 (Similar Matrices) 定义: 设 $A, B$ 都是 $n$ 阶方阵。如果存在一个 $n$ 阶可逆矩阵 $P$，使得$P^{-1}AP &#x3D; B$则称矩阵 $A$ 相似于 (similar to) 矩阵 $B$，记作 $A \\sim B$。称 $P$ 为"}</script><link rel="canonical" href="http://example.com/MATH1408/Chapter5-MATH1408.html"><link rel="icon" href="/img/favicon.svg"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.0.0/css/all.css"><link data-pjax rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.7.0/styles/atom-one-light.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link data-pjax rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css"><!--!--><!--!--><!--!--><!--!--><style>.pace{-webkit-pointer-events:none;pointer-events:none;-webkit-user-select:none;-moz-user-select:none;user-select:none}.pace-inactive{display:none}.pace .pace-progress{background:#3273dc;position:fixed;z-index:2000;top:0;right:100%;width:100%;height:2px}</style><script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js"></script><!--!--><!--!--><!-- hexo injector head_end start --><script>
+  (function () {
+      function switchTab() {
+          if (!location.hash) {
+            return;
+          }
+
+          const id = '#' + CSS.escape(location.hash.substring(1));
+          const $tabMenu = document.querySelector(`.tabs a[href="${id}"]`);
+          if (!$tabMenu) {
+            return;
+          }
+
+          const $tabMenuContainer = $tabMenu.parentElement.parentElement;
+          Array.from($tabMenuContainer.children).forEach($menu => $menu.classList.remove('is-active'));
+          Array.from($tabMenuContainer.querySelectorAll('a'))
+              .map($menu => document.getElementById($menu.getAttribute("href").substring(1)))
+              .forEach($content => $content.classList.add('is-hidden'));
+
+          if ($tabMenu) {
+              $tabMenu.parentElement.classList.add('is-active');
+          }
+          const $activeTab = document.querySelector(id);
+          if ($activeTab) {
+              $activeTab.classList.remove('is-hidden');
+          }
+      }
+      switchTab();
+      window.addEventListener('hashchange', switchTab, false);
+  })();
+  </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head><body class="is-2-column"><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/img/logo.svg" alt="OD&#039;s blog" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">主页</a></div><div class="navbar-end"><a class="navbar-item search" title="搜索" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-8-widescreen"><div class="card"><article class="card-content article" role="article"><h1 class="title is-3 is-size-4-mobile">Chapter5 MATH1408</h1><div class="content"><h1 id="矩阵的相似变换与特征值理论"><a href="#矩阵的相似变换与特征值理论" class="headerlink" title="矩阵的相似变换与特征值理论"></a>矩阵的相似变换与特征值理论</h1><h2 id="1-矩阵的相似-Similarity-与对角化-Diagonalization"><a href="#1-矩阵的相似-Similarity-与对角化-Diagonalization" class="headerlink" title="1. 矩阵的相似 (Similarity) 与对角化 (Diagonalization)"></a>1. 矩阵的相似 (Similarity) 与对角化 (Diagonalization)</h2><h3 id="1-1-相似矩阵-Similar-Matrices"><a href="#1-1-相似矩阵-Similar-Matrices" class="headerlink" title="1.1 相似矩阵 (Similar Matrices)"></a>1.1 相似矩阵 (Similar Matrices)</h3><ul>
+<li><p><strong>定义</strong>: 设 $A, B$ 都是 $n$ 阶方阵。如果存在一个 $n$ 阶可逆矩阵 $P$，使得<br>$P^{-1}AP = B$<br>则称矩阵 $A$ <strong>相似于</strong> (similar to) 矩阵 $B$，记作 $A \sim B$。称 $P$ 为将 $A$ 变换为 $B$ 的<strong>相似变换矩阵</strong>。</p>
+</li>
+<li><p><strong>相似矩阵的性质</strong>:</p>
+<ol>
+<li><strong>自反性</strong>: $A \sim A$ (取 $P=E$, 单位矩阵)</li>
+<li><strong>对称性</strong>: 若 $A \sim B$，则 $B \sim A$ (若 $P^{-1}AP = B$，则 $(P^{-1})^{-1}BP^{-1} = A$)</li>
+<li><strong>传递性</strong>: 若 $A \sim B$，$B \sim C$，则 $A \sim C$</li>
+<li>相似矩阵有相同的特征多项式，因此有相同的特征值、行列式、迹。</li>
+<li>若 $A \sim B$，则 $A^k \sim B^k$ 对任意正整数 $k$ 成立。</li>
+<li>若 $A \sim B$ 且 $A$ 可逆，则 $B$ 也可逆，且 $A^{-1} \sim B^{-1}$。</li>
+</ol>
+</li>
+<li><p><strong>定理</strong>: 若 $A \sim B$，即 $P^{-1}AP = B$，则对任意多项式 $g(x)$，有 $P^{-1}g(A)P = g(B)$。</p>
+<ul>
+<li><em>证明</em>:<br>设 $g(x) = b_m x^m + b_{m-1} x^{m-1} + \dots + b_1 x + b_0$。<br>则 $g(A) = b_m A^m + b_{m-1} A^{m-1} + \dots + b_1 A + b_0 E$。<br>因为 $B = P^{-1}AP$，所以 $A = PBP^{-1}$。<br>$A^k = (PBP^{-1})^k = (PBP^{-1})(PBP^{-1})\dots(PBP^{-1}) = PB^kP^{-1}$。<br>因此，<br>$P^{-1}g(A)P = P^{-1}(b_m A^m + \dots + b_0 E)P$<br>$= b_m P^{-1}A^m P + \dots + b_1 P^{-1}AP + b_0 P^{-1}EP$<br>$= b_m (P^{-1}AP)^m + \dots + b_1 (P^{-1}AP) + b_0 E$  (或者使用 $A^k=PB^kP^{-1}$)<br>$= b_m B^m + \dots + b_1 B + b_0 E = g(B)$。<br>□</li>
+</ul>
+</li>
+</ul>
+<h3 id="1-2-矩阵的对角化-Diagonalization"><a href="#1-2-矩阵的对角化-Diagonalization" class="headerlink" title="1.2 矩阵的对角化 (Diagonalization)"></a>1.2 矩阵的对角化 (Diagonalization)</h3><ul>
+<li><p><strong>定义</strong>: 如果一个 $n$ 阶方阵 $A$ 相似于一个对角矩阵 $\Lambda$，即存在可逆矩阵 $P$ 使得<br>$P^{-1}AP = \Lambda = \text{diag}(\lambda_1, \lambda_2, \dots, \lambda_n)$<br>则称矩阵 $A$ <strong>可对角化</strong> (diagonalizable)。</p>
+</li>
+<li><p><strong>Jordan标准型 (Jordan Canonical Form)</strong>:</p>
+<ul>
+<li>并非所有矩阵都可对角化。</li>
+<li>任何一个复数域上的 $n$ 阶方阵 $A$ 都相似于一个 <strong>Jordan标准型矩阵</strong> $J$。</li>
+<li>$J = \text{diag}(J_1(\lambda_1), J_2(\lambda_2), \dots, J_k(\lambda_k))$</li>
+<li>其中 $J_i(\lambda_i)$ 是对应于特征值 $\lambda_i$ 的 <strong>Jordan块</strong>，形如：<br>$J_r(\lambda) = \begin{pmatrix} \lambda &amp; 1 &amp; &amp; \\ &amp; \lambda &amp; \ddots &amp; \\ &amp; &amp; \ddots &amp; 1 \\ &amp; &amp; &amp; \lambda \end{pmatrix}_{r \times r}$</li>
+<li>若矩阵 $A$ 可对角化，则其Jordan标准型就是对角矩阵 (所有Jordan块都是 $1 \times 1$)。</li>
+</ul>
+</li>
+</ul>
+<h2 id="2-特征值-Eigenvalues-与特征向量-Eigenvectors"><a href="#2-特征值-Eigenvalues-与特征向量-Eigenvectors" class="headerlink" title="2. 特征值 (Eigenvalues) 与特征向量 (Eigenvectors)"></a>2. 特征值 (Eigenvalues) 与特征向量 (Eigenvectors)</h2><h3 id="2-1-定义"><a href="#2-1-定义" class="headerlink" title="2.1 定义"></a>2.1 定义</h3><ul>
+<li>设 $A$ 是一个 $n$ 阶方阵。如果存在一个数 $\lambda$ 和一个非零的 $n$ 维列向量 $\alpha$，使得<br>$A\alpha = \lambda\alpha$<br>则称 $\lambda$ 是矩阵 $A$ 的一个<strong>特征值</strong> (eigenvalue)，称非零向量 $\alpha$ 是矩阵 $A$ 对应于特征值 $\lambda$ 的一个<strong>特征向量</strong> (eigenvector)。</li>
+</ul>
+<h3 id="2-2-特征方程与特征多项式"><a href="#2-2-特征方程与特征多项式" class="headerlink" title="2.2 特征方程与特征多项式"></a>2.2 特征方程与特征多项式</h3><ul>
+<li>特征值方程 $A\alpha = \lambda\alpha$ 可以改写为 $(\lambda E - A)\alpha = 0$。</li>
+<li>这是一个齐次线性方程组。它有非零解 $\alpha$ 的充要条件是系数行列式为零：<br>$|\lambda E - A| = 0$<br>这个方程称为矩阵 $A$ 的<strong>特征方程</strong> (characteristic equation)。</li>
+<li>$f_A(\lambda) = |\lambda E - A|$ 称为矩阵 $A$ 的<strong>特征多项式</strong> (characteristic polynomial)。它是一个关于 $\lambda$ 的 $n$ 次多项式。<br>$f_A(\lambda) = \begin{vmatrix} \lambda - a_{11} &amp; -a_{12} &amp; \dots &amp; -a_{1n} \\ -a_{21} &amp; \lambda - a_{22} &amp; \dots &amp; -a_{2n} \\ \vdots &amp; \vdots &amp; \ddots &amp; \vdots \\ -a_{n1} &amp; -a_{n2} &amp; \dots &amp; \lambda - a_{nn} \end{vmatrix} = \lambda^n - (\text{tr}A)\lambda^{n-1} + \dots + (-1)^n |A|$</li>
+<li>特征值是特征方程的根。根据代数基本定理，一个 $n$ 次多项式在复数域内恰有 $n$ 个根 (计重数)。</li>
+</ul>
+<h3 id="2-3-特征子空间-Eigenspace"><a href="#2-3-特征子空间-Eigenspace" class="headerlink" title="2.3 特征子空间 (Eigenspace)"></a>2.3 特征子空间 (Eigenspace)</h3><ul>
+<li>对于矩阵 $A$ 的一个特征值 $\lambda_0$，齐次线性方程组 $(\lambda_0 E - A)\alpha = 0$ 的解空间 $V_{\lambda_0} = \{\alpha | (\lambda_0 E - A)\alpha = 0\}$ 称为对应于特征值 $\lambda_0$ 的<strong>特征子空间</strong>。</li>
+<li>特征子空间中的所有非零向量都是对应于 $\lambda_0$ 的特征向量，再加上零向量。</li>
+</ul>
+<h3 id="2-4-特征值的性质"><a href="#2-4-特征值的性质" class="headerlink" title="2.4 特征值的性质"></a>2.4 特征值的性质</h3><ul>
+<li><strong>定理</strong>: 设 $\lambda_1, \lambda_2, \dots, \lambda_n$ 是 $n$ 阶矩阵 $A=(a_{ij})$ 的 $n$ 个特征值 (计重数)。则：<ol>
+<li>$\sum_{i=1}^n \lambda_i = \sum_{i=1}^n a_{ii} = \text{tr}(A)$ (特征值之和等于矩阵的迹)</li>
+<li>$\prod_{i=1}^n \lambda_i = |A|$ (特征值之积等于矩阵的行列式)</li>
+</ol>
+<ul>
+<li><em>证明概要</em>:<br>特征多项式 $f_A(\lambda) = |\lambda E - A| = (\lambda - \lambda_1)(\lambda - \lambda_2)\dots(\lambda - \lambda_n)$。<br>同时，$f_A(\lambda) = \lambda^n - (a_{11}+\dots+a_{nn})\lambda^{n-1} + \dots + (-1)^n|A|$。<br>比较 $\lambda^{n-1}$ 的系数：$-(a_{11}+\dots+a_{nn}) = -(\lambda_1+\dots+\lambda_n)$，得 $\sum \lambda_i = \text{tr}(A)$。<br>比较常数项 (令 $\lambda=0$): $|-A| = (-1)^n |A| = (-\lambda_1)(-\lambda_2)\dots(-\lambda_n) = (-1)^n \prod \lambda_i$，得 $\prod \lambda_i = |A|$。<br>□</li>
+</ul>
+</li>
+<li>更一般地，特征值 $\lambda_{j_1}, \dots, \lambda_{j_k}$ 的所有 $k$ 阶初等对称多项式之和等于 $A$ 的所有 $k$ 阶主子式之和。</li>
+</ul>
+<h3 id="2-5-特征向量的线性无关性"><a href="#2-5-特征向量的线性无关性" class="headerlink" title="2.5 特征向量的线性无关性"></a>2.5 特征向量的线性无关性</h3><ul>
+<li><strong>定理</strong>: 设 $\lambda_1, \lambda_2, \dots, \lambda_s$ 是矩阵 $A$ 的 $s$ 个<strong>互不相同</strong>的特征值，$\alpha_1, \alpha_2, \dots, \alpha_s$ 分别是与之对应的特征向量，则 $\alpha_1, \alpha_2, \dots, \alpha_s$ 线性无关。<ul>
+<li><em>证明 (数学归纳法)</em>:<br>当 $s=1$ 时，$\alpha_1 \ne 0$，显然线性无关。<br>假设当 $s=k-1$ 时结论成立。考虑 $s=k$ 的情况。<br>设 $c_1\alpha_1 + c_2\alpha_2 + \dots + c_k\alpha_k = 0 \quad (<em>)$。<br>用 $A$ 左乘 $(</em>)$ 式：$c_1 A\alpha_1 + c_2 A\alpha_2 + \dots + c_k A\alpha_k = 0$<br>即 $c_1 \lambda_1\alpha_1 + c_2 \lambda_2\alpha_2 + \dots + c_k \lambda_k\alpha_k = 0 \quad (<strong>)$。<br>用 $\lambda_k$ 乘 $(<em>)$ 式：$c_1 \lambda_k\alpha_1 + c_2 \lambda_k\alpha_2 + \dots + c_k \lambda_k\alpha_k = 0 \quad (</em></strong>)$。<br>$(<strong>)-(*</strong>)$ 得：$c_1(\lambda_1-\lambda_k)\alpha_1 + c_2(\lambda_2-\lambda_k)\alpha_2 + \dots + c_{k-1}(\lambda_{k-1}-\lambda_k)\alpha_{k-1} = 0$。<br>根据归纳假设，$\alpha_1, \dots, \alpha_{k-1}$ 线性无关。<br>又因为 $\lambda_i \ne \lambda_k$ for $i=1, \dots, k-1$，所以 $\lambda_i - \lambda_k \ne 0$。<br>因此 $c_1=c_2=\dots=c_{k-1}=0$。<br>代回 $(*)$ 式，得 $c_k\alpha_k=0$。由于 $\alpha_k \ne 0$，故 $c_k=0$。<br>所以 $c_1=c_2=\dots=c_k=0$，即 $\alpha_1, \dots, \alpha_k$ 线性无关。<br>□</li>
+</ul>
+</li>
+</ul>
+<h3 id="2-6-代数重数与几何重数"><a href="#2-6-代数重数与几何重数" class="headerlink" title="2.6 代数重数与几何重数"></a>2.6 代数重数与几何重数</h3><ul>
+<li><strong>代数重数 (Algebraic Multiplicity)</strong>: 特征值 $\lambda_i$ 作为特征方程 $f_A(\lambda)=0$ 的根的重数，记为 $n_i$。<br>$\sum n_i = n$ (矩阵阶数)。</li>
+<li><p><strong>几何重数 (Geometric Multiplicity)</strong>: 特征值 $\lambda_i$ 对应的特征子空间 $V_{\lambda_i}$ 的维数，即线性无关特征向量的最大个数，记为 $g_i$。<br>$g_i = \text{dim}(V_{\lambda_i}) = n - \text{rank}(\lambda_i E - A)$。</p>
+</li>
+<li><p><strong>定理</strong>: 对任意特征值 $\lambda_i$，其几何重数 $g_i$ 不大于其代数重数 $n_i$。即 $1 \le g_i \le n_i$。</p>
+<ul>
+<li><em>证明</em>:<br>设 $\lambda_0$ 是 $A$ 的一个特征值，其几何重数为 $g_0$。则存在 $g_0$ 个线性无关的特征向量 $\alpha_1, \dots, \alpha_{g_0}$ 使得 $A\alpha_j = \lambda_0\alpha_j$ for $j=1, \dots, g_0$。<br>将这 $g_0$ 个向量扩充为 $n$ 维空间的一组基 $\alpha_1, \dots, \alpha_{g_0}, \alpha_{g_0+1}, \dots, \alpha_n$。<br>令 $P = (\alpha_1, \dots, \alpha_n)$。则 $P$ 可逆。<br>$AP = (A\alpha_1, \dots, A\alpha_{g_0}, A\alpha_{g_0+1}, \dots, A\alpha_n) = (\lambda_0\alpha_1, \dots, \lambda_0\alpha_{g_0}, A\alpha_{g_0+1}, \dots, A\alpha_n)$。<br>$P^{-1}AP = P^{-1} (\lambda_0\alpha_1, \dots, \lambda_0\alpha_{g_0}, A\alpha_{g_0+1}, \dots, A\alpha_n)$。<br>由于 $P^{-1}P = E$, $P^{-1}\alpha_j = e_j$ (标准单位向量) for $j=1, \dots, n$ (这里理解为 $P^{-1}$ 作用于 $P$ 的列向量)。<br>所以 $P^{-1}AP = \begin{pmatrix} \lambda_0 E_{g_0} &amp; B_{12} \\ O &amp; B_{22} \end{pmatrix}$。<br>由于相似矩阵有相同的特征多项式，<br>$f_A(\lambda) = f_{P^{-1}AP}(\lambda) = |\lambda E - P^{-1}AP| = \begin{vmatrix} (\lambda-\lambda_0)E_{g_0} &amp; -B_{12} \\ O &amp; \lambda E_{n-g_0} - B_{22} \end{vmatrix}$<br>$= |(\lambda-\lambda_0)E_{g_0}| \cdot |\lambda E_{n-g_0} - B_{22}| = (\lambda-\lambda_0)^{g_0} |\lambda E_{n-g_0} - B_{22}|$。<br>这表明 $(\lambda-\lambda_0)$ 至少是 $f_A(\lambda)$ 的 $g_0$ 次因子，所以 $\lambda_0$ 的代数重数 $n_0 \ge g_0$。<br>□</li>
+</ul>
+</li>
+</ul>
+<h2 id="3-矩阵可对角化的条件"><a href="#3-矩阵可对角化的条件" class="headerlink" title="3. 矩阵可对角化的条件"></a>3. 矩阵可对角化的条件</h2><ul>
+<li><p><strong>定理 1</strong>: $n$ 阶方阵 $A$ 可对角化的充要条件是 $A$ 有 $n$ 个线性无关的特征向量。</p>
+<ul>
+<li><em>证明</em>:<br>($\Rightarrow$) 若 $A$ 可对角化，则存在可逆 $P$ 使 $P^{-1}AP = \Lambda = \text{diag}(\lambda_1, \dots, \lambda_n)$。<br>$AP = P\Lambda$。令 $P = (p_1, p_2, \dots, p_n)$。<br>$A(p_1, \dots, p_n) = (p_1, \dots, p_n) \begin{pmatrix} \lambda_1 &amp; &amp; \\ &amp; \ddots &amp; \\ &amp; &amp; \lambda_n \end{pmatrix}$<br>$(Ap_1, \dots, Ap_n) = (\lambda_1 p_1, \dots, \lambda_n p_n)$。<br>即 $Ap_j = \lambda_j p_j$ for $j=1, \dots, n$。<br>由于 $P$ 可逆，其列向量 $p_1, \dots, p_n$ 线性无关且非零。因此它们是 $A$ 的 $n$ 个线性无关的特征向量。<br>($\Leftarrow$) 若 $A$ 有 $n$ 个线性无关的特征向量 $p_1, \dots, p_n$，对应特征值为 $\lambda_1, \dots, \lambda_n$ (不必互异)。<br>令 $P = (p_1, \dots, p_n)$。则 $P$ 可逆。<br>$AP = (Ap_1, \dots, Ap_n) = (\lambda_1 p_1, \dots, \lambda_n p_n)$<br>$= (p_1, \dots, p_n) \begin{pmatrix} \lambda_1 &amp; &amp; \\ &amp; \ddots &amp; \\ &amp; &amp; \lambda_n \end{pmatrix} = P\Lambda$。<br>所以 $P^{-1}AP = \Lambda$。$A$ 可对角化。<br>□</li>
+</ul>
+</li>
+<li><p><strong>定理 2</strong>: $n$ 阶方阵 $A$ 可对角化的充要条件是 $A$ 的每个特征值 $\lambda_i$ 的几何重数 $g_i$ 等于其代数重数 $n_i$。</p>
+<ul>
+<li><em>证明概要</em>:<br>($\Rightarrow$) 若 $A$ 可对角化, $A \sim \Lambda = \text{diag}(\underbrace{\lambda_1,\dots,\lambda_1}_{n_1 \text{ times}}, \dots, \underbrace{\lambda_s,\dots,\lambda_s}_{n_s \text{ times}})$.<br>则 $g_k = n - \text{rank}(\lambda_k E - A) = n - \text{rank}(\lambda_k E - \Lambda)$.<br>$\lambda_k E - \Lambda$ 是对角矩阵，对角线上有 $n-n_k$ 个非零元，所以 $\text{rank}(\lambda_k E - \Lambda) = n-n_k$.<br>故 $g_k = n - (n-n_k) = n_k$.<br>($\Leftarrow$) 若对每个特征值 $\lambda_i$ 都有 $g_i = n_i$.<br>设 $A$ 有 $s$ 个互异特征值 $\lambda_1, \dots, \lambda_s$，代数重数分别为 $n_1, \dots, n_s$ ( $\sum n_i = n$ )。<br>则对应的几何重数 $g_i=n_i$。这意味着我们可以为每个 $\lambda_i$ 找到 $n_i$ 个线性无关的特征向量。<br>所有这些特征向量集合的总数为 $\sum g_i = \sum n_i = n$。<br>不同特征子空间的特征向量是线性无关的。同一特征子空间内部选取的基向量也是线性无关的。<br>因此，这 $n$ 个特征向量共同构成了 $n$ 维空间的一组基，即 $A$ 有 $n$ 个线性无关的特征向量。由定理1，$A$ 可对角化。<br>□</li>
+</ul>
+</li>
+<li><p><strong>推论</strong>: 如果 $n$ 阶方阵 $A$ 有 $n$ 个互不相同的特征值，则 $A$ 一定可以对角化。</p>
+<ul>
+<li><em>证明</em>: 若 $A$ 有 $n$ 个互异特征值 $\lambda_1, \dots, \lambda_n$，则每个特征值的代数重数 $n_i=1$。<br>又因为 $1 \le g_i \le n_i$，所以 $g_i=1$。<br>因此 $g_i=n_i=1$ 对所有 $i$ 成立。由定理2，$A$ 可对角化。<br>(或者直接由特征向量线性无关性定理，$A$ 有 $n$ 个线性无关的特征向量，由定理1，$A$ 可对角化)。<br>□</li>
+</ul>
+</li>
+</ul>
+<h3 id="对角化步骤总结"><a href="#对角化步骤总结" class="headerlink" title="对角化步骤总结:"></a>对角化步骤总结:</h3><ol>
+<li>求 $A$ 的特征多项式 $|\lambda E - A| = 0$。</li>
+<li>解特征方程，得到所有特征值 $\lambda_1, \dots, \lambda_s$ 及其代数重数 $n_1, \dots, n_s$。</li>
+<li>对每个特征值 $\lambda_i$，解齐次方程组 $(\lambda_i E - A)X = 0$，求出基础解系。基础解系的个数即为几何重数 $g_i$。</li>
+<li>若对所有 $i$ 都有 $g_i = n_i$，则 $A$ 可对角化。将所有基础解系中的向量合起来构成可逆矩阵 $P$。则 $P^{-1}AP = \Lambda$，其中 $\Lambda$ 的对角元是 $P$ 中列向量对应的特征值。</li>
+<li>若存在某个 $i$ 使得 $g_i &lt; n_i$，则 $A$ 不可对角化。</li>
+</ol>
+<h2 id="4-特征值估计：Gershgorin-圆盘定理-Gershgorin-Circle-Theorem"><a href="#4-特征值估计：Gershgorin-圆盘定理-Gershgorin-Circle-Theorem" class="headerlink" title="4. 特征值估计：Gershgorin 圆盘定理 (Gershgorin Circle Theorem)"></a>4. 特征值估计：Gershgorin 圆盘定理 (Gershgorin Circle Theorem)</h2><ul>
+<li><p><strong>Gershgorin 圆盘</strong>: 对 $n$ 阶复矩阵 $A=(a_{ij})$，第 $i$ 个 <strong>Gershgorin圆盘</strong> $D_i(A)$ 定义为复平面上的一个闭圆盘：<br>$D_i(A) = \{ z \in \mathbb{C} : |z - a_{ii}| \le R_i(A) \}$<br>其中 $a_{ii}$ 是圆心，$R_i(A) = \sum_{j \ne i} |a_{ij}|$ 是半径 (第 $i$ 行非对角元素绝对值之和)。<br>类似地，可以定义列圆盘 $D’_j(A) = \{ z \in \mathbb{C} : |z - a_{jj}| \le C_j(A) \}$，其中 $C_j(A) = \sum_{i \ne j} |a_{ij}|$ (第 $j$ 列非对角元素绝对值之和)。</p>
+</li>
+<li><p><strong>定理 1 (Gershgorin第一定理)</strong>: 矩阵 $A$ 的所有特征值都位于所有行Gershgorin圆盘的并集内，即 $\lambda \in \bigcup_{i=1}^n D_i(A)$。类似地，所有特征值也位于所有列Gershgorin圆盘的并集内 $\lambda \in \bigcup_{j=1}^n D’_j(A)$。</p>
+<ul>
+<li><em>证明 (行圆盘)</em>:<br>设 $\lambda$ 是 $A$ 的一个特征值，$\alpha=(x_1, \dots, x_n)^T \ne 0$ 是对应的特征向量，即 $A\alpha = \lambda\alpha$。<br>展开第 $i$ 行：$\sum_{j=1}^n a_{ij}x_j = \lambda x_i$。<br>移项得：$(\lambda - a_{ii})x_i = \sum_{j \ne i} a_{ij}x_j$。<br>选取 $k$ 使得 $|x_k| = \max_{j} |x_j|$。由于 $\alpha \ne 0$，所以 $|x_k| &gt; 0$。<br>对于第 $k$ 行，有 $(\lambda - a_{kk})x_k = \sum_{j \ne k} a_{kj}x_j$。<br>两边取绝对值：$|\lambda - a_{kk}| |x_k| = |\sum_{j \ne k} a_{kj}x_j| \le \sum_{j \ne k} |a_{kj}| |x_j|$。<br>由于 $|x_j| \le |x_k|$，所以 $|\lambda - a_{kk}| |x_k| \le \sum_{j \ne k} |a_{kj}| |x_k| = |x_k| \sum_{j \ne k} |a_{kj}| = |x_k| R_k(A)$。<br>因为 $|x_k| &gt; 0$，两边除以 $|x_k|$ 得：$|\lambda - a_{kk}| \le R_k(A)$。<br>这表明特征值 $\lambda$ 位于第 $k$ 个Gershgorin圆盘 $D_k(A)$ 内。因此 $\lambda \in \bigcup_{i=1}^n D_i(A)$。<br>列圆盘的证明类似，考虑 $A^T$ (或 $A^H$)，其特征值与 $A$ 相同。<br>□</li>
+</ul>
+</li>
+<li><p><strong>定理 2 (Gershgorin第二定理 / Taussky定理)</strong>: 如果 $k$ 个Gershgorin圆盘的并集 $G = \bigcup_{i \in S_k} D_i(A)$ 与其余 $n-k$ 个圆盘的并集 $H = \bigcup_{j \notin S_k} D_j(A)$ 不相交 (即 $G \cap H = \emptyset$)，则 $G$ 中恰好包含 $A$ 的 $k$ 个特征值 (计重数)，$H$ 中恰好包含 $A$ 的 $n-k$ 个特征值。</p>
+<ul>
+<li><em>证明思路</em>:<br>构造矩阵 $A(t) = \text{diag}(a_{11}, \dots, a_{nn}) + t \cdot (A - \text{diag}(a_{11}, \dots, a_{nn}))$ for $0 \le t \le 1$。<br>$A(0) = \text{diag}(a_{11}, \dots, a_{nn})$，其特征值为 $a_{11}, \dots, a_{nn}$。<br>$A(1) = A$。<br>矩阵的特征值是其特征多项式系数的连续函数，而特征多项式的系数是矩阵元素的连续函数。因此，特征值是 $t$ 的连续函数。<br>$A(t)$ 的Gershgorin圆盘为 $D_i(A(t)) = \{z : |z-a_{ii}| \le t R_i(A)\}$。显然 $D_i(A(t)) \subseteq D_i(A(1)) = D_i(A)$。<br>当 $t=0$ 时，$k$ 个特征值 ($a_{ii}$ for $i \in S_k$) 位于 $G$ 中 (因为 $R_i(A(0))=0$)。<br>当 $t$ 从 $0$ 连续变到 $1$ 时，特征值也连续变化。由于 $G$ 和 $H$ 不相交，特征值不能从 $G$ “跳到” $H$ (或反之)，否则会违背连续性。<br>因此，原来在 $G$ 中的 $k$ 个特征值 (当 $t=0$ 时) 必须在 $t=1$ 时仍然停留在 $G$ 中。<br>□</li>
+</ul>
+</li>
+<li><p><strong>推论 (严格对角占优矩阵)</strong>: 如果矩阵 $A$ 是严格对角占优的，即对所有 $i$， $|a_{ii}| &gt; \sum_{j \ne i} |a_{ij}|$ (或列严格对角占优)，则 $A$ 是可逆的。</p>
+<ul>
+<li><em>证明</em>: 若 $A$ 严格对角占优，则对所有 $i$，$R_i(A) &lt; |a_{ii}|$。这意味着 $0$ 不在任何一个Gershgorin圆盘 $D_i(A)$ 内 (因为 $|0 - a_{ii}| = |a_{ii}| &gt; R_i(A)$)。<br>因此，$0$ 不在 $\bigcup D_i(A)$ 内。根据Gershgorin第一定理， $0$ 不是 $A$ 的特征值。<br>所以 $A$ 可逆。<br>□</li>
+</ul>
+</li>
+<li><p><strong>Ostrowski定理</strong>: 对任意 $p \in [0, 1]$，矩阵 $A$ 的任一特征值 $\lambda$ 必满足至少存在一个 $i \in \{1, \dots, n\}$ 使得:<br>$|\lambda - a_{ii}| \le (R_i(A))^p (C_i(A))^{1-p}$<br>(当 $p=1$ 时是行圆盘，当 $p=0$ 时是列圆盘)。</p>
+</li>
+<li><p><strong>Brauer’s Cassini Ovals</strong>: 矩阵 $A$ 的所有特征值包含在由下式定义的 $n(n-1)/2$ 个 Cassini 卵形线的并集中：<br>$\bigcup_{1 \le i &lt; j \le n} \{z \in \mathbb{C} : |z-a_{ii}||z-a_{jj}| \le R_i(A)R_j(A) \}$</p>
+</li>
+</ul>
+<h2 id="5-Schur-定理与正规矩阵"><a href="#5-Schur-定理与正规矩阵" class="headerlink" title="5. Schur 定理与正规矩阵"></a>5. Schur 定理与正规矩阵</h2><h3 id="5-1-Schur-分解定理-Schur’s-Theorem-Schur’s-Triangularization"><a href="#5-1-Schur-分解定理-Schur’s-Theorem-Schur’s-Triangularization" class="headerlink" title="5.1 Schur 分解定理 (Schur’s Theorem / Schur’s Triangularization)"></a>5.1 Schur 分解定理 (Schur’s Theorem / Schur’s Triangularization)</h3><ul>
+<li><strong>酉矩阵 (Unitary Matrix)</strong>: 若复方阵 $U$ 满足 $U^H U = U U^H = E$ (其中 $U^H$ 是 $U$ 的共轭转置)，则称 $U$ 为酉矩阵。若实方阵 $Q$ 满足 $Q^T Q = Q Q^T = E$，则称 $Q$ 为正交矩阵。</li>
+<li><p><strong>酉相似 (Unitary Similarity)</strong>: 若存在酉矩阵 $U$ 使得 $U^H A U = B$，则称 $A$ 酉相似于 $B$。</p>
+</li>
+<li><p><strong>定理 (Schur)</strong>: 对任意 $n$ 阶复方阵 $A$，存在一个酉矩阵 $U$，使得<br>$U^H A U = T$<br>其中 $T$ 是一个上三角矩阵。并且 $T$ 的对角元是 $A$ 的特征值。<br>若 $A$ 是实矩阵且特征值均为实数，则 $U$ 可以取为正交矩阵 $Q$，使得 $Q^T A Q = T$ (实Schur分解)。</p>
+<ul>
+<li><em>证明 (数学归纳法对矩阵阶数 $n$)</em>:<br>当 $n=1$ 时，$A=(a_{11})$ 是标量，$U=(1)$，$T=(a_{11})$，结论成立。<br>假设对任意 $k$ 阶矩阵结论成立。考虑 $n=k+1$ 阶矩阵 $A$。<br>设 $\lambda_1$ 是 $A$ 的一个特征值，$\alpha_1$ 是对应的单位特征向量 (即 $||\alpha_1||_2=1$)，所以 $A\alpha_1 = \lambda_1\alpha_1$。<br>可以将 $\alpha_1$ 扩充为 $\mathbb{C}^{k+1}$ 的一组标准正交基 $\{\alpha_1, \alpha_2, \dots, \alpha_{k+1}\}$。<br>令 $U_1 = (\alpha_1, \alpha_2, \dots, \alpha_{k+1})$。则 $U_1$ 是酉矩阵。<br>$U_1^H A U_1 = U_1^H (A\alpha_1, A\alpha_2, \dots, A\alpha_{k+1})$<br>$= U_1^H (\lambda_1\alpha_1, A\alpha_2, \dots, A\alpha_{k+1})$<br>$= \begin{pmatrix} \alpha_1^H \\ \vdots \\ \alpha_{k+1}^H \end{pmatrix} (\lambda_1\alpha_1, A\alpha_2, \dots, A\alpha_{k+1}) = \begin{pmatrix} \lambda_1\alpha_1^H\alpha_1 &amp; \alpha_1^H A\alpha_2 &amp; \dots &amp; \alpha_1^H A\alpha_{k+1} \\ \lambda_1\alpha_2^H\alpha_1 &amp; \alpha_2^H A\alpha_2 &amp; \dots &amp; \alpha_2^H A\alpha_{k+1} \\ \vdots &amp; \vdots &amp; \ddots &amp; \vdots \\ \lambda_1\alpha_{k+1}^H\alpha_1 &amp; \alpha_{k+1}^H A\alpha_2 &amp; \dots &amp; \alpha_{k+1}^H A\alpha_{k+1} \end{pmatrix}$<br>由于 $\alpha_i^H \alpha_j = \delta_{ij}$ (Kronecker delta)，第一列变为 $(\lambda_1, 0, \dots, 0)^T$。<br>所以 $U_1^H A U_1 = \begin{pmatrix} \lambda_1 &amp; \mathbf{b}^H \\ \mathbf{0} &amp; A_k \end{pmatrix}$，其中 $A_k$ 是一个 $k$ 阶方阵。<br>根据归纳假设，存在 $k$ 阶酉矩阵 $V_k$ 使得 $V_k^H A_k V_k = T_k$ (上三角)。<br>令 $U = U_1 \begin{pmatrix} 1 &amp; \mathbf{0}^T \\ \mathbf{0} &amp; V_k \end{pmatrix}$。这个 $U$ 也是酉矩阵 (两个酉矩阵之积)。<br>$U^H A U = \begin{pmatrix} 1 &amp; \mathbf{0}^T \\ \mathbf{0} &amp; V_k^H \end{pmatrix} U_1^H A U_1 \begin{pmatrix} 1 &amp; \mathbf{0}^T \\ \mathbf{0} &amp; V_k \end{pmatrix}$<br>$= \begin{pmatrix} 1 &amp; \mathbf{0}^T \\ \mathbf{0} &amp; V_k^H \end{pmatrix} \begin{pmatrix} \lambda_1 &amp; \mathbf{b}^H \\ \mathbf{0} &amp; A_k \end{pmatrix} \begin{pmatrix} 1 &amp; \mathbf{0}^T \\ \mathbf{0} &amp; V_k \end{pmatrix}$<br>$= \begin{pmatrix} \lambda_1 &amp; \mathbf{b}^H V_k \\ \mathbf{0} &amp; V_k^H A_k V_k \end{pmatrix} = \begin{pmatrix} \lambda_1 &amp; \mathbf{b}^H V_k \\ \mathbf{0} &amp; T_k \end{pmatrix} = T$。<br>$T$ 是上三角矩阵。其对角元是 $A$ 的特征值 (因为相似矩阵特征值相同)。<br>□</li>
+</ul>
+</li>
+</ul>
+<h3 id="5-2-正规矩阵-Normal-Matrix"><a href="#5-2-正规矩阵-Normal-Matrix" class="headerlink" title="5.2 正规矩阵 (Normal Matrix)"></a>5.2 正规矩阵 (Normal Matrix)</h3><ul>
+<li><p><strong>定义</strong>: 若 $n$ 阶复方阵 $A$ 满足 $A^H A = A A^H$，则称 $A$ 为<strong>正规矩阵</strong>。</p>
+<ul>
+<li>常见的正规矩阵：<ul>
+<li>Hermitian 矩阵 ($A^H = A$)，实对称矩阵 ($A^T=A$)</li>
+<li>Skew-Hermitian 矩阵 ($A^H = -A$)，实反对称矩阵 ($A^T=-A$)</li>
+<li>酉矩阵 ($A^H A = E$)，正交矩阵 ($A^T A = E$)</li>
+<li>对角矩阵</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>定理</strong>: $n$ 阶复方阵 $A$ 是正规矩阵的充要条件是 $A$ 酉相似于一个对角矩阵 (即 $A$ 可以被酉矩阵对角化)。</p>
+<ul>
+<li><em>证明</em>:<br>($\Leftarrow$) 若存在酉矩阵 $U$ 使得 $U^H A U = \Lambda$ (对角矩阵)。<br>则 $A = U \Lambda U^H$。<br>$A^H = (U \Lambda U^H)^H = U \Lambda^H U^H$。<br>$A A^H = (U \Lambda U^H)(U \Lambda^H U^H) = U \Lambda \Lambda^H U^H$。<br>$A^H A = (U \Lambda^H U^H)(U \Lambda U^H) = U \Lambda^H \Lambda U^H$。<br>因为 $\Lambda$ 是对角矩阵，所以 $\Lambda \Lambda^H = \Lambda^H \Lambda$ (对角矩阵与其共轭转置可交换)。<br>因此 $A A^H = A^H A$，即 $A$ 是正规矩阵。<br>($\Rightarrow$) 若 $A$ 是正规矩阵。根据Schur定理，存在酉矩阵 $U$ 使得 $U^H A U = T$ ($T$ 是上三角矩阵)。<br>我们需要证明 $T$ 实际上是对角矩阵。<br>因为 $A$ 正规，所以 $T = U^H A U$ 也是正规矩阵。<br>($T^H T = (U^H A U)^H (U^H A U) = U^H A^H U U^H A U = U^H A^H A U$)<br>($T T^H = (U^H A U) (U^H A U)^H = U^H A U U^H A^H U = U^H A A^H U$)<br>由于 $A^H A = A A^H$，所以 $T^H T = T T^H$。<br>设 $T = (t_{ij})$，其中 $t_{ij}=0$ for $i&gt;j$。<br>比较 $T^H T$ 和 $T T^H$ 的 $(1,1)$ 元素：<br>$(T^H T)_{11} = \sum_k \overline{t_{k1}} t_{k1} = |t_{11}|^2$ (因为 $t_{k1}=0$ for $k&gt;1$)。<br>$(T T^H)_{11} = \sum_k t_{1k} \overline{t_{1k}} = |t_{11}|^2 + |t_{12}|^2 + \dots + |t_{1n}|^2$。<br>由于 $(T^H T)_{11} = (T T^H)_{11}$，所以 $|t_{11}|^2 = |t_{11}|^2 + |t_{12}|^2 + \dots + |t_{1n}|^2$。<br>这迫使 $t_{12} = t_{13} = \dots = t_{1n} = 0$。<br>现在比较 $(2,2)$ 元素：<br>$(T^H T)_{22} = \overline{t_{12}}t_{12} + \overline{t_{22}}t_{22} + \dots = |t_{12}|^2 + |t_{22}|^2 = |t_{22}|^2$ (因为 $t_{12}=0$)。<br>$(T T^H)_{22} = |t_{21}|^2 + |t_{22}|^2 + |t_{23}|^2 + \dots + |t_{2n}|^2 = |t_{22}|^2 + |t_{23}|^2 + \dots + |t_{2n}|^2$ (因为 $t_{21}=0$ due to upper triangular)。<br>所以 $|t_{22}|^2 = |t_{22}|^2 + |t_{23}|^2 + \dots + |t_{2n}|^2$。<br>这迫使 $t_{23} = t_{24} = \dots = t_{2n} = 0$。<br>以此类推，可以证明 $T$ 的所有非对角元素都为0。因此 $T$ 是对角矩阵。<br>□</li>
+</ul>
+</li>
+<li><p><strong>Schur 不等式</strong>: 若 $\lambda_1, \dots, \lambda_n$ 是 $A=(a_{ij})$ 的特征值，则 $\sum_{i=1}^n |\lambda_i|^2 \le \sum_{i=1}^n \sum_{j=1}^n |a_{ij}|^2 = ||A||_F^2$ (Frobenius范数的平方)。<br>等号成立的充要条件是 $A$ 是正规矩阵。</p>
+<ul>
+<li><em>证明</em>:<br>由Schur分解，$U^H A U = T$，其中 $T$ 是上三角，对角元为 $\lambda_i$。<br>$||A||_F^2 = \text{tr}(A^H A)$。由于迹在酉相似下不变:<br>$\text{tr}(A^H A) = \text{tr}((UTU^H)^H (UTU^H)) = \text{tr}(U T^H U^H U T U^H) = \text{tr}(U T^H T U^H) = \text{tr}(T^H T)$。<br>$T^H T$ 的对角元是 $\sum_{k=1}^i |t_{ki}|^2$ (这里假设 $T$ 是下三角，或者直接算 $\text{tr}(T^H T) = \sum_{i,j} |t_{ij}|^2$)。<br>$\text{tr}(T^H T) = \sum_{i=1}^n (T^H T)_{ii} = \sum_{i=1}^n \sum_{k=1}^n \overline{t_{ki}} t_{ki} = \sum_{i,j} |t_{ij}|^2$。<br>由于 $T$ 是上三角，其对角元 $t_{ii} = \lambda_i$。<br>所以 $\sum_{i,j} |t_{ij}|^2 = \sum_{i=1}^n |t_{ii}|^2 + \sum_{i&lt;j} |t_{ij}|^2 = \sum_{i=1}^n |\lambda_i|^2 + \sum_{i&lt;j} |t_{ij}|^2$。<br>因此 $\sum_{i=1}^n |\lambda_i|^2 + \sum_{i&lt;j} |t_{ij}|^2 = ||A||_F^2$。<br>由于 $\sum_{i&lt;j} |t_{ij}|^2 \ge 0$，所以 $\sum_{i=1}^n |\lambda_i|^2 \le ||A||_F^2$。<br>等号成立当且仅当 $\sum_{i&lt;j} |t_{ij}|^2 = 0$，即所有非对角元 $t_{ij}=0$ ($i&lt;j$)。<br>这意味着 $T$ 是对角矩阵。当 $T$ 是对角矩阵时，$A$ 酉相似于对角矩阵，因此 $A$ 是正规矩阵。<br>□</li>
+</ul>
+</li>
+</ul>
+<h3 id="5-3-特殊的正规矩阵"><a href="#5-3-特殊的正规矩阵" class="headerlink" title="5.3 特殊的正规矩阵"></a>5.3 特殊的正规矩阵</h3><ul>
+<li><p><strong>Hermitian 矩阵 ($A^H=A$)</strong>:</p>
+<ul>
+<li>特征值必为实数。</li>
+<li>不同特征值对应的特征向量相互正交。</li>
+<li>必酉相似于实对角矩阵。</li>
+</ul>
+</li>
+<li><p><strong>实对称矩阵 ($A^T=A$)</strong>:</p>
+<ul>
+<li>是Hermitian矩阵的特例，特征值必为实数。</li>
+<li>必正交相似于实对角矩阵 ($Q^T A Q = \Lambda$)。</li>
+</ul>
+</li>
+<li><p><strong>酉矩阵 ($A^H A = E$)</strong>:</p>
+<ul>
+<li>特征值的模长必为1 (即 $|\lambda|=1$)。</li>
+<li>不同特征值对应的特征向量相互正交。</li>
+<li>必酉相似于对角元模长为1的对角矩阵。</li>
+</ul>
+</li>
+<li><p><strong>实正规矩阵</strong>:</p>
+<ul>
+<li>若 $A$ 是实正规矩阵 ($A^T A = A A^T$)，则 $A$ 正交相似于一个实分块对角矩阵，其对角块为 $1 \times 1$ 的实特征值，或 $2 \times 2$ 的形如 $\begin{pmatrix} a &amp; b \\ -b &amp; a \end{pmatrix}$ (对应共轭复特征值 $a \pm ib, b \ne 0$) 的块。</li>
+</ul>
+</li>
+</ul>
+<h3 id="5-4-谱分解-Spectral-Decomposition"><a href="#5-4-谱分解-Spectral-Decomposition" class="headerlink" title="5.4 谱分解 (Spectral Decomposition)"></a>5.4 谱分解 (Spectral Decomposition)</h3><ul>
+<li><p><strong>定理 (正规矩阵的谱分解)</strong>: 设 $A$ 是 $n$ 阶正规矩阵，$\lambda_1, \dots, \lambda_n$ 是其特征值 (不必互异)，$u_1, \dots, u_n$ 是对应的一组标准正交特征向量。则 $A$ 可以表示为：<br>$A = \sum_{i=1}^n \lambda_i u_i u_i^H$<br>如果 $A$ 有 $s$ 个互异特征值 $\lambda_1, \dots, \lambda_s$，则 $A = \sum_{j=1}^s \lambda_j P_j$，其中 $P_j = \sum_{u_k \in V_{\lambda_j}} u_k u_k^H$ 是到特征子空间 $V_{\lambda_j}$ 的正交投影算子。这些投影算子满足 $P_j^H=P_j$, $P_j^2=P_j$, $P_i P_j = O$ ($i \ne j$), $\sum_{j=1}^s P_j = E$。</p>
+<ul>
+<li><em>证明</em>:<br>因为 $A$ 正规，所以 $A = U \Lambda U^H$，其中 $U=(u_1, \dots, u_n)$ 列向量是标准正交特征向量，$\Lambda = \text{diag}(\lambda_1, \dots, \lambda_n)$。<br>$A = (u_1, \dots, u_n) \begin{pmatrix} \lambda_1 &amp; &amp; \\ &amp; \ddots &amp; \\ &amp; &amp; \lambda_n \end{pmatrix} \begin{pmatrix} u_1^H \\ \vdots \\ u_n^H \end{pmatrix}$<br>$= (u_1, \dots, u_n) \begin{pmatrix} \lambda_1 u_1^H \\ \vdots \\ \lambda_n u_n^H \end{pmatrix} = \lambda_1 u_1 u_1^H + \lambda_2 u_2 u_2^H + \dots + \lambda_n u_n u_n^H$。<br>□</li>
+</ul>
+</li>
+<li><p><strong>可对角化矩阵的谱分解 (一般情况)</strong>:<br>若 $A$ 可对角化 (不一定是正规的)，$P^{-1}AP = \Lambda$。设 $P=(p_1, \dots, p_n)$，$P^{-1} = \begin{pmatrix} q_1^H \\ \vdots \\ q_n^H \end{pmatrix}$ (这里 $q_i^H p_j = \delta_{ij}$)。<br>则 $A = P \Lambda P^{-1} = \sum_{i=1}^n \lambda_i p_i q_i^H$。<br>令 $G_i = p_i q_i^H$。则 $G_i$ 是投影算子 (幂等 $G_i^2=G_i$，但通常不是正交投影)，且 $G_i G_j = O$ ($i \ne j$), $\sum G_i = E$。<br>$A = \sum_{j=1}^s \lambda_j G_j’$, 其中 $G_j’$ 是到对应广义特征空间的投影。</p>
+</li>
+</ul>
+</div><div class="article-licensing box"><div class="licensing-title"><p>Chapter5 MATH1408</p><p><a href="http://example.com/MATH1408/Chapter5-MATH1408.html">http://example.com/MATH1408/Chapter5-MATH1408.html</a></p></div><div class="licensing-meta level is-mobile"><div class="level-left"><div class="level-item is-narrow"><div><h6>作者</h6><p>Jiamin Liu</p></div></div><div class="level-item is-narrow"><div><h6>发布于</h6><p>2025-06-24</p></div></div><div class="level-item is-narrow"><div><h6>更新于</h6><p>2025-06-24</p></div></div><div class="level-item is-narrow"><div><h6>许可协议</h6><p><a class="icons" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="icon fab fa-creative-commons"></i></a><a class="icons" rel="noopener" target="_blank" title="Attribution" href="https://creativecommons.org/licenses/by/4.0/"><i class="icon fab fa-creative-commons-by"></i></a><a class="icons" rel="noopener" target="_blank" title="Noncommercial" href="https://creativecommons.org/licenses/by-nc/4.0/"><i class="icon fab fa-creative-commons-nc"></i></a></p></div></div></div></div></div><div class="article-tags is-size-7 mb-4"><span class="mr-2">#</span><a class="link-muted mr-2" rel="tag" href="/"></a><a class="link-muted mr-2" rel="tag" href="/"></a><a class="link-muted mr-2" rel="tag" href="/"></a><a class="link-muted mr-2" rel="tag" href="/"></a><a class="link-muted mr-2" rel="tag" href="/"></a><a class="link-muted mr-2" rel="tag" href="/"></a></div><!--!--></article></div><!--!--><div class="card" id="comments"><div class="card-content"><h3 class="title is-5">评论</h3><div class="notification is-danger">You forgot to set the <code>shortname</code> for Disqus. Please set it in <code>_config.yml</code>.</div></div></div></div><div class="column column-left is-4-tablet is-4-desktop is-4-widescreen  order-1"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar" src="/img/avatar.png" alt="Jiamin Liu"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">Jiamin Liu</p><p class="is-size-6 is-block">别卷了别卷了别卷了</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>China</span></p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">文章</p><a href="/archives/"><p class="title">1</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">分类</p><a href="/categories/"><p class="title">0</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">标签</p><a href="/tags/"><p class="title">0</p></a></div></div></nav></div></div><!--!--></div><!--!--></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/img/logo.svg" alt="OD&#039;s blog" height="28"></a><p class="is-size-7"><span>&copy; 2025 Jiamin Liu</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a></p><p class="is-size-7">© 2019</p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("zh-cn");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script data-pjax src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="回到顶端" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script data-pjax src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
+      window.cookieconsent.initialise({
+        type: "info",
+        theme: "edgeless",
+        static: false,
+        position: "bottom-left",
+        content: {
+          message: "此网站使用Cookie来改善您的体验。",
+          dismiss: "知道了！",
+          allow: "允许使用Cookie",
+          deny: "拒绝",
+          link: "了解更多",
+          policy: "Cookie政策",
+          href: "https://www.cookiesandyou.com/",
+        },
+        palette: {
+          popup: {
+            background: "#edeff5",
+            text: "#838391"
+          },
+          button: {
+            background: "#4b81e8"
+          },
+        },
+      });
+    });</script><script src="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/js/lightgallery.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><script type="text/javascript" id="MathJax-script" async>MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']]
+      },
+      svg: {
+        fontCache: 'global'
+      },
+      chtml: {
+        matchFontHeight: false
+      }
+    };</script><script src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js"></script><script src="https://cdn.jsdelivr.net/npm/pjax@0.2.8/pjax.min.js"></script><script src="/js/pjax.js"></script><!--!--><!--!--><!--!--><script data-pjax src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="想要查找什么..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script data-pjax src="/js/insight.js" defer></script><script data-pjax>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"想要查找什么...","untitled":"(无标题)","posts":"文章","pages":"页面","categories":"分类","tags":"标签"});
+        });</script></body></html>

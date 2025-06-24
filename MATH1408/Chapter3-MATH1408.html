@@ -1,0 +1,328 @@
+<!doctype html>
+<html lang="zh"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>Chapter3_MATH1408 - OD&#039;s blog</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="OD&#039;s blog"><meta name="msapplication-TileImage" content="/img/favicon.svg"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="OD&#039;s blog"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="description" content="行列式与矩阵理论进阶1. 行列式 (Determinant)1.1 行列式的定义$n$ 阶行列式，记作 $|A|$ 或 $\det(A)$，其中 $A &amp;#x3D; (a_{ij})$ 是一个 $n \times n$ 的方阵，其值为：  |A| &amp;#x3D; \left| \begin{array}{cccc} a_{11} &amp;amp; a_{12} &amp;amp; \cdots &amp;amp; a_{1n} \\ a_{21} &amp;amp; a_{22}"><meta property="og:type" content="blog"><meta property="og:title" content="Chapter3_MATH1408"><meta property="og:url" content="http://example.com/MATH1408/Chapter3-MATH1408.html"><meta property="og:site_name" content="OD&#039;s blog"><meta property="og:description" content="行列式与矩阵理论进阶1. 行列式 (Determinant)1.1 行列式的定义$n$ 阶行列式，记作 $|A|$ 或 $\det(A)$，其中 $A &amp;#x3D; (a_{ij})$ 是一个 $n \times n$ 的方阵，其值为：  |A| &amp;#x3D; \left| \begin{array}{cccc} a_{11} &amp;amp; a_{12} &amp;amp; \cdots &amp;amp; a_{1n} \\ a_{21} &amp;amp; a_{22}"><meta property="og:locale" content="zh_CN"><meta property="og:image" content="http://example.com/img/og_image.png"><meta property="article:published_time" content="2025-06-24T09:10:48.470Z"><meta property="article:modified_time" content="2025-06-24T09:10:48.470Z"><meta property="article:author" content="Jiamin Liu"><meta property="article:tag" content="行列式"><meta property="article:tag" content="分块矩阵"><meta property="article:tag" content="广义逆矩阵"><meta property="twitter:card" content="summary"><meta property="twitter:image:src" content="http://example.com/img/og_image.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"http://example.com/MATH1408/Chapter3-MATH1408.html"},"headline":"Chapter3_MATH1408","image":["http://example.com/img/og_image.png"],"datePublished":"2025-06-24T09:10:48.470Z","dateModified":"2025-06-24T09:10:48.470Z","author":{"@type":"Person","name":"Jiamin Liu"},"publisher":{"@type":"Organization","name":"OD's blog","logo":{"@type":"ImageObject","url":"http://example.com/img/logo.svg"}},"description":"行列式与矩阵理论进阶1. 行列式 (Determinant)1.1 行列式的定义$n$ 阶行列式，记作 $|A|$ 或 $\\det(A)$，其中 $A &#x3D; (a_{ij})$ 是一个 $n \\times n$ 的方阵，其值为：  |A| &#x3D; \\left| \\begin{array}{cccc} a_{11} &amp; a_{12} &amp; \\cdots &amp; a_{1n} \\\\ a_{21} &amp; a_{22}"}</script><link rel="canonical" href="http://example.com/MATH1408/Chapter3-MATH1408.html"><link rel="icon" href="/img/favicon.svg"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.0.0/css/all.css"><link data-pjax rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.7.0/styles/atom-one-light.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link data-pjax rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css"><!--!--><!--!--><!--!--><!--!--><style>.pace{-webkit-pointer-events:none;pointer-events:none;-webkit-user-select:none;-moz-user-select:none;user-select:none}.pace-inactive{display:none}.pace .pace-progress{background:#3273dc;position:fixed;z-index:2000;top:0;right:100%;width:100%;height:2px}</style><script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js"></script><!--!--><!--!--><!-- hexo injector head_end start --><script>
+  (function () {
+      function switchTab() {
+          if (!location.hash) {
+            return;
+          }
+
+          const id = '#' + CSS.escape(location.hash.substring(1));
+          const $tabMenu = document.querySelector(`.tabs a[href="${id}"]`);
+          if (!$tabMenu) {
+            return;
+          }
+
+          const $tabMenuContainer = $tabMenu.parentElement.parentElement;
+          Array.from($tabMenuContainer.children).forEach($menu => $menu.classList.remove('is-active'));
+          Array.from($tabMenuContainer.querySelectorAll('a'))
+              .map($menu => document.getElementById($menu.getAttribute("href").substring(1)))
+              .forEach($content => $content.classList.add('is-hidden'));
+
+          if ($tabMenu) {
+              $tabMenu.parentElement.classList.add('is-active');
+          }
+          const $activeTab = document.querySelector(id);
+          if ($activeTab) {
+              $activeTab.classList.remove('is-hidden');
+          }
+      }
+      switchTab();
+      window.addEventListener('hashchange', switchTab, false);
+  })();
+  </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head><body class="is-2-column"><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/img/logo.svg" alt="OD&#039;s blog" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">主页</a></div><div class="navbar-end"><a class="navbar-item search" title="搜索" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-8-widescreen"><div class="card"><article class="card-content article" role="article"><h1 class="title is-3 is-size-4-mobile">Chapter3_MATH1408</h1><div class="content"><h1 id="行列式与矩阵理论进阶"><a href="#行列式与矩阵理论进阶" class="headerlink" title="行列式与矩阵理论进阶"></a>行列式与矩阵理论进阶</h1><h2 id="1-行列式-Determinant"><a href="#1-行列式-Determinant" class="headerlink" title="1. 行列式 (Determinant)"></a>1. 行列式 (Determinant)</h2><h3 id="1-1-行列式的定义"><a href="#1-1-行列式的定义" class="headerlink" title="1.1 行列式的定义"></a>1.1 行列式的定义</h3><p>$n$ 阶行列式，记作 $|A|$ 或 $\det(A)$，其中 $A = (a_{ij})$ 是一个 $n \times n$ 的方阵，其值为：</p>
+<script type="math/tex; mode=display">
+|A| = \left| \begin{array}{cccc}
+a_{11} & a_{12} & \cdots & a_{1n} \\
+a_{21} & a_{22} & \cdots & a_{2n} \\
+\vdots & \vdots & \ddots & \vdots \\
+a_{n1} & a_{n2} & \cdots & a_{nn}
+\end{array} \right| = \sum_{j_1j_2\cdots j_n} (-1)^{\tau(j_1j_2\cdots j_n)} a_{1j_1}a_{2j_2}\cdots a_{nj_n}</script><p>其中：</p>
+<ul>
+<li>求和遍及所有 $n$ 元排列 $j_1j_2\cdots j_n$ (共 $n!$ 项)。</li>
+<li>$\tau(j_1j_2\cdots j_n)$ 是排列 $j_1j_2\cdots j_n$ 的逆序数。</li>
+<li>每一项是取自不同行、不同列的 $n$ 个元素的乘积，并根据列下标排列的奇偶性赋予正负号。<ul>
+<li>若 $\tau(j_1j_2\cdots j_n)$ 为偶数，则该项取正号。</li>
+<li>若 $\tau(j_1j_2\cdots j_n)$ 为奇数，则该项取负号。</li>
+</ul>
+</li>
+</ul>
+<p><strong>历史</strong>: 行列式的概念早于矩阵，最初用于判断线性方程组是否有唯一解。</p>
+<h3 id="1-2-行列式的性质-Properties-of-Determinants"><a href="#1-2-行列式的性质-Properties-of-Determinants" class="headerlink" title="1.2 行列式的性质 (Properties of Determinants)"></a>1.2 行列式的性质 (Properties of Determinants)</h3><p>PPT中列举了7条性质，其中G. Strang强调了性质(2)到(5)是定义行列式的基本公理：</p>
+<ol>
+<li><p><strong>转置不变性</strong>: $|A^T| = |A|$。</p>
+<ul>
+<li><strong>证明思路</strong>: 行列式定义中 $a_{ij}$ 可以按行展开也可以按列展开，其本质是对称的。</li>
+</ul>
+</li>
+<li><strong>线性性 (对行/列)</strong>:<ul>
+<li>若某一行 (或列) 的元素是两数之和，则行列式等于对应的两个行列式之和。<br>$| \dots, \mathbf{r}_i + \mathbf{r’}_i, \dots | = | \dots, \mathbf{r}_i, \dots | + | \dots, \mathbf{r’}_i, \dots |$</li>
+<li>若某一行 (或列) 有公因子 $k$，则 $k$ 可以提到行列式符号外面。<br>$| \dots, k\mathbf{r}_i, \dots | = k | \dots, \mathbf{r}_i, \dots |$</li>
+<li><strong>推论</strong>: 若某一行 (或列) 元素全为0，则行列式为0。</li>
+</ul>
+</li>
+<li><p><strong>两行 (或列) 互换，行列式变号</strong>:</p>
+<ul>
+<li><strong>证明思路</strong>: 交换两行对应于排列的逆序数改变奇偶性。</li>
+</ul>
+</li>
+<li><strong>有两行 (或列) 相同，行列式为0</strong>:<ul>
+<li><strong>证明思路</strong>: 交换相同的两行，行列式变号，但行列式本身不变，所以 $D = -D \implies D=0$。 (要求域的特征不为2)<br>或者，可以将一行减去另一相同的行，得到一行全为0，故行列式为0。</li>
+</ul>
+</li>
+<li><strong>将某一行 (或列) 的 $k$ 倍加到另一行 (或列)，行列式不变</strong>:<ul>
+<li><strong>证明思路</strong>: $| \dots, \mathbf{r}_i + k\mathbf{r}_j, \dots, \mathbf{r}_j, \dots | = | \dots, \mathbf{r}_i, \dots, \mathbf{r}_j, \dots | + | \dots, k\mathbf{r}_j, \dots, \mathbf{r}_j, \dots |$<br>第二项因为有两行成比例 (或利用性质4)，所以为0。</li>
+</ul>
+</li>
+<li><strong>行列式乘法定理</strong>: $|AB| = |A||B|$ (对同阶方阵 $A, B$)。<ul>
+<li><strong>证明思路</strong>:<ul>
+<li>若 $|A|=0$ 或 $|B|=0$，则 $\text{rank}(A) &lt; n$ 或 $\text{rank}(B) &lt; n$。<br>那么 $\text{rank}(AB) \le \min(\text{rank}(A), \text{rank}(B)) &lt; n$，所以 $|AB|=0$。公式成立。</li>
+<li>若 $|A| \neq 0$ 且 $|B| \neq 0$。可以将 $A$ 和 $B$ 表示为初等矩阵的乘积。<br>对初等矩阵验证该性质，然后推广到一般矩阵。<br>另一种方法是构造分块矩阵 $\begin{pmatrix} A &amp; 0 \\ -I &amp; B \end{pmatrix}$，其行列式为 $|A||B|$。<br>通过行变换（将 $A$ 的行乘以 $B$ 的对应列元素加到 $B$ 的行上）可以将其变为 $\begin{pmatrix} A &amp; AB \\ -I &amp; 0 \end{pmatrix}$，其行列式为 $(-1)^{n^2} |-I| |AB| = |AB|$ (需要仔细处理符号)。<br>更常见的证明是构造 $\begin{pmatrix} A &amp; 0 \\ -I &amp; B \end{pmatrix}$ 通过行变换变为 $\begin{pmatrix} A &amp; AB \\ -I &amp; 0 \end{pmatrix}$，或者构造 $\begin{pmatrix} A &amp; -AB \\ 0 &amp; B \end{pmatrix}$。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>Laplace展开定理 (按行/列展开)</strong>:<br>行列式等于其任一行 (或列) 的各元素与其对应的代数余子式乘积之和。<br>按第 $i$ 行展开: $D = \sum_{j=1}^n a_{ij}A_{ij}$<br>按第 $j$ 列展开: $D = \sum_{i=1}^n a_{ij}A_{ij}$<br>其中 $A_{ij} = (-1)^{i+j}M_{ij}$ 是元素 $a_{ij}$ 的代数余子式，$M_{ij}$ 是去掉第 $i$ 行和第 $j$ 列后得到的 $n-1$ 阶子行列式。</p>
+<p><strong>重要推论</strong>: 某一行 (或列) 的元素与另一行 (或列) 对应元素的代数余子式乘积之和为0。<br>$\sum_{k=1}^n a_{ik}A_{jk} = \delta_{ij} D$<br>其中 $\delta_{ij}$ 是 Kronecker delta: $\delta_{ij} = \begin{cases} 1, &amp; i=j \\ 0, &amp; i \neq j \end{cases}$</p>
+<ul>
+<li><strong>证明 ($i \neq j$)</strong>: $\sum_{k=1}^n a_{ik}A_{jk}$ 可以看作是将矩阵的第 $j$ 行替换为第 $i$ 行后得到的新矩阵 $A’$ 按第 $j$ 行展开。由于 $A’$ 有两行相同 (都是原来的第 $i$ 行)，所以 $|A’|=0$。</li>
+</ul>
+</li>
+</ol>
+<h3 id="1-3-行列式的计算方法"><a href="#1-3-行列式的计算方法" class="headerlink" title="1.3 行列式的计算方法"></a>1.3 行列式的计算方法</h3><ul>
+<li><strong>利用定义</strong>: 仅适用于低阶 (2阶、3阶对角线法则)。高阶计算量巨大 ($n!$)。</li>
+<li><strong>利用性质化为上/下三角行列式</strong>:<ul>
+<li>上/下三角行列式的值等于主对角线元素的乘积。</li>
+<li>通过初等行变换（性质3, 5）将行列式化为三角形式。</li>
+</ul>
+</li>
+<li><strong>降阶法 (Laplace展开)</strong>: 选择含有较多0的行或列进行展开。</li>
+<li><p><strong>利用行列式性质进行化简和运算</strong>:</p>
+<ul>
+<li><p><strong>例1</strong>:<br>$D = \left| \begin{array}{cccc}<br>1+x &amp; 1 &amp; 1 &amp; 1 \\<br>1 &amp; 1-x &amp; 1 &amp; 1 \\<br>1 &amp; 1 &amp; 1+y &amp; 1 \\<br>1 &amp; 1 &amp; 1 &amp; 1-y<br>\end{array} \right|$<br>方法1 (行变换):<br>$r_1 \leftarrow r_1 - r_2$, $r_3 \leftarrow r_3 - r_4$<br>$D = \left| \begin{array}{cccc}<br>x &amp; x &amp; 0 &amp; 0 \\<br>1 &amp; 1-x &amp; 1 &amp; 1 \\<br>0 &amp; 0 &amp; y &amp; y \\<br>1 &amp; 1 &amp; 1 &amp; 1-y<br>\end{array} \right| = xy \left| \begin{array}{cccc}<br>1 &amp; 1 &amp; 0 &amp; 0 \\<br>1 &amp; 1-x &amp; 1 &amp; 1 \\<br>0 &amp; 0 &amp; 1 &amp; 1 \\<br>1 &amp; 1 &amp; 1 &amp; 1-y<br>\end{array} \right|$<br>$r_2 \leftarrow r_2 - r_1$, $r_4 \leftarrow r_4 - r_3$ (对内部2x2块操作，或直接对4x4操作)<br>$ = xy \left| \begin{array}{cccc}<br>1 &amp; 1 &amp; 0 &amp; 0 \\<br>0 &amp; -x &amp; 1 &amp; 1 \\<br>0 &amp; 0 &amp; 1 &amp; 1 \\<br>0 &amp; 0 &amp; 0 &amp; -y<br>\end{array} \right| = xy \left| \begin{array}{cccc}<br>1 &amp; 1 &amp; 0 &amp; 0 \\<br>0 &amp; -x &amp; 0 &amp; 0 \\  % r_2 &lt;- r_2 - r_3<br>0 &amp; 0 &amp; 1 &amp; 1 \\<br>0 &amp; 0 &amp; 0 &amp; -y<br>\end{array} \right| = xy(1)(-x)(1)(-y) = x^2y^2$.</p>
+<p>方法2 (升阶/镶边法，原PPT中似乎是这种思路，但行列式操作有误):<br>原PPT的第二种解法似乎是想构造一个 $(n+1) \times (n+1)$ 的行列式，然后通过变换得到原行列式与某个因子的乘积。<br>例如：$D = \left| \begin{array}{cc} A &amp; B \\ C &amp; D_0 \end{array} \right|$。<br>但PPT中的操作 $D = \left| \begin{array}{ccccc} 1 &amp; 1 &amp; 1 &amp; 1 &amp; 1 \\ 0 &amp; 1+x &amp; 1 &amp; 1 &amp; 1 \\ \vdots \end{array} \right|$ 后续的 $-1$ 倍加到各行，然后得到对角阵 $x, -x, y, -y$ 的思路是正确的，但初始构造的镶边行列式与原行列式的关系需要明确。<br>一个更规范的镶边技巧是针对 $D = |A|$，可以构造 $\begin{vmatrix} 1 &amp; \mathbf{b}^T \\ \mathbf{c} &amp; A \end{vmatrix}$ 等。<br>PPT中的第二种解法更像是直接从 $r_2 \leftarrow r_2-r_1, r_3 \leftarrow r_3-r_1, r_4 \leftarrow r_4-r_1$ 开始，然后提取公因子或者继续化简。</p>
+<p>方法3 (多项式零点法/待定系数法):<br>将 $D(x,y)$ 看作是关于 $x$ 的多项式。<br>$D(x,y) = \left| \begin{array}{cccc}<br>1+x &amp; 1 &amp; 1 &amp; 1 \\<br>1 &amp; 1-x &amp; 1 &amp; 1 \\<br>1 &amp; 1 &amp; 1+y &amp; 1 \\<br>1 &amp; 1 &amp; 1 &amp; 1-y<br>\end{array} \right|$<br>当 $x=0$ 时，$D(0,y) = \left| \begin{array}{cccc}<br>1 &amp; 1 &amp; 1 &amp; 1 \\<br>1 &amp; 1 &amp; 1 &amp; 1 \\<br>\dots \end{array} \right| = 0$。所以 $x$ 是一个因子。<br>由于 $D(x,y)$ 中 $x$ 的最高次数是2 (来自 $(1+x)(1-x)$)，且 $D(x,y) = D(-x,y)$ (将 $x$ 替换为 $-x$，然后交换前两列再交换前两行，行列式不变号两次)，所以 $D(x,y)$ 是关于 $x$ 的偶函数，且 $x=0$ 是二重根，即 $x^2$ 是因子。<br>同理可证 $y^2$ 是因子。<br>所以 $D(x,y) = C x^2 y^2$。<br>比较 $x^2y^2$ 的系数 (例如，来自对角线元素 $(1+x)(1-x)(1+y)(1-y)$ 展开后 $x^2y^2$ 的系数是1)，得到 $C=1$.<br>因此 $D(x,y) = x^2y^2$.</p>
+</li>
+<li><p><strong>例2 (轮换行列式/循环行列式)</strong>:<br>$D = \left| \begin{array}{cccc}<br>x &amp; y &amp; z &amp; w \\<br>y &amp; x &amp; w &amp; z \\<br>z &amp; w &amp; x &amp; y \\<br>w &amp; z &amp; y &amp; x<br>\end{array} \right|$<br>(这是一个循环矩阵的行列式，但元素排列方式与标准循环矩阵不同，更像某些对称结构)<br>PPT中的解法：<br>将所有列加到第一列：第一列元素都变成 $x+y+z+w$，提取公因子。<br>$c_1 \leftarrow c_1+c_2-c_3-c_4$ (或类似组合) 尝试凑出 $x+y-z-w$ 等因子。<br>对于 $n$ 阶循环行列式 $D = \text{circ}(a_1, a_2, \dots, a_n)$，其值为 $\prod_{j=0}^{n-1} f(\omega_j)$，其中 $f(x) = a_1 + a_2x + \dots + a_nx^{n-1}$，$x^n=1$ 的根为 $\omega_j = e^{i \frac{2\pi j}{n}}$.<br>本题的行列式是 $D = (x+y+z+w)(x+y-z-w)(x+z-y-w)(x+w-y-z)$.<br>(这里PPT用了“范德蒙行列式”来辅助，可能是指将其与某个多项式在单位根处取值联系起来)<br>设 $P(t) = x+yt+zt^2+wt^3$。<br>$D = \prod_{k=0}^3 P(\epsilon_k)$ 其中 $\epsilon_k$ 是 $t^4=1$ 的某个特定排列的根（可能不是标准的单位根，而是 $1, -1, i, -i$的组合应用到列变换上）。<br>更直接的方法：<br>$c_1 \leftarrow c_1+c_2+c_3+c_4 \implies (x+y+z+w)$ 是因子。<br>$c_1 \leftarrow c_1+c_2-c_3-c_4 \implies (x+y-z-w)$ 是因子。<br>$c_1 \leftarrow c_1-c_2+c_3-c_4 \implies (x-y+z-w)$ 是因子。<br>$c_1 \leftarrow c_1-c_2-c_3+c_4 \implies (x-y-z+w)$ 是因子。<br>(需要验证这些操作确实能分离出因子)</p>
+</li>
+<li><p><strong>例3 (友矩阵的特征多项式相关的行列式)</strong>:<br>$F_n(\lambda) = \left| \begin{array}{cccccc}<br>\lambda &amp; 0 &amp; 0 &amp; \cdots &amp; 0 &amp; a_n \\<br>-1 &amp; \lambda &amp; 0 &amp; \cdots &amp; 0 &amp; a_{n-1} \\<br>0 &amp; -1 &amp; \lambda &amp; \cdots &amp; 0 &amp; a_{n-2} \\<br>\vdots &amp; \vdots &amp; \vdots &amp; \ddots &amp; \vdots &amp; \vdots \\<br>0 &amp; 0 &amp; 0 &amp; \cdots &amp; \lambda &amp; a_2 \\<br>0 &amp; 0 &amp; 0 &amp; \cdots &amp; -1 &amp; \lambda+a_1<br>\end{array} \right|$<br>按第一行展开: $F_n = \lambda M_{11} + (-1)^{1+n} a_n M_{1n}$.<br>$M_{11}$ 是一个类似的 $n-1$ 阶行列式。<br>$M_{1n}$ 是一个下三角行列式，对角线元素都是 $-1$，所以 $M_{1n} = (-1)^{n-1}$.<br>递推关系: $F_n = \lambda F_{n-1}’ + (-1)^{n+1} a_n (-1)^{n-1}$ (这里 $F_{n-1}’$ 结构与 $F_{n-1}$略有不同，需要仔细看)。<br>PPT给出的递推关系: $F_n = \lambda F_{n-1} + (-1)^{n+1}(-1)^{n-1}a_n = \lambda F_{n-1} + a_n$. (这似乎是 $a_n$ 符号定义不同的情况)<br>正确的递推（按第一列展开更简单）：<br>$F_n(\lambda) = \lambda \cdot \text{det}(\text{submatrix for } a_{11}) - (-1) \cdot \text{det}(\text{submatrix for } a_{21})$<br>如果按第一行展开 $F_n(\lambda) = \lambda \cdot \text{det} \begin{pmatrix} \lambda &amp; \dots &amp; a_{n-1} \\ -1 &amp; \dots &amp; a_{n-2} \\ \dots \\ -1 &amp; \lambda+a_1 \end{pmatrix}_{\text{右上角为}(n-1)\times(n-1)} + (-1)^{n+1} a_n \cdot \text{det} \begin{pmatrix} -1 &amp; \lambda &amp; \dots \\ 0 &amp; -1 &amp; \dots \\ \dots \\ 0 &amp; \dots &amp; -1 \end{pmatrix}_{(n-1)\times(n-1)}$<br>$F_n(\lambda) = \lambda \cdot (\lambda^{n-1} + a_1 \lambda^{n-2} + \dots + a_{n-1}) + (-1)^{n+1}a_n (-1)^{n-1}$<br>$F_n(\lambda) = \lambda^n + a_1 \lambda^{n-1} + \dots + a_{n-1}\lambda + a_n$.<br>这是多项式 $p(t) = t^n + a_1 t^{n-1} + \dots + a_n$ 的友矩阵的特征行列式 $|\lambda I - C_p|$.</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="1-4-Laplace-展开定理的推广-子式与代数余子式"><a href="#1-4-Laplace-展开定理的推广-子式与代数余子式" class="headerlink" title="1.4 Laplace 展开定理的推广 (子式与代数余子式)"></a>1.4 Laplace 展开定理的推广 (子式与代数余子式)</h3><ul>
+<li><strong>$k$ 阶子式</strong>: 从 $n$ 阶行列式 $D$ 中任意取定 $k$ 行 (行标 $i_1 &lt; i_2 &lt; \dots &lt; i_k$) 和 $k$ 列 (列标 $j_1 &lt; j_2 &lt; \dots &lt; j_k$)，位于这些行和列交叉处的 $k^2$ 个元素按原来的相对位置组成的 $k$ 阶行列式，称为 $D$ 的一个 $k$ 阶子式。<br>记作 $D\left(\begin{smallmatrix} i_1 &amp; i_2 &amp; \cdots &amp; i_k \\ j_1 &amp; j_2 &amp; \cdots &amp; j_k \end{smallmatrix}\right)$.</li>
+<li><strong>余子式</strong>: 在 $D$ 中划去上述 $k$ 行和 $k$ 列后，余下的 $(n-k)^2$ 个元素按原来的相对位置组成的 $(n-k)$ 阶行列式，称为上述 $k$ 阶子式的余子式。<br>记作 $M\left(\begin{smallmatrix} i_1 &amp; i_2 &amp; \cdots &amp; i_k \\ j_1 &amp; j_2 &amp; \cdots &amp; j_k \end{smallmatrix}\right)$.</li>
+<li><p><strong>代数余子式</strong>:<br>$\hat{D}\left(\begin{smallmatrix} i_1 &amp; i_2 &amp; \cdots &amp; i_k \\ j_1 &amp; j_2 &amp; \cdots &amp; j_k \end{smallmatrix}\right) = (-1)^{\sum_{s=1}^k i_s + \sum_{s=1}^k j_s} M\left(\begin{smallmatrix} i_1 &amp; i_2 &amp; \cdots &amp; i_k \\ j_1 &amp; j_2 &amp; \cdots &amp; j_k \end{smallmatrix}\right)$.</p>
+</li>
+<li><p><strong>Laplace 展开定理</strong>: 在 $n$ 阶行列式 $D$ 中，任意取定 $k$ 行 (或 $k$ 列)，由这 $k$ 行 (或 $k$ 列) 元素组成的所有 $k$ 阶子式与它们对应的代数余子式的乘积之和等于行列式 $D$ 的值。<br>例如，按 $i_1, \dots, i_k$ 行展开:<br>$D = \sum_{1 \le j_1 &lt; j_2 &lt; \dots &lt; j_k \le n} D\left(\begin{smallmatrix} i_1 &amp; \dots &amp; i_k \\ j_1 &amp; \dots &amp; j_k \end{smallmatrix}\right) \hat{D}\left(\begin{smallmatrix} i_1 &amp; \dots &amp; i_k \\ j_1 &amp; \dots &amp; j_k \end{smallmatrix}\right)$.</p>
+<ul>
+<li><strong>证明思路</strong>:<ol>
+<li>证明一个特殊情况：如果行列式是分块上三角或下三角形式 $D = \left| \begin{array}{cc} A_k &amp; B \\ O &amp; C_{n-k} \end{array} \right|$, 则 $D = |A_k||C_{n-k}|$.<br>在这个特殊情况下，如果选前 $k$ 行，那么只有当 $j_1=1, \dots, j_k=k$ 时子式 $D(\dots)$ 非零 (如果 $B=0$)。此时 $D(\begin{smallmatrix} 1 \dots k \\ 1 \dots k \end{smallmatrix}) = |A_k|$ 且 $\hat{D}(\begin{smallmatrix} 1 \dots k \\ 1 \dots k \end{smallmatrix}) = |C_{n-k}|$.</li>
+<li>一般情况可以通过行变换和列变换将任意选定的 $k$ 行 $k$ 列移动到左上角，形成 $D\left(\begin{smallmatrix} i_1 &amp; \dots &amp; i_k \\ j_1 &amp; \dots &amp; j_k \end{smallmatrix}\right)$ 作为左上角块，其代数余子式对应右下角块的行列式（带符号）。</li>
+<li>核心思想是将行列式的定义 (求和 $n!$ 项) 进行分组。每一组对应于一个特定的 $k$ 阶子式及其余子式的乘积。符号的匹配是关键。<br>PPT中的证明思路：考虑行列式定义中 $n!$ 项的求和。公式 (2) 的每一项 $D(\dots)\hat{D}(\dots)$ 展开后包含 $k!(n-k)!$ 项乘积。总共有 $\binom{n}{k}$ 个这样的 $k$ 阶子式。所以总项数 $\binom{n}{k} k!(n-k)! = n!$。每一项的符号需要匹配。</li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="1-5-应用"><a href="#1-5-应用" class="headerlink" title="1.5 应用"></a>1.5 应用</h3><ul>
+<li><strong>Cramer 法则</strong>: 对于线性方程组 $AX=\beta$，若系数行列式 $D=|A| \neq 0$，则方程组有唯一解：<br>$x_j = \frac{D_j}{D}$, for $j=1, \dots, n$.<br>其中 $D_j$ 是将 $D$ 中第 $j$ 列替换为常数项向量 $\beta$ 后得到的行列式。<ul>
+<li><strong>证明</strong>: $A \cdot \text{adj}(A) = |A|I$.<br>$AX=\beta \implies \text{adj}(A)AX = \text{adj}(A)\beta \implies |A|X = \text{adj}(A)\beta$.<br>$|A|x_j = (\text{adj}(A)\beta)_j = \sum_{k=1}^n (\text{adj}(A))_{jk} \beta_k = \sum_{k=1}^n A_{kj} \beta_k$.<br>$\sum_{k=1}^n \beta_k A_{kj}$ 正是 $D_j$ 按第 $j$ 列展开的结果。</li>
+</ul>
+</li>
+<li><strong>伴随矩阵</strong>: $A^<em> = \text{adj}(A) = (A_{ji})$ (代数余子式 $A_{ji}$ 放在 $(i,j)$ 位置，即代数余子式矩阵的转置)。<br>$AA^</em> = A^<em>A = |A|I_n$.<br>若 $|A| \neq 0$, 则 $A^{-1} = \frac{1}{|A|}A^</em>$.</li>
+</ul>
+<h3 id="1-6-特殊行列式的计算"><a href="#1-6-特殊行列式的计算" class="headerlink" title="1.6 特殊行列式的计算"></a>1.6 特殊行列式的计算</h3><ul>
+<li><strong>循环行列式 (Circulant Determinant)</strong>:<br>$D = \left| \begin{array}{cccc}<br>a_1 &amp; a_2 &amp; \cdots &amp; a_n \\<br>a_n &amp; a_1 &amp; \cdots &amp; a_{n-1} \\<br>\vdots &amp; \vdots &amp; \ddots &amp; \vdots \\<br>a_2 &amp; a_3 &amp; \cdots &amp; a_1<br>\end{array} \right|$<br>令 $f(x) = a_1 + a_2x + \dots + a_nx^{n-1}$.<br>令 $\varepsilon_k$ ($k=0, \dots, n-1$) 是 $x^n=1$ 的 $n$ 个单位根。<br>则 $D = \prod_{k=0}^{n-1} f(\varepsilon_k)$.<ul>
+<li><strong>证明思路</strong>: 构造范德蒙矩阵 $V$ (列为 $(1, \varepsilon_k, \dots, \varepsilon_k^{n-1})^T$)。<br>考虑矩阵乘积 $DV$。<br>$(DV)_{jk} = \sum_{l=1}^n D_{jl} V_{lk} = \sum_{l=1}^n a_{\text{index}(j,l)} \varepsilon_k^{l-1}$.<br>可以证明 $(DV)_{jk} = f(\varepsilon_k) \varepsilon_k^{j-1}$.<br>所以 $DV = \text{diag}(f(\varepsilon_0), \dots, f(\varepsilon_{n-1})) \cdot V^T$ (或者类似形式，这里可能 $V$ 的行和列定义有关)。<br>更标准的是 $CV = V \text{diag}(f(\varepsilon_0), \dots, f(\varepsilon_{n-1}))$，其中 $C$ 是循环矩阵。<br>所以 $|C||V| = |V| \prod f(\varepsilon_k)$. 由于 $|V| \neq 0$ (范德蒙行列式)，所以 $|C| = \prod f(\varepsilon_k)$.</li>
+</ul>
+</li>
+<li><p><strong>Cauchy-Binet 公式</strong>: (行列式的乘积)<br>设 $A$ 是 $m \times n$ 矩阵，$B$ 是 $n \times m$ 矩阵。</p>
+<ul>
+<li>若 $m &gt; n$: 则 $|AB| = 0$.<ul>
+<li><strong>证明</strong>: $\text{rank}(A) \le n$, $\text{rank}(B) \le n$.<br>$\text{rank}(AB) \le \min(\text{rank}(A), \text{rank}(B)) \le n &lt; m$.<br>由于 $AB$ 是 $m \times m$ 矩阵，其秩小于 $m$，所以 $|AB|=0$.</li>
+</ul>
+</li>
+<li><p>若 $m \le n$: 则 $AB$ 是 $m \times m$ 矩阵。<br>$|AB| = \sum_{1 \le j_1 &lt; j_2 &lt; \dots &lt; j_m \le n} A\left(\begin{smallmatrix} 1 &amp; 2 &amp; \cdots &amp; m \\ j_1 &amp; j_2 &amp; \cdots &amp; j_m \end{smallmatrix}\right) B\left(\begin{smallmatrix} j_1 &amp; j_2 &amp; \cdots &amp; j_m \\ 1 &amp; 2 &amp; \cdots &amp; m \end{smallmatrix}\right)$.<br>这里 $A(\dots)$ 是 $A$ 取所有 $m$ 行和 $j_1, \dots, j_m$ 列构成的 $m$ 阶子式。<br>$B(\dots)$ 是 $B$ 取 $j_1, \dots, j_m$ 行和所有 $m$ 列构成的 $m$ 阶子式。</p>
+<ul>
+<li><p><strong>证明思路</strong>:<br>构造分块矩阵 $C = \begin{pmatrix} A &amp; 0 \\ -I_n &amp; B \end{pmatrix}$ (这里 $I_n$ 可能是 $I_m$ 或 $I_n$ 取决于构造方式，PPT用 $I_n$)，这是一个 $(m+n) \times (m+n)$ 阵。<br>一方面 $|C| = |A| |B|$ (如果 $A,B$ 是方阵且这样分块)。<br>PPT的构造是 $C = \begin{pmatrix} A &amp; 0 \\ -I_n &amp; B \end{pmatrix}$，但这里的 $A$ 是 $m \times n$, $B$ 是 $n \times m$。这个 $C$ 不是方阵，除非 $m=n$。<br>更标准的构造：考虑 $M = \begin{pmatrix} I_m &amp; A \\ 0 &amp; I_n \end{pmatrix} \begin{pmatrix} -AB &amp; 0 \\ B &amp; I_m \end{pmatrix} = \begin{pmatrix} 0 &amp; A \\ B &amp; I_m \end{pmatrix}$ (这也不太对)。</p>
+<p>正确的构造（一种）:<br>考虑 $2m \times 2m$ 矩阵 (假设 $n=m$ 先看 $|AB|=|A||B|$) :<br>$\begin{vmatrix} A &amp; 0 \\ -I &amp; B \end{vmatrix} = |A||B|$.<br>通过 $R_i \leftarrow R_i + \sum_k a_{ik} R_{m+k}$ (对 $i=1 \dots m$) 可以变换为 $\begin{vmatrix} A &amp; AB \\ -I &amp; 0 \end{vmatrix} = (-1)^{m^2} |-I||AB| = |AB|$.</p>
+<p>对于 Cauchy-Binet，PPT 的提示是构造 $C = \begin{pmatrix} A &amp; 0 \\ -I_n &amp; B \end{pmatrix}$，然后用 Laplace 展开。<br>另一种思路是利用 Grassman 代数 (外代数)。<br>一个更初等的证明涉及到将 $A$ 的列向量和 $B$ 的行向量展开，然后利用行列式的多线性性质。</p>
+</li>
+</ul>
+</li>
+<li><strong>子式的乘积公式 (推广的Cauchy-Binet)</strong>:<br>设 $A$ 是 $m \times n$ 矩阵, $B$ 是 $n \times p$ 矩阵。 $C=AB$ 是 $m \times p$ 矩阵。<br>取 $C$ 的任意 $r \times r$ 子式 $C\left(\begin{smallmatrix} i_1 \dots i_r \\ j_1 \dots j_r \end{smallmatrix}\right)$.<br>$C\left(\begin{smallmatrix} i_1 \dots i_r \\ j_1 \dots j_r \end{smallmatrix}\right) = \sum_{1 \le k_1 &lt; \dots &lt; k_r \le n} A\left(\begin{smallmatrix} i_1 \dots i_r \\ k_1 \dots k_r \end{smallmatrix}\right) B\left(\begin{smallmatrix} k_1 \dots k_r \\ j_1 \dots j_r \end{smallmatrix}\right)$.<br>这个公式表明乘积矩阵的任一子式等于第一个矩阵的相应行构成的所有同阶子式与第二个矩阵的相应列构成的所有同阶子式的对应乘积之和。<br>如果 $r &gt; n$，则右边没有 $k_1 &lt; \dots &lt; k_r$ 的组合，和为0 (子式为0)。</li>
+</ul>
+</li>
+<li><strong>Lagrange 恒等式</strong>:<br>$(\sum_{i=1}^n a_i^2)(\sum_{i=1}^n b_i^2) - (\sum_{i=1}^n a_ib_i)^2 = \sum_{1 \le i &lt; j \le n} (a_ib_j - a_jb_i)^2$.<ul>
+<li><strong>证明</strong>: 可以看作是 Cauchy-Binet 公式在 $m=2$ 时的特殊情况。<br>令 $A = \begin{pmatrix} a_1 &amp; a_2 &amp; \dots &amp; a_n \\ b_1 &amp; b_2 &amp; \dots &amp; b_n \end{pmatrix}$ (2xN矩阵)。<br>则 $AA^T = \begin{pmatrix} \sum a_i^2 &amp; \sum a_ib_i \\ \sum a_ib_i &amp; \sum b_i^2 \end{pmatrix}$.<br>$|AA^T| = (\sum a_i^2)(\sum b_i^2) - (\sum a_ib_i)^2$.<br>根据 Cauchy-Binet: $|AA^T| = \sum_{1 \le i &lt; j \le n} A\left(\begin{smallmatrix} 1 &amp; 2 \\ i &amp; j \end{smallmatrix}\right) (A^T)\left(\begin{smallmatrix} i &amp; j \\ 1 &amp; 2 \end{smallmatrix}\right)$.<br>$A\left(\begin{smallmatrix} 1 &amp; 2 \\ i &amp; j \end{smallmatrix}\right) = \left| \begin{array}{cc} a_i &amp; a_j \\ b_i &amp; b_j \end{array} \right| = a_ib_j - a_jb_i$.<br>$(A^T)\left(\begin{smallmatrix} i &amp; j \\ 1 &amp; 2 \end{smallmatrix}\right) = \left| \begin{array}{cc} a_i &amp; b_i \\ a_j &amp; b_j \end{array} \right|$ (这是 $A^T$ 的子式，即取 $A^T$ 的第 $i,j$ 行和第 $1,2$ 列)<br>$= a_ib_j - a_jb_i$.<br>所以 $|AA^T| = \sum_{1 \le i &lt; j \le n} (a_ib_j - a_jb_i)^2$.</li>
+<li>此恒等式也与 Cauchy-Schwarz 不等式相关。</li>
+</ul>
+</li>
+</ul>
+<h3 id="1-7-Jacobian-行列式"><a href="#1-7-Jacobian-行列式" class="headerlink" title="1.7 Jacobian 行列式"></a>1.7 Jacobian 行列式</h3><ul>
+<li>在多变量微积分中，用于变量替换时的体积/面积缩放因子。<br>如果 $y_k = f_k(x_1, \dots, x_n)$, 则 Jacobian 行列式为 $J = \left| \frac{\partial y_i}{\partial x_j} \right|$.</li>
+</ul>
+<h2 id="2-分块矩阵-Block-Matrices"><a href="#2-分块矩阵-Block-Matrices" class="headerlink" title="2. 分块矩阵 (Block Matrices)"></a>2. 分块矩阵 (Block Matrices)</h2><h3 id="2-1-分块矩阵的运算"><a href="#2-1-分块矩阵的运算" class="headerlink" title="2.1 分块矩阵的运算"></a>2.1 分块矩阵的运算</h3><ul>
+<li><strong>加法</strong>: 对应分块相加 (要求分块方式一致)。</li>
+<li><strong>数乘</strong>: 数乘每一个子块。</li>
+<li><strong>乘法</strong>: 类似普通矩阵乘法规则，但块的乘积需要有意义 (列数=行数)，且块的顺序不能交换。<br>$\begin{pmatrix} A &amp; B \\ C &amp; D \end{pmatrix} \begin{pmatrix} X &amp; Y \\ Z &amp; W \end{pmatrix} = \begin{pmatrix} AX+BZ &amp; AY+BW \\ CX+DZ &amp; CY+DW \end{pmatrix}$.</li>
+<li><strong>转置</strong>: $(A_{ij})^T = (A_{ji}^T)$. 对整个块矩阵转置，然后对每个子块转置。</li>
+</ul>
+<h3 id="2-2-分块对角矩阵"><a href="#2-2-分块对角矩阵" class="headerlink" title="2.2 分块对角矩阵"></a>2.2 分块对角矩阵</h3><ul>
+<li>$A = \text{diag}(A_1, A_2, \dots, A_k) = \begin{pmatrix} A_1 &amp; &amp; &amp; O \\ &amp; A_2 &amp; &amp; \\ &amp; &amp; \ddots &amp; \\ O &amp; &amp; &amp; A_k \end{pmatrix}$.</li>
+<li><strong>行列式</strong>: $|A| = |A_1||A_2|\cdots|A_k|$.</li>
+<li><strong>逆 (如果存在)</strong>: $A^{-1} = \text{diag}(A_1^{-1}, A_2^{-1}, \dots, A_k^{-1})$. (要求每个 $A_i$ 都可逆)。</li>
+<li><strong>幂</strong>: $A^p = \text{diag}(A_1^p, \dots, A_k^p)$.</li>
+</ul>
+<h3 id="2-3-分块上-下三角矩阵"><a href="#2-3-分块上-下三角矩阵" class="headerlink" title="2.3 分块上/下三角矩阵"></a>2.3 分块上/下三角矩阵</h3><ul>
+<li>$A = \begin{pmatrix} A_{11} &amp; A_{12} &amp; \cdots &amp; A_{1k} \\ &amp; A_{22} &amp; \cdots &amp; A_{2k} \\ &amp; &amp; \ddots &amp; \vdots \\ O &amp; &amp; &amp; A_{kk} \end{pmatrix}$ (分块上三角)。</li>
+<li><strong>行列式</strong>: $|A| = |A_{11}||A_{22}|\cdots|A_{kk}|$. (要求对角块 $A_{ii}$ 都是方阵)。<ul>
+<li><strong>证明思路</strong>: 可以通过一系列的分块初等行变换（不改变行列式的值，或只改变符号）将非对角块消去，或者用数学归纳法。</li>
+</ul>
+</li>
+<li><strong>逆 (如果 $A_{ii}$ 都可逆)</strong>: 逆矩阵也是分块上/下三角形式。<br>例如 $2 \times 2$ 分块: $\begin{pmatrix} A &amp; B \\ O &amp; D \end{pmatrix}^{-1} = \begin{pmatrix} A^{-1} &amp; -A^{-1}BD^{-1} \\ O &amp; D^{-1} \end{pmatrix}$. (要求 $A,D$ 可逆)。<ul>
+<li><strong>证明</strong>: $\begin{pmatrix} A &amp; B \\ O &amp; D \end{pmatrix} \begin{pmatrix} X &amp; Y \\ Z &amp; W \end{pmatrix} = \begin{pmatrix} I &amp; O \\ O &amp; I \end{pmatrix}$.<br>$AZ=O \implies Z=O$ (若 $A$ 可逆)。<br>$AX=I \implies X=A^{-1}$.<br>$DW=I \implies W=D^{-1}$.<br>$AY+BW=O \implies AY = -BW = -BD^{-1} \implies Y = -A^{-1}BD^{-1}$.</li>
+</ul>
+</li>
+</ul>
+<h3 id="2-4-行列式的分块公式-Schur-Complement"><a href="#2-4-行列式的分块公式-Schur-Complement" class="headerlink" title="2.4 行列式的分块公式 (Schur Complement)"></a>2.4 行列式的分块公式 (Schur Complement)</h3><p>设 $A, B, C, D$ 分别是 $p \times p, p \times q, q \times p, q \times q$ 矩阵。</p>
+<ul>
+<li><strong>若 $A$ 可逆</strong>:<br>$\left| \begin{array}{cc} A &amp; B \\ C &amp; D \end{array} \right| = |A| |D - CA^{-1}B|$.<br>$D - CA^{-1}B$ 称为 $A$ 在原矩阵中的 <strong>Schur 补</strong>。<ul>
+<li><strong>证明</strong>:<br>$\begin{pmatrix} I &amp; O \\ -CA^{-1} &amp; I \end{pmatrix} \begin{pmatrix} A &amp; B \\ C &amp; D \end{pmatrix} = \begin{pmatrix} A &amp; B \\ O &amp; D-CA^{-1}B \end{pmatrix}$.<br>左边第一个矩阵行列式为1。所以原行列式等于右边矩阵的行列式，即 $|A||D-CA^{-1}B|$.</li>
+</ul>
+</li>
+<li><p><strong>若 $D$ 可逆</strong>:<br>$\left| \begin{array}{cc} A &amp; B \\ C &amp; D \end{array} \right| = |D| |A - BD^{-1}C|$.<br>$A - BD^{-1}C$ 称为 $D$ 在原矩阵中的 <strong>Schur 补</strong>。</p>
+<ul>
+<li><strong>证明</strong>: 类似地，用 $\begin{pmatrix} I &amp; -BD^{-1} \\ O &amp; I \end{pmatrix}$ 左乘。</li>
+</ul>
+</li>
+<li><p><strong>重要恒等式 (若 $A,D$ 均可逆)</strong>:<br>$|A||D-CA^{-1}B| = |D||A-BD^{-1}C|$.<br>这可以用于某些行列式计算技巧。<br><strong>例</strong>: 计算 $G = \begin{pmatrix} a_1^2 &amp; a_1a_2+1 &amp; \cdots \\ a_2a_1+1 &amp; a_2^2 &amp; \cdots \\ \vdots &amp; \vdots &amp; \ddots \end{pmatrix}$. (PPT中 $a_i a_j+1$ 不在对角线)。<br>若 $G = \text{diag}(a_1^2, \dots, a_n^2) - \mathbf{1}\mathbf{1}^T + (\mathbf{a}\mathbf{a}^T - \text{diag}(a_i^2))$ (假设是 $a_ia_j + \delta_{ij}$ 这种形式)。<br>PPT中的例子 $G_{ij} = a_i a_j + \delta_{ij}$ (这是 $I + \mathbf{a}\mathbf{a}^T$)。<br>$|I + \mathbf{a}\mathbf{a}^T| = 1 + \mathbf{a}^T\mathbf{a} = 1 + \sum a_i^2$.<br>(使用公式 $|I_n + uv^T| = 1+v^Tu$).</p>
+<p>PPT中的 $G = \begin{pmatrix} -I_n &amp; \mathbf{a} \\ \mathbf{a}^T &amp; -1 \end{pmatrix}$ (这是错误的分解，PPT中是 $G_{ij} = a_i a_j$ 如果 $i \ne j$ 且 $G_{ii} = a_i^2$)<br>它给的例子 $G_{ij} = a_ia_j + \delta_{ij}$。<br>$|G| = |I_n + \mathbf{a}\mathbf{a}^T| = 1 + \mathbf{a}^T I_n^{-1} \mathbf{a} = 1 + \sum a_i^2$. (使用Sylvester行列式定理的特例)<br>PPT的推导似乎是想用一个更复杂的Schur补形式，或者对 $G = \begin{pmatrix} -E_n &amp; X \\ Y &amp; E_m \end{pmatrix}$ 的某种变换。<br>它给的 $G = aa^T - I + J$ (其中 $J$ 是全1矩阵， $a=(a_1, \dots, a_n)^T$)<br>$G_{ij} = a_i a_j - \delta_{ij} + 1$. (这与前面的 $a_ia_j+\delta_{ij}$ 不一样)。<br>PPT中的 $G$ 的具体形式及其计算需要仔细核对原题。<br>最终的例子是 $A_{ij} = a_ia_j + \delta_{ij}$，则 $|A| = 1 + \sum a_k^2$.</p>
+</li>
+</ul>
+<h3 id="2-5-矩阵秩的不等式"><a href="#2-5-矩阵秩的不等式" class="headerlink" title="2.5 矩阵秩的不等式"></a>2.5 矩阵秩的不等式</h3><ul>
+<li>$r(AB) \le \min \{r(A), r(B)\}$.<ul>
+<li><strong>证明</strong>: $AB$ 的列向量是 $A$ 的列向量的线性组合，所以 $C(AB) \subseteq C(A) \implies r(AB) \le r(A)$.<br>$AB$ 的行向量是 $B$ 的行向量的线性组合，所以 $R(AB) \subseteq R(B) \implies r(AB) \le r(B)$.</li>
+</ul>
+</li>
+<li>$r(A+B) \le r(A) + r(B)$ (实际上 $r(A+B) \le r((A|B))$ 进一步 $\le r(A)+r(B)$)。<ul>
+<li><strong>证明</strong>: $C(A+B) \subseteq C(A) + C(B)$.<br>$\text{dim}(C(A)+C(B)) = \text{dim}C(A) + \text{dim}C(B) - \text{dim}(C(A)\cap C(B)) \le r(A)+r(B)$.</li>
+</ul>
+</li>
+<li><strong>Frobenius 不等式</strong>: $r(AB) + r(BC) \le r(B) + r(ABC)$ (不在此PPT范围，但相关)。</li>
+<li><strong>Sylvester 秩不等式</strong>: 若 $A$ 是 $m \times n$ 矩阵, $B$ 是 $n \times p$ 矩阵, 则<br>$r(A) + r(B) - n \le r(AB)$.<ul>
+<li><strong>证明</strong>:<br>考虑线性映射 $T_B: R^p \to R^n, X \mapsto BX$. $T_A: R^n \to R^m, Y \mapsto AY$.<br>$r(AB) = \text{dim Im}(T_A|_{Im(T_B)})$.<br>$\text{dim Im}(T_A|_{Im(T_B)}) = \text{dim Im}(T_B) - \text{dim}(\text{Ker}(T_A) \cap \text{Im}(T_B))$.<br>$r(AB) = r(B) - \text{dim}(\text{Ker}(T_A) \cap \text{Im}(T_B))$.<br>因为 $\text{Ker}(T_A) \cap \text{Im}(T_B) \subseteq \text{Ker}(T_A)$, 所以 $\text{dim}(\text{Ker}(T_A) \cap \text{Im}(T_B)) \le \text{dim Ker}(T_A) = n - r(A)$.<br>$r(AB) \ge r(B) - (n-r(A)) = r(A)+r(B)-n$.</li>
+</ul>
+</li>
+<li>$r\begin{pmatrix} A &amp; O \\ O &amp; B \end{pmatrix} = r(A) + r(B)$.</li>
+<li>$r\begin{pmatrix} A &amp; C \\ O &amp; B \end{pmatrix} \ge r(A) + r(B)$. (通常是等于，如果通过初等变换可以消掉 $C$)<br>实际上是 $r\begin{pmatrix} A &amp; C \\ O &amp; B \end{pmatrix} \ge r(A) + r(B)$. 等号成立当且仅当 $C$ 的列可以由 $A$ 的列和 $B$ 的行的某种方式生成（较复杂条件）。<br>如果 $A,B$ 是方阵，则行列式是 $|A||B|$，秩是 $r(A)+r(B)$ 当且仅当 $A,B$ 的线性无关的行/列能组合成整个矩阵的秩。<br><strong>PPT中的证明 (Sylvester)</strong>:<br>$r(A) + r(B) \le r\begin{pmatrix} A &amp; 0 \\ -I &amp; B \end{pmatrix}$ (通过变换得到右边矩阵的秩).<br>$\begin{pmatrix} A &amp; 0 \\ -I &amp; B \end{pmatrix} \xrightarrow{\text{row ops}} \begin{pmatrix} 0 &amp; AB \\ -I &amp; B \end{pmatrix} \xrightarrow{\text{col ops}} \begin{pmatrix} 0 &amp; AB \\ -I &amp; 0 \end{pmatrix}$.<br>后者的秩为 $r(AB)+n$.<br>所以 $r(A)+r(B) \le r(AB)+n$. (这基于对秩的变换性质)</li>
+</ul>
+<h3 id="2-6-伴随矩阵的秩"><a href="#2-6-伴随矩阵的秩" class="headerlink" title="2.6 伴随矩阵的秩"></a>2.6 伴随矩阵的秩</h3><p>设 $A$ 是 $n \times n$ 矩阵, $A^*$ 是其伴随矩阵。</p>
+<ul>
+<li>若 $r(A) = n$, 则 $|A| \neq 0$, $A^<em>$可逆, $r(A^</em>) = n$.</li>
+<li>若 $r(A) = n-1$, 则 $|A|=0$. 此时 $A$ 至少有一个 $(n-1)$ 阶子式非零，所以 $A^<em> \neq O$, $r(A^</em>) \ge 1$.<br>又因为 $AA^<em> = |A|I = O$. 由 Sylvester 不等式 $r(A)+r(A^</em>)-n \le r(AA^<em>) = 0$.<br>$(n-1) + r(A^</em>) - n \le 0 \implies r(A^<em>) - 1 \le 0 \implies r(A^</em>) \le 1$.<br>所以 $r(A^*) = 1$.</li>
+<li>若 $r(A) &lt; n-1$, 则 $A$ 的所有 $(n-1)$ 阶子式均为0 (因为若有非零的，秩至少为 $n-1$)。<br>所以 $A^<em>$ 的所有元素均为0, $A^</em>=O$, $r(A^*)=0$.</li>
+</ul>
+<h3 id="2-7-幂等矩阵的秩"><a href="#2-7-幂等矩阵的秩" class="headerlink" title="2.7 幂等矩阵的秩"></a>2.7 幂等矩阵的秩</h3><p>若 $A^2=A$ ( $A$ 是幂等矩阵), 则 $r(A) + r(I-A) = n$.</p>
+<ul>
+<li><strong>证明</strong>:<ol>
+<li>$r(I) = r(A + (I-A))$.<br>$n = r(A + (I-A)) \le r(A) + r(I-A)$ (子空间和的维数).</li>
+<li>$A(I-A) = A - A^2 = A - A = O$.<br>由 Sylvester 不等式: $r(A) + r(I-A) - n \le r(A(I-A)) = r(O) = 0$.<br>$r(A) + r(I-A) \le n$.<br>结合1和2，得 $r(A) + r(I-A) = n$.</li>
+</ol>
+</li>
+</ul>
+<h2 id="3-广义逆矩阵-Generalized-Inverse-Matrix-A"><a href="#3-广义逆矩阵-Generalized-Inverse-Matrix-A" class="headerlink" title="3. 广义逆矩阵 (Generalized Inverse Matrix) $A^-$"></a>3. 广义逆矩阵 (Generalized Inverse Matrix) $A^-$</h2><h3 id="3-1-定义"><a href="#3-1-定义" class="headerlink" title="3.1 定义"></a>3.1 定义</h3><p>对于 $m \times n$ 矩阵 $A$，若存在 $n \times m$ 矩阵 $G$ 使得 $AGA=A$，则称 $G$ 是 $A$ 的一个 <strong>广义逆</strong> (或 <strong>减号逆</strong>、<strong>g-逆</strong>)，记作 $A^-$.</p>
+<ul>
+<li>广义逆不唯一 (除非 $A$ 可逆，此时 $A^- = A^{-1}$ 是唯一的)。</li>
+</ul>
+<h3 id="3-2-存在性与构造"><a href="#3-2-存在性与构造" class="headerlink" title="3.2 存在性与构造"></a>3.2 存在性与构造</h3><ul>
+<li><strong>定理</strong>: 任何矩阵 $A$ 都存在广义逆。<ul>
+<li><strong>证明 (基于满秩分解)</strong>:<br>设 $r(A)=r &gt; 0$. 则 $A$ 可以满秩分解为 $A=LR$，其中 $L$ 是 $m \times r$ 列满秩矩阵，$R$ 是 $r \times n$ 行满秩矩阵。<br>由于 $L$ 列满秩，$L^TL$ 可逆。由于 $R$ 行满秩，$RR^T$ 可逆。<br>存在 $L_L^{-1}$ (左逆) 使得 $L_L^{-1}L = I_r$，例如 $L_L^{-1} = (L^TL)^{-1}L^T$.<br>存在 $R_R^{-1}$ (右逆) 使得 $RR_R^{-1} = I_r$，例如 $R_R^{-1} = R^T(RR^T)^{-1}$.<br>令 $G = R_R^{-1} L_L^{-1} = R^T(RR^T)^{-1}(L^TL)^{-1}L^T$.<br>则 $AGA = L R (R^T(RR^T)^{-1}(L^TL)^{-1}L^T) L R = L (RR^T(RR^T)^{-1}) ((L^TL)^{-1}L^TL) R = L I_r I_r R = LR = A$.</li>
+<li><strong>证明 (基于等价标准形)</strong>: (PPT中的方法)<br>存在可逆矩阵 $P, Q$ 使得 $A = P \begin{pmatrix} I_r &amp; O \\ O &amp; O \end{pmatrix} Q$.<br>令 $G = Q^{-1} \begin{pmatrix} I_r &amp; X \\ Y &amp; Z \end{pmatrix} P^{-1}$，其中 $X, Y, Z$ 是任意适当大小的矩阵块。<br>则 $AGA = P \begin{pmatrix} I_r &amp; O \\ O &amp; O \end{pmatrix} Q Q^{-1} \begin{pmatrix} I_r &amp; X \\ Y &amp; Z \end{pmatrix} P^{-1} P \begin{pmatrix} I_r &amp; O \\ O &amp; O \end{pmatrix} Q$<br>$= P \begin{pmatrix} I_r &amp; O \\ O &amp; O \end{pmatrix} \begin{pmatrix} I_r &amp; X \\ Y &amp; Z \end{pmatrix} \begin{pmatrix} I_r &amp; O \\ O &amp; O \end{pmatrix} Q$<br>$= P \begin{pmatrix} I_r &amp; X \\ O &amp; O \end{pmatrix} \begin{pmatrix} I_r &amp; O \\ O &amp; O \end{pmatrix} Q = P \begin{pmatrix} I_r &amp; O \\ O &amp; O \end{pmatrix} Q = A$.<br>所以，形如 $G = Q^{-1} \begin{pmatrix} I_r &amp; X \\ Y &amp; Z \end{pmatrix} P^{-1}$ 的矩阵都是 $A$ 的广义逆。<br>最简单的一个是取 $X,Y,Z$ 为零矩阵，得到 $A^- = Q^{-1} \begin{pmatrix} I_r &amp; O \\ O &amp; O \end{pmatrix} P^{-1}$.</li>
+</ul>
+</li>
+</ul>
+<h3 id="3-3-广义逆与线性方程组-AX-beta"><a href="#3-3-广义逆与线性方程组-AX-beta" class="headerlink" title="3.3 广义逆与线性方程组 $AX=\beta$"></a>3.3 广义逆与线性方程组 $AX=\beta$</h3><ul>
+<li><strong>定理 (相容性条件)</strong>: 线性方程组 $AX=\beta$ 有解 (相容) 的充要条件是 $AA^-\beta = \beta$ 对任意一个 $A^-$ 成立。<br>(注意：更常用的条件是 $\beta \in C(A)$, 或者 $r(A)=r(A|\beta)$)。<br>这里的 $AA^-\beta = \beta$ 是指如果方程有解，那么这个等式成立。反过来，如果这个等式对某个 $A^-$ 成立，则方程有解。<ul>
+<li><strong>证明</strong>:<br>($\Rightarrow$) 若 $AX_0=\beta$ 有解。则 $AA^- \beta = AA^- AX_0 = AX_0 = \beta$.<br>($\Leftarrow$) 若 $AA^-\beta = \beta$. 令 $X_0 = A^-\beta$. 则 $AX_0 = AA^-\beta = \beta$. 所以 $A^-\beta$ 是一个解。</li>
+</ul>
+</li>
+<li><strong>通解</strong>: 若 $AX=\beta$ 相容，则其通解为 $X = A^-\beta + (I - A^-A)Z$，其中 $A^-$ 是 $A$ 的任一广义逆，$Z$ 是任意的 $n \times 1$ 向量。<ul>
+<li><strong>证明</strong>:<ol>
+<li>验证 $A^-\beta + (I - A^-A)Z$ 是解:<br>$A(A^-\beta + (I - A^-A)Z) = AA^-\beta + A(I - A^-A)Z = \beta + (A - AA^-A)Z = \beta + (A-A)Z = \beta$.</li>
+<li>验证所有解都可以表为此形式:<br>设 $X_s$ 是任一特解。则 $AX_s=\beta$.<br>$X_s = A^-\beta + (X_s - A^-\beta)$.<br>我们希望 $X_s - A^-\beta$ 能表示为 $(I-A^-A)Z$ 的形式。<br>$A(X_s - A^-\beta) = AX_s - AA^-\beta = \beta - \beta = 0$.<br>所以 $X_s - A^-\beta$ 是齐次方程 $AY=0$ 的解。<br>我们需要证明齐次方程的解空间是 $\{ (I-A^-A)Z | Z \in R^n \}$.<br>若 $AY_0=0$. 令 $Z=Y_0$. 则 $(I-A^-A)Y_0 = Y_0 - A^-AY_0 = Y_0 - A^-0 = Y_0$.<br>所以任何齐次解 $Y_0$ 都可以写成 $(I-A^-A)Y_0$.<br>因此 $X_s = A^-\beta + (I-A^-A)(X_s-A^-\beta_{any_particular})$ (这里需要更细致的论证， $I-A^-A$ 是投影到 $N(A)$ 上的算子)。<br>实际上， $A(I-A^-A)Z = (A-AA^-A)Z = (A-A)Z = 0$. 所以 $(I-A^-A)Z$ 确实是齐次方程的解。<br>并且 $N(A) = \text{Im}(I-A^-A)$.</li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="3-4-广义逆的一般形式"><a href="#3-4-广义逆的一般形式" class="headerlink" title="3.4 广义逆的一般形式"></a>3.4 广义逆的一般形式</h3><ul>
+<li><strong>定理</strong>: 若 $A^-_0$ 是 $A$ 的一个广义逆，则 $A$ 的所有广义逆可以表示为：<br>$A^- = A^-_0 + V - A^-_0AVAA^-_0$，其中 $V$ 是任意的 $n \times m$ 矩阵。<ul>
+<li><strong>证明</strong>:<br>首先验证这种形式的 $A^-$ 满足 $A(A^-_0 + V - A^-_0AVAA^-_0)A = A$.<br>$A(A^-_0 + V - A^-_0AVAA^-_0)A = AA^-_0A + AVA - AA^-_0AVAA^-_0A$<br>$= A + AVA - (AA^-_0A)V(AA^-_0A) = A + AVA - AVA = A$.<br>反过来，若 $G$ 是任一广义逆，即 $AGA=A$.<br>令 $V = G - A^-_0$. 我们要说明 $G$ 可以写成上述形式。<br>$A^-_0 + (G-A^-_0) - A^-_0A(G-A^-_0)AA^-_0 = G - A^-_0AGAA^-_0 + A^-_0AA^-_0AA^-_0$.<br>这与PPT的形式 $A^- = A_0^- + V - A_0^- A V A A_0^-$ 不同，PPT的应该是 $A_0^- + V - A_0^- A V A A_0^-$.<br>这里的 $A^-_0AVAA^-_0$ 应该是 $A_0^- A V A A_0^-$.<br>PPT公式: $G = A_0^- + V - A_0^- A V A A_0^-$.<br>如果 $V$ 是任意的，那么 $A_0^-AVAA_0^-$ 这项似乎可以被 $V$ 吸收。<br>更常见的表达是: $A^- = A_0^- + (I-A_0^-A)U + W(I-AA_0^-)$ 其中 $U,W$ 任意。<br>PPT的公式 $G = A^- + V - A^-AVAA^-$ (假设 $A^-$ 是一个已知的g-逆)。<br>$AGA = A(A^- + V - A^-AVAA^-)A = AA^-A + AVA - A(A^-AVAA^-)A$<br>$= A + AVA - (AA^-A)V(AA^-A) = A + AVA - AVA = A$.<br>若 $G_1, G_2$ 都是 $A$ 的g-逆。则 $G_1 = G_2 + (G_1-G_2) - G_2A(G_1-G_2)AG_2$ (将 $V=G_1-G_2$ 代入)。<br>这表明任何一个g-逆可以由另一个g-逆通过这种形式得到。</li>
+</ul>
+</li>
+</ul>
+<p><strong>Moore-Penrose 伪逆 ($A^+$)</strong>: 是一种特殊的广义逆，它唯一存在且满足四个Penrose条件:</p>
+<ol>
+<li>$AGA=A$</li>
+<li>$GAG=G$</li>
+<li>$(AG)^*=AG$ (AG是Hermitian的)</li>
+<li>$(GA)^*=GA$ (GA是Hermitian的)</li>
+</ol>
+<p>这部分PPT主要集中在行列式的理论和计算，以及分块矩阵的运算和行列式性质，最后简要介绍了广义逆的概念和基本性质。</p>
+</div><div class="article-licensing box"><div class="licensing-title"><p>Chapter3_MATH1408</p><p><a href="http://example.com/MATH1408/Chapter3-MATH1408.html">http://example.com/MATH1408/Chapter3-MATH1408.html</a></p></div><div class="licensing-meta level is-mobile"><div class="level-left"><div class="level-item is-narrow"><div><h6>作者</h6><p>Jiamin Liu</p></div></div><div class="level-item is-narrow"><div><h6>发布于</h6><p>2025-06-24</p></div></div><div class="level-item is-narrow"><div><h6>更新于</h6><p>2025-06-24</p></div></div><div class="level-item is-narrow"><div><h6>许可协议</h6><p><a class="icons" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="icon fab fa-creative-commons"></i></a><a class="icons" rel="noopener" target="_blank" title="Attribution" href="https://creativecommons.org/licenses/by/4.0/"><i class="icon fab fa-creative-commons-by"></i></a><a class="icons" rel="noopener" target="_blank" title="Noncommercial" href="https://creativecommons.org/licenses/by-nc/4.0/"><i class="icon fab fa-creative-commons-nc"></i></a></p></div></div></div></div></div><div class="article-tags is-size-7 mb-4"><span class="mr-2">#</span><a class="link-muted mr-2" rel="tag" href="/"></a><a class="link-muted mr-2" rel="tag" href="/"></a><a class="link-muted mr-2" rel="tag" href="/"></a></div><!--!--></article></div><!--!--><div class="card" id="comments"><div class="card-content"><h3 class="title is-5">评论</h3><div class="notification is-danger">You forgot to set the <code>shortname</code> for Disqus. Please set it in <code>_config.yml</code>.</div></div></div></div><div class="column column-left is-4-tablet is-4-desktop is-4-widescreen  order-1"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar" src="/img/avatar.png" alt="Jiamin Liu"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">Jiamin Liu</p><p class="is-size-6 is-block">别卷了别卷了别卷了</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>China</span></p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">文章</p><a href="/archives/"><p class="title">1</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">分类</p><a href="/categories/"><p class="title">0</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">标签</p><a href="/tags/"><p class="title">0</p></a></div></div></nav></div></div><!--!--></div><!--!--></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/img/logo.svg" alt="OD&#039;s blog" height="28"></a><p class="is-size-7"><span>&copy; 2025 Jiamin Liu</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a></p><p class="is-size-7">© 2019</p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("zh-cn");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script data-pjax src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="回到顶端" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script data-pjax src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
+      window.cookieconsent.initialise({
+        type: "info",
+        theme: "edgeless",
+        static: false,
+        position: "bottom-left",
+        content: {
+          message: "此网站使用Cookie来改善您的体验。",
+          dismiss: "知道了！",
+          allow: "允许使用Cookie",
+          deny: "拒绝",
+          link: "了解更多",
+          policy: "Cookie政策",
+          href: "https://www.cookiesandyou.com/",
+        },
+        palette: {
+          popup: {
+            background: "#edeff5",
+            text: "#838391"
+          },
+          button: {
+            background: "#4b81e8"
+          },
+        },
+      });
+    });</script><script src="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/js/lightgallery.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><script type="text/javascript" id="MathJax-script" async>MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']]
+      },
+      svg: {
+        fontCache: 'global'
+      },
+      chtml: {
+        matchFontHeight: false
+      }
+    };</script><script src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js"></script><script src="https://cdn.jsdelivr.net/npm/pjax@0.2.8/pjax.min.js"></script><script src="/js/pjax.js"></script><!--!--><!--!--><!--!--><script data-pjax src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="想要查找什么..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script data-pjax src="/js/insight.js" defer></script><script data-pjax>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"想要查找什么...","untitled":"(无标题)","posts":"文章","pages":"页面","categories":"分类","tags":"标签"});
+        });</script></body></html>
