@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="zh"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>Application:A Randomized Algorithm for 3-SAT - OD&#039;s blog</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="OD&#039;s blog"><meta name="msapplication-TileImage" content="/img/favicon.svg"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="OD&#039;s blog"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="description" content="基础版算法&amp;#x2F;&amp;#x2F;.bordered {     border: 1px solid #000;     padding: 10px; }    3-SAT 算法（基础版）: 1. 初始化：对变量随机赋值. 2. 将以下过程重复m次，如果所有子句都被满足则停止：     (a) 选择任意一个未被满足的子句     (b) 随机选择子句中的一个变量并改变其值 3. 如果找到了一组满足表达式的赋值，返回该"><meta property="og:type" content="blog"><meta property="og:title" content="Application:A Randomized Algorithm for 3-SAT"><meta property="og:url" content="http://example.com/AAC/7-1-2-3SAT.html"><meta property="og:site_name" content="OD&#039;s blog"><meta property="og:description" content="基础版算法&amp;#x2F;&amp;#x2F;.bordered {     border: 1px solid #000;     padding: 10px; }    3-SAT 算法（基础版）: 1. 初始化：对变量随机赋值. 2. 将以下过程重复m次，如果所有子句都被满足则停止：     (a) 选择任意一个未被满足的子句     (b) 随机选择子句中的一个变量并改变其值 3. 如果找到了一组满足表达式的赋值，返回该"><meta property="og:locale" content="zh_CN"><meta property="og:image" content="http://example.com/img/og_image.png"><meta property="article:published_time" content="2025-06-26T07:19:59.068Z"><meta property="article:modified_time" content="2025-06-26T07:19:59.068Z"><meta property="article:author" content="Jiamin Liu"><meta property="twitter:card" content="summary"><meta property="twitter:image:src" content="http://example.com/img/og_image.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"http://example.com/AAC/7-1-2-3SAT.html"},"headline":"Application:A Randomized Algorithm for 3-SAT","image":["http://example.com/img/og_image.png"],"datePublished":"2025-06-26T07:19:59.068Z","dateModified":"2025-06-26T07:19:59.068Z","author":{"@type":"Person","name":"Jiamin Liu"},"publisher":{"@type":"Organization","name":"OD's blog","logo":{"@type":"ImageObject","url":"http://example.com/img/logo.svg"}},"description":"基础版算法&#x2F;&#x2F;.bordered {     border: 1px solid #000;     padding: 10px; }    3-SAT 算法（基础版）: 1. 初始化：对变量随机赋值. 2. 将以下过程重复m次，如果所有子句都被满足则停止：     (a) 选择任意一个未被满足的子句     (b) 随机选择子句中的一个变量并改变其值 3. 如果找到了一组满足表达式的赋值，返回该"}</script><link rel="canonical" href="http://example.com/AAC/7-1-2-3SAT.html"><link rel="icon" href="/img/favicon.svg"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.0.0/css/all.css"><link data-pjax rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.7.0/styles/atom-one-light.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link data-pjax rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css"><!--!--><!--!--><!--!--><!--!--><style>.pace{-webkit-pointer-events:none;pointer-events:none;-webkit-user-select:none;-moz-user-select:none;user-select:none}.pace-inactive{display:none}.pace .pace-progress{background:#3273dc;position:fixed;z-index:2000;top:0;right:100%;width:100%;height:2px}</style><script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js"></script><!--!--><!--!--><!-- hexo injector head_end start --><script>
+<html lang="zh"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>Application:A Randomized Algorithm for 3-SAT - OD&#039;s blog</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="OD&#039;s blog"><meta name="msapplication-TileImage" content="/img/favicon.svg"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="OD&#039;s blog"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="description" content="基础版算法&amp;#x2F;&amp;#x2F;.bordered {     border: 1px solid #000;     padding: 10px; }    3-SAT 算法（基础版）: 1. 初始化：对变量随机赋值. 2. 将以下过程重复m次，如果所有子句都被满足则停止：     (a) 选择任意一个未被满足的子句     (b) 随机选择子句中的一个变量并改变其值 3. 如果找到了一组满足表达式的赋值，返回该"><meta property="og:type" content="blog"><meta property="og:title" content="Application:A Randomized Algorithm for 3-SAT"><meta property="og:url" content="http://example.com/AAC/7-1-2-3SAT.html"><meta property="og:site_name" content="OD&#039;s blog"><meta property="og:description" content="基础版算法&amp;#x2F;&amp;#x2F;.bordered {     border: 1px solid #000;     padding: 10px; }    3-SAT 算法（基础版）: 1. 初始化：对变量随机赋值. 2. 将以下过程重复m次，如果所有子句都被满足则停止：     (a) 选择任意一个未被满足的子句     (b) 随机选择子句中的一个变量并改变其值 3. 如果找到了一组满足表达式的赋值，返回该"><meta property="og:locale" content="zh_CN"><meta property="og:image" content="http://example.com/img/og_image.png"><meta property="article:published_time" content="2025-06-26T07:24:16.308Z"><meta property="article:modified_time" content="2025-06-26T07:24:16.308Z"><meta property="article:author" content="Jiamin Liu"><meta property="twitter:card" content="summary"><meta property="twitter:image:src" content="http://example.com/img/og_image.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"http://example.com/AAC/7-1-2-3SAT.html"},"headline":"Application:A Randomized Algorithm for 3-SAT","image":["http://example.com/img/og_image.png"],"datePublished":"2025-06-26T07:24:16.308Z","dateModified":"2025-06-26T07:24:16.308Z","author":{"@type":"Person","name":"Jiamin Liu"},"publisher":{"@type":"Organization","name":"OD's blog","logo":{"@type":"ImageObject","url":"http://example.com/img/logo.svg"}},"description":"基础版算法&#x2F;&#x2F;.bordered {     border: 1px solid #000;     padding: 10px; }    3-SAT 算法（基础版）: 1. 初始化：对变量随机赋值. 2. 将以下过程重复m次，如果所有子句都被满足则停止：     (a) 选择任意一个未被满足的子句     (b) 随机选择子句中的一个变量并改变其值 3. 如果找到了一组满足表达式的赋值，返回该"}</script><link rel="canonical" href="http://example.com/AAC/7-1-2-3SAT.html"><link rel="icon" href="/img/favicon.svg"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.0.0/css/all.css"><link data-pjax rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.7.0/styles/atom-one-light.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link data-pjax rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css"><!--!--><!--!--><!--!--><!--!--><style>.pace{-webkit-pointer-events:none;pointer-events:none;-webkit-user-select:none;-moz-user-select:none;user-select:none}.pace-inactive{display:none}.pace .pace-progress{background:#3273dc;position:fixed;z-index:2000;top:0;right:100%;width:100%;height:2px}</style><script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js"></script><!--!--><!--!--><!-- hexo injector head_end start --><script>
   (function () {
       function switchTab() {
           if (!location.hash) {
@@ -29,7 +29,7 @@
       switchTab();
       window.addEventListener('hashchange', switchTab, false);
   })();
-  </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head><body class="is-2-column"><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/img/logo.svg" alt="OD&#039;s blog" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">主页</a></div><div class="navbar-end"><a class="navbar-item search" title="搜索" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-8-widescreen"><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2025-06-26T07:19:59.068Z" title="2025/6/26 15:19:59">2025-06-26</time>发表</span><span class="level-item"><time dateTime="2025-06-26T07:19:59.068Z" title="2025/6/26 15:19:59">2025-06-26</time>更新</span><span class="level-item"><a class="link-muted" href="/"></a></span><span class="level-item">9 分钟读完 (大约1340个字)</span></div></div><h1 class="title is-3 is-size-4-mobile">Application:A Randomized Algorithm for 3-SAT</h1><div class="content"><h2 id="基础版算法"><a href="#基础版算法" class="headerlink" title="基础版算法"></a>基础版算法</h2><style>//.bordered {
+  </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head><body class="is-2-column"><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/img/logo.svg" alt="OD&#039;s blog" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">主页</a></div><div class="navbar-end"><a class="navbar-item search" title="搜索" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-8-widescreen"><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2025-06-26T07:24:16.308Z" title="2025/6/26 15:24:16">2025-06-26</time>发表</span><span class="level-item"><time dateTime="2025-06-26T07:24:16.308Z" title="2025/6/26 15:24:16">2025-06-26</time>更新</span><span class="level-item"><a class="link-muted" href="/"></a></span><span class="level-item">9 分钟读完 (大约1340个字)</span></div></div><h1 class="title is-3 is-size-4-mobile">Application:A Randomized Algorithm for 3-SAT</h1><div class="content"><h2 id="基础版算法"><a href="#基础版算法" class="headerlink" title="基础版算法"></a>基础版算法</h2><style>//.bordered {
     border: 1px solid #000;
     padding: 10px;
 }
@@ -104,8 +104,8 @@ $$
 {j+2k\choose k}\Big(\frac{2}3{}\Big)^k\Big(\frac{1}{3}\Big)^{j+k}
 $$
 </div>
-表示通过$k$轮减少，$j+k$轮增加达到$n$的概率.  
-因此得到关于$q_j$的表达式：
+
+<p>表示通过$k$轮减少，$j+k$轮增加达到$n$的概率.<br>因此得到关于$q_j$的表达式：</p>
 <div>
 $$
 \begin{aligned}
@@ -113,7 +113,8 @@ q_j \geq \max_{\substack{k=0, \dots, j \\ j+2k\leq 3n}}{j+2k \choose k}\Big(\fra
 \end{aligned}
 $$
 </div>
-如果选取$k=j$，则可以得到$q_j$的一个下限：
+
+<p>如果选取$k=j$，则可以得到$q_j$的一个下限：</p>
 <div>
 $$
 q_j \geq {3j \choose j}\Big(\frac{2}{3}\Big)^j\Big(\frac{1}{3}\Big)^{2j}
@@ -128,11 +129,16 @@ $$
 </li>
 </ul>
 <p>因此，当$j&gt;0$，</p>
-<script type="math/tex; mode=display">\begin{aligned}
+<div>
+$$\begin{aligned}
 {3j\choose j} &=\frac{(3j)!}{j!(2j)!}\\ &\geq\frac{\sqrt{2\pi(3j)}}{4\sqrt{2\pi j}\sqrt{2\pi(2j)}}\Big(\frac{3j}{e}\Big)^{3j}\Big(\frac{e}{2j}\Big)^{2j}\Big(\frac{e}{j}\Big)^j\\
  &=\frac{\sqrt{3}}{8\sqrt{\pi j}}\Big(\frac{27}{4}\Big)^j
  \\&=\frac{c}{\sqrt{j}}\Big(\frac{27}{4}\Big)^j,\ 取\ c=\frac{\sqrt{3}}{8\sqrt{\pi}}
-\end{aligned}</script><p>&lt;/div&gt;<br>所以在$j&gt;0$时，可以得到</p>
+\end{aligned}
+$$
+</div>
+
+<p>所以在$j&gt;0$时，可以得到</p>
 <div>
 $$\begin{aligned}
 q_j &\geq{3j \choose j}\Big(\frac{2}{3}\Big)^j\Big(\frac{1}{3}\Big)^{2j}
@@ -141,9 +147,9 @@ q_j &\geq{3j \choose j}\Big(\frac{2}{3}\Big)^j\Big(\frac{1}{3}\Big)^{2j}
 \end{aligned}
 $$
 </div>
-同时，$q_0=0$
 
-现在我们可以得到$q$的下限
+<p>同时，$q_0=0$</p>
+<p>现在我们可以得到$q$的下限</p>
 <div>
 $$\begin{aligned}
 q &\geq\sum_{j=0}^nPr(a\ random\ assignment\ has\ j\ mismatches\ with\ S)\cdot q_j\\
@@ -154,6 +160,7 @@ q &\geq\sum_{j=0}^nPr(a\ random\ assignment\ has\ j\ mismatches\ with\ S)\cdot q
 \end{aligned}
 $$
 </div>
+
 
 <p>假设3-SAT表达式存在一组满足条件的变量赋值，在找到这组变量赋值前，算法尝试的随机变量赋值次数满足几何分布. 所以赋值次数的数学期望为$1/q$. 而在每组随机赋值中，算法最多循环$3n$次，所以得到算法的<strong>平均时间复杂度</strong>$O(n^{3/2}(4/3)^n)$.</p>
 <ul>
