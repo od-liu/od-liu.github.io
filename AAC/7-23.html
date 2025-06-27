@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="zh"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>马尔科夫链的状态分类 &amp; 平稳分布 - OD&#039;s blog</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="OD&#039;s blog"><meta name="msapplication-TileImage" content="/img/favicon.svg"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="OD&#039;s blog"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="description" content="状态分类定义7.2 称状态$j$从状态$i$是可达的，如果对于某些整数$n\geq 0,P_{i,j}^n\gt 0$. 如果两个状态$i,j$互相可达，则称他们是连通的（communicate），记作$i\leftrightarrow j$.易知状态的连通性满足自反性，对称性和传递性，因此为等价关系. 定义7.3 称一个马尔科夫链是不可约的（irreducible），如果所有状态全部连通. 定理"><meta property="og:type" content="blog"><meta property="og:title" content="马尔科夫链的状态分类 &amp; 平稳分布"><meta property="og:url" content="http://example.com/AAC/7-23.html"><meta property="og:site_name" content="OD&#039;s blog"><meta property="og:description" content="状态分类定义7.2 称状态$j$从状态$i$是可达的，如果对于某些整数$n\geq 0,P_{i,j}^n\gt 0$. 如果两个状态$i,j$互相可达，则称他们是连通的（communicate），记作$i\leftrightarrow j$.易知状态的连通性满足自反性，对称性和传递性，因此为等价关系. 定义7.3 称一个马尔科夫链是不可约的（irreducible），如果所有状态全部连通. 定理"><meta property="og:locale" content="zh_CN"><meta property="og:image" content="http://example.com/img/og_image.png"><meta property="article:published_time" content="2025-06-27T02:06:07.000Z"><meta property="article:modified_time" content="2025-06-27T03:36:41.331Z"><meta property="article:author" content="Jiamin Liu"><meta property="twitter:card" content="summary"><meta property="twitter:image:src" content="http://example.com/img/og_image.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"http://example.com/AAC/7-23.html"},"headline":"马尔科夫链的状态分类 & 平稳分布","image":["http://example.com/img/og_image.png"],"datePublished":"2025-06-27T02:06:07.000Z","dateModified":"2025-06-27T03:36:41.331Z","author":{"@type":"Person","name":"Jiamin Liu"},"publisher":{"@type":"Organization","name":"OD's blog","logo":{"@type":"ImageObject","url":"http://example.com/img/logo.svg"}},"description":"状态分类定义7.2 称状态$j$从状态$i$是可达的，如果对于某些整数$n\\geq 0,P_{i,j}^n\\gt 0$. 如果两个状态$i,j$互相可达，则称他们是连通的（communicate），记作$i\\leftrightarrow j$.易知状态的连通性满足自反性，对称性和传递性，因此为等价关系. 定义7.3 称一个马尔科夫链是不可约的（irreducible），如果所有状态全部连通. 定理"}</script><link rel="canonical" href="http://example.com/AAC/7-23.html"><link rel="icon" href="/img/favicon.svg"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.0.0/css/all.css"><link data-pjax rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.7.0/styles/atom-one-light.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link data-pjax rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css"><!--!--><!--!--><!--!--><!--!--><style>.pace{-webkit-pointer-events:none;pointer-events:none;-webkit-user-select:none;-moz-user-select:none;user-select:none}.pace-inactive{display:none}.pace .pace-progress{background:#3273dc;position:fixed;z-index:2000;top:0;right:100%;width:100%;height:2px}</style><script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js"></script><!--!--><!--!--><!-- hexo injector head_end start --><script>
+  (function () {
+      function switchTab() {
+          if (!location.hash) {
+            return;
+          }
+
+          const id = '#' + CSS.escape(location.hash.substring(1));
+          const $tabMenu = document.querySelector(`.tabs a[href="${id}"]`);
+          if (!$tabMenu) {
+            return;
+          }
+
+          const $tabMenuContainer = $tabMenu.parentElement.parentElement;
+          Array.from($tabMenuContainer.children).forEach($menu => $menu.classList.remove('is-active'));
+          Array.from($tabMenuContainer.querySelectorAll('a'))
+              .map($menu => document.getElementById($menu.getAttribute("href").substring(1)))
+              .forEach($content => $content.classList.add('is-hidden'));
+
+          if ($tabMenu) {
+              $tabMenu.parentElement.classList.add('is-active');
+          }
+          const $activeTab = document.querySelector(id);
+          if ($activeTab) {
+              $activeTab.classList.remove('is-hidden');
+          }
+      }
+      switchTab();
+      window.addEventListener('hashchange', switchTab, false);
+  })();
+  </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head><body class="is-2-column"><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/img/logo.svg" alt="OD&#039;s blog" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">主页</a></div><div class="navbar-end"><a class="navbar-item search" title="搜索" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-8-widescreen"><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2025-06-27T02:06:07.000Z" title="2025/6/27 10:06:07">2025-06-27</time>发表</span><span class="level-item"><time dateTime="2025-06-27T03:36:41.331Z" title="2025/6/27 11:36:41">2025-06-27</time>更新</span><span class="level-item"><a class="link-muted" href="/"></a></span><span class="level-item">5 分钟读完 (大约774个字)</span></div></div><h1 class="title is-3 is-size-4-mobile">马尔科夫链的状态分类 &amp; 平稳分布</h1><div class="content"><h2 id="状态分类"><a href="#状态分类" class="headerlink" title="状态分类"></a>状态分类</h2><p><strong>定义7.2</strong> 称状态$j$从状态$i$是可达的，如果对于某些整数$n\geq 0,P_{i,j}^n\gt 0$. 如果两个状态$i,j$互相可达，则称他们是连通的（communicate），记作$i\leftrightarrow j$.<br>易知状态的连通性满足自反性，对称性和传递性，因此为等价关系.</p>
+<p><strong>定义7.3</strong> 称一个马尔科夫链是不可约的（irreducible），如果所有状态全部连通.</p>
+<p><strong>定理7.4</strong> 称一个状态是常返的（recurrent），如果$\sum_{t\geq 1}r_{i,i}^t=1$. 否则称为瞬时的（transient）.<br>一个常返马尔科夫链要求其每一个状态都是常返的</p>
+<p><strong>定义7.5</strong> 一个常返状态$i$称为正常返如果$h_{i,i}\lt\infty$.否则称为零常返.<br>    直观理解：正常返要求系统返回到状态的平均时间是有限的</p>
+<p><strong>定理7.5</strong> 对于一个有限状态马尔科夫链：</p>
+<ol>
+<li>至少有一个状态是常返的；</li>
+<li>所有常返状态均为正常返.</li>
+</ol>
+<p><strong>定义7.6</strong> 一个离散时间马尔科夫链中，状态$j$是周期（periodic）的如果存在整数$\Delta&gt;1$，使得$Pr(X_{t+s}=j|X_t=j)=0,\forall s,\Delta\nmid s$.<br>    离散时间周期马尔科夫链要求每个状态都是周期的.<br>    反之，称状态或链为非周期的（aperiodic）.</p>
+<p><strong>定义7.7</strong>一个非周期，正常返状态被称为各态历经状态（ergodic state）. 一个马尔可夫链是各态历经的要求所有状态都是各态历经的.</p>
+<p><strong>推论7.6</strong> 任何有限，不可约且非周期马尔科夫链都是各态历经的.</p>
+<h2 id="平稳分布"><a href="#平稳分布" class="headerlink" title="平稳分布"></a>平稳分布</h2><p><strong>定义7.8</strong> 平稳分布（stationary distribution）$\bar{\pi}$满足$\bar{\pi}=\bar{\pi}P$.</p>
+<p><strong>定理7.7</strong> 任何有限，不可约且各态历经马尔科夫链有以下性质：</p>
+<ol>
+<li>该链有且仅有唯一平稳分布$\bar{\pi}=(\pi_0,\pi_1,\dots,\pi_n)$;</li>
+<li>对于任意$i,j$，极限$\lim_{t\rightarrow\infty}P_{i,j}^t$存在并且取值与$j$无关;</li>
+<li>$\pi_i=\lim_{t\rightarrow\infty}P_{i,i}^t=1/h_{i,i}$.</li>
+</ol>
+<p><strong>定理7.8</strong> 对于任意不可约，各态历经马尔科夫链的任意状态$i$，极限$\lim_{t\rightarrow\infty}P_{i,i}^t$存在且满足$\underset{t\rightarrow\infty}{lim}P_{i,i}^t=\frac{1}{h_{i,i}}$.<br>（证明先空着，有空补）</p>
+<p><strong>定理7.9</strong> 设$S$为有限，不可约，非周期马尔科夫链的某些状态的集合. 则在平稳分配中，链离开$S$的概率始终等于链进入$S$的概率.</p>
+<p><strong>定理7.10</strong> 任何一个不可约马尔科夫链均属于以下两类之一：</p>
+<ol>
+<li>各态历经马尔科夫链:$\forall i,j,\underset{t\rightarrow\infty}{lim}P_{j,i}$存在且独立于$j$，且链有唯一平稳分布$\pi_i=\underset{t\rightarrow\infty}{lim}P_{j,i}^t\gt 0$;</li>
+<li>没有一个状态是正常返的马尔科夫链：$\forall i,j,\underset{t\rightarrow\infty}{lim}P_{j,i}^t=0$并且该链没有平稳分布.</li>
+</ol>
+</div><div class="article-licensing box"><div class="licensing-title"><p>马尔科夫链的状态分类 &amp; 平稳分布</p><p><a href="http://example.com/AAC/7-23.html">http://example.com/AAC/7-23.html</a></p></div><div class="licensing-meta level is-mobile"><div class="level-left"><div class="level-item is-narrow"><div><h6>作者</h6><p>Jiamin Liu</p></div></div><div class="level-item is-narrow"><div><h6>发布于</h6><p>2025-06-27</p></div></div><div class="level-item is-narrow"><div><h6>更新于</h6><p>2025-06-27</p></div></div><div class="level-item is-narrow"><div><h6>许可协议</h6><p><a class="icons" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="icon fab fa-creative-commons"></i></a><a class="icons" rel="noopener" target="_blank" title="Attribution" href="https://creativecommons.org/licenses/by/4.0/"><i class="icon fab fa-creative-commons-by"></i></a><a class="icons" rel="noopener" target="_blank" title="Noncommercial" href="https://creativecommons.org/licenses/by-nc/4.0/"><i class="icon fab fa-creative-commons-nc"></i></a></p></div></div></div></div></div><!--!--></article></div><!--!--><div class="card" id="comments"><div class="card-content"><h3 class="title is-5">评论</h3><div id="comment-container"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.css"><script src="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js"></script><script>var gitalk = new Gitalk({
+            id: "31d7c4c8ce7272612cc9c225aebc929c",
+            repo: "od-liu.github.io",
+            owner: "od-Liu",
+            clientID: "Ov23liWi9TgDXgT7hhEB",
+            clientSecret: "054ac0bc0bc8afaac9a807be4b6af2274ee9bc10",
+            admin: ["od-liu"],
+            createIssueManually: false,
+            distractionFreeMode: false,
+            perPage: 10,
+            pagerDirection: "last",
+            
+            
+            enableHotKey: true,
+            
+        })
+        gitalk.render('comment-container')</script></div></div></div><div class="column column-left is-4-tablet is-4-desktop is-4-widescreen  order-1"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar" src="/img/1.png" alt="Jiamin Liu"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">Jiamin Liu</p><p class="is-size-6 is-block">别卷我别卷我别卷我👊</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>Hangzhou</span></p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">文章</p><a href="/archives/"><p class="title">1</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">分类</p><a href="/categories/"><p class="title">0</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">标签</p><a href="/tags/"><p class="title">0</p></a></div></div></nav></div></div><!--!--></div><!--!--></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/img/logo.svg" alt="OD&#039;s blog" height="28"></a><p class="is-size-7"><span>&copy; 2025 Jiamin Liu</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a></p><p class="is-size-7">© 2019</p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("zh-cn");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script data-pjax src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="回到顶端" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script data-pjax src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
+      window.cookieconsent.initialise({
+        type: "info",
+        theme: "edgeless",
+        static: false,
+        position: "bottom-left",
+        content: {
+          message: "此网站使用Cookie来改善您的体验。",
+          dismiss: "知道了！",
+          allow: "允许使用Cookie",
+          deny: "拒绝",
+          link: "了解更多",
+          policy: "Cookie政策",
+          href: "https://www.cookiesandyou.com/",
+        },
+        palette: {
+          popup: {
+            background: "#edeff5",
+            text: "#838391"
+          },
+          button: {
+            background: "#4b81e8"
+          },
+        },
+      });
+    });</script><script src="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/js/lightgallery.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><script type="text/javascript" id="MathJax-script" async>MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']]
+      },
+      svg: {
+        fontCache: 'global'
+      },
+      chtml: {
+        matchFontHeight: false
+      }
+    };</script><script src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js"></script><script src="https://cdn.jsdelivr.net/npm/pjax@0.2.8/pjax.min.js"></script><script src="/js/pjax.js"></script><!--!--><!--!--><!--!--><script data-pjax src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="想要查找什么..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script data-pjax src="/js/insight.js" defer></script><script data-pjax>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"想要查找什么...","untitled":"(无标题)","posts":"文章","pages":"页面","categories":"分类","tags":"标签"});
+        });</script></body></html>
