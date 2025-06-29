@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="zh"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>蒙特卡洛方法 - OD&#039;s blog</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="OD&#039;s blog"><meta name="msapplication-TileImage" content="/img/favicon.svg"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="OD&#039;s blog"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="description" content="Three algorithm: MC Basic MC Exploring Starts MC $\epsilon$-Greedy  MA Basic2 expression of action value:  requires the model:&amp;emsp;$q_{\pi_k}(s,a)&amp;#x3D;\underset{r}{\sum}p(r|s,a)r+\gamma\underset{s’}{\sum"><meta property="og:type" content="blog"><meta property="og:title" content="蒙特卡洛方法"><meta property="og:url" content="http://example.com/RL/MC.html"><meta property="og:site_name" content="OD&#039;s blog"><meta property="og:description" content="Three algorithm: MC Basic MC Exploring Starts MC $\epsilon$-Greedy  MA Basic2 expression of action value:  requires the model:&amp;emsp;$q_{\pi_k}(s,a)&amp;#x3D;\underset{r}{\sum}p(r|s,a)r+\gamma\underset{s’}{\sum"><meta property="og:locale" content="zh_CN"><meta property="og:image" content="http://example.com/img/og_image.png"><meta property="article:published_time" content="2025-06-28T01:42:10.000Z"><meta property="article:modified_time" content="2025-06-29T07:37:38.161Z"><meta property="article:author" content="Jiamin Liu"><meta property="twitter:card" content="summary"><meta property="twitter:image:src" content="http://example.com/img/og_image.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"http://example.com/RL/MC.html"},"headline":"蒙特卡洛方法","image":["http://example.com/img/og_image.png"],"datePublished":"2025-06-28T01:42:10.000Z","dateModified":"2025-06-29T07:37:38.161Z","author":{"@type":"Person","name":"Jiamin Liu"},"publisher":{"@type":"Organization","name":"OD's blog","logo":{"@type":"ImageObject","url":"http://example.com/img/logo.svg"}},"description":"Three algorithm: MC Basic MC Exploring Starts MC $\\epsilon$-Greedy  MA Basic2 expression of action value:  requires the model:&emsp;$q_{\\pi_k}(s,a)&#x3D;\\underset{r}{\\sum}p(r|s,a)r+\\gamma\\underset{s’}{\\sum"}</script><link rel="canonical" href="http://example.com/RL/MC.html"><link rel="icon" href="/img/favicon.svg"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.0.0/css/all.css"><link data-pjax rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.7.0/styles/atom-one-light.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link data-pjax rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css"><!--!--><!--!--><!--!--><!--!--><style>.pace{-webkit-pointer-events:none;pointer-events:none;-webkit-user-select:none;-moz-user-select:none;user-select:none}.pace-inactive{display:none}.pace .pace-progress{background:#3273dc;position:fixed;z-index:2000;top:0;right:100%;width:100%;height:2px}</style><script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js"></script><!--!--><!--!--><!-- hexo injector head_end start --><script>
+  (function () {
+      function switchTab() {
+          if (!location.hash) {
+            return;
+          }
+
+          const id = '#' + CSS.escape(location.hash.substring(1));
+          const $tabMenu = document.querySelector(`.tabs a[href="${id}"]`);
+          if (!$tabMenu) {
+            return;
+          }
+
+          const $tabMenuContainer = $tabMenu.parentElement.parentElement;
+          Array.from($tabMenuContainer.children).forEach($menu => $menu.classList.remove('is-active'));
+          Array.from($tabMenuContainer.querySelectorAll('a'))
+              .map($menu => document.getElementById($menu.getAttribute("href").substring(1)))
+              .forEach($content => $content.classList.add('is-hidden'));
+
+          if ($tabMenu) {
+              $tabMenu.parentElement.classList.add('is-active');
+          }
+          const $activeTab = document.querySelector(id);
+          if ($activeTab) {
+              $activeTab.classList.remove('is-hidden');
+          }
+      }
+      switchTab();
+      window.addEventListener('hashchange', switchTab, false);
+  })();
+  </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head><body class="is-2-column"><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/img/logo.svg" alt="OD&#039;s blog" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">主页</a></div><div class="navbar-end"><a class="navbar-item search" title="搜索" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-8-widescreen"><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2025-06-28T01:42:10.000Z" title="2025/6/28 09:42:10">2025-06-28</time>发表</span><span class="level-item"><time dateTime="2025-06-29T07:37:38.161Z" title="2025/6/29 15:37:38">2025-06-29</time>更新</span><span class="level-item"><a class="link-muted" href="/"></a></span><span class="level-item">3 分钟读完 (大约520个字)</span></div></div><h1 class="title is-3 is-size-4-mobile">蒙特卡洛方法</h1><div class="content"><h2 id="Three-algorithm"><a href="#Three-algorithm" class="headerlink" title="Three algorithm:"></a>Three algorithm:</h2><ul>
+<li>MC Basic</li>
+<li>MC Exploring Starts</li>
+<li>MC $\epsilon$-Greedy</li>
+</ul>
+<h2 id="MA-Basic"><a href="#MA-Basic" class="headerlink" title="MA Basic"></a>MA Basic</h2><p>2 expression of action value:</p>
+<ol>
+<li>requires the model:<br>&emsp;$q_{\pi_k}(s,a)=\underset{r}{\sum}p(r|s,a)r+\gamma\underset{s’}{\sum}p(s’|s,a)v_{\pi_k}(s’)$</li>
+<li>does not require the model(model-free):<br>&emsp;$q_{\pi_k}(s,a)=E[G_t|S_t=s,A_t=a]$<br>&emsp;We can use expression 2 to calculate $q_{\pi_k}(s,a)$ based on data (samples or experiences)<br>总结：计算Action value的两种方法，条件和数据必须二者有其一.</li>
+</ol>
+<h3 id="The-procedure-of-Monte-Carlo-estimation-of-action-values"><a href="#The-procedure-of-Monte-Carlo-estimation-of-action-values" class="headerlink" title="The procedure of Monte Carlo estimation of action values:"></a>The procedure of Monte Carlo estimation of action values:</h3><ul>
+<li>Starting from $(s,a)$, following policy $\pi_k$, generate an episode.</li>
+<li>The return of this episode is $g(s,a)$</li>
+<li>$g(s,a)$ is a sample of $G_t$ in $q_{\pi_k}(s,a)=E[G_t|S_t=s,A_t=a]$</li>
+<li>Suppose we have a set of episodes and hence $\{g^{(j)}(s,a)\}. Then, $q_{\pi_k}(s,a)=E[G_t|S_t=s,A_t=a]\approx\frac{1}{N}\underset{i=1}{\overset{N}\sum}g^{(i)}(s,a)$.<br>用数据估计$q_{\pi_k}(s,a)$. 对于每个$(s,a)$都需要有足够多的episodes计算得到$q_{\pi_k}(s,a)$</li>
+</ul>
+<p>MC Basic效率很低，在实际中用处不大.</p>
+<h2 id="MC-Exploring-Starts"><a href="#MC-Exploring-Starts" class="headerlink" title="MC Exploring Starts"></a>MC Exploring Starts</h2><p>想要优化MC Basic算法可以从两方面进行调整：</p>
+<h3 id="1-Use-data-more-efficiently"><a href="#1-Use-data-more-efficiently" class="headerlink" title="1. Use data more efficiently"></a>1. Use data more efficiently</h3><p>尝试更加充分的利用每个episode种被访问到的数据.<br>Visit: every time a state-action appears in the episode, it is called a visited of that state-action pair.</p>
+<ul>
+<li>Initial-visit method:只估计initial visit的action value</li>
+<li>Data-efficient method:<ul>
+<li>first-visit method: 只有一个episode中$(s,a)$的第一次出现可以被用来估计$(s,a)$的action value.</li>
+<li>every-visit method: 只要在episode中出现了，就可以被用来估计anction value.</li>
+</ul>
+</li>
+</ul>
+<h3 id="2-Update-value-estimate-more-efficiently"><a href="#2-Update-value-estimate-more-efficiently" class="headerlink" title="2. Update value estimate more efficiently"></a>2. Update value estimate more efficiently</h3><ul>
+<li>The first method: 等从一个$(s,a)$出发的所有episodes都被收集完成，再进行$(s,a)$action value的估算，然后使用计算结果更新$\pi$.<br>&emsp; MC Basic 使用该方法. 需要等待所有episodes收集完成，费时间，效率低.</li>
+<li>The second method：使用单个episodes的返回值去近似action value，每个episode都可以改进策略，效率提升.</li>
+</ul>
+<h3 id="Pseudocode-MC-Exploring-Starts-a-sample-efficient-variant-of-MC-Basic"><a href="#Pseudocode-MC-Exploring-Starts-a-sample-efficient-variant-of-MC-Basic" class="headerlink" title="Pseudocode: MC Exploring Starts(a sample-efficient variant of MC Basic)"></a>Pseudocode: MC Exploring Starts(a sample-efficient variant of MC Basic)</h3><ul>
+<li>Initialization: Initial guess $\pi_0$.</li>
+<li><p>Aim: Search for an optimal policy.</p>
+</li>
+<li><p>For each episode,do</p>
+<ul>
+<li>Episode generation:</li>
+</ul>
+</li>
+</ul>
+</div><div class="article-licensing box"><div class="licensing-title"><p>蒙特卡洛方法</p><p><a href="http://example.com/RL/MC.html">http://example.com/RL/MC.html</a></p></div><div class="licensing-meta level is-mobile"><div class="level-left"><div class="level-item is-narrow"><div><h6>作者</h6><p>Jiamin Liu</p></div></div><div class="level-item is-narrow"><div><h6>发布于</h6><p>2025-06-28</p></div></div><div class="level-item is-narrow"><div><h6>更新于</h6><p>2025-06-29</p></div></div><div class="level-item is-narrow"><div><h6>许可协议</h6><p><a class="icons" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="icon fab fa-creative-commons"></i></a><a class="icons" rel="noopener" target="_blank" title="Attribution" href="https://creativecommons.org/licenses/by/4.0/"><i class="icon fab fa-creative-commons-by"></i></a><a class="icons" rel="noopener" target="_blank" title="Noncommercial" href="https://creativecommons.org/licenses/by-nc/4.0/"><i class="icon fab fa-creative-commons-nc"></i></a></p></div></div></div></div></div><!--!--></article></div><!--!--><div class="card" id="comments"><div class="card-content"><h3 class="title is-5">评论</h3><div id="comment-container"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.css"><script src="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js"></script><script>var gitalk = new Gitalk({
+            id: "70600d7cbdd8815bc475747738608eef",
+            repo: "od-liu.github.io",
+            owner: "od-Liu",
+            clientID: "Ov23liWi9TgDXgT7hhEB",
+            clientSecret: "054ac0bc0bc8afaac9a807be4b6af2274ee9bc10",
+            admin: ["od-liu"],
+            createIssueManually: false,
+            distractionFreeMode: false,
+            perPage: 10,
+            pagerDirection: "last",
+            
+            
+            enableHotKey: true,
+            
+        })
+        gitalk.render('comment-container')</script></div></div></div><div class="column column-left is-4-tablet is-4-desktop is-4-widescreen  order-1"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar" src="/img/1.png" alt="Jiamin Liu"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">Jiamin Liu</p><p class="is-size-6 is-block">别卷我别卷我别卷我👊</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>Hangzhou</span></p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">文章</p><a href="/archives/"><p class="title">1</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">分类</p><a href="/categories/"><p class="title">0</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">标签</p><a href="/tags/"><p class="title">0</p></a></div></div></nav></div></div><!--!--></div><!--!--></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/img/logo.svg" alt="OD&#039;s blog" height="28"></a><p class="is-size-7"><span>&copy; 2025 Jiamin Liu</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a></p><p class="is-size-7">© 2019</p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("zh-cn");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script data-pjax src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="回到顶端" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script data-pjax src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
+      window.cookieconsent.initialise({
+        type: "info",
+        theme: "edgeless",
+        static: false,
+        position: "bottom-left",
+        content: {
+          message: "此网站使用Cookie来改善您的体验。",
+          dismiss: "知道了！",
+          allow: "允许使用Cookie",
+          deny: "拒绝",
+          link: "了解更多",
+          policy: "Cookie政策",
+          href: "https://www.cookiesandyou.com/",
+        },
+        palette: {
+          popup: {
+            background: "#edeff5",
+            text: "#838391"
+          },
+          button: {
+            background: "#4b81e8"
+          },
+        },
+      });
+    });</script><script src="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/js/lightgallery.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><script type="text/javascript" id="MathJax-script" async>MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']]
+      },
+      svg: {
+        fontCache: 'global'
+      },
+      chtml: {
+        matchFontHeight: false
+      }
+    };</script><script src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js"></script><script src="https://cdn.jsdelivr.net/npm/pjax@0.2.8/pjax.min.js"></script><script src="/js/pjax.js"></script><!--!--><!--!--><!--!--><script data-pjax src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="想要查找什么..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script data-pjax src="/js/insight.js" defer></script><script data-pjax>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"想要查找什么...","untitled":"(无标题)","posts":"文章","pages":"页面","categories":"分类","tags":"标签"});
+        });</script></body></html>
