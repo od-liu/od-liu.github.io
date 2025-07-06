@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="zh"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>时序差分算法 - OD&#039;s blog</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="OD&#039;s blog"><meta name="msapplication-TileImage" content="/img/favicon.svg"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="OD&#039;s blog"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="description" content="1. TD learning of state valueThe data&amp;#x2F;experience required by the algorithm:  $(s_0,r_1,s_1,\cdots,s_t,r_{t+1},s_{t+1})$ or $\{(s_t,r_{t+1},s_{t+1})\}_t$ renerated following the given policy $\pi$.  Th"><meta property="og:type" content="blog"><meta property="og:title" content="时序差分算法"><meta property="og:url" content="http://example.com/RL/TDL.html"><meta property="og:site_name" content="OD&#039;s blog"><meta property="og:description" content="1. TD learning of state valueThe data&amp;#x2F;experience required by the algorithm:  $(s_0,r_1,s_1,\cdots,s_t,r_{t+1},s_{t+1})$ or $\{(s_t,r_{t+1},s_{t+1})\}_t$ renerated following the given policy $\pi$.  Th"><meta property="og:locale" content="zh_CN"><meta property="og:image" content="http://example.com/img/og_image.png"><meta property="article:published_time" content="2025-07-02T11:33:57.000Z"><meta property="article:modified_time" content="2025-07-03T12:20:01.144Z"><meta property="article:author" content="Jiamin Liu"><meta property="twitter:card" content="summary"><meta property="twitter:image:src" content="http://example.com/img/og_image.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"http://example.com/RL/TDL.html"},"headline":"时序差分算法","image":["http://example.com/img/og_image.png"],"datePublished":"2025-07-02T11:33:57.000Z","dateModified":"2025-07-03T12:20:01.144Z","author":{"@type":"Person","name":"Jiamin Liu"},"publisher":{"@type":"Organization","name":"OD's blog","logo":{"@type":"ImageObject","url":"http://example.com/img/logo.svg"}},"description":"1. TD learning of state valueThe data&#x2F;experience required by the algorithm:  $(s_0,r_1,s_1,\\cdots,s_t,r_{t+1},s_{t+1})$ or $\\{(s_t,r_{t+1},s_{t+1})\\}_t$ renerated following the given policy $\\pi$.  Th"}</script><link rel="canonical" href="http://example.com/RL/TDL.html"><link rel="icon" href="/img/favicon.svg"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.0.0/css/all.css"><link data-pjax rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.7.0/styles/atom-one-light.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link data-pjax rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css"><!--!--><!--!--><!--!--><!--!--><style>.pace{-webkit-pointer-events:none;pointer-events:none;-webkit-user-select:none;-moz-user-select:none;user-select:none}.pace-inactive{display:none}.pace .pace-progress{background:#3273dc;position:fixed;z-index:2000;top:0;right:100%;width:100%;height:2px}</style><script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js"></script><!--!--><!--!--><!-- hexo injector head_end start --><script>
+  (function () {
+      function switchTab() {
+          if (!location.hash) {
+            return;
+          }
+
+          const id = '#' + CSS.escape(location.hash.substring(1));
+          const $tabMenu = document.querySelector(`.tabs a[href="${id}"]`);
+          if (!$tabMenu) {
+            return;
+          }
+
+          const $tabMenuContainer = $tabMenu.parentElement.parentElement;
+          Array.from($tabMenuContainer.children).forEach($menu => $menu.classList.remove('is-active'));
+          Array.from($tabMenuContainer.querySelectorAll('a'))
+              .map($menu => document.getElementById($menu.getAttribute("href").substring(1)))
+              .forEach($content => $content.classList.add('is-hidden'));
+
+          if ($tabMenu) {
+              $tabMenu.parentElement.classList.add('is-active');
+          }
+          const $activeTab = document.querySelector(id);
+          if ($activeTab) {
+              $activeTab.classList.remove('is-hidden');
+          }
+      }
+      switchTab();
+      window.addEventListener('hashchange', switchTab, false);
+  })();
+  </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head><body class="is-2-column"><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/img/logo.svg" alt="OD&#039;s blog" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">主页</a></div><div class="navbar-end"><a class="navbar-item search" title="搜索" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-8-widescreen"><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2025-07-02T11:33:57.000Z" title="2025/7/2 19:33:57">2025-07-02</time>发表</span><span class="level-item"><time dateTime="2025-07-03T12:20:01.144Z" title="2025/7/3 20:20:01">2025-07-03</time>更新</span><span class="level-item"><a class="link-muted" href="/"></a></span><span class="level-item">9 分钟读完 (大约1343个字)</span></div></div><h1 class="title is-3 is-size-4-mobile">时序差分算法</h1><div class="content"><p><strong>1. TD learning of state value</strong><br><strong>The data/experience required by the algorithm:</strong></p>
+<ul>
+<li>$(s_0,r_1,s_1,\cdots,s_t,r_{t+1},s_{t+1})$ or $\{(s_t,r_{t+1},s_{t+1})\}_t$ renerated following the given policy $\pi$.</li>
+</ul>
+<p><strong>The TD learning algorithm is:</strong><br>&emsp;$v_{t+1}(s_t)=v_t(s_t)-\alpha_t(s_t)\Big[v_t(s_t)-[r_{t+1}+\gamma v_t(s_{t+1})]\Big]$,(1)<br>&emsp;$v_{t+1}(s)=v_t(s),\forall s\neq s_t$,(2)<br>where $t=0,1,2,\cdots$. Here, $v_t(s_t)$ is the estimated state value of $v_{\pi}(s_t)$; $\alpha_t(s_t)$ is the learning rate of $s_t$ at time $t$.</p>
+<p>This algorithm drives $v(s_t)$ towards $\bar v_t$.<br><strong>Other property</strong> :<br>The algorithm only estimate state values. It can’t estimate the action values and optimal values.</p>
+<p><strong>Theorem (Convergence of TD learning)</strong><br>By the TD algorithm(1), $v_t(s)$ converges with probability 1 to $v_\pi(s)$ for all $s\in \mathcal{S}$ as $t\rightarrow \infty$ if $\sum_t\alpha_t(s)=\infty$ and $\sum_t\alpha_t^2(s)\lt\infty$ for all $s\in\mathcal{S}$.</p>
+<p><strong>TD/Sarsa learning vs MC learning</strong>:</p>
+<table>
+<tr>
+<th>TD/Sarsa</th>
+<th>MC learning</th>
+</tr>
+<tr>
+<td>Online: it can update the state/action values immediately after receiving a reward.</td>
+<td>Offline: has to wait until an epsiode has been completely collection</td>
+</tr>
+<tr>
+<td>Continuing tasks: handle both episodic and continuing tasks </td>
+<td>Episodic tasks: only handle tasks that has terminate states.</td>
+</tr>
+<tr>
+<td> Bootstrapping: TD bootstraps because the update of a value relies on the previous estimate of this value. Hence it require initial guess.
+</td>
+<td>
+Non-bootstrapping: MC is not bootstrapping, because it can directly estimate state/action values without any initial guess.
+</td>
+</tr>
+<tr>
+<td> Low estimation variance（方差小）: there are fewer random variables.
+</td>
+<td> High estimation variance（方差大）: need a lot of random variables.
+</td> 
+</tr>
+</table>
+
+<p><strong>2. TD learning of action values: Sarsa</strong><br>Suppose we have some experience $\{(s_t,a_t,r_{t+1},s_{t+1},a_{t+1})\}$<br>$q_{t+1}(s_t,a_t)=q_t(s_t,a_t)-\alpha_t(s_t,a_t)\Big[q_t(s_t,a_t)-[r_{t+1}+\gamma q_t(s_{t+1},a_{t+1})]\Big]$,(1)<br>&emsp;$q_{t+1}(s,a)=q_t(s,a),\forall (s,a)\neq (s_t,a_t)$,(2)<br>where $t=0,1,2,\cdots$. Here, $q_t(s_t,a_t)$ is the estimated state value of $q_{\pi}(s_t,a_t)$; $\alpha_t(s_t,a_t)$ is the learning rate of $s_t,a_t$ at time $t$.</p>
+<p>Sarsa is the abbreviation of state-action-reward-state-action.<br>Sarsa is an action-value version of the TD algorithm.</p>
+<p><strong>Theorem (Convergence of Sarsa learning)</strong><br>By the Sarsa algorithm, $q_t(s,a)$ converges with probability $1$ to $q_\pi(s,a)$ as $t\rightarrow \infty$ for all $(s,a) $ if $\sum_t\alpha_t(s,a)=\infty$ and $\sum_t\alpha_t^2(s,a)\lt\infty$ for all $(s,a)$.</p>
+<p><strong>3. Expected Sarsa</strong><br>$q_{t+1}(s_t,a_t)=q_t(s_t,a_t)-\alpha_t(s_t,a_t)\Big[q_t(s_t,a_t)-(r_{t+1}+\gamma E[q_t(s_{t+1},A)])\Big]$,<br>$q_{t+1}(s,a)=q_t(s,a),<br>where $E[q_t(s_{t+1},A)]=\underset{a}\sum \pi_t(a|s_{t+1})q_t(s_{t+1},a)=v_t(s_{t+1}) is the expected value of $q_t(s_{t+1},a)$ under policy $\pi_t$.</p>
+<p>Need more computation than Sarsa. But it is beneficial in the sense that it reduces the estimation variances because it reduces random variables in Sarsa from $\{s_t,a_t,r_{t+1},s_{t+1},a_{t+1}\}$ to $\{s_t,a_t,r_{t+1},s_{t+1}\}$.</p>
+<p>Expected Sarsa is a stochastic approximation for solving the following equation:<br>$q_\pi(s,a)=E\Big[R_{t+1}+\gamma E_{A_{t+1}\sim\pi(S_{t+1})}[q_\pi(S_{t+1},A_{t+1})]\Big|S_t=s,A_t=a\Big],\forall s,a$.</p>
+<p><strong>n-step Sarsa</strong><br>It can unify Sarsa and Monte Carlo learning.<br>Sarsa aims to solve: $q_\pi(s,a)=E[G_t^{(1)}|s,a]=E[R_{t+1}+\gamma q_\pi(S_{t+1},A_{t+1})|s,a]$.<br>MC learning aims to solve: $q_\pi(s,a)=E[G_t^{(\infty)}|s,a]=E[R_{t+1}+\gamma R_{t+2}+\gamma^2 R_{t+3}+\cdots|s,a]$.<br>An intermediate algorithm called n-step Sarsa aims to solve:<br>$q_\pi(s,a)=E[G_t^{(n)}|s,a]=E[R_{t+1}+\gamma R_{t+2}+\cdots+\gamma^nq_\pi(S_{t+n},A_{t+n}|s,a]$.</p>
+<p>The algorithm of n-step Sarsa is:$q_{t+1}(s_t,a_t)=q_t(s_t,a_t)-\alpha_t(s_t,a_t)\Big[q_t(s_t,a_t)-[r_{t+1}+\gamma r_{t+2}+\cdots+ \gamma^n q_t(s_{t+n},a_{t+n})])\Big]$.<br>n-step Sarsa is more general because it becomes the (one-step) Sarsa algorithm when $n=1$ and the MC learning algorithm becomes MC when $n=\infty$.</p>
+<p>n-step Sarsa needs $(s_t,a_t,r_{t+1},s_{t+1},a_{t+1},\cdots,r_{t+n},s_{t+n},a_{t+n})$.</p>
+<p><strong>TD learning odf optimal action value: Q-learning</strong><br>直接估计最优action value.<br><strong>The Q-learning algorithm</strong> is<br>&emsp;$q_{t+1}(s_t,a_t)=q_t(s_t,a_t)-\alpha_t(s_t,a_t)\Big[q_t(s_t,a_t)-[r_{t+1}+\gamma \underset{a\in\mathcal{A}}\max q_t(s_{t+1},a)]\Big]$,<br>&emsp;$q_{t+1}(s,a)=q_t(s,a),\forall (s,a)\neq (s_t,a_t).</p>
+<p>It aims to solve $q(s,a)=E[R_{t+1}+\gamma\underset{a}q(S_{t+1},a)\Big|S_t=s,A_t=a],\forall s,a$.<br>This is the Bellman optimality equation expressed in trems of action values.</p>
+<p>There exists 2 policies in TD learning task:</p>
+<ul>
+<li>The behavior policy is used to generate experience samples.</li>
+<li>The target policy is constantly update toward an optimal policy.</li>
+</ul>
+<p>On-policy vs off-policy:</p>
+<ul>
+<li>When the behavior policy is the same as the target policy, such king of learning is called <strong>on policy</strong>.(Sarsa)</li>
+<li>When they are different, the learning is called <strong>off-policy</strong>.(Q-learning)<ul>
+<li>Advantages: It can search for optimal policies based on the experience samples generated by any other policies.</li>
+</ul>
+</li>
+</ul>
+<ol>
+<li>Sarsa is on-policy:<ul>
+<li>Sarsa aims to solve the Bellman equation of a given policy $\pi$.</li>
+<li>The algorithm requires $(s_t,a_t,r_{t+1},s_{t+1},a_{t+1})$.</li>
+<li>$\pi_t$ is both the target policy and the behavior policy.</li>
+</ul>
+</li>
+<li><p>Mont Carlo learning is on-policy:</p>
+<ul>
+<li>aims to estimate action values with a long epsiode.</li>
+<li>$\pi\rightarrow exp$</li>
+<li>A policy is used to generate samples, which is further used to estimate the action values of the policy. Based on the action values, we can improved the policy(target).</li>
+</ul>
+</li>
+<li><p>Q-learning is off-policy:</p>
+<ul>
+<li>Aims to solve the Bellman optimality equation(显式不含有任何策略$\pi$)</li>
+<li>requires$(s_t,a_t,r_{t+1},s_{t+1})$.</li>
+<li>The behavior policy to generate $a_t$ from $s_t$ can be anything. The target policy is the optimal policy.</li>
+</ul>
+</li>
+</ol>
+<p>Q-learning can be implemented in either off-policy or on-policy fashion.</p>
+<p><strong>A unified  point of view</strong><br>uniform expression:<br>&emsp;$q_{t+1}(s_t,a_t)=q_t(s_t,a_t)-\alpha_t(s_t,a_t)[q_t(s_t,a_t)-\bar{q}_t]$,<br>where $\bar{q}_t is the TD target.</p>
+<p>Different TD algorithm have different $\bar{q}_t$.</p>
+<ul>
+<li>Sarsa: $\bar{q}_t=r_{t+1}+\gamma q_t(s_{t+1},a_{t+1})$</li>
+<li>$n$-step Sarsa: $\bar{q}_t=r_{t+1}+\gamma r_{t+2}+\cdots+\gamma^nq_t(s_{t+n},a_{t+n})$</li>
+<li>Expected Sarsa: $\bar{q}_t=r_{t+1}+\gamma \sum_a \pi_t(a|s_{t+1})q_t(s_{t+1},a)$.</li>
+<li>Q-learning: $\bar{q}_t=r_{t+1}+\gamma \max_a q_t(s_{t+1},a)$.</li>
+<li>Monte Carlo: $\bar{q}_t=r_{t+1}+\gamma r_{t+2}+\cdots$.</li>
+</ul>
+</div><div class="article-licensing box"><div class="licensing-title"><p>时序差分算法</p><p><a href="http://example.com/RL/TDL.html">http://example.com/RL/TDL.html</a></p></div><div class="licensing-meta level is-mobile"><div class="level-left"><div class="level-item is-narrow"><div><h6>作者</h6><p>Jiamin Liu</p></div></div><div class="level-item is-narrow"><div><h6>发布于</h6><p>2025-07-02</p></div></div><div class="level-item is-narrow"><div><h6>更新于</h6><p>2025-07-03</p></div></div><div class="level-item is-narrow"><div><h6>许可协议</h6><p><a class="icons" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="icon fab fa-creative-commons"></i></a><a class="icons" rel="noopener" target="_blank" title="Attribution" href="https://creativecommons.org/licenses/by/4.0/"><i class="icon fab fa-creative-commons-by"></i></a><a class="icons" rel="noopener" target="_blank" title="Noncommercial" href="https://creativecommons.org/licenses/by-nc/4.0/"><i class="icon fab fa-creative-commons-nc"></i></a></p></div></div></div></div></div><!--!--></article></div><!--!--><div class="card" id="comments"><div class="card-content"><h3 class="title is-5">评论</h3><div id="comment-container"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.css"><script src="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js"></script><script>var gitalk = new Gitalk({
+            id: "7003e52618d0f451232995c934e5ff0e",
+            repo: "od-liu.github.io",
+            owner: "od-Liu",
+            clientID: "Ov23liWi9TgDXgT7hhEB",
+            clientSecret: "054ac0bc0bc8afaac9a807be4b6af2274ee9bc10",
+            admin: ["od-liu"],
+            createIssueManually: false,
+            distractionFreeMode: false,
+            perPage: 10,
+            pagerDirection: "last",
+            
+            
+            enableHotKey: true,
+            
+        })
+        gitalk.render('comment-container')</script></div></div></div><div class="column column-left is-4-tablet is-4-desktop is-4-widescreen  order-1"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar" src="/img/1.png" alt="Jiamin Liu"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">Jiamin Liu</p><p class="is-size-6 is-block">别卷我别卷我别卷我👊</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>Hangzhou</span></p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">文章</p><a href="/archives/"><p class="title">1</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">分类</p><a href="/categories/"><p class="title">0</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">标签</p><a href="/tags/"><p class="title">0</p></a></div></div></nav></div></div><!--!--></div><!--!--></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/img/logo.svg" alt="OD&#039;s blog" height="28"></a><p class="is-size-7"><span>&copy; 2025 Jiamin Liu</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a></p><p class="is-size-7">© 2019</p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("zh-cn");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script data-pjax src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="回到顶端" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script data-pjax src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
+      window.cookieconsent.initialise({
+        type: "info",
+        theme: "edgeless",
+        static: false,
+        position: "bottom-left",
+        content: {
+          message: "此网站使用Cookie来改善您的体验。",
+          dismiss: "知道了！",
+          allow: "允许使用Cookie",
+          deny: "拒绝",
+          link: "了解更多",
+          policy: "Cookie政策",
+          href: "https://www.cookiesandyou.com/",
+        },
+        palette: {
+          popup: {
+            background: "#edeff5",
+            text: "#838391"
+          },
+          button: {
+            background: "#4b81e8"
+          },
+        },
+      });
+    });</script><script src="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/js/lightgallery.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><script type="text/javascript" id="MathJax-script" async>MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']]
+      },
+      svg: {
+        fontCache: 'global'
+      },
+      chtml: {
+        matchFontHeight: false
+      }
+    };</script><script src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js"></script><script src="https://cdn.jsdelivr.net/npm/pjax@0.2.8/pjax.min.js"></script><script src="/js/pjax.js"></script><!--!--><!--!--><!--!--><script data-pjax src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="想要查找什么..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script data-pjax src="/js/insight.js" defer></script><script data-pjax>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"想要查找什么...","untitled":"(无标题)","posts":"文章","pages":"页面","categories":"分类","tags":"标签"});
+        });</script></body></html>

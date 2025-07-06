@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="zh"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>图论 - OD&#039;s blog</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="OD&#039;s blog"><meta name="msapplication-TileImage" content="/img/favicon.svg"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="OD&#039;s blog"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="description" content="图论核心概念1. 基本假设与符号 默认图类型: 除非特别说明，所有讨论的图 $G$ 都是简单图 (simple) 和无向图 (undirected)。 顶点集 (Vertex Set): 用 $V(G)$ 表示图 $G$ 中所有顶点的集合。 边集 (Edge Set): 用 $E(G)$ 表示图 $G$ 中所有边的集合。 顶点数 (Number of Vertices): 用 $v_G$ 或 $v"><meta property="og:type" content="blog"><meta property="og:title" content="图论"><meta property="og:url" content="http://example.com/RandomGraph/graphtheory.html"><meta property="og:site_name" content="OD&#039;s blog"><meta property="og:description" content="图论核心概念1. 基本假设与符号 默认图类型: 除非特别说明，所有讨论的图 $G$ 都是简单图 (simple) 和无向图 (undirected)。 顶点集 (Vertex Set): 用 $V(G)$ 表示图 $G$ 中所有顶点的集合。 边集 (Edge Set): 用 $E(G)$ 表示图 $G$ 中所有边的集合。 顶点数 (Number of Vertices): 用 $v_G$ 或 $v"><meta property="og:locale" content="zh_CN"><meta property="og:image" content="http://example.com/img/og_image.png"><meta property="article:published_time" content="2025-07-05T05:55:16.000Z"><meta property="article:modified_time" content="2025-07-06T06:16:50.231Z"><meta property="article:author" content="Jiamin Liu"><meta property="twitter:card" content="summary"><meta property="twitter:image:src" content="http://example.com/img/og_image.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"http://example.com/RandomGraph/graphtheory.html"},"headline":"图论","image":["http://example.com/img/og_image.png"],"datePublished":"2025-07-05T05:55:16.000Z","dateModified":"2025-07-06T06:16:50.231Z","author":{"@type":"Person","name":"Jiamin Liu"},"publisher":{"@type":"Organization","name":"OD's blog","logo":{"@type":"ImageObject","url":"http://example.com/img/logo.svg"}},"description":"图论核心概念1. 基本假设与符号 默认图类型: 除非特别说明，所有讨论的图 $G$ 都是简单图 (simple) 和无向图 (undirected)。 顶点集 (Vertex Set): 用 $V(G)$ 表示图 $G$ 中所有顶点的集合。 边集 (Edge Set): 用 $E(G)$ 表示图 $G$ 中所有边的集合。 顶点数 (Number of Vertices): 用 $v_G$ 或 $v"}</script><link rel="canonical" href="http://example.com/RandomGraph/graphtheory.html"><link rel="icon" href="/img/favicon.svg"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.0.0/css/all.css"><link data-pjax rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.7.0/styles/atom-one-light.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link data-pjax rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css"><!--!--><!--!--><!--!--><!--!--><style>.pace{-webkit-pointer-events:none;pointer-events:none;-webkit-user-select:none;-moz-user-select:none;user-select:none}.pace-inactive{display:none}.pace .pace-progress{background:#3273dc;position:fixed;z-index:2000;top:0;right:100%;width:100%;height:2px}</style><script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js"></script><!--!--><!--!--><!-- hexo injector head_end start --><script>
+  (function () {
+      function switchTab() {
+          if (!location.hash) {
+            return;
+          }
+
+          const id = '#' + CSS.escape(location.hash.substring(1));
+          const $tabMenu = document.querySelector(`.tabs a[href="${id}"]`);
+          if (!$tabMenu) {
+            return;
+          }
+
+          const $tabMenuContainer = $tabMenu.parentElement.parentElement;
+          Array.from($tabMenuContainer.children).forEach($menu => $menu.classList.remove('is-active'));
+          Array.from($tabMenuContainer.querySelectorAll('a'))
+              .map($menu => document.getElementById($menu.getAttribute("href").substring(1)))
+              .forEach($content => $content.classList.add('is-hidden'));
+
+          if ($tabMenu) {
+              $tabMenu.parentElement.classList.add('is-active');
+          }
+          const $activeTab = document.querySelector(id);
+          if ($activeTab) {
+              $activeTab.classList.remove('is-hidden');
+          }
+      }
+      switchTab();
+      window.addEventListener('hashchange', switchTab, false);
+  })();
+  </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head><body class="is-2-column"><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/img/logo.svg" alt="OD&#039;s blog" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">主页</a></div><div class="navbar-end"><a class="navbar-item search" title="搜索" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-8-widescreen"><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2025-07-05T05:55:16.000Z" title="2025/7/5 13:55:16">2025-07-05</time>发表</span><span class="level-item"><time dateTime="2025-07-06T06:16:50.231Z" title="2025/7/6 14:16:50">2025-07-06</time>更新</span><span class="level-item"><a class="link-muted" href="/"></a></span><span class="level-item">10 分钟读完 (大约1555个字)</span></div></div><h1 class="title is-3 is-size-4-mobile">图论</h1><div class="content"><h3 id="图论核心概念"><a href="#图论核心概念" class="headerlink" title="图论核心概念"></a>图论核心概念</h3><h4 id="1-基本假设与符号"><a href="#1-基本假设与符号" class="headerlink" title="1. 基本假设与符号"></a>1. 基本假设与符号</h4><ul>
+<li><strong>默认图类型</strong>: 除非特别说明，所有讨论的图 $G$ 都是<strong>简单图 (simple)</strong> 和<strong>无向图 (undirected)</strong>。</li>
+<li><strong>顶点集 (Vertex Set)</strong>: 用 $V(G)$ 表示图 $G$ 中所有顶点的集合。</li>
+<li><strong>边集 (Edge Set)</strong>: 用 $E(G)$ 表示图 $G$ 中所有边的集合。</li>
+<li><strong>顶点数 (Number of Vertices)</strong>: 用 $v_G$ 或 $v(G)$ 表示，其值为 $|V(G)|$。这也被称为图的<strong>阶 (order)</strong>。</li>
+<li><strong>边数 (Number of Edges)</strong>: 用 $e_G$ 或 $e(G)$ 表示，其值为 $|E(G)|$。</li>
+</ul>
+<p><strong>重要约定</strong>:<br>一个图 $G$ 的 <strong>尺寸 (size)</strong> 特指其<strong>顶点数 $v(G)$</strong>。这需要特别注意，在其他文献中，“size”有时也可能指边数 $e(G)$。</p>
+<h4 id="2-图的密度-Density"><a href="#2-图的密度-Density" class="headerlink" title="2. 图的密度 (Density)"></a>2. 图的密度 (Density)</h4><ul>
+<li><p><strong>密度 (Density)</strong></p>
+<ul>
+<li>定义: $d(G) = e_G / v_G$</li>
+<li>含义: 平均每个顶点拥有多少条边。</li>
+<li>注意: 这个值等于图的<strong>平均度数的一半</strong>。有些作者将密度定义为平均度数，其值会是这里的两倍。</li>
+</ul>
+</li>
+<li><p><strong>最大密度 (Maximum Density)</strong></p>
+<ul>
+<li>定义: $m(G) = \max_{H \subseteq G} d(H)$</li>
+<li>含义: 在图 $G$ 的<strong>所有子图</strong> $H$ 中，能找到的最大的密度值。</li>
+</ul>
+</li>
+<li><p><strong>相对密度 (Relative Density)</strong></p>
+<ul>
+<li>定义: $\rho(G) = e(G) / \binom{v(G)}{2}$</li>
+<li>含义: 图中实际存在的边数与一个具有相同顶点数的<strong>完全图 (complete graph)</strong> 的边数之比。这个值总是在 0 和 1 之间，直观地反映了图的“稠密程度”。</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h4 id="3-重要的图参数"><a href="#3-重要的图参数" class="headerlink" title="3. 重要的图参数"></a>3. 重要的图参数</h4><ul>
+<li><strong>最小度 (Minimum Degree)</strong>: $\delta(G)$，图中所有顶点度的最小值。</li>
+<li><strong>最大度 (Maximum Degree)</strong>: $\Delta(G)$，图中所有顶点度的最大值。</li>
+<li><strong>色数 (Chromatic Number)</strong>: $\chi(G)$，对图的顶点进行正常着色（相邻顶点颜色不同）所需的最少颜色数。</li>
+<li><strong>退化数 (Degeneracy Number)</strong>: $D(G) = \max_{H \subseteq G} \delta(H)$，所有子图的最小度的最大值。</li>
+<li><strong>稳定数/独立数 (Stability/Independence Number)</strong>: $\alpha(G)$，图中最大<strong>独立集</strong>的大小（独立集是指一个顶点子集，其中任意两个顶点之间都没有边）。</li>
+<li><strong>自同构数 (Number of Automorphisms)</strong>: $\text{aut}(G)$，图的对称性度量，指保持图结构不变的顶点置换的数量。</li>
+</ul>
+<hr>
+<h4 id="4-邻域与度-Neighborhoods-and-Degrees"><a href="#4-邻域与度-Neighborhoods-and-Degrees" class="headerlink" title="4. 邻域与度 (Neighborhoods and Degrees)"></a>4. 邻域与度 (Neighborhoods and Degrees)</h4><p>这些概念描述了顶点及其直接连接。</p>
+<ul>
+<li><p><strong>邻域 (Neighborhood)</strong></p>
+<ul>
+<li>一个顶点 $v$ 的<strong>（开）邻域</strong> $N(v)$ 或 $N_G(v)$ 是所有与 $v$ 相邻的顶点的集合。</li>
+<li>数学定义: $N(v) = \{w \in V(G) : vw \in E(G)\}$</li>
+</ul>
+</li>
+<li><p><strong>度 (Degree)</strong></p>
+<ul>
+<li>一个顶点 $v$ 的度 $\text{deg}(v)$ 是其邻域的大小，即与它直接相连的边的数量。</li>
+<li>关系: $\text{deg}(v) = |N(v)|$</li>
+</ul>
+</li>
+<li><p><strong>集合的邻域 (Neighborhood of a Set)</strong></p>
+<ul>
+<li>一个顶点集 $S \subseteq V(G)$ 的邻域 $N_G(S)$ 是指在 $S$ <strong>之外</strong>，但与 $S$ 中至少一个顶点相邻的所有顶点的集合。</li>
+<li>数学定义: $N_G(S) = \left( \bigcup_{v \in S} N_G(v) \right) \setminus S$</li>
+</ul>
+</li>
+<li><p><strong>闭邻域 (Closed Neighborhoods)</strong></p>
+<ul>
+<li>“闭”邻域只是在“开”邻域的基础上加上了其自身。</li>
+<li>顶点的闭邻域: $\bar{N}_G(v) = N_G(v) \cup \{v\}$</li>
+<li>集合的闭邻域: $\bar{N}_G(S) = N_G(S) \cup S$</li>
+</ul>
+</li>
+</ul>
+<h3 id="5-特殊图类与子图"><a href="#5-特殊图类与子图" class="headerlink" title="5. 特殊图类与子图"></a>5. 特殊图类与子图</h3><h4 id="基本图类型"><a href="#基本图类型" class="headerlink" title="基本图类型"></a>基本图类型</h4><ul>
+<li><strong>空图 (Empty Graph)</strong>: 指有顶点但没有任何边的图。</li>
+<li><strong>零图 (Null Graph)</strong>: 用 $\emptyset$ 表示，指既没有顶点也没有边的图。</li>
+</ul>
+<h4 id="常见的图家族-Graph-Families"><a href="#常见的图家族-Graph-Families" class="headerlink" title="常见的图家族 (Graph Families)"></a>常见的图家族 (Graph Families)</h4><ul>
+<li><strong>完全图 (Complete Graph, $K_n$)</strong>: 包含 $n$ 个顶点，且任意两个不同的顶点之间都有一条边相连。</li>
+<li><strong>完全二分图 (Complete Bipartite Graph, $K_{m,n}$)</strong>: 包含 $m+n$ 个顶点，这些顶点被划分为两个集合（大小分别为 $m$ 和 $n$），其中第一个集合中的每个顶点都与第二个集合中的每个顶点相连，但同一集合内的顶点之间没有连接。</li>
+<li><strong>圈 (Cycle, $C_k$)</strong>: 包含 $k$ 个顶点，排列成一个闭合的环路。</li>
+<li><strong>路 (Path, $P_k$)</strong>: 包含 $k$ 条边和 $k+1$ 个顶点的图，形成一条不闭合的路径。</li>
+<li><strong>星图 (Star)</strong>: 任何形如 $K_{1,n}$ ($n \ge 0$) 的图。它有一个中心顶点，连接着 $n$ 个叶子顶点。</li>
+<li><strong>匹配 (Matching)</strong>: 一个由若干条孤立的边组成的森林。可以表示为 $jK_2$ 的形式，其中 $j \ge 0$ 是边的数量。</li>
+<li><strong>不交并 (Vertex-Disjoint Union, $jG$)</strong>: 由 $j$ 个顶点互不相交的图 $G$ 的副本组成的图。</li>
+</ul>
+<hr>
+<h3 id="6-子图-Subgraphs"><a href="#6-子图-Subgraphs" class="headerlink" title="6. 子图 (Subgraphs)"></a>6. 子图 (Subgraphs)</h3><h4 id="子图的两种主要类型"><a href="#子图的两种主要类型" class="headerlink" title="子图的两种主要类型"></a>子图的两种主要类型</h4><ul>
+<li><p><strong>导出子图 (Induced Subgraph, $G[V]$)</strong>:</p>
+<ul>
+<li>也被称为由顶点集 $V$ <strong>生成 (spanned)</strong> 的子图。</li>
+<li><strong>定义</strong>: 给定一个顶点子集 $V \subseteq V(G)$，其导出子图 $G[V]$ 的顶点集就是 $V$，边集则包含原图 $G$ 中<strong>两个端点都在</strong> $V$ 中的<strong>所有</strong>边。</li>
+<li><strong>边集</strong>: $E(G) \cap [V]^2$。</li>
+<li><strong>核心思想</strong>: 选择一部分顶点，并保留这些顶点之间所有的原始连接。</li>
+</ul>
+</li>
+<li><p><strong>生成子图 (Spanning Subgraph, $G[E]$)</strong>:</p>
+<ul>
+<li><strong>定义</strong>: 给定一个边子集 $E’ \subseteq E(G)$，其生成子图 $G[E’]$ 拥有与原图 $G$ <strong>完全相同</strong>的顶点集 $V(G)$，但其边集被限制为 $E(G) \cap E’$。</li>
+<li><strong>核心思想</strong>: 保留所有的顶点，但只保留一部分边。最著名的例子是<strong>生成树 (Spanning Tree)</strong>。</li>
+</ul>
+</li>
+</ul>
+<h4 id="相关记法与概念"><a href="#相关记法与概念" class="headerlink" title="相关记法与概念"></a>相关记法与概念</h4><ul>
+<li><strong>集合内的边数</strong>: $e_G(V)$ 或 $e(V)$ 表示导出子图 $G[V]$ 中的边数。</li>
+<li><strong>集合间的边数</strong>: 对于两个不相交的顶点集 $A, B \subseteq V(G)$，$e_G(A,B)$ 表示一个端点在 $A$ 中、另一个端点在 $B$ 中的边的数量。</li>
+<li><strong>副本 (Copy)</strong>: 在一个大图 $F$ 中，图 $G$ 的一个副本是指 $F$ 的一个子图，该子图与 $G$ <strong>同构 (isomorphic)</strong>。这个子图<strong>不一定</strong>是导出子图。</li>
+<li><strong>导出副本 (Induced Copy)</strong>: $F$ 的一个子图，它既与 $G$ <strong>同构</strong>，同时也是 $F$ 的一个<strong>导出子图</strong>。这是一个更强的条件，意味着副本的顶点之间不存在不属于该副本的“额外”边。</li>
+</ul>
+</div><div class="article-licensing box"><div class="licensing-title"><p>图论</p><p><a href="http://example.com/RandomGraph/graphtheory.html">http://example.com/RandomGraph/graphtheory.html</a></p></div><div class="licensing-meta level is-mobile"><div class="level-left"><div class="level-item is-narrow"><div><h6>作者</h6><p>Jiamin Liu</p></div></div><div class="level-item is-narrow"><div><h6>发布于</h6><p>2025-07-05</p></div></div><div class="level-item is-narrow"><div><h6>更新于</h6><p>2025-07-06</p></div></div><div class="level-item is-narrow"><div><h6>许可协议</h6><p><a class="icons" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="icon fab fa-creative-commons"></i></a><a class="icons" rel="noopener" target="_blank" title="Attribution" href="https://creativecommons.org/licenses/by/4.0/"><i class="icon fab fa-creative-commons-by"></i></a><a class="icons" rel="noopener" target="_blank" title="Noncommercial" href="https://creativecommons.org/licenses/by-nc/4.0/"><i class="icon fab fa-creative-commons-nc"></i></a></p></div></div></div></div></div><!--!--></article></div><!--!--><div class="card" id="comments"><div class="card-content"><h3 class="title is-5">评论</h3><div id="comment-container"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.css"><script src="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js"></script><script>var gitalk = new Gitalk({
+            id: "27232635b6325d1c6d078e78f0cdd8b7",
+            repo: "od-liu.github.io",
+            owner: "od-Liu",
+            clientID: "Ov23liWi9TgDXgT7hhEB",
+            clientSecret: "054ac0bc0bc8afaac9a807be4b6af2274ee9bc10",
+            admin: ["od-liu"],
+            createIssueManually: false,
+            distractionFreeMode: false,
+            perPage: 10,
+            pagerDirection: "last",
+            
+            
+            enableHotKey: true,
+            
+        })
+        gitalk.render('comment-container')</script></div></div></div><div class="column column-left is-4-tablet is-4-desktop is-4-widescreen  order-1"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar" src="/img/1.png" alt="Jiamin Liu"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">Jiamin Liu</p><p class="is-size-6 is-block">别卷我别卷我别卷我👊</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>Hangzhou</span></p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">文章</p><a href="/archives/"><p class="title">1</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">分类</p><a href="/categories/"><p class="title">0</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">标签</p><a href="/tags/"><p class="title">0</p></a></div></div></nav></div></div><!--!--></div><!--!--></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/img/logo.svg" alt="OD&#039;s blog" height="28"></a><p class="is-size-7"><span>&copy; 2025 Jiamin Liu</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a></p><p class="is-size-7">© 2019</p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("zh-cn");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script data-pjax src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="回到顶端" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script data-pjax src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
+      window.cookieconsent.initialise({
+        type: "info",
+        theme: "edgeless",
+        static: false,
+        position: "bottom-left",
+        content: {
+          message: "此网站使用Cookie来改善您的体验。",
+          dismiss: "知道了！",
+          allow: "允许使用Cookie",
+          deny: "拒绝",
+          link: "了解更多",
+          policy: "Cookie政策",
+          href: "https://www.cookiesandyou.com/",
+        },
+        palette: {
+          popup: {
+            background: "#edeff5",
+            text: "#838391"
+          },
+          button: {
+            background: "#4b81e8"
+          },
+        },
+      });
+    });</script><script src="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/js/lightgallery.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><script type="text/javascript" id="MathJax-script" async>MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']]
+      },
+      svg: {
+        fontCache: 'global'
+      },
+      chtml: {
+        matchFontHeight: false
+      }
+    };</script><script src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js"></script><script src="https://cdn.jsdelivr.net/npm/pjax@0.2.8/pjax.min.js"></script><script src="/js/pjax.js"></script><!--!--><!--!--><!--!--><script data-pjax src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="想要查找什么..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script data-pjax src="/js/insight.js" defer></script><script data-pjax>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"想要查找什么...","untitled":"(无标题)","posts":"文章","pages":"页面","categories":"分类","tags":"标签"});
+        });</script></body></html>

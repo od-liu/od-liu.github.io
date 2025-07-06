@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="zh"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>第二节：更一般的容器定理 - OD&#039;s blog</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="OD&#039;s blog"><meta name="msapplication-TileImage" content="/img/favicon.svg"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="OD&#039;s blog"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="description" content="超图容器定理对于任意$k\in N,\ c\gt 0$，存在$\delta&amp;gt;0$使得如下命题成立：这$H$是$k$-一致超图且$\tau\in(0,1)$满足$\Delta_l(H)\leq c\cdot\tau^{l-1}\frac{e(H)}{v(H)},\forall 1\leq l\leq k$.则存在一个$V(H)$子集的集合$\mathcal{C}$以及一个函数$f:\mathc"><meta property="og:type" content="blog"><meta property="og:title" content="第二节：更一般的容器定理"><meta property="og:url" content="http://example.com/Com-Pro/hc2.html"><meta property="og:site_name" content="OD&#039;s blog"><meta property="og:description" content="超图容器定理对于任意$k\in N,\ c\gt 0$，存在$\delta&amp;gt;0$使得如下命题成立：这$H$是$k$-一致超图且$\tau\in(0,1)$满足$\Delta_l(H)\leq c\cdot\tau^{l-1}\frac{e(H)}{v(H)},\forall 1\leq l\leq k$.则存在一个$V(H)$子集的集合$\mathcal{C}$以及一个函数$f:\mathc"><meta property="og:locale" content="zh_CN"><meta property="og:image" content="http://example.com/img/og_image.png"><meta property="article:published_time" content="2025-07-01T00:57:31.000Z"><meta property="article:modified_time" content="2025-07-01T13:51:37.193Z"><meta property="article:author" content="Jiamin Liu"><meta property="twitter:card" content="summary"><meta property="twitter:image:src" content="http://example.com/img/og_image.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"http://example.com/Com-Pro/hc2.html"},"headline":"第二节：更一般的容器定理","image":["http://example.com/img/og_image.png"],"datePublished":"2025-07-01T00:57:31.000Z","dateModified":"2025-07-01T13:51:37.193Z","author":{"@type":"Person","name":"Jiamin Liu"},"publisher":{"@type":"Organization","name":"OD's blog","logo":{"@type":"ImageObject","url":"http://example.com/img/logo.svg"}},"description":"超图容器定理对于任意$k\\in N,\\ c\\gt 0$，存在$\\delta&gt;0$使得如下命题成立：这$H$是$k$-一致超图且$\\tau\\in(0,1)$满足$\\Delta_l(H)\\leq c\\cdot\\tau^{l-1}\\frac{e(H)}{v(H)},\\forall 1\\leq l\\leq k$.则存在一个$V(H)$子集的集合$\\mathcal{C}$以及一个函数$f:\\mathc"}</script><link rel="canonical" href="http://example.com/Com-Pro/hc2.html"><link rel="icon" href="/img/favicon.svg"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.0.0/css/all.css"><link data-pjax rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.7.0/styles/atom-one-light.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link data-pjax rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css"><!--!--><!--!--><!--!--><!--!--><style>.pace{-webkit-pointer-events:none;pointer-events:none;-webkit-user-select:none;-moz-user-select:none;user-select:none}.pace-inactive{display:none}.pace .pace-progress{background:#3273dc;position:fixed;z-index:2000;top:0;right:100%;width:100%;height:2px}</style><script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js"></script><!--!--><!--!--><!-- hexo injector head_end start --><script>
+<html lang="zh"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>第二节：更一般的容器定理 - OD&#039;s blog</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="OD&#039;s blog"><meta name="msapplication-TileImage" content="/img/favicon.svg"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="OD&#039;s blog"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="description" content="引言：通用的超图容器引理在深入探讨具体应用之前，本节的核心工具——通用的超图容器引理。这个引理为各种组合对象（如图、整数集等）的计数和结构分析提供了统一的框架。 超图容器引理 (The Hypergraph Container Lemma)  对于任意 $k \in \mathbb{N}, c &amp;gt; 0$，存在 $\delta &amp;gt; 0$ 使得如下命题成立：设 $\mathcal{H}$"><meta property="og:type" content="blog"><meta property="og:title" content="第二节：更一般的容器定理"><meta property="og:url" content="http://example.com/Com-Pro/hc2.html"><meta property="og:site_name" content="OD&#039;s blog"><meta property="og:description" content="引言：通用的超图容器引理在深入探讨具体应用之前，本节的核心工具——通用的超图容器引理。这个引理为各种组合对象（如图、整数集等）的计数和结构分析提供了统一的框架。 超图容器引理 (The Hypergraph Container Lemma)  对于任意 $k \in \mathbb{N}, c &amp;gt; 0$，存在 $\delta &amp;gt; 0$ 使得如下命题成立：设 $\mathcal{H}$"><meta property="og:locale" content="zh_CN"><meta property="og:image" content="http://example.com/img/og_image.png"><meta property="article:published_time" content="2025-07-01T00:57:31.000Z"><meta property="article:modified_time" content="2025-07-06T06:29:42.223Z"><meta property="article:author" content="Jiamin Liu"><meta property="twitter:card" content="summary"><meta property="twitter:image:src" content="http://example.com/img/og_image.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"http://example.com/Com-Pro/hc2.html"},"headline":"第二节：更一般的容器定理","image":["http://example.com/img/og_image.png"],"datePublished":"2025-07-01T00:57:31.000Z","dateModified":"2025-07-06T06:29:42.223Z","author":{"@type":"Person","name":"Jiamin Liu"},"publisher":{"@type":"Organization","name":"OD's blog","logo":{"@type":"ImageObject","url":"http://example.com/img/logo.svg"}},"description":"引言：通用的超图容器引理在深入探讨具体应用之前，本节的核心工具——通用的超图容器引理。这个引理为各种组合对象（如图、整数集等）的计数和结构分析提供了统一的框架。 超图容器引理 (The Hypergraph Container Lemma)  对于任意 $k \\in \\mathbb{N}, c &gt; 0$，存在 $\\delta &gt; 0$ 使得如下命题成立：设 $\\mathcal{H}$"}</script><link rel="canonical" href="http://example.com/Com-Pro/hc2.html"><link rel="icon" href="/img/favicon.svg"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.0.0/css/all.css"><link data-pjax rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.7.0/styles/atom-one-light.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link data-pjax rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css"><!--!--><!--!--><!--!--><!--!--><style>.pace{-webkit-pointer-events:none;pointer-events:none;-webkit-user-select:none;-moz-user-select:none;user-select:none}.pace-inactive{display:none}.pace .pace-progress{background:#3273dc;position:fixed;z-index:2000;top:0;right:100%;width:100%;height:2px}</style><script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js"></script><!--!--><!--!--><!-- hexo injector head_end start --><script>
   (function () {
       function switchTab() {
           if (!location.hash) {
@@ -29,31 +29,113 @@
       switchTab();
       window.addEventListener('hashchange', switchTab, false);
   })();
-  </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head><body class="is-2-column"><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/img/logo.svg" alt="OD&#039;s blog" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">主页</a></div><div class="navbar-end"><a class="navbar-item search" title="搜索" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-8-widescreen"><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2025-07-01T00:57:31.000Z" title="2025/7/1 08:57:31">2025-07-01</time>发表</span><span class="level-item"><time dateTime="2025-07-01T13:51:37.193Z" title="2025/7/1 21:51:37">2025-07-01</time>更新</span><span class="level-item"><a class="link-muted" href="/"></a></span><span class="level-item">12 分钟读完 (大约1744个字)</span></div></div><h1 class="title is-3 is-size-4-mobile">第二节：更一般的容器定理</h1><div class="content"><p><strong>超图容器定理</strong><br>对于任意$k\in N,\ c\gt 0$，存在$\delta&gt;0$使得如下命题成立：<br>这$H$是$k$-一致超图且$\tau\in(0,1)$满足$\Delta_l(H)\leq c\cdot\tau^{l-1}\frac{e(H)}{v(H)},\forall 1\leq l\leq k$.则存在一个$V(H)$子集的集合$\mathcal{C}$以及一个函数$f:\mathcal{P}(V(H))\rightarrow \mathcal{C}$满足：<br>(a) $\forall I\in \mathcal{I}(H),\exists S\subset I$满足$|S|\leq\tau\cdot v(H),I\subset f(S)$.<br>(b) $|C|\leq (1-\delta)v(H),\forall C\in \mathcal{C}$.</p>
-<p>只要知道超图容器定理的结论，此处并不提供证明.</p>
-<h3 id="一、k项等差数列问题"><a href="#一、k项等差数列问题" class="headerlink" title="一、k项等差数列问题"></a><strong>一、k项等差数列问题</strong></h3><p><strong>定理21</strong><br>对于任意$\beta\gt0,\ k\in N,\exists$常数$C$使得以下命题成立：<br>对于每个足够大得$n\in N$，如果$m\geq Cn^{1-1/(k-1)}$，则最多只有${\beta n \choose m}$个$\{1,\dots,n\}$的$m$元子集不包含$k$项等差数列.</p>
-<p><strong>推论22</strong><br>对于任意$\epsilon\gt 0$，存在$C\gt 0$使得如果$p\geq Cn^{-1/(k-1)}$，那么有很高的概率所有$A\subset [n]_p,|A|\geq \epsilon pn$包含至少一个$k$项等差数列.<br>事实上，存在$A$不含$k$等差数列概率是指数级小.</p>
-<p><strong>定理23</strong><br>对于任意$\epsilon&gt;0,k\in [n]$，存在$\delta&gt;0$使得以下命题成立：<br>对于任意$A\subset[n]，|A|\geq\epsilon n$包含至少$\epsilon n^2$个$k$项等差数列</p>
-<h3 id="二、不含特定-H-作为子图的图问题"><a href="#二、不含特定-H-作为子图的图问题" class="headerlink" title="二、不含特定$H$作为子图的图问题"></a><strong>二、不含特定$H$作为子图的图问题</strong></h3><p>首先引入几个要用到的概念：</p>
-<ul>
-<li><strong>色数$\chi(H)$</strong>：对图H中所有点进行染色，使得任意两个相邻顶点颜色不同所需最少颜色数.</li>
-<li><strong>k-部图</strong>：顶点集可以分割为k个独立子集$v_1,\dots,v_k$. 使得所有边只连接不同子集的顶点（即同一子集内部没有边）. $v_1,<br>\dots,v_k$成为部.</li>
+  </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head><body class="is-2-column"><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/img/logo.svg" alt="OD&#039;s blog" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">主页</a></div><div class="navbar-end"><a class="navbar-item search" title="搜索" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-8-widescreen"><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2025-07-01T00:57:31.000Z" title="2025/7/1 08:57:31">2025-07-01</time>发表</span><span class="level-item"><time dateTime="2025-07-06T06:29:42.223Z" title="2025/7/6 14:29:42">2025-07-06</time>更新</span><span class="level-item"><a class="link-muted" href="/"></a></span><span class="level-item">22 分钟读完 (大约3346个字)</span></div></div><h1 class="title is-3 is-size-4-mobile">第二节：更一般的容器定理</h1><div class="content"><h3 id="引言：通用的超图容器引理"><a href="#引言：通用的超图容器引理" class="headerlink" title="引言：通用的超图容器引理"></a><strong>引言：通用的超图容器引理</strong></h3><p>在深入探讨具体应用之前，本节的核心工具——通用的超图容器引理。这个引理为各种组合对象（如图、整数集等）的计数和结构分析提供了统一的框架。</p>
+<p><strong>超图容器引理 (The Hypergraph Container Lemma)</strong></p>
+<blockquote>
+<p>对于任意 $k \in \mathbb{N}, c &gt; 0$，存在 $\delta &gt; 0$ 使得如下命题成立：<br>设 $\mathcal{H}$ 是一个 $k$-一致超图，且参数 $\tau \in (0,1)$ 满足：</p>
+<script type="math/tex; mode=display">\Delta_\ell(\mathcal{H}) \le c \cdot \tau^{\ell-1} \frac{e(\mathcal{H})}{v(\mathcal{H})}, \quad \forall 1 \le \ell \le k</script><p>（即超图的各阶度数是“良好分布”的）。<br>则存在一个 $V(\mathcal{H})$ 子集的集合 $\mathcal{C}$（称为<strong>容器</strong>集合），以及一个函数 $f: \mathcal{P}(V(\mathcal{H})) \to \mathcal{C}$，满足：</p>
+<p>(a) 对于 $\mathcal{H}$ 中任意一个<strong>独立集</strong> $I \in \mathcal{I}(\mathcal{H})$，都存在一个小的“<strong>指纹</strong>”子集 $S \subset I$，满足 $|S| \le \tau \cdot v(\mathcal{H})$，且 $I \subset f(S)$。</p>
+<p>(b) 对于任意一个容器 $C \in \mathcal{C}$，它所含的<strong>超边</strong>数量很少，即 $e(\mathcal{H}[C]) \le (1-\delta)e(\mathcal{H})$。（<em>注：讲义中给出的结论是 $|C| \le (1-\delta)v(\mathcal{H})$，两者在特定条件下等价，都表明容器不是“满”的</em>）。</p>
+</blockquote>
+<p><strong>核心思想</strong>：任何一个没有特定结构的组合对象（即超图中的一个独立集），都可以被一个“几乎”没有该结构（即包含的超边很少）的、更大的“容器”所包含。并且，这样的容器数量相对较少，可以被有效控制。</p>
+<hr>
+<h3 id="一、-k-项等差数列问题"><a href="#一、-k-项等差数列问题" class="headerlink" title="一、$k$项等差数列问题"></a><strong>一、$k$项等差数列问题</strong></h3><p>容器方法的第一个经典应用是解决数论中的组合问题，例如，一个整数子集中不含特定模式（如等差数列）的数量。</p>
+<p><strong>定理21</strong></p>
+<blockquote>
+<p>对于任意 $\beta &gt; 0, k \in \mathbb{N}$，存在常数 $C$ 使得以下命题成立：<br>对于每个足够大的 $n \in \mathbb{N}$，如果 $m \ge C n^{1 - 1/(k-1)}$，那么在集合 $\{1, \dots, n\}$ 中，不包含 $k$ 项等差数列的 $m$ 元子集，其数量至多为 ${\beta n \choose m}$。<br><strong>直观理解</strong>：一个足够大的整数子集，如果它不含 $k$-AP，那它是一种非常“罕见”的结构。</p>
+</blockquote>
+<p><strong>推论22</strong></p>
+<blockquote>
+<p>对于任意 $\epsilon &gt; 0$，存在 $C &gt; 0$ 使得如果 $p \ge Cn^{-1/(k-1)}$，那么以极高概率，随机子集 $[n]_p$ 中任意一个大小超过 $\epsilon pn$ 的子集 $A$，都必然包含一个 $k$ 项等差数列。</p>
+</blockquote>
+<p>这两个结论的证明，依赖于一个关于等差数列的<strong>超饱和定理</strong>。</p>
+<p><strong>定理23 (Szemerédi 定理的超饱和版本)</strong></p>
+<blockquote>
+<p>对于任意 $\epsilon &gt; 0, k \in [n]$，存在 $\delta &gt; 0$ 使得以下命题成立：<br>任何一个大小超过 $\epsilon n$ 的子集 $A \subset [n]$，都必然包含<strong>大量</strong>（至少 $\delta n^2$ 个）的 $k$ 项等差数列。</p>
+</blockquote>
+<p><strong>证明思路</strong>:</p>
+<ol>
+<li><strong>编码</strong>: 将 $k$-AP 编码成一个 $k$-一致超图 $\mathcal{H}$，其顶点集是 $[n]$，超边是所有 $k$-AP。</li>
+<li><strong>迭代应用容器引理</strong>:<ul>
+<li>从一个不含 $k$-AP 的集合 $B$ 开始，它对应 $\mathcal{H}$ 的一个独立集。</li>
+<li>反复应用超图容器引理。在每一步，如果当前容器 $C_t$ 仍然很大（$|C_t| &gt; \epsilon n$），那么根据 <strong>Theorem 23</strong>，它必然包含大量的 $k$-AP，因此其诱导超图 $\mathcal{H}[C_t]$ 是稠密的，满足再次应用容器引理的条件。</li>
+<li>由于每次应用容器引理都会使容器大小按比例缩小，经过常数次迭代后，必然会得到一个大小不超过 $\epsilon n$ 的最终容器。</li>
 </ul>
-<p><strong>定理24（极值数定理）</strong><br>对于任意图$H$满足$\Delta(H)\geq 2$，对于任意$C\gt 0$，如果$p\geq Cn^{-1/m_2(H)}$，则有很大的概率$ex(G(n,p),H)\leq\Big(1-\frac{1}{\chi(H)-1}+\epsilon\Big)p{n\choose 2}$.</p>
-<p><strong>定理25（稳定性定理）</strong><br>对于任意图$H$，满足$\Delta(H)\geq 2$，对于任意$\epsilon\gt 0$，存在$C\gt 0,\delta\gt 0$使得如果$p\geq Cn^{-1/m_2(H)}$，则下述命题以极高概率成立：<br>每个不含H的子图$G\in G(n,p)$满足$e(G)\geq \Big(1-\frac{1}{\chi(H)-1}-\delta\Big)p{n\choose 2}$以$\epsilon pn^2$接近于$(\chi(H)-1)$-部图.<br>直观理解：图 G 的顶点集可以被划分成 $k = χ(H)-1 $个部分$ V₁, V₂, …, Vₖ$，使得那些“错误”的边（即连接同一个部分$ Vᵢ $内部两点的边）的总数，不超过$ εpn² $条.</p>
-<p><strong>定理26（计数稳定性定理）</strong><br>对于任意图$H$满足$\chi(H)\geq 3$，对于每个$\epsilon&gt;0$，存在$C\gt0$使得以下命题成立：<br>如果$m\geq Cn^{2-1/m_2(H)}$，则几乎所有不含$H$有n个顶点m条边的图以$\epsilon m$-接近$(\chi(H)-1)$-部图.</p>
-<p>这里引用一下<strong>图兰定理</strong>的核心思想帮助理解：为了在一个图中避免出现某个子图H，同时想让边数尽可能多，最好的策略是把图构造成$(\chi(H)-1)$-部图.在$(\chi(H)-1)$-部图中加一条边，则很大概率图就不再是$(\chi(H)-1)$-部图，图的色数变为$\chi(H)$，导致$H$出现.</p>
-<p>接下来做一些证明前的准备工作. 与无三角形图类似，这里需要将完全图$K_n$编码成超图$\mathcal{H}$. 使得顶点集满足$v(\mathcal{H})=E(K_n)$，边集满足$E(\mathcal{H})=\{\{f_1,\cdots,f_{e(H)}\}\subset E(K_n):\{f_1,\cdots,f_{e(H)}\}=E(H)\}$.</p>
-<p><strong>定理27</strong> 对于任意图$H$以及任意$\epsilon\gt0$，存在$\delta\gt 0$使得对任意$n\in N$下述命题成立：<br>如果$G$是一个顶点数为n的图且满足$e(G)\geq\Big(1-\frac{1}{\chi(H)-1}-\delta\Big){n\choose 2}$，则$G$有两种可能性：（1）$G\ \epsilon n^2$-接近$(\chi(H)-1)$-部图；（2）$G$包含至少$\epsilon n^{v(H)}$个$H$.</p>
-<p><strong>定理28（无H图的容器定理）</strong><br>对于任意图$H$以及任意$\epsilon\gt0$，存在$\delta\gt 0,\ C\gt 0$使得以下命题成立：<br>(a) 任意$G\in \mathcal{G}$只有两种可能性：（1）$e(G)\leq\Big(1-\frac{1}{\chi(H)-1}-\delta){n\choose 2}$；（2）$G\ \epsilon n^2$-接近$(\chi(H)-1)$-部图.<br>(b) 对于每个不含$H$的定点数为$n$的图$I$，存在一个子图$S\subset I$使得$e(S)\leq Cn^{2-1/m_2(H)}$且$I\subset f(S)$.</p>
-<p>证明：<br>由$I$不包含H知$I$的边是超图$\mathcal{H}$中的独立集. 令$\tau=n^{-1/m_2(H)}$并设$c=c(H)$为合适的值. 可以得到图$S_1\in I,I\subset C_1=C_1(S_1)$且满足$|S_1|\leq n^{1-1/m_2(H)},\ |C_1|\leq(1-\delta)n$.<br>而后开始递归：如果$C_t$满足$e(C_t)\leq\Big(1-\frac{1}{\chi(H)-1}-\delta\Big){n\choose 2}$或者$C_t\ \epsilon n^2$接近于$(\chi(H)-1)$-部图，则将$C_t$放入$\mathcal{G}$中.由定理27，如果$C_t$不符合以上两种情况，则$C_t$中含有至少$\epsilon n^{v(H)}$个$H$. 对$\mathcal{H}(C_t)$应用超图的容器定理，因为$e(C_t)\leq (1-\delta)^t n^2$，我们可以最终在有限步内将其压缩为$\mathcal{G}$的元素.</p>
-<p>可以由<strong>定理28</strong>推导出<strong>定理24，25和26</strong></p>
-<h3 id="三、随机图的拉姆齐理论"><a href="#三、随机图的拉姆齐理论" class="headerlink" title="三、随机图的拉姆齐理论"></a><strong>三、随机图的拉姆齐理论</strong></h3><p><strong>定义30（r-染色图）</strong><br>染色函数$c:E(G)\rightarrow\mathcal{P}(r)$可将图$G$的的每一条边染上一种或几种颜色.我们称一张$r$-染色图是不含$H$的，如果这张图中不包含单色的$H$. 即不存在所有边颜色交集非空的$H$.</p>
-<p><strong>定理29 (Rödl–Ruciński, 1995)</strong> 对于任意图$H$以及$r\in N$，如果$p\gg n^{-1/m_2(H)}$，那么以高概率（即概率趋近于1），对$ G(n,p) $的边进行任意的$ r$-染色，都必然会产生一个单色的$ H $副本.</p>
-<p><strong>定理31</strong> 对于任意图$H$以及$r\in N$，存在$\delta\gt 0$使得对于所有足够大的$n\in N$，如果图$G$的定点数为n且$e(G)\gt(1/2-\delta)n^2$，则$G$的每种$[r]$-染色方案包含至少$\delta n^{v(H)}个单色的$H$.</p>
-<p><strong>定理32（无$H$染色图的容器定理）</strong><br>对于任意图$H$以及任意$r\in N,\ \epsilon&gt;0$，存在$\delta&gt;0,C&gt;0$使得对于任意$n\in N$，存在r-染色图的容器集合$\mathcal{G}$，以及函数$f:\mathcal{P}(E(K_n))^r\rightarrow\mathcal{G}$使得：<br>(a) 任意$G\in\mathcal{G}$有至多$(1-\delta){n\choose 2}$条边.<br>(b) 对于每个不含单色H，有n个顶点的r-染色图I，存在子染色图$S\subset I$满足$e(S)\leq Cn^{2-1/m_2(H)},I\subset f(S)$.</p>
-<p>由以上两个定理可以证明定理29.</p>
-</div><div class="article-licensing box"><div class="licensing-title"><p>第二节：更一般的容器定理</p><p><a href="http://example.com/Com-Pro/hc2.html">http://example.com/Com-Pro/hc2.html</a></p></div><div class="licensing-meta level is-mobile"><div class="level-left"><div class="level-item is-narrow"><div><h6>作者</h6><p>Jiamin Liu</p></div></div><div class="level-item is-narrow"><div><h6>发布于</h6><p>2025-07-01</p></div></div><div class="level-item is-narrow"><div><h6>更新于</h6><p>2025-07-01</p></div></div><div class="level-item is-narrow"><div><h6>许可协议</h6><p><a class="icons" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="icon fab fa-creative-commons"></i></a><a class="icons" rel="noopener" target="_blank" title="Attribution" href="https://creativecommons.org/licenses/by/4.0/"><i class="icon fab fa-creative-commons-by"></i></a><a class="icons" rel="noopener" target="_blank" title="Noncommercial" href="https://creativecommons.org/licenses/by-nc/4.0/"><i class="icon fab fa-creative-commons-nc"></i></a></p></div></div></div></div></div><!--!--></article></div><!--!--><div class="card" id="comments"><div class="card-content"><h3 class="title is-5">评论</h3><div id="comment-container"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.css"><script src="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js"></script><script>var gitalk = new Gitalk({
+</li>
+<li><strong>计数</strong>: 我们证明了每个不含 $k$-AP 的集合 $B$ 都可以被一个大小不超过 $\epsilon n$ 的容器所包含。因此，不含 $k$-AP 的 $m$ 元子集的总数，可以通过对所有可能的小指纹 $S$ 和小容器 $C$ 进行求和来估计。通过标准的组合不等式放缩，可以证明这个总数远小于总的 $m$ 元子集数量，得到 <strong>Theorem 21</strong> 的结论。<strong>推论22</strong> 则是通过马尔可夫不等式直接得出。</li>
+</ol>
+<hr>
+<h3 id="二、不含特定-H-子图的图-Containers-for-H-free-graphs"><a href="#二、不含特定-H-子图的图-Containers-for-H-free-graphs" class="headerlink" title="二、不含特定$H$子图的图 (Containers for $H$-free graphs)"></a><strong>二、不含特定$H$子图的图 (Containers for $H$-free graphs)</strong></h3><p>这部分内容将容器方法应用到经典的图论极值问题中，旨在刻画那些不含特定子图 $H$ 的图的典型结构和数量。</p>
+<p>首先引入几个要用到的概念：</p>
+<ul>
+<li><strong>色数 $\chi(H)$</strong>：对图 $H$ 的所有顶点进行染色，使得任意两个相邻顶点颜色不同所需的最少颜色数。</li>
+<li><strong>$k$-部图 ($k$-partite graph)</strong>：一个图的顶点集可以被分割为 $k$ 个独立的子集 $V_1, \dots, V_k$（称为“部”），使得所有边都只连接不同子集中的顶点（即任何一个 $V_i$ 内部都没有边）。</li>
+<li><strong>$m_2(H)$</strong>：一个与图 $H$ 密度相关的参数，定义为 $m_2(H) = \max \left\{ \frac{e(F)-1}{v(F)-2} : F \subset H, v(F) \ge 3 \right\}$。它决定了在随机图中找到 $H$ 的概率阈值。</li>
+<li><strong>$\epsilon$-接近 $k$-部图</strong>：一个图的顶点集可以被划分成 $k$ 个部分，使得那些“错误”的边（即连接同一个部分内部两点的边）的总数非常少。</li>
+</ul>
+<p>接下来是本节的三个核心定理：</p>
+<p><strong>定理24 (极值数定理的随机版本)</strong></p>
+<blockquote>
+<p>对于任意满足 $\Delta(H) \ge 2$ 的图 $H$ 和任意 $\epsilon &gt; 0$，存在常数 $C&gt;0$。如果 $p \ge Cn^{-1/m_2(H)}$，则有很高的概率：</p>
+<script type="math/tex; mode=display">ex(G(n,p), H) \le \left(1 - \frac{1}{\chi(H)-1} + \epsilon\right) p \binom{n}{2}</script><p><strong>直观理解</strong>：随机图 $G(n,p)$ 中不含 $H$ 的最大子图，其边数不会比图兰定理预测的“最优”结构（即 $(\chi(H)-1)$-部图）的边数多太多。</p>
+</blockquote>
+<p><strong>定理25 (稳定性定理)</strong></p>
+<blockquote>
+<p>对于任意满足 $\Delta(H) \ge 2$ 的图 $H$ 和任意 $\epsilon &gt; 0$，存在常数 $C&gt;0, \delta&gt;0$。如果 $p \ge Cn^{-1/m_2(H)}$，则下述命题以极高概率成立：<br>任何一个不含 $H$ 的子图 $G \subset G(n,p)$，只要它的边数足够多（即 $e(G) \ge \left(1 - \frac{1}{\chi(H)-1} - \delta\right) p \binom{n}{2}$），那么它就必然“长得像”一个 $(\chi(H)-1)$-部图（即以 $\epsilon pn^2$ 的代价可变为 $(\chi(H)-1)$-部图）。</p>
+</blockquote>
+<p><strong>定理26 (计数稳定性定理)</strong></p>
+<blockquote>
+<p>对于任意满足 $\chi(H) \ge 3$ 的图 $H$ 和任意 $\epsilon &gt; 0$，存在常数 $C&gt;0$。如果 $m \ge Cn^{2-1/m_2(H)}$，那么几乎所有（在所有 $m$ 条边的图中占 $1-o(1)$ 的比例）不含 $H$ 的 $n$ 顶点、$m$ 边图都“长得像”一个 $(\chi(H)-1)$-部图（即以 $\epsilon m$ 的代价可变为 $(\chi(H)-1)$-部图）。</p>
+</blockquote>
+<p>这三个定理的证明都依赖于一个核心的<strong>容器定理 (Theorem 28)</strong>，而该定理的证明又需要一个<strong>超饱和定理 (Theorem 27)</strong>。</p>
+<p><strong>定理27 (Erdős-Simonovits 稳定性定理的超饱和版本)</strong></p>
+<blockquote>
+<p>对于任意图 $H$ 和任意 $\epsilon &gt; 0$，存在 $\delta &gt; 0$ 使得对所有 $n \in \mathbb{N}$，下述命题成立：<br>如果一个 $n$ 顶点的图 $G$ 的边数足够多，即 $e(G) &gt; \left(1 - \frac{1}{\chi(H)-1} - \delta\right) \binom{n}{2}$，那么 $G$ 只有两种可能：<br>(1) $G$ 是 $\epsilon n^2$-接近 $(\chi(H)-1)$-部图的；<br>(2) $G$ 包含<strong>大量</strong>（至少 $\epsilon n^{v(H)}$ 个）的 $H$ 副本。<br><strong>核心思想</strong>：一个稠密的、但又不像 $(\chi(H)-1)$-部图的图，必然会“超饱和”地包含 $H$。</p>
+</blockquote>
+<p>有了这个工具，我们就可以证明本节的基石：</p>
+<p><strong>定理28 (无-$H$图的容器定理)</strong></p>
+<blockquote>
+<p>对于任意图 $H$ 和任意 $\epsilon&gt;0$，存在 $\delta&gt;0, C&gt;0$ 使得以下命题成立。存在一个图的集合 $\mathcal{G}$ 和一个函数 $f: \mathcal{P}(E(K_n)) \to \mathcal{G}$ 使得：<br>(a) 对任意 $G \in \mathcal{G}$，它只有两种可能：<br>   (1) $e(G) \le \left(1 - \frac{1}{\chi(H)-1} - \delta\right) \binom{n}{2}$ (边数较少)；<br>   (2) $G$ 是 $\epsilon n^2$-接近 $(\chi(H)-1)$-部图的 (结构稳定)。<br>(b) 对于每个不含 $H$ 的 $n$ 顶点图 $I$，都存在一个小的“指纹”子图 $S \subset I$，满足 $e(S) \le Cn^{2-1/m_2(H)}$ 且 $I \subset f(S)$。</p>
+</blockquote>
+<p><strong>证明思路</strong>:<br>证明采用了迭代方法。</p>
+<ol>
+<li><strong>编码</strong>: 将 $H$ 的副本编码成一个 $e(H)$-一致超图 $\mathcal{H}$，其顶点集是 $E(K_n)$。不含 $H$ 的图就是 $\mathcal{H}$ 的独立集。</li>
+<li><strong>启动</strong>: 对任意一个不含 $H$ 的图 $I$，首次应用超图容器引理（取 $\tau=n^{-1/m_2(H)}$），得到一个指纹 $S_1$ 和一个比 $K_n$ 小的容器 $C_1$。</li>
+<li><strong>迭代</strong>: 对容器 $C_t$ 进行检查。<ul>
+<li>如果 $C_t$ 已经满足(a)中的两种情况之一，则迭代终止，将其放入最终的集合 $\mathcal{G}$。</li>
+<li>否则，根据 <strong>Theorem 27</strong>，$C_t$ 必然包含大量的 $H$ 副本。这意味着其对应的诱导超图 $\mathcal{H}[C_t]$ 是稠密的，满足再次应用容器引理的条件。</li>
+</ul>
+</li>
+<li><strong>收敛</strong>: 每次迭代，容器的大小 $e(C_t)$ 都会按比例缩小。因此，经过常数次迭代后，容器必然会缩小到满足条件(a)的程度。</li>
+</ol>
+<p>有了 <strong>Theorem 28</strong> 这个强大的结构性结论，<strong>定理24、25、26</strong> 就可以通过标准的概率论证（如Chernoff界）和组合计数推导出来。</p>
+<hr>
+<h3 id="三、随机图的拉姆齐理论-Ramsey-properties-of-random-graphs"><a href="#三、随机图的拉姆齐理论-Ramsey-properties-of-random-graphs" class="headerlink" title="三、随机图的拉姆齐理论 (Ramsey properties of random graphs)"></a><strong>三、随机图的拉姆齐理论 (Ramsey properties of random graphs)</strong></h3><p>这部分展示了容器方法如何解决随机环境下的拉姆齐问题，即在一个随机图 $G(n,p)$ 中寻找单色子结构。</p>
+<p><strong>定义30 ([r]-染色图)</strong></p>
+<blockquote>
+<p>一个 <strong>[r]-染色图</strong> 是一个图 $G$ 配上一个染色函数 $c: E(G) \to \mathcal{P}([r]) \setminus \{\emptyset\}$，它为每条边赋予一个或多个来自集合 $\{1, \dots, r\}$ 的颜色。我们称这样的图是<strong>无单色$H$的</strong>，如果不存在一个 $H$ 的副本，其所有边的颜色集合的交集非空。</p>
+</blockquote>
+<p><strong>定理29 (Rödl–Ruciński, 1995)</strong></p>
+<blockquote>
+<p>对于任意图 $H$ 和任意 $r \in \mathbb{N}$，如果 $p \gg n^{-1/m_2(H)}$，那么以高概率，对 $G(n,p)$ 的边进行任意的 $r$-染色，都必然会产生一个单色的 $H$ 副本。<br><strong>核心思想</strong>：一旦随机图的密度 $p$ 越过某个由 $m_2(H)$ 决定的阈值，它就不仅包含 $H$，而且是“Ramsey饱和”的，无法通过染色来避免单色的 $H$。</p>
+</blockquote>
+<p>证明同样需要一个超饱和定理和一个容器定理。</p>
+<p><strong>定理31 (拉姆齐定理的超饱和版本)</strong></p>
+<blockquote>
+<p>对于任意图 $H$ 和 $r \in \mathbb{N}$，存在 $\delta &gt; 0$ 使得对于所有足够大的 $n$：如果图 $G$ 的边数足够多（即 $e(G) &gt; (1/2 - \delta)n^2$），那么对 $G$ 的任意 $[r]$-染色方案都包含<strong>大量</strong>（至少 $\delta n^{v(H)}$ 个）的单色 $H$。</p>
+</blockquote>
+<p><strong>定理32 (无单色$H$染色图的容器定理)</strong></p>
+<blockquote>
+<p>对于任意图 $H, r \in \mathbb{N}, \epsilon&gt;0$，存在 $\delta&gt;0, C&gt;0$ 使得对于任意 $n \in \mathbb{N}$，存在一个 $[r]$-染色图的集合 $\mathcal{G}$ 和一个函数 $f: \mathcal{P}(E(K_n))^r \to \mathcal{G}$ 使得：<br>(a) 对任意 $G \in \mathcal{G}$，其边数至多为 $(1-\delta)\binom{n}{2}$。<br>(b) 对于每个无单色$H$的 $n$ 顶点 $[r]$-染色图 $I$，都存在一个小的“指纹”子染色 $S \subset I$，满足 $e(S) \le Cn^{2-1/m_2(H)}$ 且 $I \subset f(S)$。</p>
+</blockquote>
+<p><strong>定理29的证明思路</strong>:</p>
+<ol>
+<li><strong>构造超图</strong>: 构造一个超图 $\mathcal{H}$，其顶点是所有可能的“颜色-边”对（共 $r\binom{n}{2}$ 个顶点），超边对应 $K_n$ 中所有可能的单色 $H$ 副本。一个无单色$H$的染色图就对应 $\mathcal{H}$ 中的一个独立集。</li>
+<li><strong>应用容器定理</strong>: 利用 <strong>Theorem 31</strong> 作为超饱和工具，通过与前面类似的迭代过程，可以证明 <strong>Theorem 32</strong>。</li>
+<li><strong>概率论证</strong>: 假设 $G(n,p)$ 中存在一个无单色$H$的 $r$-染色 $I$。根据 Theorem 32，这个 $I$ 必须被某个容器 $G \in \mathcal{G}$ 包含。这意味着 $I$ 的指纹 $S$ 必须是 $G(n,p)$ 的子图，并且 $G(n,p)$ 的所有边都必须在 $G$ 中。</li>
+<li><strong>联合界</strong>: 对所有可能的指纹 $S$ 使用联合界（Union Bound）。<br>$ P(\text{坏事件}) \le \sum_{S} P(S \subset G(n,p) \text{ and } G(n,p) \subset G(S)) $<br>由于 $G(S)$ 的边数比 $\binom{n}{2}$ 少一个正比例，而 $G(n,p)$ 的期望边数很大，事件 $G(n,p) \subset G(S)$ 发生的概率极小（指数级小）。将这个极小的概率与所有可能指纹的数量相乘，只要 $p$ 足够大，最终结果将趋向于0。</li>
+</ol>
+</div><div class="article-licensing box"><div class="licensing-title"><p>第二节：更一般的容器定理</p><p><a href="http://example.com/Com-Pro/hc2.html">http://example.com/Com-Pro/hc2.html</a></p></div><div class="licensing-meta level is-mobile"><div class="level-left"><div class="level-item is-narrow"><div><h6>作者</h6><p>Jiamin Liu</p></div></div><div class="level-item is-narrow"><div><h6>发布于</h6><p>2025-07-01</p></div></div><div class="level-item is-narrow"><div><h6>更新于</h6><p>2025-07-06</p></div></div><div class="level-item is-narrow"><div><h6>许可协议</h6><p><a class="icons" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="icon fab fa-creative-commons"></i></a><a class="icons" rel="noopener" target="_blank" title="Attribution" href="https://creativecommons.org/licenses/by/4.0/"><i class="icon fab fa-creative-commons-by"></i></a><a class="icons" rel="noopener" target="_blank" title="Noncommercial" href="https://creativecommons.org/licenses/by-nc/4.0/"><i class="icon fab fa-creative-commons-nc"></i></a></p></div></div></div></div></div><!--!--></article></div><!--!--><div class="card" id="comments"><div class="card-content"><h3 class="title is-5">评论</h3><div id="comment-container"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.css"><script src="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js"></script><script>var gitalk = new Gitalk({
             id: "7fea8c6ce82189f86f2584e8bc6af6e8",
             repo: "od-liu.github.io",
             owner: "od-Liu",

@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="zh"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>第一节：当你的一阶矩方法失效时，该怎么办？ - OD&#039;s blog</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="OD&#039;s blog"><meta name="msapplication-TileImage" content="/img/favicon.svg"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="OD&#039;s blog"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="description" content="1. 核心问题与经典方法的局限性核心思想 在许多“自然”的超图中，其（大的）独立集并非随机分布，而是呈现出“扎堆”或“聚集”的结构化特征.(注意本节中一切讨论未涉及超图，还是基于图（随机图）在进行讨论) 定义1 The entermal number of a graph $H$:在一个有n个顶点的图中，不包含$H$作为子图的前提下，所能拥有的最大边数. 记作$ex(n,H)$. 简单来说，$ex"><meta property="og:type" content="blog"><meta property="og:title" content="第一节：当你的一阶矩方法失效时，该怎么办？"><meta property="og:url" content="http://example.com/Com-Pro/hc1.html"><meta property="og:site_name" content="OD&#039;s blog"><meta property="og:description" content="1. 核心问题与经典方法的局限性核心思想 在许多“自然”的超图中，其（大的）独立集并非随机分布，而是呈现出“扎堆”或“聚集”的结构化特征.(注意本节中一切讨论未涉及超图，还是基于图（随机图）在进行讨论) 定义1 The entermal number of a graph $H$:在一个有n个顶点的图中，不包含$H$作为子图的前提下，所能拥有的最大边数. 记作$ex(n,H)$. 简单来说，$ex"><meta property="og:locale" content="zh_CN"><meta property="og:image" content="http://example.com/img/og_image.png"><meta property="article:published_time" content="2025-06-29T01:34:56.000Z"><meta property="article:modified_time" content="2025-07-02T03:15:46.945Z"><meta property="article:author" content="Jiamin Liu"><meta property="twitter:card" content="summary"><meta property="twitter:image:src" content="http://example.com/img/og_image.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"http://example.com/Com-Pro/hc1.html"},"headline":"第一节：当你的一阶矩方法失效时，该怎么办？","image":["http://example.com/img/og_image.png"],"datePublished":"2025-06-29T01:34:56.000Z","dateModified":"2025-07-02T03:15:46.945Z","author":{"@type":"Person","name":"Jiamin Liu"},"publisher":{"@type":"Organization","name":"OD's blog","logo":{"@type":"ImageObject","url":"http://example.com/img/logo.svg"}},"description":"1. 核心问题与经典方法的局限性核心思想 在许多“自然”的超图中，其（大的）独立集并非随机分布，而是呈现出“扎堆”或“聚集”的结构化特征.(注意本节中一切讨论未涉及超图，还是基于图（随机图）在进行讨论) 定义1 The entermal number of a graph $H$:在一个有n个顶点的图中，不包含$H$作为子图的前提下，所能拥有的最大边数. 记作$ex(n,H)$. 简单来说，$ex"}</script><link rel="canonical" href="http://example.com/Com-Pro/hc1.html"><link rel="icon" href="/img/favicon.svg"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.0.0/css/all.css"><link data-pjax rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.7.0/styles/atom-one-light.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link data-pjax rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css"><!--!--><!--!--><!--!--><!--!--><style>.pace{-webkit-pointer-events:none;pointer-events:none;-webkit-user-select:none;-moz-user-select:none;user-select:none}.pace-inactive{display:none}.pace .pace-progress{background:#3273dc;position:fixed;z-index:2000;top:0;right:100%;width:100%;height:2px}</style><script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js"></script><!--!--><!--!--><!-- hexo injector head_end start --><script>
+<html lang="zh"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>第一节：当你的一阶矩方法失效时，该怎么办？ - OD&#039;s blog</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="OD&#039;s blog"><meta name="msapplication-TileImage" content="/img/favicon.svg"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="OD&#039;s blog"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="description" content="1. 核心问题与经典方法的局限性核心思想: 在许多“自然”的超图中，其（大的）独立集并非随机分布，而是呈现出“扎堆”或“聚集”的结构化特征。(注意本节中一切讨论未涉及超图，还是基于图（随机图）在进行讨论) 定义1 The extremal number of a graph $H$:  在一个有n个顶点的图中，不包含$H$作为子图的前提下，所能拥有的最大边数。记作$ex(n,H)$。 简单来说，$"><meta property="og:type" content="blog"><meta property="og:title" content="第一节：当你的一阶矩方法失效时，该怎么办？"><meta property="og:url" content="http://example.com/Com-Pro/hc1.html"><meta property="og:site_name" content="OD&#039;s blog"><meta property="og:description" content="1. 核心问题与经典方法的局限性核心思想: 在许多“自然”的超图中，其（大的）独立集并非随机分布，而是呈现出“扎堆”或“聚集”的结构化特征。(注意本节中一切讨论未涉及超图，还是基于图（随机图）在进行讨论) 定义1 The extremal number of a graph $H$:  在一个有n个顶点的图中，不包含$H$作为子图的前提下，所能拥有的最大边数。记作$ex(n,H)$。 简单来说，$"><meta property="og:locale" content="zh_CN"><meta property="og:image" content="http://example.com/img/og_image.png"><meta property="article:published_time" content="2025-06-29T01:34:56.000Z"><meta property="article:modified_time" content="2025-07-06T06:34:12.749Z"><meta property="article:author" content="Jiamin Liu"><meta property="twitter:card" content="summary"><meta property="twitter:image:src" content="http://example.com/img/og_image.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"http://example.com/Com-Pro/hc1.html"},"headline":"第一节：当你的一阶矩方法失效时，该怎么办？","image":["http://example.com/img/og_image.png"],"datePublished":"2025-06-29T01:34:56.000Z","dateModified":"2025-07-06T06:34:12.749Z","author":{"@type":"Person","name":"Jiamin Liu"},"publisher":{"@type":"Organization","name":"OD's blog","logo":{"@type":"ImageObject","url":"http://example.com/img/logo.svg"}},"description":"1. 核心问题与经典方法的局限性核心思想: 在许多“自然”的超图中，其（大的）独立集并非随机分布，而是呈现出“扎堆”或“聚集”的结构化特征。(注意本节中一切讨论未涉及超图，还是基于图（随机图）在进行讨论) 定义1 The extremal number of a graph $H$:  在一个有n个顶点的图中，不包含$H$作为子图的前提下，所能拥有的最大边数。记作$ex(n,H)$。 简单来说，$"}</script><link rel="canonical" href="http://example.com/Com-Pro/hc1.html"><link rel="icon" href="/img/favicon.svg"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.0.0/css/all.css"><link data-pjax rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.7.0/styles/atom-one-light.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link data-pjax rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css"><!--!--><!--!--><!--!--><!--!--><style>.pace{-webkit-pointer-events:none;pointer-events:none;-webkit-user-select:none;-moz-user-select:none;user-select:none}.pace-inactive{display:none}.pace .pace-progress{background:#3273dc;position:fixed;z-index:2000;top:0;right:100%;width:100%;height:2px}</style><script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js"></script><!--!--><!--!--><!-- hexo injector head_end start --><script>
   (function () {
       function switchTab() {
           if (!location.hash) {
@@ -29,174 +29,158 @@
       switchTab();
       window.addEventListener('hashchange', switchTab, false);
   })();
-  </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head><body class="is-2-column"><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/img/logo.svg" alt="OD&#039;s blog" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">主页</a></div><div class="navbar-end"><a class="navbar-item search" title="搜索" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-8-widescreen"><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2025-06-29T01:34:56.000Z" title="2025/6/29 09:34:56">2025-06-29</time>发表</span><span class="level-item"><time dateTime="2025-07-02T03:15:46.945Z" title="2025/7/2 11:15:46">2025-07-02</time>更新</span><span class="level-item"><a class="link-muted" href="/"></a></span><span class="level-item">1 小时读完 (大约7128个字)</span></div></div><h1 class="title is-3 is-size-4-mobile">第一节：当你的一阶矩方法失效时，该怎么办？</h1><p class="subtitle is-5 is-size-6-mobile">随机图的无三角形子图问题</p><div class="content"><h2 id="1-核心问题与经典方法的局限性"><a href="#1-核心问题与经典方法的局限性" class="headerlink" title="1. 核心问题与经典方法的局限性"></a>1. 核心问题与经典方法的局限性</h2><p><strong>核心思想</strong> 在许多“自然”的超图中，其（大的）独立集并非随机分布，而是呈现出“扎堆”或“聚集”的结构化特征.<br>(注意本节中一切讨论未涉及超图，还是基于图（随机图）在进行讨论)</p>
-<p><strong>定义1 The entermal number of a graph $H$</strong>:<br>在一个有n个顶点的图中，不包含$H$作为子图的前提下，所能拥有的最大边数. 记作$ex(n,H)$.</p>
-<p>简单来说，$ex(n,H)$回答了：为了确保子图中一定出现一个$H$，至少需要多少条边？<br>答案是$ex(n,H)+1$.</p>
-<p>本节我们将要证明以下理论：<br><strong>定理2 [Frankl and Rodl]</strong> 如果$p\gg 1/\sqrt{n}$，那么$ex(G(n,p),K_3)=\Big(\frac{1}{4}+o(1)\Big)pn^2$. 当$n$趋向无穷大时，上述等式以极高的概率成立。</p>
+  </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head><body class="is-2-column"><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/img/logo.svg" alt="OD&#039;s blog" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">主页</a></div><div class="navbar-end"><a class="navbar-item search" title="搜索" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-8-widescreen"><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2025-06-29T01:34:56.000Z" title="2025/6/29 09:34:56">2025-06-29</time>发表</span><span class="level-item"><time dateTime="2025-07-06T06:34:12.749Z" title="2025/7/6 14:34:12">2025-07-06</time>更新</span><span class="level-item"><a class="link-muted" href="/"></a></span><span class="level-item">32 分钟读完 (大约4733个字)</span></div></div><h1 class="title is-3 is-size-4-mobile">第一节：当你的一阶矩方法失效时，该怎么办？</h1><p class="subtitle is-5 is-size-6-mobile">随机图的无三角形子图问题</p><div class="content"><h4 id="1-核心问题与经典方法的局限性"><a href="#1-核心问题与经典方法的局限性" class="headerlink" title="1. 核心问题与经典方法的局限性"></a><strong>1. 核心问题与经典方法的局限性</strong></h4><p><strong>核心思想</strong>: 在许多“自然”的超图中，其（大的）独立集并非随机分布，而是呈现出“扎堆”或“聚集”的结构化特征。<br>(注意本节中一切讨论未涉及超图，还是基于图（随机图）在进行讨论)</p>
+<p><strong>定义1 The extremal number of a graph $H$</strong>:</p>
+<blockquote>
+<p>在一个有n个顶点的图中，不包含$H$作为子图的前提下，所能拥有的最大边数。记作$ex(n,H)$。</p>
+<p>简单来说，$ex(n,H)$回答了：为了确保子图中一定出现一个$H$，至少需要多少条边？<br>答案是$ex(n,H)+1$。</p>
+</blockquote>
+<p>本节我们将要证明以下理论：<br><strong>定理2 [Frankl and Rodl]</strong>:</p>
+<blockquote>
+<p>如果$p \gg 1/\sqrt{n}$，那么$ex(G(n,p),K_3)=\Big(\frac{1}{4}+o(1)\Big)pn^2$。当$n$趋向无穷大时，上述等式以极高的概率成立。</p>
 <ul>
-<li>要求图$G$不能太稀疏</li>
-<li>在确定的$ n $顶点图中，不含三角形的图最多有约$n^2/4$条边（图兰定理）</li>
+<li>要求图$G$不能太稀疏。</li>
+<li>在确定的$n$顶点图中，不含三角形的图最多有约$n^2/4$条边（图兰定理）。</li>
 </ul>
+</blockquote>
 <p>当我们想要证明以上定理时，第一个想法是利用概率论中的一阶矩方法：</p>
 <ul>
-<li>思路：定义一个随机变量$X$，表示$G(n,p)$ 中大小为$m$的无三角形子图的数量。然后计算它的期望值$E[X]$. 如果$E[x]=o(1)$，那么根据马尔可夫不等式，大小为$m$的无三角形子图存在的概率就趋近于$0$，即有很高的概率$ex(G(n,p),K_3)\leq m$.</li>
-<li>问题：讲义中指出，当你去计算这个期望值时，会发现它爆炸了，即$E[X]$非常大，远不趋近于 $0$. 所以该方法失效.</li>
+<li><strong>思路</strong>：定义一个随机变量$X$，表示$G(n,p)$ 中大小为$m$的无三角形子图的数量。然后计算它的期望值$E[X]$。如果$E[X]=o(1)$，那么根据马尔可夫不等式，大小为$m$的无三角形子图存在的概率就趋近于$0$，即有很高的概率$ex(G(n,p),K_3)\leq m$。</li>
+<li><strong>问题</strong>：讲义中指出，当你去计算这个期望值时，会发现它爆炸了，即$E[X]$非常大，远不趋近于 $0$。所以该方法失效。</li>
 </ul>
-<p>经典一阶矩方法失效原因大致可以理解为无三角形图本身是“扎堆”或“聚集”的. 许多无三角形图都非常相似（比如，都接近于同一个二分图），这导致它们在$G(n,p)$中出现的事件之间存在强烈的正相关性. 这种正相关性使得简单的期望计算失效.</p>
-<h2 id="2-容器方法的核心思想与应用"><a href="#2-容器方法的核心思想与应用" class="headerlink" title="2. 容器方法的核心思想与应用"></a>2. 容器方法的核心思想与应用</h2><p>既然经典方式走不通，就要采用一种新的策略来处理这种聚类现象，这个策略就是<strong>容器方法</strong>.</p>
-<p>核心思想变化是这次我们不再一个个地数无三角形图，而是先把它们分装到一些容器里，然后再去处理这些容器. 这些容器由定理3来保证存在.</p>
-<p><strong>定理3 无三角形图容器定理（The container theorem for triangle-free graph）</strong><br>对于$ n $个顶点的图，存在一个图的集合$ G$（我们称之为“容器集合”），它满足以下三个性质：<br>(a) 容器数量很少: $|G|$的规模相对很小，满足 $|G|\leq n^{o(n^{3/2})}$.<br>(b) 容器自身很“干净”: $G$中的每个图$G$只包含$o(n^3)$个三角形.<br>(c) 所有目标都被装下了: 每个不含三角形的图，都必然是$G$中某个容器图$G$的子图.</p>
-<p>直观理解：平面上有无数个苹果（代表所有无三角形图）. 我们想证明这些苹果的总重量不大。直接一个个称重很麻烦。容器方法告诉我们，我们可以找到少数几个大篮子（性质a），这些篮子本身都很轻（性质b），并且所有苹果都在这些篮子里面（性质c）.</p>
-<p>接下来使用容器的思想来证明定理2：<br>首先需要引入一个关键工具：<br><strong>定理4 三角形超饱和定理（Supersaturation for triangles）</strong><br>对于任何 $\epsilon&gt;0$，存在 $\delta\gt 0$如果一个$n$顶点图的边数$e(G)\geq (1/4 + ε)n²$，那么$G$包含的至少$\delta n^3$个三角形.<br>这个定理的逆否命题很有用：如果一个有$n$个顶点的图的三角形数为$o(n^3)$，则该图至多只有$(1/4+o(1))n^2$条边.</p>
-<p>接下来可以使用容器方法证明<strong>定理3</strong>了.<br>回顾定理3的内容，我们需要证明在$G(n,p)$随机图中，不可能存在一个边数超过$(1/4+\epsilon)pn^2$的无三角形子图$H$. 考虑使用反证法，先假设存在一个这样的坏图$H$，然后推导出一个概率极小、几乎不可能发生的结论. 从而证明假设错误. </p>
+<p>经典一阶矩方法失效原因大致可以理解为无三角形图本身是“扎堆”或“聚集”的。许多无三角形图都非常相似（比如，都接近于同一个二分图），这导致它们在$G(n,p)$中出现的事件之间存在强烈的正相关性。这种正相关性使得简单的期望计算失效。</p>
+<h4 id="2-容器方法的核心思想与应用"><a href="#2-容器方法的核心思想与应用" class="headerlink" title="2. 容器方法的核心思想与应用"></a><strong>2. 容器方法的核心思想与应用</strong></h4><p>既然经典方式走不通，就要采用一种新的策略来处理这种聚类现象，这个策略就是<strong>容器方法</strong>。<br>核心思想变化是这次我们不再一个个地数无三角形图，而是先把它们分装到一些容器里，然后再去处理这些容器。这些容器由定理3来保证存在。</p>
+<p><strong>定理3 无三角形图容器定理 (The container theorem for triangle-free graphs)</strong>:</p>
+<blockquote>
+<p>对于$n$个顶点的图，存在一个图的集合$\mathcal{G}$（我们称之为“容器集合”），它满足以下三个性质：<br>(a) <strong>容器数量很少</strong>: $|\mathcal{G}|$的规模相对很小，满足 $|\mathcal{G}|\leq n^{O(n^{3/2})}$。<br>(b) <strong>容器自身很“干净”</strong>: $\mathcal{G}$中的每个图$G$只包含$o(n^3)$个三角形。<br>(c) <strong>所有目标都被装下了</strong>: 每个不含三角形的图，都必然是$\mathcal{G}$中某个容器图$G$的子图。</p>
+</blockquote>
+<p><strong>直观理解</strong>：平面上有无数个苹果（代表所有无三角形图）。我们想证明这些苹果的总重量不大。直接一个个称重很麻烦。容器方法告诉我们，我们可以找到少数几个大篮子（性质a），这些篮子本身都很轻（性质b），并且所有苹果都在这些篮子里面（性质c）。</p>
+<p>接下来使用容器的思想来证明定理2：<br>首先需要引入一个关键工具：<br><strong>定理4 三角形超饱和定理 (Supersaturation for triangles)</strong>:</p>
+<blockquote>
+<p>对于任何 $\epsilon&gt;0$，存在 $\delta &gt; 0$。如果一个$n$顶点图的边数$e(G) \ge (1/4 + \epsilon)n^2$，那么$G$包含的至少$\delta n^3$个三角形。</p>
+<p>这个定理的逆否命题很有用：如果一个有$n$个顶点的图的三角形数为$o(n^3)$，则该图至多只有$(1/4+o(1))n^2$条边。</p>
+</blockquote>
+<p>现在可以使用容器方法证明<strong>定理2</strong>了。（<em>注：此处原文为定理3，根据上下文应为证明定理2</em>）<br>回顾定理2的内容，我们需要证明在$G(n,p)$随机图中，不可能存在一个边数超过$(1/4+\epsilon)pn^2$的无三角形子图$H$。考虑使用反证法，先假设存在一个这样的坏图$H$，然后推导出一个概率极小、几乎不可能发生的结论，从而证明假设错误。</p>
 <ol>
-<li>假设存在坏图$H$同时满足以下两个条件：<ul>
-<li>H是无三角形的；</li>
-<li>$e(H)\gt(1/4+\epsilon)pn^2$</li>
+<li><strong>假设</strong>：存在坏图$H$同时满足以下两个条件：<ul>
+<li>$H$是无三角形的；</li>
+<li>$e(H) &gt; (1/4+\epsilon)pn^2$。</li>
 </ul>
 </li>
-<li>由容器定理（定理3），必然存在一个容器图$G$,满足$H\subset G$.</li>
-<li>分析容器$G$的属性：<ul>
-<li>由容器定理性质b：容器$G$所含三角形数很少，只有$o(n^3)$ 个.</li>
-<li>由超饱和定理（定理4）的逆否命题知：$e(G)\leq(1/4+o(1))n^2$ 条边.</li>
+<li><strong>装入容器</strong>：由容器定理（定理3），必然存在一个容器图$G$，满足$H \subset G$。</li>
+<li><strong>分析容器</strong> $G$ <strong>的属性</strong>：<ul>
+<li>由容器定理性质(b)：容器$G$所含三角形数很少，只有$o(n^3)$个。</li>
+<li>由超饱和定理（定理4）的逆否命题知：$e(G) \le (1/4+o(1))n^2$条边。</li>
 </ul>
 </li>
-<li>现在我们有一个确定的容器图$G$,和一个随机的图$G(n,p)$，假设的坏图$H$是$G$和$G(n,p)$ 的公共子图.将$e(G)$看作$e(G)$次独立试验：对于容器$G$的每个边位置，这条边是否出现在$G(n,p)$中是一个独立的概率为$p$的事件，所以“$G$从$G(n,p)$中捕获的边数”这个随机变量，服从二项分布$B(e(G),p)$ .已知$e(G)\approx n^2/4$ ，所以这个二项分布的数学期望大约为$p(n^2/4)$ .<br>但我们假设捕获的边数$m\geq(1/4+\epsilon)pn^2$ ，远大于期望值.<br><strong>Chernoff’s Inequality</strong>：<br>设 $X₁, X₂, …, X_n$是一系列独立的伯努利随机变量（即取值为0或1），$P(Xᵢ = 1) = pᵢ$。令 $ X = ∑ Xᵢ$ ，其期望值为$ μ = E[X] = ∑ pᵢ$.对于任何$ δ &gt; 0$ ，有：<br>&emsp;$P(X≥(1+δ)μ)≤e^{(-δ²μ/3)},0 &lt; δ ≤ 1$<br>更一般的形式是：<br>&emsp;$P(X ≥ (1 + δ)μ) ≤ [e^δ / (1+δ)^{(1+δ)}]^μ$.<br>使用Chernoff’s Inequality得到发生这种事件的概率是$o(e^{-Ω(pn²)})$ .<br>所以对于任何一个特定的容器$G$，它能“捕获”到我们假设的那个超级大的$H$的概率，小到可以忽略不计。</li>
-<li>上面的讨论证明了单个容器捕获到$H$的概率是很小的，但当容器不止一个的时候，是否所有容器捕捉到$H$的概率之和仍然很小.<ul>
-<li>定义坏容器（即捕获了至少$m$条边的容器数量为$Y_m$.<br>想计算$P(Y_m\geq 1)$ 即“至少存在一个坏容器”的概率.</li>
-<li>根据联合界，这个概率小于等于所有容器成为坏容器的概率之和，也就是<br>&emsp;$P(Y_m\geq 1)\leq E[Y_m]=\underset{G\in \mathcal{G}}\sum P(e(G\cap G(n,p))\geq m)\leq|G|\times e^{-\Omega(pn^2)}=n^{O(n^{3/2})}e^{-\Omega(pn^2)}$.<br>比较这两项的大小只需要取对数，而后得到当$p\gg l\log n/\sqrt{n}$时，可以证明得到定理2的结论（但这里对于$p$取值的要求稍微强于原定理）.</li>
+<li><p><strong>概率论证</strong>：现在我们有一个确定的容器图$G$，和一个随机的图$G(n,p)$，假设的坏图$H$是$G$和$G(n,p)$的公共子图。将$e(G)$看作$e(G)$次独立试验：对于容器$G$的每个边位置，这条边是否出现在$G(n,p)$中是一个独立的概率为$p$的事件，所以“$G$从$G(n,p)$中捕获的边数”这个随机变量，服从二项分布$B(e(G),p)$。已知$e(G) \approx n^2/4$，所以这个二项分布的数学期望大约为$p(n^2/4)$。但我们假设捕获的边数$m &gt; (1/4+\epsilon)pn^2$，远大于期望值。<br><strong>Chernoff’s Inequality</strong>：</p>
+<blockquote>
+<p>设 $X_1, X_2, \dots, X_N$是一系列独立的伯努利随机变量，令 $X = \sum X_i$，其期望值为$ \mu = E[X]$。对于任何$ \delta &gt; 0$，有：<br>$P(X \ge (1+\delta)\mu) \le e^{-\delta^2\mu/3}, \quad \text{for } 0 &lt; \delta \le 1$</p>
+</blockquote>
+<p>使用Chernoff不等式得到发生这种大偏差事件的概率是$e^{-\Omega(pn^2)}$。所以对于任何一个特定的容器$G$，它能“捕获”到我们假设的那个超级大的$H$的概率，小到可以忽略不计。</p>
+</li>
+<li><strong>联合界</strong>：上面的讨论证明了单个容器捕获到$H$的概率是很小的，但当容器不止一个的时候，是否所有容器捕捉到$H$的概率之和仍然很小？<ul>
+<li>定义坏容器（即捕获了至少$m$条边的容器）的数量为$Y_m$。我们想计算$P(Y_m \ge 1)$，即“至少存在一个坏容器”的概率。</li>
+<li>根据联合界，这个概率小于等于所有容器成为坏容器的概率之和，也就是：<br>$P(Y_m \ge 1) \le E[Y_m] = \sum_{G\in \mathcal{G}} P(e(G\cap G(n,p))\ge m) \le |\mathcal{G}| \times e^{-\Omega(pn^2)} = n^{O(n^{3/2})}e^{-\Omega(pn^2)}$。<br>比较这两项的大小只需要取对数，而后得到当$p \gg \log n/\sqrt{n}$时，该概率趋向于0，可以证明得到定理2的结论（但这里对于$p$取值的要求稍微强于原定理）。</li>
 </ul>
 </li>
 </ol>
-<p>结论：以极高的概率，$G(n,p)$中不可能存在边数超过$(1/4+o(1))pn^2$ 的无三角形子图.</p>
-<h2 id="3-超图容器引理及其证明"><a href="#3-超图容器引理及其证明" class="headerlink" title="3. 超图容器引理及其证明"></a>3. 超图容器引理及其证明</h2><p>为了证明定理3，需要将问题上升到更普适的3-一致超图（3-uniform hypergraphs）中.</p>
-<p><strong>定义5 编码三角形的超图（the hypergraph encoding triangles in $K_n$</strong>）:<br>构造一个$3$-一致超图$H$，满足：</p>
+<p><strong>结论</strong>：以极高的概率，$G(n,p)$中不可能存在边数超过$(1/4+o(1))pn^2$的无三角形子图。</p>
+<h4 id="3-超图容器引理及其证明"><a href="#3-超图容器引理及其证明" class="headerlink" title="3. 超图容器引理及其证明"></a><strong>3. 超图容器引理及其证明</strong></h4><p>为了证明定理3，需要将问题上升到更普适的3-一致超图（3-uniform hypergraphs）中。</p>
+<p><strong>定义5 编码三角形的超图 (the hypergraph encoding triangles in $K_n$)</strong>:</p>
+<blockquote>
+<p>构造一个$3$-一致超图$\mathcal{H}$，满足：</p>
 <ul>
-<li>顶点集$V(H)=E(K_n)$是完全图$K_n$的所有<strong>边</strong>.</li>
-<li>超边集$E(H)$是$K_n$中所有构成三角形的三条边的集合.<br>&emsp;$E(\mathcal{H})=\{\{f_1,f_2,f_3\}\subset E(K_n):\{f_1,f_2,f_3\}=E(K_3)\}$.<br>在这个构造下，$H$的一个独立集（不包含任何超边的顶点集）就等价于$K_n$中一个不含三角形的边集，也就是一个无三角形图.</li>
+<li><strong>顶点集</strong> $V(\mathcal{H})=E(K_n)$ 是完全图$K_n$的所有<strong>边</strong>。</li>
+<li><strong>超边集</strong> $E(\mathcal{H})$ 是$K_n$中所有构成三角形的三条边的集合。<br>$E(\mathcal{H})=\{\{f_1,f_2,f_3\}\subset E(K_n):\{f_1,f_2,f_3\}=E(K_3)\}$。</li>
 </ul>
-<p>对于一个$3$-一致超图$\mathcal{H}$，定义$\Delta_l(\mathcal{H})=max\{d_{\mathcal{H}}(A):A\subset V(\mathcal{H}),|A|=l\}$.其中$d_{\mathcal{H}}(\mathcal{A})=|\{B\in E(\mathcal{H}):A\subset B\}|$，用$\mathcal{I}(\mathcal{H})$表示$\mathcal{H}$中所有独立集的集合.</p>
-<p><strong>$3$-一致超图的容器引理</strong><br>对于一个$3$-一致超图$\mathcal{H}$，如果其平均度$d$足够大使得$\tau:=1/\sqrt{d}\leq\delta$，且$\Delta_1(\mathcal{H})\leq c\cdot d,\ \Delta_2(\mathcal{H})\leq c\cdot\sqrt{d}$，那么存在一个由$V(\mathcal{H})$的子集构成的容器集合$\mathcal{C}$，具有以下性质：<br>(a) 覆盖性: 对于任意独立集$I\in \mathcal{I}(\mathcal{H})$，均存在某个容器$C\in \mathcal{C}$使得$I\subset C$.<br>(b) 容器更小: $|C| ≤ (1-δ)v(\mathcal{H}),\forall C\in \mathcal{C}$（即比原顶点集小一个常数比例）.<br>Remark：$C$对应的图的边数会比$\mathcal{H}$对应的图少至少一个固定比例<br>(c) 容器个数上界：$|\mathcal{C}|\leq {v(\mathcal{H})\choose \tau\cdot v(\mathcal{H})}$. </p>
-<h2 id="4-定理3的证明"><a href="#4-定理3的证明" class="headerlink" title="4. 定理3的证明"></a>4. 定理3的证明</h2><p>现在回到由$K_n$编码三角形的超图$\mathcal{H}$.<br>注意图$\mathcal{H}$的性质，图$\mathcal{H}$中每个点都对应$K_n$中的一条边，所以$\mathcal{H}$中共有边数$e(\mathcal{H})={n\choose 2}$.<br>而后考虑$\Delta_2(\mathcal{H})$的计算，任取$\mathcal{H}$中的两条点构成的点集$\mathcal{A}$，$\mathcal{H}$中的两点对应的$K_n$中的两条边有以下两种可能情况：</p>
+<p>在这个构造下，$\mathcal{H}$的一个独立集（不包含任何超边的顶点集）就等价于$K_n$中一个不含三角形的边集，也就是一个无三角形图。</p>
+</blockquote>
+<p>对于一个超图$\mathcal{H}$，定义$\Delta_\ell(\mathcal{H})=\max\{d_{\mathcal{H}}(A):A\subset V(\mathcal{H}),|A|=\ell\}$。其中$d_{\mathcal{H}}(A)=|\{B\in E(\mathcal{H}):A\subset B\}|$，用$\mathcal{I}(\mathcal{H})$表示$\mathcal{H}$中所有独立集的集合。</p>
+<p><strong>$3$-一致超图的容器引理</strong>:</p>
+<blockquote>
+<p>对于一个$3$-一致超图$\mathcal{H}$，如果其平均度$d$足够大使得$\tau:=1/\sqrt{d}\leq\delta$，且$\Delta_1(\mathcal{H})\leq c\cdot d,\ \Delta_2(\mathcal{H})\leq c\cdot\sqrt{d}$，那么存在一个由$V(\mathcal{H})$的子集构成的容器集合$\mathcal{C}$，具有以下性质：<br>(a) <strong>覆盖性</strong>: 对于任意独立集$I\in \mathcal{I}(\mathcal{H})$，均存在某个容器$C\in \mathcal{C}$使得$I\subset C$。<br>(b) <strong>容器更小</strong>: $|C| \le (1-\delta)v(\mathcal{H}),\forall C\in \mathcal{C}$（即比原顶点集小一个常数比例）。<br>(c) <strong>容器个数上界</strong>：$|\mathcal{C}|\le {v(\mathcal{H})\choose \tau\cdot v(\mathcal{H})}$。</p>
+</blockquote>
+<h4 id="4-定理3的证明"><a href="#4-定理3的证明" class="headerlink" title="4. 定理3的证明"></a><strong>4. 定理3的证明</strong></h4><p>现在回到由$K_n$编码三角形的超图$\mathcal{H}$。<br>注意图$\mathcal{H}$的性质：$v(\mathcal{H})={n\choose 2},\ d_{\mathcal{H}}(v)=n-2,\forall\ v\in V(\mathcal{H})$。<br>而后考虑$\Delta_2(\mathcal{H})$的计算，任取$\mathcal{H}$中的两个顶点构成的点集$\mathcal{A}$，$\mathcal{H}$中的两点对应的$K_n$中的两条边有以下两种可能情况：</p>
 <ul>
-<li>两边在$K_n$没有公共点，则两边无法与第三条边构成三角形，因而在$\mathcal{H}$中$d_{\mathcal{H}}(\mathcal{A})=0$.</li>
-<li>两边在$K_n$中有公共点，则这两条边会与另一条边一起构成一条$\mathcal{H}$中的超边，从而在$\mathcal{H}$中$d_{\mathcal{H}}(\mathcal{A})=1$.</li>
+<li>两边在$K_n$没有公共点，则两边无法与第三条边构成三角形，因而在$\mathcal{H}$中$d_{\mathcal{H}}(\mathcal{A})=0$。</li>
+<li>两边在$K_n$中有公共点，则这两条边会与唯一一条边一起构成一个$K_n$中的三角形，从而在$\mathcal{H}$中$d_{\mathcal{H}}(\mathcal{A})=1$。<br>于是得到：$\Delta_2(\mathcal{H})=1$。</li>
 </ul>
-<p>于是得到：$v(\mathcal{H})={n\choose 2},\ \Delta_2(\mathcal{H})=1,\ d_{\mathcal{H}}(v)=n-2,\forall\ v\in V(\mathcal{H})$.</p>
-<p>令$c=1$，对$\mathcal{H}$应用<strong>3-一致超图容器引理</strong>，得到$E(K_n)$的容器集合$\mathcal{C}_0$（注意这里从原来$\mathcal{H}$（边）的容器切换到$K_n$点的容器），$\mathcal{C}_0$具有以下性质：</p>
-<p>(a) 覆盖性: 每个$K_n$中的无三角形图都属于某个容器$C\subset \mathcal{C}_0$.</p>
-<p>(b) $|C| ≤ (1-δ)e(K_n),\ \forall C\in \mathcal{C}_0$.</p>
-<p>回顾一下定理3的大意：存在一个数量少、结构好（三角形少）的容器集合$\mathcal{C}$，能覆盖所有无三角形图。</p>
-<p>因为$\tau=\Theta(1/\sqrt{n})$，由$3$-一致超图的容器引理中的约束：$|\mathcal{C}|\leq {v(\mathcal{H})\choose \tau\cdot v(\mathcal{H})}={o(n^2)\choose o(n^{3/2})}$，并利用不等式$C_n^k\leq\Big(\frac{en}{k}\Big)^k$得到$|\mathcal{C}_0|\leq n^{O(n^{3/2})}$:</p>
-<p>于是定理3中数量少的要求已经被满足（虽然后面分解的时候会增加$\mathcal{C}$中的容器数量，这里先不妨这么理解）.接下来考虑“结构好”这个要求.</p>
-<p>这里我们的操作是利用迭代的思想构造一个满足条件的容器集合$\mathcal{C}$. 从而证明定理中容器集合$\mathcal{C}$的存在性.<br>(1) 将上面初始化得到的$\mathcal{C}$记为$\mathcal{C}_0$,$C_0$虽然满足定理3中“数量少”的要求，但是其中有很多坏容器（包含的三角形数太多了）.所以需要用迭代的方法不断提纯这个容器集合.</p>
-<p>(2) 在第$i$步，对一个容器集合$\mathcal{C}_{i-1}$. 我们要做的是：</p>
+<p>令$c=1$，对$\mathcal{H}$应用<strong>3-一致超图容器引理</strong>，得到$E(K_n)$的容器集合$\mathcal{C}_0$。<br>因为$\tau=\Theta(1/\sqrt{n})$，由引理(c)及不等式${n\choose k}\leq\Big(\frac{en}{k}\Big)^k$得到$|\mathcal{C}_0|\leq n^{O(n^{3/2})}$。<br>于是定理3中数量少的要求已经被满足。接下来利用迭代思想构造一个“结构好”的容器集合$\mathcal{G}$。</p>
+<p>(1) <strong>初始化</strong>: 将上面得到的$\mathcal{C}$记为$\mathcal{C}_0$。$\mathcal{C}_0$中可能有很多坏容器（包含的三角形数太多了）。</p>
+<p>(2) <strong>迭代提纯</strong>: 在第$i$步，对容器集合$\mathcal{C}_{i-1}$中的每一个容器$C$进行检查：</p>
 <ul>
-<li>检查每个容器: 遍历$\mathcal{C}_{i-1}$中的每一个容器$C$.</li>
-<li><p>分类:</p>
-<ul>
-<li>情况A: 图$ C $中的三角形数量已经很少了，比如$t(C) &lt; o(n³)$，那么这个容器$C$就达标了. 我们把它放进我们最终的集合$\mathcal{C}$中，不再处理它了.</li>
-<li>情况B: 如果图$C$中的三角形数量仍然很多，即$ t(C) ≥ εn³$，那么这个容器$ C $还需要被进一步分解（以减少容器包含的三角形数）.<br>对于这样的坏容器$ C$，执行以下操作：<br>构造诱导子超图$ \mathcal{H}[C]$:<br>顶点集：$V(\mathcal{H}[C]) = C $(图$C $的边集)<br>超边集：$E(\mathcal{H}[C])$ (图$ C $的三角形)<br>检查$ \mathcal{H}[C] $的平均度数:$v(\mathcal{H}[C]) = |C| = O(n²),e(\mathcal{H}[C]) = t(C) ≥ εn³,d(\mathcal{H}[C]) = 3\cdot e(\mathcal{H}[C]) / v(\mathcal{H}[C]) ≥ 3εn $（$C$中每个三角形对应$\mathcal{H}[\mathcal{C}]$中的一条边）.</li>
+<li><strong>好容器</strong>: 若$t(C) &lt; \epsilon n^3$，则$C$达标，放入最终集合$\mathcal{G}$。</li>
+<li><strong>坏容器</strong>: 若$t(C) \ge \epsilon n^3$，则$C$需要被分解。对$C$构造诱导子超图$\mathcal{H}[C]$。<br>检查$\mathcal{H}[C]$的平均度数：$v(\mathcal{H}[C]) = |C| = O(n^2), e(\mathcal{H}[C]) = t(C) \ge \epsilon n^3$，所以$d(\mathcal{H}[C]) = 3 e(\mathcal{H}[C]) / v(\mathcal{H}[C]) \ge 3\epsilon n$。<br>这个平均度足够大，我们可以令$c=1/\epsilon$，在$\mathcal{H}[C]$上再次应用超图容器引理，得到一个新的、更小的容器集合$\mathcal{C}’(C)$。</li>
 </ul>
-</li>
-<li><p>所以我们可以令$c=1/\epsilon$, 在$ \mathcal{H}[C] $上应用超图容器引理:<br>我们对$ \mathcal{H}[C] $应用容器引理，会得到一个新的、更小的容器集合，我们称之为$ C’(C)$, 且有以下性质：</p>
+<p>(3) <strong>更新</strong>: 用这个新的、更小的容器集合$\mathcal{C}’(C)$来替换原来的那个坏容器$C$。</p>
+<p>(4) <strong>迭代终止</strong>: 每次分解，新容器的大小（边数）都会以$(1-\delta)$的比例缩小。经过有限步（大约$O(\log n)$步）后，所有容器都会因为不断变小而最终变成好容器。</p>
+<p>(5) <strong>最终结论</strong>:<br>当迭代终止时，我们得到的最终集合$\mathcal{G}$满足定理3的所有条件：</p>
+<ul>
+<li><strong>结构好</strong>: $\mathcal{G}$中的每个容器的三角形数量都小于$\epsilon n^3$（即$o(n^3)$）。</li>
+<li><strong>覆盖性</strong>: 任何一个无三角形图$I$在每次迭代中都会被新的子容器覆盖，所以最终一定被某个好容器覆盖。</li>
+<li><strong>数量少</strong>: 虽然每一步都会增加容器数量，但迭代步数有限。总容器数量仍然在$n^{O(n^{3/2})}$的量级，是极小的。</li>
+</ul>
+<p>这样，通过迭代提纯的过程，我们就成功地构造出了满足定理3要求的容器集合。</p>
+<h4 id="5-图的容器引理及其证明"><a href="#5-图的容器引理及其证明" class="headerlink" title="5. 图的容器引理及其证明"></a><strong>5. 图的容器引理及其证明</strong></h4><p>为了证明超图容器引理，我们先考虑一个简化版——图的容器引理。</p>
+<p><strong>图的容器引理 (The Graph Container Lemma)</strong>:</p>
+<blockquote>
+<p>对任意$c&gt;0$，存在$\delta&gt;0$使得以下条件成立：对于一个平均度为$d$且$\Delta(G)\leq c\cdot d$的图$G$，取$\tau:=2\delta/d$。可以找到一个$V(G)$的子集集合$\mathcal{C}$，满足：</p>
 <ol>
-<li>覆盖性: $ \mathcal{H}[C] $的每一个独立集都被$ C’(C) $中的某个新容器$ C’ $覆盖.</li>
-<li>更小: $C’(C) $中的每个新容器$ C’ $满足$|C’| ≤ (1-δ)|C|$.</li>
+<li><strong>覆盖性</strong>：对于任意独立集$I\in \mathcal{I}(G)$，存在容器$C\in \mathcal{C}$使得$I\subset C$。</li>
+<li><strong>容器更小</strong>：$|C|\leq(1-\delta)v(G),\forall C\in\mathcal{C}$。</li>
+<li><strong>容器数量有限</strong>：$|\mathcal{C}|\leq{v(G)\choose \lceil\tau\cdot v(G)\rceil}$。</li>
 </ol>
-</li>
-</ul>
-<p>(3) 更新: 用这个新的、更小的容器集合$ C’(C) $来替换原来的那个坏容器$ C$.<br>生成的容器集合$ C_i$两部分组成:(a) 所有在第$ i-1 $步被判定为好的容器;(b)所有通过分解坏容器而产生的新一代小容器.</p>
-<p>(4) 迭代为什么会停止:<br>因为每次分解，新容器的大小（边数） 都会以$(1-δ)$的比例缩小. $|C_{new}| ≤ (1-δ) |C_{old}|$<br>经过 k 次迭代，容器的大小会变成$ (1-δ)^k \cdot |C_{initial}|$.<br>终止条件: 当容器$ C $的大小$ |C| $变得足够小，比如小于$ εn² $时，它所能包含的三角形数量$ t(C) $必然会小于$ εn³$。这是因为一个图的三角形数量最多是$ O(|C|^{3/2})$. 当$ |C| $足够小，$t(C) $也会很小，这个容器自动就变成了好容器。<br>因此，这个迭代过程必然会在有限步（大约$ O(log n) $步）后终止，因为所有容器都会因为不断变小而最终变成好容器.</p>
-<p>(5)最终结论:<br>当迭代终止时，我们得到的最终集合$\mathcal{C}$(即所有被判定为好的容器的集合) 满足定理3的所有条件：</p>
+</blockquote>
+<p><strong>定义6 (最大度顺序)</strong>:</p>
+<blockquote>
+<p>图$G$顶点的最大度排序是指将$V(G)$中的点排列为$(v_1,v_2,\dots,v_n)$，使得$\forall i\in [n]$，$v_i$是$G[\{v_i,\dots,v_n\}]$中度数最高的点。</p>
+</blockquote>
+<p><strong>图的容器算法</strong>:<br>给定图$G$以及一个独立集$I\in\mathcal{I}(G)$，维护一个对$V(G)$的划分$V(G)=A\cup S\cup X$。</p>
 <ul>
-<li>结构好: G 中的每个容器$ G $的三角形数量都小于$ εn³$（实际上是$ o(n³)$）。这是由我们的算法设计保证的.</li>
-<li>覆盖性:任何一个无三角形图$ I$，首先它被初始容器$E(K_n)$覆盖. 在每一次迭代中，如果$ I $被一个坏容器$ C $覆盖，那么$I $作为一个无三角形图，它在$ H[C] $中必然是一个独立集。<br>根据容器引理的覆盖性，$I $必然会被$ C $分解出的某个新容器$ C’ $覆盖。<br>这个过程一直持续，所以$ I $最终一定会被某个好容器（即$\mathcal{C}$中的某个元素）覆盖.<br>(a) 数量少:<br>每一步迭代，一个坏容器会被分解成多个新容器。新容器的数量由容器引理的结论$ n^{O(n^{3/2})} $给出.<br>虽然每一步都会增加容器数量，但迭代的步数是有限的 $O(log n)$<br>总的容器数量可以通过将每一步产生的容器数相乘（作为粗略的上界）来估计。最终结果仍然是 n 的指数上是一个$ n^{3/2} $的多项式，即$ n^{O(n^{3/2})}$。这个数量相对于所有可能图的总数 $2^{C(n,2)}$ 来说是极小的。<br>这样，通过这个迭代提纯的过程，我们就成功地构造出了满足要求的一组好容器.</li>
+<li>$A$: 活跃点集</li>
+<li>$S$：当前的指纹集</li>
+<li>$X$：被排除的点集</li>
 </ul>
-<h2 id="5-图的容器引理及其证明"><a href="#5-图的容器引理及其证明" class="headerlink" title="5.图的容器引理及其证明"></a>5.图的容器引理及其证明</h2><p>为了证明超图容器引理，我们先考虑图中的容器引理：</p>
-<p><strong>图的容器引理(The Graph Container Lemma)</strong><br>对任意$c\gt0$，存在$\delta\gt0$使得以下条件成立：对于一个平均度为$d$且$\Delta(G)\leq c\cdot d$ 的图$G$，取$\tau:=2\delta/d$. 可以找到一个$V(G)$的子集集合$\mathcal{C}$，满足以下性质：</p>
+<p>初始化$A=V(G),\ S=X=\emptyset$。当$|X|\leq\delta v(G)$时，重复：</p>
 <ol>
-<li>覆盖性：对于任意独立集$I\in \mathcal{I}(G)$, 存在容器$\exists C\in \mathcal{C},$ 使得$ I\subset C$.</li>
-<li>容器更小：$|C|\leq(1-\delta)v(G),\forall C\in\mathcal{C}$.</li>
-<li>容器数量有限：$|\mathcal{C}|\leq{v(G)\choose \lceil\tau\cdot v(G)\rceil}$</li>
+<li>按最大度顺序，找到第一个属于$I$的顶点$v$。</li>
+<li>将$v$移入$S$。</li>
+<li>将$v$的邻居$N(v)$和所有排在$v$之前的顶点移入$X$。</li>
+<li>从$A$中移除新加入$S$和$X$的顶点。</li>
 </ol>
-<p><strong>定义6（按最大度顺序）</strong> 超图$G$顶点的最大度排序是指将$V(G)$中的点排列为$(v_1,v_2,\dots,v_n)$，使得$\forall i\in [n]$，$v_i$是$G([\{v_i,\dots,v_n\}])$中度数最高的点.</p>
-<p><strong>图的容器算法</strong><br>给定图$G$以及一个独立集$T\in\mathcal{I}(G)$，我们要维护一个对于$V(G)$的划分$V(G)=A\cup S\cup X$. </p>
+<p><strong>引理证明思路</strong>:</p>
 <ul>
-<li>A: 活跃点集</li>
-<li>S：当前的指纹集</li>
-<li>X：被排除的点集</li>
+<li><strong>覆盖性</strong>: 对于给定的独立集$I$，算法生成的排除集$X$中的点都确定不在$I$中，因此$I$必然被包含在$C(S) = V(G) \setminus X$中。</li>
+<li><strong>容器更小</strong>: 算法循环结束条件是$|X| &gt; \delta v(G)$，这直接保证了$|C(S)| \le (1-\delta)v(G)$。</li>
+<li><strong>数量可控</strong>: 关键在于证明指纹集$S$足够小，即$|S(I)| \le \lceil\tau \cdot v(G)\rceil$。这通过证明“每向$S$中加入一个点，至少有$d/2$个点被加入到$X$”来实现。<ul>
+<li>这一步利用了$\Delta(G) \le c \cdot d$的条件和反证法。假设某一步加入$S$的顶点$u$不能为$X$贡献足够多的新成员，那么可以推导出在当前的活跃子图$G[A]$中，平均度数仍然很高。因此，作为度数最高的顶点，$u$的度数必然很大，这与“不能为$X$贡献足够多成员”的假设矛盾。</li>
 </ul>
-<p>先对三个点集进行初始化：$A=V(G),\ S=X=\emptyset$. 而后进入循环，当$|X|\leq\delta v(G)$时，重复以下步骤：</p>
+</li>
+</ul>
+<h4 id="6-3-一致超图容器引理证明"><a href="#6-3-一致超图容器引理证明" class="headerlink" title="6. 3-一致超图容器引理证明"></a><strong>6. 3-一致超图容器引理证明</strong></h4><p>该证明将图容器算法的思想推广到超图。算法维护一个指纹$S$、一个可用的超图$A$和一个<strong>禁用对图</strong>$G$。</p>
+<p><strong>核心循环</strong>:</p>
 <ol>
-<li>选取在$I$中，度数最高的顶点$v$.</li>
-<li><p>对于最大度排序种第一个$v\in I$:$S ← S ∪ {vᵢ}$.</p>
-<ul>
-<li>因为 I 是一个独立集，所以 vᵢ 的所有邻居都不能在 I 中。同时，根据我们的算法流程，所有排在 vᵢ 前面且不在 S 中的顶点（即$v₁, …, v_{i-1} $中那些我们判定为不在$ I $的顶点）也都不在$ I $中.<br>$X ← X ∪ N(vᵢ)$.<br>$W=\{u\in A:最大度排序中u\lt v\},\ X\leftarrow X\cup W$.</li>
-<li>更新$A:=V(G)\sim(S\cup X)$.</li>
-</ul>
-</li>
-<li><p>算法结束时：<br>我们得到了一个指纹$S$，它是$ I $的一个子集$ (S ⊂ I)$。<br>我们得到了一个排除集$X$，它包含了所有我们确定不在$ I $中的顶点。<br>我们定义由指纹$ S $生成的容器$ C(S) $为：$C(S) = V \sim X$ (即所有未被排除的顶点)</p>
-</li>
+<li>在可用超图$A$中按最大度顺序找到第一个属于独立集$I$的顶点$u$。</li>
+<li>将$u$加入指纹$S$。</li>
+<li>对于每条包含$u$的超边$\{u, v, w\}$，在$G$中添加一条边$\{v,w\}$，表示$v,w$不能共存。</li>
+<li>将$u$和所有排在$u$前面的顶点从$A$中移除。</li>
+<li>将$G$中度数过高的顶点从$A$中移除（为Plan A做准备）。</li>
+<li>将包含$G$中边的超边从$A$中移除（强化约束）。</li>
 </ol>
-<p>定义$A(I):=A,\ S(I):=S,\ X(I):=X,\ C(S)=V(G)\sim X$.<br>对于任何一个给定的独立集$ I$，运行这个算法，我们总能得到一个指​​纹$S(I)$，并且$I$必然被包含在$ C(S) $中。这是因为$ C(S) $正是$ V $中排除了所有确定不在$ I $中的顶点后剩下的集合，所以$ I $必然是$ C(S) $的子集. 这就证明了覆盖性.</p>
-<p>现在我们需要证明算法构造出的容器满足引理中另外两个性质：容器更小和数量不多.</p>
-<ol>
-<li><p>证明容器更小: 因为算法循环结束时要求$|X|\gt \delta v(G)$，这保证了$|C(S)|\leq (1-\delta)v(G)$.</p>
-</li>
-<li><p>为了证明容器数量不多，我们需要证明$|S(I)|\leq\lceil\tau\cdot v(G)\rceil,\forall I\in \mathcal{I}(G)$. 我们将通过证明每当一个点$v$被加入$S$中，至少$d/2$个点被加入$X$中来说明这一点（因为当$\tau v(G)$个点被加入$S$中时，至少$\tau v(G)\cdot\frac{d}{2}=\delta v(G)$个点被加入$X$中，算法终止）<br>为了证明以上结论，需要使用条件$\Delta (G)\leq c\cdot d$.实际上，如果$|S|\leq\tau v(G),\ |X|\leq\delta v(G),\ |W|\leq d/2$，由$\tau\leq 2c\delta,\ d\leq 2\delta v(G)$，当$\delta\leq 1/8c(c+1)$可以得到：<br>&emsp;$e(G[A\sim W])\leq e(G)-((\tau+\delta)v(G)+d/2)\cdot \Delta(G)\geq(1-4c(c+1)\delta)e(G)\geq\frac{e(G)}{2}$.<br>所以在$G[A\sim W]$中平均度数$d’=\frac{e[A\sim G]}{v(A\sim G)}\geq \frac{e(G)}{v(G)}=\frac{d}{2}$.<br>$G[A\sim W]$中度数最高的点$v$满足$d(v)\geq d/2$，则其在$G$中有至少$d/2$个邻居.<br>由$|W|$的任意性，我们知道要么因最大度排在第一个选中的$u$之前而不属于I被加入$X$的点数超过$d/2$，要么$u$加入$S$导致至少$d/2$个邻居被加入$X$中.所以每次向$S$中加入一个点，至少有$d/2$个点被加入到$X$.</p>
-</li>
-</ol>
-<p>Remark：图的容器引理的证明，核心在于设计了一个按度降序处理顶点的算法. 这个算法为每个独立集$ I $生成一个小的子集——“指纹”$ S$. 通过分析这个算法，我们可以证明：</p>
+<p><strong>证明思路 (Plan A / Plan B策略)</strong>:<br>对于任意独立集$I$，算法运行后，必然落入以下两种情况之一：</p>
 <ul>
-<li>覆盖性: $ I $一定在由其指纹$ S $生成的容器$C(S) $中。</li>
-<li>容器更小: 利用高 度数顶点，可以保证容器$ C(S) $比原图小。</li>
-<li>数量可控: 容器由指纹决定，而有效的指纹数量是可控的，远少于$ 2^n$。</li>
+<li><strong>Plan A: 禁用对图$G$非常稠密</strong><br>$e(G(S_2)) \ge \frac{\sqrt{d}\cdot v(H)}{8c}$ 且 $\Delta(G(S_2)) \le 2c\sqrt{d}$。<br>此时，我们得到了一个稠密且最大度有界的普通图$G(S_2)$。由于$I$在其中也是独立集，我们可以<strong>对$G(S_2)$应用图的容器算法</strong>，找到一个小的图指纹$S_1$，从而生成一个满足条件的小容器$C$。</li>
+<li><strong>Plan B: 禁用对图$G$不够稠密</strong><br>$e(G(S_2)) &lt; \frac{\sqrt{d}\cdot v(H)}{8c}$。<br>此时，算法在生成“禁用对”方面不成功。通过反证法可以证明，这种情况的发生，必然是因为在算法的某个步骤中，有<strong>大量</strong>的顶点（至少$v(H)/16c$个）因为度数排序（第4步）或度数过高（第5步）而被移出$A$。这些被移除的顶点都不在$I$中（除了$S_2$中的少量成员）。因此，我们直接定义容器为 $C = V(\mathcal{H}) \setminus (\text{这些被移除的顶点})$，这个容器也满足大小要求。</li>
 </ul>
-<h2 id="6-3-一致超图容器引理证明"><a href="#6-3-一致超图容器引理证明" class="headerlink" title="6. 3-一致超图容器引理证明"></a>6. 3-一致超图容器引理证明</h2><p>这个算法的目标是为任意一个给定的独立集$I$，生成一个独特的“画像”，这个画像由三个部分构成，并在一个循环中不断演化：</p>
-<ul>
-<li>S (Fingerprint/指纹): $I$的一个子集，记录了我们识别出的$I$的关键成员。</li>
-<li>A (Available Hypergraph/可用超图): 一个动态变化的子超图，代表当前还“悬而未决”的顶点和约束。</li>
-<li>G (Forbidden Pairs Graph/禁用对图): 一个普通的图，其边$\{v, w\}$代表“$v$和$w$不能同时在$I$中”的强约束。</li>
-</ul>
-<p>算法初始化:</p>
-<ul>
-<li>$A = H$ (所有顶点和超边都可用)</li>
-<li>$S = ∅, E(G) = ∅$ (指纹和禁用对图都为空)</li>
-</ul>
-<p>核心循环:<br>循环条件: 如果$|S|\lt\lfloor\tau v(\mathcal{H})/2\rfloor,V(A)\cap I\neq\emptyset$，重复以下操作：</p>
-<ol>
-<li><p>对当前“可用超图”$A$中的所有顶点，按照它们在$A$中的度数（被多少条$A$中的超边包含）进行降序排列。<br>沿着这个排好的序列，找到第一个同时属于我们给定的独立集$I$的顶点. 不妨设这个顶点为$u$.</p>
-</li>
-<li><p>$S:=S\cup\{u\}$.</p>
-</li>
-<li><p>$N(u) = {vw : uvw ∈ E(A)},E(G):=E(G)\cup N(u)$.<br>这一步实际将超图的弱约束转化为图的强约束.<br>具体操作: 对于每一条包含$u$的可用超边$\{u, v, w\}$，因为$u$在$I$中，所以$v$和$w$不能同时在$I$中。我们将这个$\{v,w\}$对作为一个“禁用对”，在图$G$中添加一条边.</p>
-</li>
-<li><p>从$V(A)$中移除$u$，因为它已被处理. 并且移除所有在$V(A)$的度数排序中排在$u$前面的顶点: $A:=A[V(A)/W], W=\{w\in V(A):在V(A)的度数排序中w\leq u\}$.<br>分析: u是序列中第一个属于I的顶点，这意味着所有排在它前面的、度数更高的顶点都不属于I. 因此，我们可以安全地将它们从“可用集”A中永久移除. 这一步能极大地缩小问题规模.</p>
-</li>
-<li><p>检查“禁用对图”$G$，将所有在G中度数过高的顶点（集合Y）从A中移除:$A:=A[V(A)/Y],Y=\{w\in V(A):d_G(w)\gt c\cdot\sqrt{d}\}$<br>分析: 这是为后续的Plan B做准备. 它保证了G的最大度数有界$\Delta(G)=O(\sqrt{d})$，使得G满足后续可能要调用的“图容器引理”的使用条件.</p>
-</li>
-<li><p>检查A中的每一条超边$f=\{x, y, z\}$。如果f的三个顶点中，有任意一对（比如$\{x,y\}$）已经是G中的一条边（一个禁用对），那么就将超边f从A中移除。<br>分析: G中的边${x, y}$意味着“x和y不能同时在I中”. 这个约束比超边$f$的约束“$x,y,z$不能同时在I中”更强. 既然更强的约束已经在$G$中存在，那么这个较弱的超边约束就可以被安全地移除.</p>
-</li>
-</ol>
-<h3 id="证明"><a href="#证明" class="headerlink" title="证明"></a>证明</h3><p>超图容器引理需要证明两件事：<br>(1) 存在一个数量可控的容器集合$\mathcal{C}$能覆盖所有独立集；<br>(2) 每个容器 $C ∈ \mathcal{C} $都足够小: $ (|C| ≤ (1-δ)v(H))$。</p>
-<p>证明的核心思想是二分论证，即<strong>Plan A / Plan B策略</strong>.<br>对于任意一个独立集$ I$，算法运行后，必然落入以下两种情况之一，只需证明这两种情况下都能成功将$I$其放入一个小容器中.</p>
-<ol>
-<li><p>只要两个独立集$ I $和$ I’ $产生的指纹$ S₂(I) $和$ S₂(I’) $相同，那么它们产生的$ G(I) $和$ A(I) $也必然相同。这使得我们可以只根据指纹$ S $来定义唯一的容器$C(S)$。</p>
-</li>
-<li><p><strong>Plan A vs. Plan B</strong><br>固定一个独立集$I$，让算法运行完毕，得到指纹$S₂ = S₂(I)$和图$G = G(S₂)$.</p>
-</li>
-</ol>
-<ul>
-<li><p><strong>Plan A</strong>: 禁用对图$G$非常稠密<br>条件: $e(G(S₂))\geq\frac{\sqrt{d}\cdot v(H)}{8c},\Delta(G(S_2))\leq 2c\sqrt{d}$.<br>此时算法在第三步中非常成功，通过不断加入指纹，在G中创造了大量的“禁用对”。<br>现在有了一个稠密的、最大度数有界的普通图$G(S₂)$. 我们知道独立集$I$在$G(S₂)$中也必须是独立集. 故可对$I$在$G(S₂)$中应用图容器算法.<br>图容器算法会为$I$在$G(S₂)$中找到一个小的图指纹$S₁$，并生成一个小的容器$C$，满足$I ⊂ C$且$|C| ≤ (1-δ)v(H)$. 这个容器只依赖于$S₁ ∪ S₂$. </p>
-</li>
-<li><p><strong>Plan B</strong>: 禁用对图$G$不够稠密，$e(G(S₂))\lt \frac{\sqrt{d}\cdot v(H)}{8c}$.<br>此时算法在创造“禁用对”方面不太成功.我们将证明将通过反证法说明，如果G不够稠密，那么算法一定从A中移除了大量的顶点.<br>证明:首先可以证明，为了保证$e(G(S_2))\lt\frac{\sqrt{d}\cdot v(H)}{8c}$，在算法中存在一轮循环满足<br>&emsp;1. 此时$G$很稀疏：$e(G)&lt; (√d/8c)v(H)$.<br>&emsp;2. 因$G$度数过高而被移除的顶点集$Y$很小：$|Y| &lt; v(H)/16c$.<br>&emsp;3. 且该轮加入G的边不多于$d/4$条.<br>假设除了$Y$以外，从$A$中删除的点不超过$v(H)/16c$个.由于$\Delta_1(H)\leq c\cdot d,\ \Delta_2(H)\leq c\cdot\sqrt{d}$.可以得到：<br>&emsp;$e(A)\geq e(H)-\frac{v(H)\cdot\Delta_1(H)}{8c}-e(G)\cdot\Delta_2(H)\geq e(H)-\frac{d\cdot v(H)}{4}=\frac{e(H)}{4}$.<br>所以，$u$在$A$中的度至少为$d/4$，移除这个点必然导致$G$中新增$d/4$条新边，这将与我们的要求3产生矛盾.所以假设错误，即至少$v(H)/16c$个$Y^C$中的点被从$A$中移除了，这些点在$S_2$或$I^C$中.由于$S_2\leq \tau v(H)\leq\delta v(H)$（由假设）,<strong>于是我们可以得到完全由$S_2$决定的容器$C$满足$|C|\leq(1-\delta)v(H)$</strong>.于是我们就成功了.</p>
-</li>
-</ul>
-<p>以上就是3-一致超图容器引理的完整证明过程.</p>
-<h2 id="7-加强版3-一致超图容器引理证明"><a href="#7-加强版3-一致超图容器引理证明" class="headerlink" title="7. 加强版3-一致超图容器引理证明"></a>7. 加强版3-一致超图容器引理证明</h2><p><strong>加强版3-一致超图容器引理</strong><br>对于任意$c\gt 0$，存在$\delta\gt 0$,如果3-一致超图$\mathcal{H}$的平均度数为$d$，令$\tau:=1/d$并假设$\tau\leq\delta$，则$\Delta_1(\mathcal{H})\leq c\cdot d,\ \Delta_2(\mathcal{H})\leq c\cdot \sqrt{d}$. 则存在一个$V(\mathcal{H})$容器集合$\mathcal{C}$以及一个方程$f:\mathcal{P}(V(\mathcal{H}))\rightarrow \mathcal{C}$使得：<br>(a) 对于任意$I\in\mathcal{H}$，存在$S\in I$满足$|S|\leq\tau\cdot v(\mathcal{H})，I\subset f(S)$.<br>(b) $|C|\leq(1-\delta)v(\mathcal{H}),\forall C\in \mathcal{C}$.</p>
-<p>加强版引理的一个很有效的应用就是将<strong>定理2</strong>中p的约束条件从$\log n/\sqrt{n}$优化到了$1/\sqrt{n}$.</p>
-</div><div class="article-licensing box"><div class="licensing-title"><p>第一节：当你的一阶矩方法失效时，该怎么办？</p><p><a href="http://example.com/Com-Pro/hc1.html">http://example.com/Com-Pro/hc1.html</a></p></div><div class="licensing-meta level is-mobile"><div class="level-left"><div class="level-item is-narrow"><div><h6>作者</h6><p>Jiamin Liu</p></div></div><div class="level-item is-narrow"><div><h6>发布于</h6><p>2025-06-29</p></div></div><div class="level-item is-narrow"><div><h6>更新于</h6><p>2025-07-02</p></div></div><div class="level-item is-narrow"><div><h6>许可协议</h6><p><a class="icons" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="icon fab fa-creative-commons"></i></a><a class="icons" rel="noopener" target="_blank" title="Attribution" href="https://creativecommons.org/licenses/by/4.0/"><i class="icon fab fa-creative-commons-by"></i></a><a class="icons" rel="noopener" target="_blank" title="Noncommercial" href="https://creativecommons.org/licenses/by-nc/4.0/"><i class="icon fab fa-creative-commons-nc"></i></a></p></div></div></div></div></div><!--!--></article></div><!--!--><div class="card" id="comments"><div class="card-content"><h3 class="title is-5">评论</h3><div id="comment-container"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.css"><script src="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js"></script><script>var gitalk = new Gitalk({
+<p>两种情况都导向了小容器的生成，从而完成了证明。</p>
+<h4 id="7-加强版3-一致超图容器引理与应用"><a href="#7-加强版3-一致超图容器引理与应用" class="headerlink" title="7. 加强版3-一致超图容器引理与应用"></a><strong>7. 加强版3-一致超图容器引理与应用</strong></h4><p><strong>加强版3-一致超图容器引理</strong>:</p>
+<blockquote>
+<p>对于任意$c&gt;0$，存在$\delta&gt;0$。如果3-一致超图$\mathcal{H}$的平均度数为$d$，令$\tau:=1/\sqrt{d}$并假设$\tau\leq\delta$，且$\Delta_1(\mathcal{H})\leq c\cdot d,\ \Delta_2(\mathcal{H})\leq c\cdot \sqrt{d}$，则存在一个$V(\mathcal{H})$的容器集合$\mathcal{C}$以及一个函数$f:\mathcal{P}(V(\mathcal{H}))\rightarrow \mathcal{C}$使得：<br>(a) 对于任意$I\in\mathcal{I}(\mathcal{H})$，存在$S \subset I$满足$|S|\leq\tau\cdot v(\mathcal{H})$，且$I\subset f(S)$。<br>(b) $|C|\leq(1-\delta)v(\mathcal{H}),\forall C\in \mathcal{C}$。</p>
+</blockquote>
+<p><strong>与原版的区别</strong>: 主要在于结论(a)，它更明确地指出了“指纹”$S$是<strong>独立集$I$的子集</strong>，并且容器$f(S)$完全由这个指纹决定。</p>
+<p><strong>应用</strong>: 加强版引理的一个很有效的应用就是将<strong>定理2</strong>中$p$的约束条件从$p \gg \log n/\sqrt{n}$优化到了$p \gg 1/\sqrt{n}$。<br>这是因为在最终的概率计算中，我们不再需要对所有可能的容器求和，而是对所有可能的<strong>小指纹</strong>$S$求和。由于指纹$S$是$G(n,p)$的子图，它的出现本身就带有一个$p^{|S|}$的概率。这使得最终的联合界计算更加精细，从而放宽了对$p$的要求。</p>
+</div><div class="article-licensing box"><div class="licensing-title"><p>第一节：当你的一阶矩方法失效时，该怎么办？</p><p><a href="http://example.com/Com-Pro/hc1.html">http://example.com/Com-Pro/hc1.html</a></p></div><div class="licensing-meta level is-mobile"><div class="level-left"><div class="level-item is-narrow"><div><h6>作者</h6><p>Jiamin Liu</p></div></div><div class="level-item is-narrow"><div><h6>发布于</h6><p>2025-06-29</p></div></div><div class="level-item is-narrow"><div><h6>更新于</h6><p>2025-07-06</p></div></div><div class="level-item is-narrow"><div><h6>许可协议</h6><p><a class="icons" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="icon fab fa-creative-commons"></i></a><a class="icons" rel="noopener" target="_blank" title="Attribution" href="https://creativecommons.org/licenses/by/4.0/"><i class="icon fab fa-creative-commons-by"></i></a><a class="icons" rel="noopener" target="_blank" title="Noncommercial" href="https://creativecommons.org/licenses/by-nc/4.0/"><i class="icon fab fa-creative-commons-nc"></i></a></p></div></div></div></div></div><!--!--></article></div><!--!--><div class="card" id="comments"><div class="card-content"><h3 class="title is-5">评论</h3><div id="comment-container"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.css"><script src="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js"></script><script>var gitalk = new Gitalk({
             id: "2860a8690ad29a00b85f268dfeb3658e",
             repo: "od-liu.github.io",
             owner: "od-Liu",

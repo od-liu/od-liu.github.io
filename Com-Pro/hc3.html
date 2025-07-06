@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="zh"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>容器定理应用进阶 - OD&#039;s blog</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="OD&#039;s blog"><meta name="msapplication-TileImage" content="/img/favicon.svg"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="OD&#039;s blog"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="description" content="$K_{s,t}$-free 和 $C_{2k}$-free 图的计数这一部分的目标是计算不含特定二部图（如 $K_{s,t}$ 或偶环 $C_{2k}$）的图的数量。这类问题的解决依赖于一个强大的组合：平衡超饱和定理 + 超图容器引理。 1. 主要结论Theorem 46. (Balogh, Samotij, 2011)  对于任意固定的 $s, t$，不含 $K_{s,t}$ 的 $n$ 顶点"><meta property="og:type" content="blog"><meta property="og:title" content="容器定理应用进阶"><meta property="og:url" content="http://example.com/Com-Pro/hc3.html"><meta property="og:site_name" content="OD&#039;s blog"><meta property="og:description" content="$K_{s,t}$-free 和 $C_{2k}$-free 图的计数这一部分的目标是计算不含特定二部图（如 $K_{s,t}$ 或偶环 $C_{2k}$）的图的数量。这类问题的解决依赖于一个强大的组合：平衡超饱和定理 + 超图容器引理。 1. 主要结论Theorem 46. (Balogh, Samotij, 2011)  对于任意固定的 $s, t$，不含 $K_{s,t}$ 的 $n$ 顶点"><meta property="og:locale" content="zh_CN"><meta property="og:image" content="http://example.com/img/og_image.png"><meta property="article:published_time" content="2025-07-06T06:17:12.000Z"><meta property="article:modified_time" content="2025-07-06T06:34:16.900Z"><meta property="article:author" content="Jiamin Liu"><meta property="twitter:card" content="summary"><meta property="twitter:image:src" content="http://example.com/img/og_image.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"http://example.com/Com-Pro/hc3.html"},"headline":"容器定理应用进阶","image":["http://example.com/img/og_image.png"],"datePublished":"2025-07-06T06:17:12.000Z","dateModified":"2025-07-06T06:34:16.900Z","author":{"@type":"Person","name":"Jiamin Liu"},"publisher":{"@type":"Organization","name":"OD's blog","logo":{"@type":"ImageObject","url":"http://example.com/img/logo.svg"}},"description":"$K_{s,t}$-free 和 $C_{2k}$-free 图的计数这一部分的目标是计算不含特定二部图（如 $K_{s,t}$ 或偶环 $C_{2k}$）的图的数量。这类问题的解决依赖于一个强大的组合：平衡超饱和定理 + 超图容器引理。 1. 主要结论Theorem 46. (Balogh, Samotij, 2011)  对于任意固定的 $s, t$，不含 $K_{s,t}$ 的 $n$ 顶点"}</script><link rel="canonical" href="http://example.com/Com-Pro/hc3.html"><link rel="icon" href="/img/favicon.svg"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.0.0/css/all.css"><link data-pjax rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.7.0/styles/atom-one-light.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link data-pjax rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css"><!--!--><!--!--><!--!--><!--!--><style>.pace{-webkit-pointer-events:none;pointer-events:none;-webkit-user-select:none;-moz-user-select:none;user-select:none}.pace-inactive{display:none}.pace .pace-progress{background:#3273dc;position:fixed;z-index:2000;top:0;right:100%;width:100%;height:2px}</style><script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js"></script><!--!--><!--!--><!-- hexo injector head_end start --><script>
+  (function () {
+      function switchTab() {
+          if (!location.hash) {
+            return;
+          }
+
+          const id = '#' + CSS.escape(location.hash.substring(1));
+          const $tabMenu = document.querySelector(`.tabs a[href="${id}"]`);
+          if (!$tabMenu) {
+            return;
+          }
+
+          const $tabMenuContainer = $tabMenu.parentElement.parentElement;
+          Array.from($tabMenuContainer.children).forEach($menu => $menu.classList.remove('is-active'));
+          Array.from($tabMenuContainer.querySelectorAll('a'))
+              .map($menu => document.getElementById($menu.getAttribute("href").substring(1)))
+              .forEach($content => $content.classList.add('is-hidden'));
+
+          if ($tabMenu) {
+              $tabMenu.parentElement.classList.add('is-active');
+          }
+          const $activeTab = document.querySelector(id);
+          if ($activeTab) {
+              $activeTab.classList.remove('is-hidden');
+          }
+      }
+      switchTab();
+      window.addEventListener('hashchange', switchTab, false);
+  })();
+  </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head><body class="is-2-column"><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/img/logo.svg" alt="OD&#039;s blog" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">主页</a></div><div class="navbar-end"><a class="navbar-item search" title="搜索" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-8-widescreen"><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2025-07-06T06:17:12.000Z" title="2025/7/6 14:17:12">2025-07-06</time>发表</span><span class="level-item"><time dateTime="2025-07-06T06:34:16.900Z" title="2025/7/6 14:34:16">2025-07-06</time>更新</span><span class="level-item"><a class="link-muted" href="/"></a></span><span class="level-item">16 分钟读完 (大约2421个字)</span></div></div><h1 class="title is-3 is-size-4-mobile">容器定理应用进阶</h1><div class="content"><h3 id="K-s-t-free-和-C-2k-free-图的计数"><a href="#K-s-t-free-和-C-2k-free-图的计数" class="headerlink" title="$K_{s,t}$-free 和 $C_{2k}$-free 图的计数"></a>$K_{s,t}$-free 和 $C_{2k}$-free 图的计数</h3><p>这一部分的目标是计算不含特定二部图（如 $K_{s,t}$ 或偶环 $C_{2k}$）的图的数量。这类问题的解决依赖于一个强大的组合：<strong>平衡超饱和定理</strong> + <strong>超图容器引理</strong>。</p>
+<h4 id="1-主要结论"><a href="#1-主要结论" class="headerlink" title="1. 主要结论"></a>1. 主要结论</h4><p><strong>Theorem 46.</strong> (Balogh, Samotij, 2011)</p>
+<blockquote>
+<p>对于任意固定的 $s, t$，不含 $K_{s,t}$ 的 $n$ 顶点图的数量至多为 $2^{O(n^{2 - 1/s})}$。</p>
+</blockquote>
+<p><strong>Theorem 47.</strong> (Morris, Saxton, 2016)</p>
+<blockquote>
+<p>对于任意固定的 $k$，不含 $C_{2k}$ 的 $n$ 顶点图的数量至多为 $2^{O(n^{1 + 1/k})}$。</p>
+</blockquote>
+<p>为了避免过于复杂的技术细节，本节以最简单但具有代表性的情况——<strong>$C_4$-free 图</strong>——为例来展示其证明方法。</p>
+<h4 id="2-C-4-的平衡超饱和定理-Theorem-48"><a href="#2-C-4-的平衡超饱和定理-Theorem-48" class="headerlink" title="2. $C_4$ 的平衡超饱和定理 (Theorem 48)"></a>2. $C_4$ 的平衡超饱和定理 (Theorem 48)</h4><p>对于容器方法而言，仅仅知道一个图里有很多 $C_4$ 是不够的。我们还需要保证这些 $C_4$ 是“良好分布”的，即没有某条边或某对边参与了过多的 $C_4$。这正是“平衡超饱和”的含义。</p>
+<p><strong>Theorem 48.</strong></p>
+<blockquote>
+<p>存在常数 $\delta &gt; 0$ 和 $k_0 \in \mathbb{N}$。对于任意 $k &gt; k_0$ 和 $n \in \mathbb{N}$，给定一个有 $n$ 个顶点和 $kn^{3/2}$ 条边的图 $G$，存在一个 $G$ 中 $C_4$ 的集合 $\mathcal{H}$，满足：</p>
+<p>(a) $|\mathcal{H}| &gt; \delta^3 k^4 n^2$  (集合足够大)</p>
+<p>(b) 每条边最多被用于 $\delta^2 k^3 \sqrt{n}$ 个 $\mathcal{H}$ 中的成员。(边的度数有上界)</p>
+<p>(c) 每对边最多被用于 $\delta k \sqrt{n}$ 个 $\mathcal{H}$ 中的成员。(边的共度有上界)</p>
+</blockquote>
+<p><strong>证明思路:</strong></p>
+<p>这个证明采用迭代构造的方法。我们从一个空的集合 $\mathcal{H}$ 开始，在每一步都向其中添加一个“好”的 $C_4$，直到满足所有条件。</p>
+<ol>
+<li><p><strong>识别瓶颈</strong>: 直接证明(c)很困难。其难点在于控制<strong>相邻边对</strong>（即长度为2的路径）参与形成的 $C_4$ 数量。</p>
+</li>
+<li><p><strong>强化条件 (引入(c’))</strong>: 为了解决这个瓶颈，作者引入了一个更强、更具体的技术条件(c’)。我们将 $C_4$（即 $K_{2,2}$）的四个顶点分成不相邻的两对，一对染成“红色”，另一对染成“蓝色”。</p>
+<ul>
+<li><strong>(c’)</strong> 每条以 $v$ 为中心的长度为2的路径，最多被用于:<ul>
+<li>$\delta k^2$ 个 $v$ 是红色的 $\mathcal{H}$ 成员中。</li>
+<li>$\delta k \sqrt{n}$ 个 $v$ 是蓝色的 $\mathcal{H}$ 成员中。<br>这个条件(c’)比(c)更强，只要满足了(c’)，原条件(c)也自然满足。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>核心论证 (Proof of Claim)</strong>: 假设我们当前的集合 $\mathcal{H}$ 已经满足(b)和(c’)，但不满足(a)（即不够大）。我们要证明，此时一定能在图中找到一个“好”的 $C_4$ 添加到 $\mathcal{H}$ 中，使得新集合仍然满足(b)和(c’)。这个论证分两步计数：</p>
+<ul>
+<li><p><strong>第一步：寻找大量“非饱和”的红心路径。</strong><br>我们先从 $G$ 中移除所有在 $\mathcal{H}$ 中已经“饱和”的边（即度数达到(b)中上界的边），得到新图 $G’$。由于 $\mathcal{H}$ 不够大，被移除的边数不多，$G’$ 仍然很稠密。<br>在 $G’$ 中，我们寻找以某个顶点 $v$ 为中心（我们将 $v$ 染成红色）的长度为2的路径。一条路径如果已经参与了太多红心 $C_4$（达到(c’)中上界），就称之为“饱和路径”。<br>通过简单的计数可以发现，饱和路径的总数并不多。因此，利用<strong>凸性 (convexity)</strong>（即詹森不等式），我们可以证明 $G’$ 中存在大量的<strong>非饱和</strong>红心路径：<br>$ \frac{1}{2} \sum_{v \in V(G’)} d(v)(d(v) - 3\delta k \sqrt{n}) &gt; \frac{1}{3n} \left(\sum_{v \in V(G’)} d(v)\right)^2 &gt; \frac{k^2 n^2}{4} $<br>这里 $3\delta k \sqrt{n}$ 是从饱和路径计数中得到的损失项。这保证了我们有至少 $\frac{k^4 n^2}{4}$ 这么多非饱和的红心路径。</p>
+</li>
+<li><p><strong>第二步：将这些路径配对成“好”的 $C_4$。</strong><br>现在，我们固定两个顶点 $u, w$（我们将它们染成蓝色），并考虑所有连接它们的非饱和红心路径。假设我们已经有了一条路径 $u-v-w$。我们要找另一条路径 $u-v’-w$ 与之配对形成一个 $C_4$。<br>什么样的 $v’$ 是“坏”的？如果 $v’$ 导致新生成的 $C_4$ 违反了条件(c’)（即路径 $v-u-v’$ 或 $v-w-v’$ 是蓝心饱和的），那么它就是坏的。<br>通过(b)中的上界，我们可以估算出“坏”的 $v’$ 的数量最多不超过 $3\delta k^2$ 个。<br>我们有大约 $\frac{k^4}{4}$ 个路径连接任意一对 $\{u, w\}$。从中选择两个不同的路径来构成 $C_4$。同样，利用<strong>凸性</strong>，我们可以得到“好”的 $C_4$ 的数量下界：<br>$ \frac{1}{2} \binom{n}{2} \binom{\text{平均公共邻居数}}{\text{2}} \approx \frac{1}{2} \binom{n}{2} \frac{k^4}{4} \left(\frac{k^4}{4} - 3\delta k^2\right) &gt; 2\delta k^4 n^2 $<br>这个数量远大于已经在 $\mathcal{H}$ 中的 $C_4$ 数量，所以一定存在新的、“好”的 $C_4$ 可以被添加。</p>
+</li>
+</ul>
+</li>
+</ol>
+<p>这样，通过迭代添加，最终可以得到满足所有条件的集合 $\mathcal{H}$。</p>
+<h4 id="3-C-4-free图的容器定理-Theorem-49"><a href="#3-C-4-free图的容器定理-Theorem-49" class="headerlink" title="3. $C_4$-free图的容器定理 (Theorem 49)"></a>3. $C_4$-free图的容器定理 (Theorem 49)</h4><p>这是利用Theorem 48作为工具，通过容器方法得到的最终结构性定理。</p>
+<p><strong>Theorem 49.</strong></p>
+<blockquote>
+<p>存在常数 $k_0 &gt; 0, C &gt; 0$。对于所有 $n \in \mathbb{N}$ 和满足 $k_0 \le k \le n^{1/6}/\log n$ 的 $k$，存在一个图的集合 $\mathcal{G}(n,k)$，它有如下性质：</p>
+<ul>
+<li>$|\mathcal{G}(n,k)| \le \exp\left( C \frac{\log k}{k} \cdot n^{3/2} \right)$ (集合很小)</li>
+<li>对每个 $G \in \mathcal{G}(n,k)$，有 $e(G) \le k n^{3/2}$ (个体有界)</li>
+<li>每个不含 $C_4$ 的图都是某个 $G \in \mathcal{G}(n,k)$ 的子图 (容器性)</li>
+</ul>
+</blockquote>
+<p><strong>证明思路 (Proof of Theorem 49):</strong></p>
+<p>这个证明是本文中迭代思想的集中体现。</p>
+<ol>
+<li><p><strong>迭代框架</strong>:</p>
+<ul>
+<li>我们从 $\mathcal{C}_0 = \{K_n\}$ 开始。</li>
+<li>在第 $t$ 步，我们检查 $\mathcal{C}_t$ 中的每个图 $G$。如果 $e(G)$ 仍然很大（大于某个阈值），我们就对它进行“打碎”操作。</li>
+<li>这个阈值是动态变化的，由 $k(i) = \max\{(1-\varepsilon)^i\sqrt{n}, k_0\}$ 决定。</li>
+</ul>
+</li>
+<li><p><strong>“打碎”一个容器 $G$ 的过程</strong>:</p>
+<ul>
+<li>假设 $G$ 有 $k’n^{3/2}$ 条边。我们应用 <strong>Theorem 48</strong>，在 $G$ 中找到一个平衡的 $C_4$ 超图 $\mathcal{H}$。</li>
+<li>然后对这个性质良好的 $\mathcal{H}$ 应用<strong>超图容器引理</strong>。关键是选择合适的参数 $\tau$。如上一问的分析，我们选择 $\tau = \max\{\frac{\delta}{(k’)^2}, \frac{1}{k’n^{1/6}}\}$ 来满足引理的度数条件。</li>
+<li>容器引理会生成一族新的、更小的容器（它们是 $G$ 的子图）。这一步生成的容器数量（即成本）由 $\tau$ 和 $v(\mathcal{H})$ 决定，其数量的对数（即指数部分）大致为：<br>$ \text{成本(指数)} \approx n^{3/2} \varepsilon \cdot \max\left\{ \frac{\log k’}{k’}, \frac{\log n}{n^{1/6}} \right\} $</li>
+</ul>
+</li>
+<li><p><strong>累加总成本</strong>:</p>
+<ul>
+<li>总容器数是每一步“打碎”操作产生的容器数的乘积，所以总成本是所有指数的和。</li>
+<li>总指数 $\approx \sum_{i=1}^{m} \left( n^{3/2} \varepsilon \cdot \max\left\{ \frac{\log k(i)}{k(i)}, \frac{\log n}{n^{1/6}} \right\} \right)$</li>
+<li>由于 $k(i)$ 指数级下降，而函数 $\frac{\log x}{x}$ 在 $x$ 较大时递减，所以求和项 $\frac{\log k(i)}{k(i)}$ 是递增的。整个和由最后几项（当 $k(i)$ 接近常数 $k_0$ 时）主导。</li>
+<li>定理中 $k \le n^{1/6}/\log n$ 的条件保证了 <code>max</code> 函数中总是第一项 $\frac{\log k(i)}{k(i)}$ 更大。</li>
+<li>经过仔细的计算，这个和的量级最终由 $O(\frac{\log k}{k})$ 决定，所以总容器数上界为 $\exp\left( C \frac{\log k}{k} n^{3/2} \right)$。</li>
+</ul>
+</li>
+</ol>
+<h4 id="4-应用"><a href="#4-应用" class="headerlink" title="4. 应用"></a>4. 应用</h4><p>利用 Theorem 49，我们可以推导出关于随机图中 $C_4$-free 子图的结论。</p>
+<p><strong>Theorem 50.</strong></p>
+<blockquote>
+<p>对于 $p \ge n^{-1/3}(\log n)^3$，随机图 $G(n,p)$ 中最大的无 $C_4$ 子图的边数 $ex(G(n,p), C_4)$ 以高概率不超过 $p^{1/2} n^{3/2} \log n$。</p>
+</blockquote>
+<p><strong>证明思路:</strong></p>
+<ol>
+<li>假设 $G(n,p)$ 中存在一个很大的无 $C_4$ 子图 $H$，其边数为 $m$。</li>
+<li>根据 Theorem 49，这个 $H$ 必然被包含在我们的某个容器 $G \in \mathcal{G}(n,k)$ 中。</li>
+<li>我们使用Union Bound：$P(\text{存在这样的} H) \le \sum_{G \in \mathcal{G}(n,k)} P(G \text{ 包含 } H \text{ 这样大的子图})$。</li>
+<li>对于单个容器 $G$，它在 $G(n,p)$ 中包含 $m$ 条边的概率极小，可以用 Chernoff 界得到，这个概率约为 $\exp(-\Omega(pn^2))$。</li>
+<li>将这个极小的概率乘以容器的总数 $|\mathcal{G}(n,k)|$。通过精细地选择参数 $k$ (使其满足 $\frac{\log k}{k^2} \approx p$)，可以证明最终的乘积依然趋向于0。</li>
+</ol>
+<p><strong>Theorem 51.</strong></p>
+<blockquote>
+<p>这个定理给出了 $ex(G(n,p), C_4)$ 在不同 $p$ 的取值范围下更精确的量级。其证明更为复杂，讲义中省略了。</p>
+</blockquote>
+<hr>
+<p><strong>Conjecture 52.</strong><br>最后，作者提出了一个关于一般二部图 $H$ 的“平衡超饱和猜想”，并指出如果该猜想成立，将能证明不含 $H$ 的图的数量为 $2^{O(ex(n,H))}$。这为未来的研究指明了方向。</p>
+</div><div class="article-licensing box"><div class="licensing-title"><p>容器定理应用进阶</p><p><a href="http://example.com/Com-Pro/hc3.html">http://example.com/Com-Pro/hc3.html</a></p></div><div class="licensing-meta level is-mobile"><div class="level-left"><div class="level-item is-narrow"><div><h6>作者</h6><p>Jiamin Liu</p></div></div><div class="level-item is-narrow"><div><h6>发布于</h6><p>2025-07-06</p></div></div><div class="level-item is-narrow"><div><h6>更新于</h6><p>2025-07-06</p></div></div><div class="level-item is-narrow"><div><h6>许可协议</h6><p><a class="icons" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="icon fab fa-creative-commons"></i></a><a class="icons" rel="noopener" target="_blank" title="Attribution" href="https://creativecommons.org/licenses/by/4.0/"><i class="icon fab fa-creative-commons-by"></i></a><a class="icons" rel="noopener" target="_blank" title="Noncommercial" href="https://creativecommons.org/licenses/by-nc/4.0/"><i class="icon fab fa-creative-commons-nc"></i></a></p></div></div></div></div></div><!--!--></article></div><!--!--><div class="card" id="comments"><div class="card-content"><h3 class="title is-5">评论</h3><div id="comment-container"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.css"><script src="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js"></script><script>var gitalk = new Gitalk({
+            id: "d1a279a1b892fe5ab6955e0d4481993d",
+            repo: "od-liu.github.io",
+            owner: "od-Liu",
+            clientID: "Ov23liWi9TgDXgT7hhEB",
+            clientSecret: "054ac0bc0bc8afaac9a807be4b6af2274ee9bc10",
+            admin: ["od-liu"],
+            createIssueManually: false,
+            distractionFreeMode: false,
+            perPage: 10,
+            pagerDirection: "last",
+            
+            
+            enableHotKey: true,
+            
+        })
+        gitalk.render('comment-container')</script></div></div></div><div class="column column-left is-4-tablet is-4-desktop is-4-widescreen  order-1"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar" src="/img/1.png" alt="Jiamin Liu"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">Jiamin Liu</p><p class="is-size-6 is-block">别卷我别卷我别卷我👊</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>Hangzhou</span></p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">文章</p><a href="/archives/"><p class="title">1</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">分类</p><a href="/categories/"><p class="title">0</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">标签</p><a href="/tags/"><p class="title">0</p></a></div></div></nav></div></div><!--!--></div><!--!--></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/img/logo.svg" alt="OD&#039;s blog" height="28"></a><p class="is-size-7"><span>&copy; 2025 Jiamin Liu</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a></p><p class="is-size-7">© 2019</p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("zh-cn");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script data-pjax src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="回到顶端" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script data-pjax src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
+      window.cookieconsent.initialise({
+        type: "info",
+        theme: "edgeless",
+        static: false,
+        position: "bottom-left",
+        content: {
+          message: "此网站使用Cookie来改善您的体验。",
+          dismiss: "知道了！",
+          allow: "允许使用Cookie",
+          deny: "拒绝",
+          link: "了解更多",
+          policy: "Cookie政策",
+          href: "https://www.cookiesandyou.com/",
+        },
+        palette: {
+          popup: {
+            background: "#edeff5",
+            text: "#838391"
+          },
+          button: {
+            background: "#4b81e8"
+          },
+        },
+      });
+    });</script><script src="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/js/lightgallery.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><script type="text/javascript" id="MathJax-script" async>MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']]
+      },
+      svg: {
+        fontCache: 'global'
+      },
+      chtml: {
+        matchFontHeight: false
+      }
+    };</script><script src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js"></script><script src="https://cdn.jsdelivr.net/npm/pjax@0.2.8/pjax.min.js"></script><script src="/js/pjax.js"></script><!--!--><!--!--><!--!--><script data-pjax src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="想要查找什么..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script data-pjax src="/js/insight.js" defer></script><script data-pjax>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"想要查找什么...","untitled":"(无标题)","posts":"文章","pages":"页面","categories":"分类","tags":"标签"});
+        });</script></body></html>
