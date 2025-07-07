@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="zh"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>最优策略、贝尔曼方程与优势函数 - OD&#039;s blog</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="OD&#039;s blog"><meta name="msapplication-TileImage" content="/img/favicon.svg"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="OD&#039;s blog"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="description" content="1. 最优Q函数与最优动作最优动作价值函数 $Q^{*}(s,a)$ 与最优策略所选择的动作之间存在一个至关重要的联系。根据定义，$Q^{*}(s,a)$ 是指：从状态 $s$ 开始，执行一个（任意）动作 $a$，然后永远遵循最优策略行动，所能获得的期望回报。 因此，在状态 $s$ 下的最优策略，会选择那个能够最大化从 $s$ 出发期望回报的动作。这意味着，如果我们拥有最优Q函数 $Q^{*}$，"><meta property="og:type" content="blog"><meta property="og:title" content="最优策略、贝尔曼方程与优势函数"><meta property="og:url" content="http://example.com/RL/optimalfunc.html"><meta property="og:site_name" content="OD&#039;s blog"><meta property="og:description" content="1. 最优Q函数与最优动作最优动作价值函数 $Q^{*}(s,a)$ 与最优策略所选择的动作之间存在一个至关重要的联系。根据定义，$Q^{*}(s,a)$ 是指：从状态 $s$ 开始，执行一个（任意）动作 $a$，然后永远遵循最优策略行动，所能获得的期望回报。 因此，在状态 $s$ 下的最优策略，会选择那个能够最大化从 $s$ 出发期望回报的动作。这意味着，如果我们拥有最优Q函数 $Q^{*}$，"><meta property="og:locale" content="zh_CN"><meta property="og:image" content="http://example.com/img/og_image.png"><meta property="article:published_time" content="2025-07-07T13:37:05.000Z"><meta property="article:modified_time" content="2025-07-07T13:39:20.378Z"><meta property="article:author" content="Jiamin Liu"><meta property="twitter:card" content="summary"><meta property="twitter:image:src" content="http://example.com/img/og_image.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"http://example.com/RL/optimalfunc.html"},"headline":"最优策略、贝尔曼方程与优势函数","image":["http://example.com/img/og_image.png"],"datePublished":"2025-07-07T13:37:05.000Z","dateModified":"2025-07-07T13:39:20.378Z","author":{"@type":"Person","name":"Jiamin Liu"},"publisher":{"@type":"Organization","name":"OD's blog","logo":{"@type":"ImageObject","url":"http://example.com/img/logo.svg"}},"description":"1. 最优Q函数与最优动作最优动作价值函数 $Q^{*}(s,a)$ 与最优策略所选择的动作之间存在一个至关重要的联系。根据定义，$Q^{*}(s,a)$ 是指：从状态 $s$ 开始，执行一个（任意）动作 $a$，然后永远遵循最优策略行动，所能获得的期望回报。 因此，在状态 $s$ 下的最优策略，会选择那个能够最大化从 $s$ 出发期望回报的动作。这意味着，如果我们拥有最优Q函数 $Q^{*}$，"}</script><link rel="canonical" href="http://example.com/RL/optimalfunc.html"><link rel="icon" href="/img/favicon.svg"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.0.0/css/all.css"><link data-pjax rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.7.0/styles/atom-one-light.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link data-pjax rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css"><!--!--><!--!--><!--!--><!--!--><style>.pace{-webkit-pointer-events:none;pointer-events:none;-webkit-user-select:none;-moz-user-select:none;user-select:none}.pace-inactive{display:none}.pace .pace-progress{background:#3273dc;position:fixed;z-index:2000;top:0;right:100%;width:100%;height:2px}</style><script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js"></script><!--!--><!--!--><!-- hexo injector head_end start --><script>
+  (function () {
+      function switchTab() {
+          if (!location.hash) {
+            return;
+          }
+
+          const id = '#' + CSS.escape(location.hash.substring(1));
+          const $tabMenu = document.querySelector(`.tabs a[href="${id}"]`);
+          if (!$tabMenu) {
+            return;
+          }
+
+          const $tabMenuContainer = $tabMenu.parentElement.parentElement;
+          Array.from($tabMenuContainer.children).forEach($menu => $menu.classList.remove('is-active'));
+          Array.from($tabMenuContainer.querySelectorAll('a'))
+              .map($menu => document.getElementById($menu.getAttribute("href").substring(1)))
+              .forEach($content => $content.classList.add('is-hidden'));
+
+          if ($tabMenu) {
+              $tabMenu.parentElement.classList.add('is-active');
+          }
+          const $activeTab = document.querySelector(id);
+          if ($activeTab) {
+              $activeTab.classList.remove('is-hidden');
+          }
+      }
+      switchTab();
+      window.addEventListener('hashchange', switchTab, false);
+  })();
+  </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head><body class="is-2-column"><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/img/logo.svg" alt="OD&#039;s blog" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">主页</a></div><div class="navbar-end"><a class="navbar-item search" title="搜索" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-8-widescreen"><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2025-07-07T13:37:05.000Z" title="2025/7/7 21:37:05">2025-07-07</time>发表</span><span class="level-item"><time dateTime="2025-07-07T13:39:20.378Z" title="2025/7/7 21:39:20">2025-07-07</time>更新</span><span class="level-item"><a class="link-muted" href="/"></a></span><span class="level-item">6 分钟读完 (大约969个字)</span></div></div><h1 class="title is-3 is-size-4-mobile">最优策略、贝尔曼方程与优势函数</h1><div class="content"><h4 id="1-最优Q函数与最优动作"><a href="#1-最优Q函数与最优动作" class="headerlink" title="1. 最优Q函数与最优动作"></a>1. 最优Q函数与最优动作</h4><p>最优动作价值函数 $Q^{*}(s,a)$ 与最优策略所选择的动作之间存在一个至关重要的联系。根据定义，$Q^{*}(s,a)$ 是指：从状态 $s$ 开始，执行一个（任意）动作 $a$，然后永远遵循最优策略行动，所能获得的期望回报。</p>
+<p>因此，在状态 $s$ 下的最优策略，会选择那个能够最大化从 $s$ 出发期望回报的动作。这意味着，<strong>如果我们拥有最优Q函数 $Q^{*}$，我们就能直接地、贪心地得到最优动作 $a^{*}(s)$</strong>。</p>
+<p>$a^{*}(s) = \arg \max_a Q^{*} (s,a)$</p>
+<p><strong>注意</strong>: 可能会有多个动作都能使 $Q^{*}(s,a)$ 达到最大值。在这种情况下，这些动作都是最优的，最优策略可以随机选择其中任意一个。但总存在一个最优策略，它会确定性地选择其中一个动作。</p>
+<h4 id="2-贝尔曼方程-Bellman-Equations"><a href="#2-贝尔曼方程-Bellman-Equations" class="headerlink" title="2. 贝尔曼方程 (Bellman Equations)"></a>2. 贝尔曼方程 (Bellman Equations)</h4><p>之前介绍的四种价值函数都遵循一种特殊的自洽方程，称为<strong>贝尔曼方程</strong>。贝尔曼方程背后的基本思想是：</p>
+<blockquote>
+<p><strong>一个点的价值 = 从该点获得的即时奖励 + 你将到达的下一个点的价值。</strong></p>
+</blockquote>
+<h5 id="在策略-On-Policy-价值函数的贝尔曼方程"><a href="#在策略-On-Policy-价值函数的贝尔曼方程" class="headerlink" title="在策略 (On-Policy) 价值函数的贝尔曼方程"></a><strong>在策略 (On-Policy) 价值函数的贝尔曼方程</strong></h5><ul>
+<li><p><strong>状态价值函数 $V^{\pi}(s)$</strong>:<br>$V^{\pi}(s) = \underset{a \sim \pi, s’\sim P}{\mathbb{E}}[r(s,a) + \gamma V^{\pi}(s’)]$</p>
+</li>
+<li><p><strong>动作价值函数 $Q^{\pi}(s,a)$</strong>:<br>$Q^{\pi}(s,a) = \underset{s’\sim P}{\mathbb{E}}[r(s,a) + \gamma \underset{a’\sim \pi}{\mathbb{E}}[Q^{\pi}(s’,a’)]]$</p>
+</li>
+</ul>
+<h5 id="最优-Optimal-价值函数的贝尔曼方程"><a href="#最优-Optimal-价值函数的贝尔曼方程" class="headerlink" title="最优 (Optimal) 价值函数的贝尔曼方程"></a><strong>最优 (Optimal) 价值函数的贝尔曼方程</strong></h5><ul>
+<li><p><strong>最优状态价值函数 $V^{*}(s)$</strong>:<br>$V^{*}(s) = \max_a \underset{s’\sim P}{\mathbb{E}}[r(s,a) + \gamma V^{*}(s’)]$</p>
+</li>
+<li><p><strong>最优动作价值函数 $Q^{*}(s,a)$</strong>:<br>$Q^{*}(s,a) = \underset{s’\sim P}{\mathbb{E}}[r(s,a) + \gamma \max_{a’} Q^{*}(s’,a’)]$</p>
+</li>
+</ul>
+<p><strong>公式简写说明</strong>:</p>
+<ul>
+<li>$s’ \sim P$ 是 $s’ \sim P(\cdot |s,a)$ 的简写，表示下一个状态 $s’$ 是根据环境的转移概率采样的。</li>
+<li>$a \sim \pi$ 是 $a \sim \pi(\cdot|s)$ 的简写，表示动作 $a$ 是根据策略 $π$ 在状态 $s$ 下采样的。</li>
+<li>$a’ \sim \pi$ 是 $a’ \sim \pi(\cdot|s’)$ 的简写，表示下一个动作 $a’$ 是根据策略 $π$ 在状态 $s’$ 下采样的。</li>
+<li>$\gamma$ 是折扣因子 (discount factor)。</li>
+</ul>
+<h5 id="核心区别"><a href="#核心区别" class="headerlink" title="核心区别:"></a><strong>核心区别</strong>:</h5><p>在策略贝尔曼方程和最优贝尔曼方程之间的关键区别在于<strong>是否存在对动作的 $\max$ 操作</strong>。$\max$ 操作的出现，反映了一个事实：为了达到最优，智能体在任何可以选择动作的时刻，都<strong>必须</strong>选择那个能带来最高价值的动作。</p>
+<h5 id="关键知识点：贝尔曼备份-Bellman-Backup"><a href="#关键知识点：贝尔曼备份-Bellman-Backup" class="headerlink" title="关键知识点：贝尔曼备份 (Bellman Backup)"></a><strong>关键知识点：贝尔曼备份 (Bellman Backup)</strong></h5><p>在强化学习文献中，“贝尔曼备份”是一个非常常见的术语。一个状态或状态-动作对的贝尔曼备份，指的就是其<strong>贝尔曼方程的右侧部分</strong>，即“奖励 + 折扣后的下一状态价值”。</p>
+<h4 id="3-优势函数-Advantage-Functions"><a href="#3-优势函数-Advantage-Functions" class="headerlink" title="3. 优势函数 (Advantage Functions)"></a>3. 优势函数 (Advantage Functions)</h4><p>在强化学习中，有时我们不需要知道一个动作在绝对意义上有多好，而只需要知道它<strong>比当前策略的平均水平好多少</strong>。换言之，我们关心的是这个动作的<strong>相对优势</strong>。这个概念通过<strong>优势函数</strong>来精确描述。</p>
+<p>对应于策略 $π$ 的优势函数 $A^{\pi}(s,a)$，描述了在状态 $s$ 下，采取特定动作 $a$ 比遵循策略 $π$ 随机选择一个动作要好多少（假设之后都遵循策略 $π$ 行动）。</p>
+<ul>
+<li><strong>数学定义</strong>:<br>$A^{\pi}(s,a) = Q^{\pi}(s,a) - V^{\pi}(s)$</li>
+</ul>
+</div><div class="article-licensing box"><div class="licensing-title"><p>最优策略、贝尔曼方程与优势函数</p><p><a href="http://example.com/RL/optimalfunc.html">http://example.com/RL/optimalfunc.html</a></p></div><div class="licensing-meta level is-mobile"><div class="level-left"><div class="level-item is-narrow"><div><h6>作者</h6><p>Jiamin Liu</p></div></div><div class="level-item is-narrow"><div><h6>发布于</h6><p>2025-07-07</p></div></div><div class="level-item is-narrow"><div><h6>更新于</h6><p>2025-07-07</p></div></div><div class="level-item is-narrow"><div><h6>许可协议</h6><p><a class="icons" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="icon fab fa-creative-commons"></i></a><a class="icons" rel="noopener" target="_blank" title="Attribution" href="https://creativecommons.org/licenses/by/4.0/"><i class="icon fab fa-creative-commons-by"></i></a><a class="icons" rel="noopener" target="_blank" title="Noncommercial" href="https://creativecommons.org/licenses/by-nc/4.0/"><i class="icon fab fa-creative-commons-nc"></i></a></p></div></div></div></div></div><!--!--></article></div><!--!--><div class="card" id="comments"><div class="card-content"><h3 class="title is-5">评论</h3><div id="comment-container"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.css"><script src="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js"></script><script>var gitalk = new Gitalk({
+            id: "793039df644d815d3659b98e4fc9a813",
+            repo: "od-liu.github.io",
+            owner: "od-Liu",
+            clientID: "Ov23liWi9TgDXgT7hhEB",
+            clientSecret: "054ac0bc0bc8afaac9a807be4b6af2274ee9bc10",
+            admin: ["od-liu"],
+            createIssueManually: false,
+            distractionFreeMode: false,
+            perPage: 10,
+            pagerDirection: "last",
+            
+            
+            enableHotKey: true,
+            
+        })
+        gitalk.render('comment-container')</script></div></div></div><div class="column column-left is-4-tablet is-4-desktop is-4-widescreen  order-1"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar" src="/img/1.png" alt="Jiamin Liu"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">Jiamin Liu</p><p class="is-size-6 is-block">别卷我别卷我别卷我👊</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>Hangzhou</span></p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">文章</p><a href="/archives/"><p class="title">1</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">分类</p><a href="/categories/"><p class="title">0</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">标签</p><a href="/tags/"><p class="title">0</p></a></div></div></nav></div></div><!--!--></div><!--!--></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/img/logo.svg" alt="OD&#039;s blog" height="28"></a><p class="is-size-7"><span>&copy; 2025 Jiamin Liu</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a></p><p class="is-size-7">© 2019</p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("zh-cn");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script data-pjax src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="回到顶端" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script data-pjax src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
+      window.cookieconsent.initialise({
+        type: "info",
+        theme: "edgeless",
+        static: false,
+        position: "bottom-left",
+        content: {
+          message: "此网站使用Cookie来改善您的体验。",
+          dismiss: "知道了！",
+          allow: "允许使用Cookie",
+          deny: "拒绝",
+          link: "了解更多",
+          policy: "Cookie政策",
+          href: "https://www.cookiesandyou.com/",
+        },
+        palette: {
+          popup: {
+            background: "#edeff5",
+            text: "#838391"
+          },
+          button: {
+            background: "#4b81e8"
+          },
+        },
+      });
+    });</script><script src="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/js/lightgallery.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><script type="text/javascript" id="MathJax-script" async>MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']]
+      },
+      svg: {
+        fontCache: 'global'
+      },
+      chtml: {
+        matchFontHeight: false
+      }
+    };</script><script src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js"></script><script src="https://cdn.jsdelivr.net/npm/pjax@0.2.8/pjax.min.js"></script><script src="/js/pjax.js"></script><!--!--><!--!--><!--!--><script data-pjax src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="想要查找什么..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script data-pjax src="/js/insight.js" defer></script><script data-pjax>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"想要查找什么...","untitled":"(无标题)","posts":"文章","pages":"页面","categories":"分类","tags":"标签"});
+        });</script></body></html>

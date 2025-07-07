@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="zh"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>对角高斯策略详解 - OD&#039;s blog</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="OD&#039;s blog"><meta name="msapplication-TileImage" content="/img/favicon.svg"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="OD&#039;s blog"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="description" content="这份笔记将详细解释在强化学习中，什么是对角高斯策略，以及它的两种主流实现方式、采样方法和对数似然计算。 1. 基础概念：从多维高斯到对角高斯 多维高斯分布 (Multivariate Gaussian Distribution): 一个通用的多维高斯分布由两个核心参数描述：  一个均值向量 $μ$，它表示分布的中心位置。 一个协方差矩阵 $Σ$，它描述了各个维度之间的相关性。   对角高斯分布 ("><meta property="og:type" content="blog"><meta property="og:title" content="对角高斯策略详解"><meta property="og:url" content="http://example.com/RL/Gassian.html"><meta property="og:site_name" content="OD&#039;s blog"><meta property="og:description" content="这份笔记将详细解释在强化学习中，什么是对角高斯策略，以及它的两种主流实现方式、采样方法和对数似然计算。 1. 基础概念：从多维高斯到对角高斯 多维高斯分布 (Multivariate Gaussian Distribution): 一个通用的多维高斯分布由两个核心参数描述：  一个均值向量 $μ$，它表示分布的中心位置。 一个协方差矩阵 $Σ$，它描述了各个维度之间的相关性。   对角高斯分布 ("><meta property="og:locale" content="zh_CN"><meta property="og:image" content="http://example.com/img/og_image.png"><meta property="article:published_time" content="2025-07-07T13:00:04.000Z"><meta property="article:modified_time" content="2025-07-07T13:04:03.777Z"><meta property="article:author" content="Jiamin Liu"><meta property="twitter:card" content="summary"><meta property="twitter:image:src" content="http://example.com/img/og_image.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"http://example.com/RL/Gassian.html"},"headline":"对角高斯策略详解","image":["http://example.com/img/og_image.png"],"datePublished":"2025-07-07T13:00:04.000Z","dateModified":"2025-07-07T13:04:03.777Z","author":{"@type":"Person","name":"Jiamin Liu"},"publisher":{"@type":"Organization","name":"OD's blog","logo":{"@type":"ImageObject","url":"http://example.com/img/logo.svg"}},"description":"这份笔记将详细解释在强化学习中，什么是对角高斯策略，以及它的两种主流实现方式、采样方法和对数似然计算。 1. 基础概念：从多维高斯到对角高斯 多维高斯分布 (Multivariate Gaussian Distribution): 一个通用的多维高斯分布由两个核心参数描述：  一个均值向量 $μ$，它表示分布的中心位置。 一个协方差矩阵 $Σ$，它描述了各个维度之间的相关性。   对角高斯分布 ("}</script><link rel="canonical" href="http://example.com/RL/Gassian.html"><link rel="icon" href="/img/favicon.svg"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.0.0/css/all.css"><link data-pjax rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.7.0/styles/atom-one-light.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link data-pjax rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css"><!--!--><!--!--><!--!--><!--!--><style>.pace{-webkit-pointer-events:none;pointer-events:none;-webkit-user-select:none;-moz-user-select:none;user-select:none}.pace-inactive{display:none}.pace .pace-progress{background:#3273dc;position:fixed;z-index:2000;top:0;right:100%;width:100%;height:2px}</style><script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js"></script><!--!--><!--!--><!-- hexo injector head_end start --><script>
+  (function () {
+      function switchTab() {
+          if (!location.hash) {
+            return;
+          }
+
+          const id = '#' + CSS.escape(location.hash.substring(1));
+          const $tabMenu = document.querySelector(`.tabs a[href="${id}"]`);
+          if (!$tabMenu) {
+            return;
+          }
+
+          const $tabMenuContainer = $tabMenu.parentElement.parentElement;
+          Array.from($tabMenuContainer.children).forEach($menu => $menu.classList.remove('is-active'));
+          Array.from($tabMenuContainer.querySelectorAll('a'))
+              .map($menu => document.getElementById($menu.getAttribute("href").substring(1)))
+              .forEach($content => $content.classList.add('is-hidden'));
+
+          if ($tabMenu) {
+              $tabMenu.parentElement.classList.add('is-active');
+          }
+          const $activeTab = document.querySelector(id);
+          if ($activeTab) {
+              $activeTab.classList.remove('is-hidden');
+          }
+      }
+      switchTab();
+      window.addEventListener('hashchange', switchTab, false);
+  })();
+  </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head><body class="is-2-column"><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/img/logo.svg" alt="OD&#039;s blog" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">主页</a></div><div class="navbar-end"><a class="navbar-item search" title="搜索" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-8-widescreen"><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2025-07-07T13:00:04.000Z" title="2025/7/7 21:00:04">2025-07-07</time>发表</span><span class="level-item"><time dateTime="2025-07-07T13:04:03.777Z" title="2025/7/7 21:04:03">2025-07-07</time>更新</span><span class="level-item"><a class="link-muted" href="/"></a></span><span class="level-item">11 分钟读完 (大约1689个字)</span></div></div><h1 class="title is-3 is-size-4-mobile">对角高斯策略详解</h1><div class="content"><p>这份笔记将详细解释在强化学习中，什么是对角高斯策略，以及它的两种主流实现方式、采样方法和对数似然计算。</p>
+<h4 id="1-基础概念：从多维高斯到对角高斯"><a href="#1-基础概念：从多维高斯到对角高斯" class="headerlink" title="1. 基础概念：从多维高斯到对角高斯"></a>1. 基础概念：从多维高斯到对角高斯</h4><ul>
+<li><p><strong>多维高斯分布 (Multivariate Gaussian Distribution)</strong>: 一个通用的多维高斯分布由两个核心参数描述：</p>
+<ol>
+<li>一个<strong>均值向量</strong> $μ$，它表示分布的中心位置。</li>
+<li>一个<strong>协方差矩阵</strong> $Σ$，它描述了各个维度之间的相关性。</li>
+</ol>
+</li>
+<li><p><strong>对角高斯分布 (Diagonal Gaussian Distribution)</strong>: 这是多维高斯分布的一个<strong>特例和简化</strong>。</p>
+<ul>
+<li>在这种分布中，我们假设<strong>所有维度都是相互独立的</strong>。</li>
+<li>这意味着它的协方差矩阵 $Σ$ 只有对角线上的元素（各个维度的方差）不为零，其余所有元素都为零。</li>
+<li>因此，我们不再需要一个完整的矩阵来表示它，只需要一个<strong>向量</strong>（例如，标准差向量 $σ$）就足够了。这个简化使得学习过程变得更加容易和高效。</li>
+</ul>
+</li>
+</ul>
+<h4 id="2-对角高斯策略的核心结构"><a href="#2-对角高斯策略的核心结构" class="headerlink" title="2. 对角高斯策略的核心结构"></a>2. 对角高斯策略的核心结构</h4><p>在强化学习中，一个<strong>对角高斯策略</strong>总是包含一个神经网络。这个网络的核心任务是：</p>
+<blockquote>
+<p><strong>接收一个环境观察 (observation) $s$，并输出对应这个状态下的“最佳”平均动作，即均值向量 $μ_θ(s)$。</strong></p>
+</blockquote>
+<p>这里的下标 $θ$ 代表神经网络的参数。策略的学习过程就是调整 $θ$，使得网络输出的 $μ_θ(s)$ 越来越好。</p>
+<h4 id="3-如何表示标准差-σ-：两种主流方法"><a href="#3-如何表示标准差-σ-：两种主流方法" class="headerlink" title="3. 如何表示标准差 $σ$：两种主流方法"></a>3. 如何表示标准差 $σ$：两种主流方法</h4><p>均值 $μ_θ(s)$ 由网络输出，但标准差 $σ$ (它决定了探索的范围) 是如何产生的呢？主要有两种方式：</p>
+<h5 id="方法一：与状态无关的对数标准差-Standalone-Parameters"><a href="#方法一：与状态无关的对数标准差-Standalone-Parameters" class="headerlink" title="方法一：与状态无关的对数标准差 (Standalone Parameters)"></a><strong>方法一：与状态无关的对数标准差 (Standalone Parameters)</strong></h5><ul>
+<li><strong>核心思想</strong>: 网络的任务<strong>只</strong>是计算均值 $μ_θ(s)$。标准差 $σ$ 与当前的状态 $s$ <strong>无关</strong>，它是一个独立的、全局共享的可学习参数。</li>
+<li><strong>具体实现</strong>:<ul>
+<li>创建一个神经网络，将观察 $s$ 映射到均值动作 $μ_θ(s)$。</li>
+<li>另外，独立创建一个向量参数 $log σ$。这个向量的维度与动作空间维度相同，它会像网络权重一样，在训练过程中被优化器更新。</li>
+</ul>
+</li>
+<li><strong>特点</strong>: 无论智能体处于什么状态，其探索的“不确定性”或“随机性”程度都是固定的。</li>
+<li><strong>应用</strong>: 这种方法简单且稳定，是 <strong>VPG</strong>、<strong>TRPO</strong> 和 <strong>PPO</strong> 等经典算法的标准实现方式。</li>
+</ul>
+<h5 id="方法二：由网络输出的、与状态相关的对数标准差"><a href="#方法二：由网络输出的、与状态相关的对数标准差" class="headerlink" title="方法二：由网络输出的、与状态相关的对数标准差"></a><strong>方法二：由网络输出的、与状态相关的对数标准差</strong></h5><ul>
+<li><strong>核心思想</strong>: 标准差 $σ$ <strong>也依赖于</strong>当前状态 $s$。这意味着智能体可以学会在不同的状态下采取不同程度的探索。</li>
+<li><strong>具体实现</strong>:<ul>
+<li>神经网络接收观察 $s$ 后，通常会有两个“输出头”(output heads)。</li>
+<li>一个头输出均值动作 $μ_θ(s)$。</li>
+<li>另一个头输出对数标准差 $log σ_θ(s)`。</li>
+<li>这两个头可以共享网络前面的大部分层（特征提取层）。</li>
+</ul>
+</li>
+<li><strong>特点</strong>: 策略更加灵活。例如，在熟悉的、安全的环境中，网络可以学会输出一个很小的 $σ$（低探索，高确定性）；在陌生的、危险的环境中，则可以输出一个较大的 $σ$（高探索，高不确定性）。</li>
+<li><strong>应用</strong>: <strong>SAC (Soft Actor-Critic)</strong> 等现代算法常采用此方法。</li>
+</ul>
+<h4 id="4-关键技巧：为什么使用对数标准差-log-σ-？"><a href="#4-关键技巧：为什么使用对数标准差-log-σ-？" class="headerlink" title="4. 关键技巧：为什么使用对数标准差 ($log σ$)？"></a>4. 关键技巧：为什么使用对数标准差 ($log σ$)？</h4><p>这是一个非常重要的实现细节。我们让网络输出 $log σ$ 而不是直接输出 $σ$，原因如下：</p>
+<ul>
+<li><strong>约束问题</strong>: 标准差 $σ$ 的定义要求它必须是<strong>非负数</strong> ($σ ≥ 0$)。如果让神经网络直接输出 $σ$，我们就必须在网络的最后一层加一个激活函数（比如 ReLU 或 Softplus）来保证输出为正。这会给训练带来一些麻烦（比如梯度消失）。</li>
+<li><strong>log 技巧</strong>: 对数 $log σ$ 的取值范围是 $(-\infty, \infty)$。这正好是神经网络线性层输出的自然范围！因此可以让网络毫无约束地输出 $log σ$。</li>
+<li><strong>恢复 $σ$</strong>: 当我们拿到网络输出的 $log σ$ 后，只需要做一个指数运算 $σ = \exp(log σ)$ 就可以得到真正的、为正数的 $σ$。指数函数 $\exp(x)$ 的值域永远是正数，所以这样得到的 $σ$ 就自动满足了大于零的约束。</li>
+</ul>
+<p>这个技巧解除了对网络输出的约束，让训练过程更简单、更稳定。</p>
+<h4 id="5-如何从策略中采样动作-Reparameterization-Trick"><a href="#5-如何从策略中采样动作-Reparameterization-Trick" class="headerlink" title="5. 如何从策略中采样动作 (Reparameterization Trick)"></a>5. 如何从策略中采样动作 (Reparameterization Trick)</h4><p>一旦我们有了均值 $μ_θ(s)$ 和标准差 $σ_θ(s)$，就可以通过以下步骤来采样一个具体的动作 $a$:</p>
+<ol>
+<li>从一个标准正态分布（均值为0，标准差为1）中采样一个与动作维度相同的噪声向量 $z$。即 $z \sim \mathcal{N}(0, I)$，其中 $I$ 是单位矩阵。</li>
+<li>使用下面的公式计算最终的动作 $a$:<br>$a = μ_θ(s) + σ_θ(s) \odot z$<br>这里的 $\odot$ 表示<strong>逐元素相乘 (elementwise product)</strong>。</li>
+</ol>
+<p>这个方法被称为<strong>重参数化技巧 (Reparameterization Trick)</strong>。它的巨大优势在于，它将随机性（来自 $z$）与网络参数 $θ$ 分离开来，使得梯度能够顺利地从动作 $a$ 反向传播到网络参数 $θ$，这对训练至关重要。</p>
+<p>在PyTorch中，你可以使用 <code>torch.normal()</code> 或者 <code>torch.distributions.Normal</code> 对象来轻松实现这一过程。</p>
+<h4 id="6-计算对数似然-Log-Likelihood"><a href="#6-计算对数似然-Log-Likelihood" class="headerlink" title="6. 计算对数似然 (Log-Likelihood)"></a>6. 计算对数似然 (Log-Likelihood)</h4><p>在很多策略梯度算法中，我们需要计算在给定状态 $s$ 下，采取某个动作 $a$ 的对数概率 $log π_θ(a|s)$。对于一个 $k$ 维的对角高斯策略，其对数似然由以下公式给出：</p>
+<p>$\log \pi_{\theta}(a|s) = -\frac{1}{2}\left(\sum_{i=1}^k \left(\frac{(a_i - \mu_i)^2}{\sigma_i^2} + 2 \log \sigma_i \right) + k \log 2\pi \right)$</p>
+<p>这个公式直观上衡量了动作 $a$ 与分布中心 $μ$ 的“距离”（由 $σ$ 标准化后），并考虑了分布本身的“宽度”（$log σ_i$ 项）。这个值在策略更新时至关重要。</p>
+</div><div class="article-licensing box"><div class="licensing-title"><p>对角高斯策略详解</p><p><a href="http://example.com/RL/Gassian.html">http://example.com/RL/Gassian.html</a></p></div><div class="licensing-meta level is-mobile"><div class="level-left"><div class="level-item is-narrow"><div><h6>作者</h6><p>Jiamin Liu</p></div></div><div class="level-item is-narrow"><div><h6>发布于</h6><p>2025-07-07</p></div></div><div class="level-item is-narrow"><div><h6>更新于</h6><p>2025-07-07</p></div></div><div class="level-item is-narrow"><div><h6>许可协议</h6><p><a class="icons" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="icon fab fa-creative-commons"></i></a><a class="icons" rel="noopener" target="_blank" title="Attribution" href="https://creativecommons.org/licenses/by/4.0/"><i class="icon fab fa-creative-commons-by"></i></a><a class="icons" rel="noopener" target="_blank" title="Noncommercial" href="https://creativecommons.org/licenses/by-nc/4.0/"><i class="icon fab fa-creative-commons-nc"></i></a></p></div></div></div></div></div><!--!--></article></div><!--!--><div class="card" id="comments"><div class="card-content"><h3 class="title is-5">评论</h3><div id="comment-container"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.css"><script src="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js"></script><script>var gitalk = new Gitalk({
+            id: "63a10f52fd4cf69bf883538a3365a87a",
+            repo: "od-liu.github.io",
+            owner: "od-Liu",
+            clientID: "Ov23liWi9TgDXgT7hhEB",
+            clientSecret: "054ac0bc0bc8afaac9a807be4b6af2274ee9bc10",
+            admin: ["od-liu"],
+            createIssueManually: false,
+            distractionFreeMode: false,
+            perPage: 10,
+            pagerDirection: "last",
+            
+            
+            enableHotKey: true,
+            
+        })
+        gitalk.render('comment-container')</script></div></div></div><div class="column column-left is-4-tablet is-4-desktop is-4-widescreen  order-1"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar" src="/img/1.png" alt="Jiamin Liu"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">Jiamin Liu</p><p class="is-size-6 is-block">别卷我别卷我别卷我👊</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>Hangzhou</span></p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">文章</p><a href="/archives/"><p class="title">1</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">分类</p><a href="/categories/"><p class="title">0</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">标签</p><a href="/tags/"><p class="title">0</p></a></div></div></nav></div></div><!--!--></div><!--!--></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/img/logo.svg" alt="OD&#039;s blog" height="28"></a><p class="is-size-7"><span>&copy; 2025 Jiamin Liu</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a></p><p class="is-size-7">© 2019</p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("zh-cn");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script data-pjax src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="回到顶端" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script data-pjax src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
+      window.cookieconsent.initialise({
+        type: "info",
+        theme: "edgeless",
+        static: false,
+        position: "bottom-left",
+        content: {
+          message: "此网站使用Cookie来改善您的体验。",
+          dismiss: "知道了！",
+          allow: "允许使用Cookie",
+          deny: "拒绝",
+          link: "了解更多",
+          policy: "Cookie政策",
+          href: "https://www.cookiesandyou.com/",
+        },
+        palette: {
+          popup: {
+            background: "#edeff5",
+            text: "#838391"
+          },
+          button: {
+            background: "#4b81e8"
+          },
+        },
+      });
+    });</script><script src="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/js/lightgallery.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><script type="text/javascript" id="MathJax-script" async>MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']]
+      },
+      svg: {
+        fontCache: 'global'
+      },
+      chtml: {
+        matchFontHeight: false
+      }
+    };</script><script src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js"></script><script src="https://cdn.jsdelivr.net/npm/pjax@0.2.8/pjax.min.js"></script><script src="/js/pjax.js"></script><!--!--><!--!--><!--!--><script data-pjax src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="想要查找什么..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script data-pjax src="/js/insight.js" defer></script><script data-pjax>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"想要查找什么...","untitled":"(无标题)","posts":"文章","pages":"页面","categories":"分类","tags":"标签"});
+        });</script></body></html>
