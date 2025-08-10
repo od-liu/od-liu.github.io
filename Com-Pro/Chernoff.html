@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="zh"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>工具：切尔诺夫不等式 - OD&#039;s blog</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="OD&#039;s blog"><meta name="msapplication-TileImage" content="/img/favicon.svg"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="OD&#039;s blog"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="description" content="Chernoff不等式（或称Chernoff界）是概率论中一个非常有力的工具，它描述了一个独立随机变量之和偏离其期望值的概率。相比于马尔可夫不等式或切比雪夫不等式，Chernoff界给出的概率上界通常是指数级的，因此在理论计算机和组合数学中应用极为广泛。 核心思想：大偏差是罕见的Chernoff不等式的核心思想非常直观：一个随机过程的结果，离它的平均水平（期望）越远，这个结果出现的可能性就越小，而"><meta property="og:type" content="blog"><meta property="og:title" content="工具：切尔诺夫不等式"><meta property="og:url" content="http://example.com/Com-Pro/Chernoff.html"><meta property="og:site_name" content="OD&#039;s blog"><meta property="og:description" content="Chernoff不等式（或称Chernoff界）是概率论中一个非常有力的工具，它描述了一个独立随机变量之和偏离其期望值的概率。相比于马尔可夫不等式或切比雪夫不等式，Chernoff界给出的概率上界通常是指数级的，因此在理论计算机和组合数学中应用极为广泛。 核心思想：大偏差是罕见的Chernoff不等式的核心思想非常直观：一个随机过程的结果，离它的平均水平（期望）越远，这个结果出现的可能性就越小，而"><meta property="og:locale" content="zh_CN"><meta property="og:image" content="http://example.com/img/og_image.png"><meta property="article:published_time" content="2025-07-08T01:09:47.000Z"><meta property="article:modified_time" content="2025-07-08T02:53:27.758Z"><meta property="article:author" content="Jiamin Liu"><meta property="twitter:card" content="summary"><meta property="twitter:image:src" content="http://example.com/img/og_image.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"http://example.com/Com-Pro/Chernoff.html"},"headline":"工具：切尔诺夫不等式","image":["http://example.com/img/og_image.png"],"datePublished":"2025-07-08T01:09:47.000Z","dateModified":"2025-07-08T02:53:27.758Z","author":{"@type":"Person","name":"Jiamin Liu"},"publisher":{"@type":"Organization","name":"OD's blog","logo":{"@type":"ImageObject","url":"http://example.com/img/logo.svg"}},"description":"Chernoff不等式（或称Chernoff界）是概率论中一个非常有力的工具，它描述了一个独立随机变量之和偏离其期望值的概率。相比于马尔可夫不等式或切比雪夫不等式，Chernoff界给出的概率上界通常是指数级的，因此在理论计算机和组合数学中应用极为广泛。 核心思想：大偏差是罕见的Chernoff不等式的核心思想非常直观：一个随机过程的结果，离它的平均水平（期望）越远，这个结果出现的可能性就越小，而"}</script><link rel="canonical" href="http://example.com/Com-Pro/Chernoff.html"><link rel="icon" href="/img/favicon.svg"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.0.0/css/all.css"><link data-pjax rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.7.0/styles/atom-one-light.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link data-pjax rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css"><!--!--><!--!--><!--!--><!--!--><style>.pace{-webkit-pointer-events:none;pointer-events:none;-webkit-user-select:none;-moz-user-select:none;user-select:none}.pace-inactive{display:none}.pace .pace-progress{background:#3273dc;position:fixed;z-index:2000;top:0;right:100%;width:100%;height:2px}</style><script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js"></script><!--!--><!--!--><!-- hexo injector head_end start --><script>
+  (function () {
+      function switchTab() {
+          if (!location.hash) {
+            return;
+          }
+
+          const id = '#' + CSS.escape(location.hash.substring(1));
+          const $tabMenu = document.querySelector(`.tabs a[href="${id}"]`);
+          if (!$tabMenu) {
+            return;
+          }
+
+          const $tabMenuContainer = $tabMenu.parentElement.parentElement;
+          Array.from($tabMenuContainer.children).forEach($menu => $menu.classList.remove('is-active'));
+          Array.from($tabMenuContainer.querySelectorAll('a'))
+              .map($menu => document.getElementById($menu.getAttribute("href").substring(1)))
+              .forEach($content => $content.classList.add('is-hidden'));
+
+          if ($tabMenu) {
+              $tabMenu.parentElement.classList.add('is-active');
+          }
+          const $activeTab = document.querySelector(id);
+          if ($activeTab) {
+              $activeTab.classList.remove('is-hidden');
+          }
+      }
+      switchTab();
+      window.addEventListener('hashchange', switchTab, false);
+  })();
+  </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head><body class="is-2-column"><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/img/logo.svg" alt="OD&#039;s blog" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">主页</a></div><div class="navbar-end"><a class="navbar-item search" title="搜索" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-8-widescreen"><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2025-07-08T01:09:47.000Z" title="2025/7/8 09:09:47">2025-07-08</time>发表</span><span class="level-item"><time dateTime="2025-07-08T02:53:27.758Z" title="2025/7/8 10:53:27">2025-07-08</time>更新</span><span class="level-item"><a class="link-muted" href="/"></a></span><span class="level-item">6 分钟读完 (大约918个字)</span></div></div><h1 class="title is-3 is-size-4-mobile">工具：切尔诺夫不等式</h1><div class="content"><p>Chernoff不等式（或称Chernoff界）是概率论中一个非常有力的工具，它描述了一个<strong>独立随机变量之和</strong>偏离其<strong>期望值</strong>的概率。相比于马尔可夫不等式或切比雪夫不等式，Chernoff界给出的概率上界通常是<strong>指数级</strong>的，因此在理论计算机和组合数学中应用极为广泛。</p>
+<h3 id="核心思想：大偏差是罕见的"><a href="#核心思想：大偏差是罕见的" class="headerlink" title="核心思想：大偏差是罕见的"></a>核心思想：大偏差是罕见的</h3><p>Chernoff不等式的核心思想非常直观：<strong>一个随机过程的结果，离它的平均水平（期望）越远，这个结果出现的可能性就越小，而且是以指数方式变小的。</strong></p>
+<p>抛硬币场景中：</p>
+<ul>
+<li>抛10次，期望是5次正面。出现6次正面很正常，但出现10次正面就相当罕见。</li>
+<li>抛1000次，期望是500次正面。出现510次正面很正常，但出现600次正面（偏差20%）就几乎不可能了。</li>
+</ul>
+<p>Chernoff界就是将这种直觉精确化的数学工具。</p>
+<hr>
+<h3 id="Chernoff不等式的形式与理解"><a href="#Chernoff不等式的形式与理解" class="headerlink" title="Chernoff不等式的形式与理解"></a>Chernoff不等式的形式与理解</h3><p>Chernoff不等式有多种形式，但它们都围绕着同一个结构。设 $X_1, X_2, \dots, X_n$ 是一系列<strong>独立</strong>的伯努利随机变量（即取值为0或1），令 $P(X_i=1) = p_i$。<br>令它们的和为 $X = \sum_{i=1}^n X_i$，其期望值为 $\mu = E[X] = \sum_{i=1}^n p_i$。</p>
+<h4 id="1-上尾界-Upper-Tail-随机变量远大于期望"><a href="#1-上尾界-Upper-Tail-随机变量远大于期望" class="headerlink" title="1. 上尾界 (Upper Tail): 随机变量远大于期望"></a>1. 上尾界 (Upper Tail): 随机变量远大于期望</h4><p>我们想知道 $X$ 比它的期望 $\mu$ 大很多的概率是多少。</p>
+<p><strong>乘法形式 (Multiplicative Form)</strong><br>对于任意的 $\delta &gt; 0$，我们有：</p>
+<script type="math/tex; mode=display">P(X \ge (1+\delta)\mu) \le \left( \frac{e^\delta}{(1+\delta)^{1+\delta}} \right)^\mu</script><ul>
+<li><strong>理解</strong>:<ul>
+<li><strong>偏差因子 $\delta$</strong>: 这个 $\delta$ 是关键。它衡量了你想观察的值相对于期望“超出”了多少个百分比。<ul>
+<li>$\delta = 0.1$ 表示超出期望10%。</li>
+<li>$\delta = 1$ 表示达到了期望的2倍。</li>
+</ul>
+</li>
+<li><strong>概率上界</strong>: 这个上界是一个小于1的数（即 $\frac{e^\delta}{(1+\delta)^{1+\delta}}$）的 $\mu$ 次方。</li>
+<li><strong>关系</strong>: 这清晰地表明，<strong>期望 $\mu$ 越大</strong>，或者<strong>偏差因子 $\delta$ 越大</strong>，概率上界就会<strong>指数级地减小</strong>。</li>
+</ul>
+</li>
+</ul>
+<p><strong>一个更简单、更常用的版本</strong><br>为了方便使用，上面的公式通常被放缩成更简洁的形式：</p>
+<script type="math/tex; mode=display">P(X \ge (1+\delta)\mu) \le e^{-\frac{\delta^2 \mu}{2+\delta}}</script><p>当 $0 &lt; \delta \le 1$ 时，这个界可以进一步简化为：</p>
+<script type="math/tex; mode=display">P(X \ge (1+\delta)\mu) \le e^{-\frac{\delta^2 \mu}{3}} \quad (\text{常用版本1})</script><p>当 $\delta$ 很大时（例如 $\delta &gt; 2e-1$），有：</p>
+<script type="math/tex; mode=display">P(X \ge (1+\delta)\mu) \le 2^{-(1+\delta)\mu} \quad (\text{常用版本2})</script><h4 id="2-下尾界-Lower-Tail-随机变量远小于期望"><a href="#2-下尾界-Lower-Tail-随机变量远小于期望" class="headerlink" title="2. 下尾界 (Lower Tail): 随机变量远小于期望"></a>2. 下尾界 (Lower Tail): 随机变量远小于期望</h4><p>我们想知道 $X$ 比它的期望 $\mu$ 小很多的概率是多少。对于 $0 &lt; \delta &lt; 1$:</p>
+<script type="math/tex; mode=display">P(X \le (1-\delta)\mu) \le \left( \frac{e^{-\delta}}{(1-\delta)^{1-\delta}} \right)^\mu</script><p>同样，它也有更简洁的常用版本：</p>
+<script type="math/tex; mode=display">P(X \le (1-\delta)\mu) \le e^{-\frac{\delta^2 \mu}{2}} \quad (\text{常用版本3})</script><h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><ul>
+<li><strong>核心参数</strong>: 偏差因子 $\delta$ 和期望 $\mu$。</li>
+<li><strong>偏差大小与概率的关系</strong>:<ul>
+<li><strong>常数级偏差</strong> ($\delta \ge \text{const} &gt; 0$): 概率以 $e^{-\Omega(\mu)}$ 的速度指数衰减。这是最理想的情况，能得到非常强的结论。</li>
+<li><strong>小偏差</strong> ($\delta \to 0$): 概率衰减速度变慢，上界变弱。</li>
+</ul>
+</li>
+<li>当需要证明一个坏事件发生的概率极小，特别是当这个坏事件可以表示为一个大偏差事件，并且需要用联合界（Union Bound）来处理大量的潜在坏事件时，Chernoff不等式是首选工具。</li>
+</ul>
+</div><div class="article-licensing box"><div class="licensing-title"><p>工具：切尔诺夫不等式</p><p><a href="http://example.com/Com-Pro/Chernoff.html">http://example.com/Com-Pro/Chernoff.html</a></p></div><div class="licensing-meta level is-mobile"><div class="level-left"><div class="level-item is-narrow"><div><h6>作者</h6><p>Jiamin Liu</p></div></div><div class="level-item is-narrow"><div><h6>发布于</h6><p>2025-07-08</p></div></div><div class="level-item is-narrow"><div><h6>更新于</h6><p>2025-07-08</p></div></div><div class="level-item is-narrow"><div><h6>许可协议</h6><p><a class="icons" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="icon fab fa-creative-commons"></i></a><a class="icons" rel="noopener" target="_blank" title="Attribution" href="https://creativecommons.org/licenses/by/4.0/"><i class="icon fab fa-creative-commons-by"></i></a><a class="icons" rel="noopener" target="_blank" title="Noncommercial" href="https://creativecommons.org/licenses/by-nc/4.0/"><i class="icon fab fa-creative-commons-nc"></i></a></p></div></div></div></div></div><!--!--></article></div><!--!--><div class="card" id="comments"><div class="card-content"><h3 class="title is-5">评论</h3><div id="comment-container"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.css"><script src="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js"></script><script>var gitalk = new Gitalk({
+            id: "112cd99872857a4c11ed4ba9bfb618ba",
+            repo: "od-liu.github.io",
+            owner: "od-Liu",
+            clientID: "Ov23liWi9TgDXgT7hhEB",
+            clientSecret: "054ac0bc0bc8afaac9a807be4b6af2274ee9bc10",
+            admin: ["od-liu"],
+            createIssueManually: false,
+            distractionFreeMode: false,
+            perPage: 10,
+            pagerDirection: "last",
+            
+            
+            enableHotKey: true,
+            
+        })
+        gitalk.render('comment-container')</script></div></div></div><div class="column column-left is-4-tablet is-4-desktop is-4-widescreen  order-1"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar" src="/img/1.png" alt="Jiamin Liu"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">Jiamin Liu</p><p class="is-size-6 is-block">别卷我别卷我别卷我👊</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>Hangzhou</span></p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">文章</p><a href="/archives/"><p class="title">1</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">分类</p><a href="/categories/"><p class="title">0</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">标签</p><a href="/tags/"><p class="title">0</p></a></div></div></nav></div></div><!--!--></div><!--!--></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/img/logo.svg" alt="OD&#039;s blog" height="28"></a><p class="is-size-7"><span>&copy; 2025 Jiamin Liu</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a></p><p class="is-size-7">© 2019</p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("zh-cn");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script data-pjax src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="回到顶端" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script data-pjax src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
+      window.cookieconsent.initialise({
+        type: "info",
+        theme: "edgeless",
+        static: false,
+        position: "bottom-left",
+        content: {
+          message: "此网站使用Cookie来改善您的体验。",
+          dismiss: "知道了！",
+          allow: "允许使用Cookie",
+          deny: "拒绝",
+          link: "了解更多",
+          policy: "Cookie政策",
+          href: "https://www.cookiesandyou.com/",
+        },
+        palette: {
+          popup: {
+            background: "#edeff5",
+            text: "#838391"
+          },
+          button: {
+            background: "#4b81e8"
+          },
+        },
+      });
+    });</script><script src="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/js/lightgallery.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><script type="text/javascript" id="MathJax-script" async>MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']]
+      },
+      svg: {
+        fontCache: 'global'
+      },
+      chtml: {
+        matchFontHeight: false
+      }
+    };</script><script src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js"></script><script src="https://cdn.jsdelivr.net/npm/pjax@0.2.8/pjax.min.js"></script><script src="/js/pjax.js"></script><!--!--><!--!--><!--!--><script data-pjax src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="想要查找什么..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script data-pjax src="/js/insight.js" defer></script><script data-pjax>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"想要查找什么...","untitled":"(无标题)","posts":"文章","pages":"页面","categories":"分类","tags":"标签"});
+        });</script></body></html>
