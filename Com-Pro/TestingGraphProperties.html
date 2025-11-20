@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="zh"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>用容器定理测试图的性质 - OD&#039;s blog</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="OD&#039;s blog"><meta name="msapplication-TileImage" content="/img/favicon.svg"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="OD&#039;s blog"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="description" content="本文对于检测一张图是否包含$\rho-clique$性质的判断建立了接近最优的采样复杂度。同时，本文也为$\epsilon-testing\ k-colorability$问题找到了新的采样复杂度上界。 以上两个结论的得出都依赖于$graph\ container\ method$。 1. 问题引入以及一些即将用到的概念的说明是否可以通过只检验图的一小部分得出整张图是否包含一个大的$clique$"><meta property="og:type" content="blog"><meta property="og:title" content="用容器定理测试图的性质"><meta property="og:url" content="http://example.com/Com-Pro/TestingGraphProperties.html"><meta property="og:site_name" content="OD&#039;s blog"><meta property="og:description" content="本文对于检测一张图是否包含$\rho-clique$性质的判断建立了接近最优的采样复杂度。同时，本文也为$\epsilon-testing\ k-colorability$问题找到了新的采样复杂度上界。 以上两个结论的得出都依赖于$graph\ container\ method$。 1. 问题引入以及一些即将用到的概念的说明是否可以通过只检验图的一小部分得出整张图是否包含一个大的$clique$"><meta property="og:locale" content="zh_CN"><meta property="og:image" content="http://example.com/img/og_image.png"><meta property="article:published_time" content="2025-08-10T03:23:34.159Z"><meta property="article:modified_time" content="2025-08-10T03:23:34.159Z"><meta property="article:author" content="Jiamin Liu"><meta property="twitter:card" content="summary"><meta property="twitter:image:src" content="http://example.com/img/og_image.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"http://example.com/Com-Pro/TestingGraphProperties.html"},"headline":"用容器定理测试图的性质","image":["http://example.com/img/og_image.png"],"datePublished":"2025-08-10T03:23:34.159Z","dateModified":"2025-08-10T03:23:34.159Z","author":{"@type":"Person","name":"Jiamin Liu"},"publisher":{"@type":"Organization","name":"OD's blog","logo":{"@type":"ImageObject","url":"http://example.com/img/logo.svg"}},"description":"本文对于检测一张图是否包含$\\rho-clique$性质的判断建立了接近最优的采样复杂度。同时，本文也为$\\epsilon-testing\\ k-colorability$问题找到了新的采样复杂度上界。 以上两个结论的得出都依赖于$graph\\ container\\ method$。 1. 问题引入以及一些即将用到的概念的说明是否可以通过只检验图的一小部分得出整张图是否包含一个大的$clique$"}</script><link rel="canonical" href="http://example.com/Com-Pro/TestingGraphProperties.html"><link rel="icon" href="/img/favicon.svg"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.0.0/css/all.css"><link data-pjax rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.7.0/styles/atom-one-light.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link data-pjax rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css"><!--!--><!--!--><!--!--><!--!--><style>.pace{-webkit-pointer-events:none;pointer-events:none;-webkit-user-select:none;-moz-user-select:none;user-select:none}.pace-inactive{display:none}.pace .pace-progress{background:#3273dc;position:fixed;z-index:2000;top:0;right:100%;width:100%;height:2px}</style><script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js"></script><!--!--><!--!--><!-- hexo injector head_end start --><script>
+  (function () {
+      function switchTab() {
+          if (!location.hash) {
+            return;
+          }
+
+          const id = '#' + CSS.escape(location.hash.substring(1));
+          const $tabMenu = document.querySelector(`.tabs a[href="${id}"]`);
+          if (!$tabMenu) {
+            return;
+          }
+
+          const $tabMenuContainer = $tabMenu.parentElement.parentElement;
+          Array.from($tabMenuContainer.children).forEach($menu => $menu.classList.remove('is-active'));
+          Array.from($tabMenuContainer.querySelectorAll('a'))
+              .map($menu => document.getElementById($menu.getAttribute("href").substring(1)))
+              .forEach($content => $content.classList.add('is-hidden'));
+
+          if ($tabMenu) {
+              $tabMenu.parentElement.classList.add('is-active');
+          }
+          const $activeTab = document.querySelector(id);
+          if ($activeTab) {
+              $activeTab.classList.remove('is-hidden');
+          }
+      }
+      switchTab();
+      window.addEventListener('hashchange', switchTab, false);
+  })();
+  </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head><body class="is-2-column"><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/img/logo.svg" alt="OD&#039;s blog" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">主页</a></div><div class="navbar-end"><a class="navbar-item search" title="搜索" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-8-widescreen"><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2025-08-10T03:23:34.159Z" title="2025/8/10 11:23:34">2025-08-10</time>发表</span><span class="level-item"><time dateTime="2025-08-10T03:23:34.159Z" title="2025/8/10 11:23:34">2025-08-10</time>更新</span><span class="level-item"><a class="link-muted" href="/"></a></span><span class="level-item">12 分钟读完 (大约1857个字)</span></div></div><h1 class="title is-3 is-size-4-mobile">用容器定理测试图的性质</h1><p class="subtitle is-5 is-size-6-mobile">Testing Graph Properties with the Container Method</p><div class="content"><p>本文对于检测一张图是否包含$\rho-clique$性质的判断建立了接近最优的采样复杂度。同时，本文也为$\epsilon-testing\ k-colorability$问题找到了新的采样复杂度上界。</p>
+<p>以上两个结论的得出都依赖于$graph\ container\ method$。</p>
+<h3 id="1-问题引入以及一些即将用到的概念的说明"><a href="#1-问题引入以及一些即将用到的概念的说明" class="headerlink" title="1. 问题引入以及一些即将用到的概念的说明"></a>1. 问题引入以及一些即将用到的概念的说明</h3><p>是否可以通过只检验图的一小部分得出整张图是否包含一个大的$clique$或者整张图是否$k-colorable$? 这两个问题是$graph\ property\ testing$领域的经典问题，它们可以被严谨表述成以下形式：</p>
+<ul>
+<li>A (simple undirected) graph $G$ on $n$ vertices is $\epsilon-far$ from a property $\Pi$ if we need to add or remove at least $\epsilon n^2$ edges from $G$ to obtain a graph that does have the property $\Pi$.</li>
+<li>A canonical $\epsilon-testor$ for $\Pi$ with sample cost $s$ is a bounded -error randomized algorithm that samples a set $S$ of $s$ vertices of some unknown graph $G$, examines the induced subgraph G[S], and based only on this local view of the graph can distinguish between the case where $G$ has property $\Pi$ and the case where it is $\epsilon-far$ from $\Pi$.</li>
+<li>The sample complxity of $\Pi$, denoted $\mathcal{S}_{\Pi}(n,\epsilon)$, is the minimum value #s# for which there is a canonical $\epsilon-tester$ for $\Pi$ with sample cost $s$.</li>
+</ul>
+<h4 id="1-1-检测-Clique-性质"><a href="#1-1-检测-Clique-性质" class="headerlink" title="1.1 检测 $Clique$ 性质"></a>1.1 检测 $Clique$ 性质</h4><p>我们定义$\rho-clique$性质指所有包含大小为$\rho n$的$clique$的$n$顶点图。<br>这里$\rho$依据图的大小一般有两种常见定义：</p>
+<ul>
+<li>当要研究large clique结构时，我们一般会固定$\rho$为常数</li>
+<li>当要研究图small clique结构时，我们一般取$\rho=\rho(n)$，其中$n$为图中顶点数。注意到如果$\epsilon\lt\rho^2$时，问题将不再有意义，因为我们总是可以加入${\rho\epsilon\choose 2}\lt \rho^2 n^2$条边来得到一张有$\rho n-clique$的图。</li>
+</ul>
+<p>关于检测$\rho-clique$性质，我们将在本文证明以下命题：<br><strong>Theorem 1</strong> The sample complexity of the $\rho-clique$ property is $\mathcal{S}_{\rho-clique}(n,\epsilon)=\tilde{O}(\frac{\rho^3}{\epsilon^2})$.</p>
+<h4 id="1-2-检测-k-colorablility"><a href="#1-2-检测-k-colorablility" class="headerlink" title="1.2 检测 $k-colorablility$"></a>1.2 检测 $k-colorablility$</h4><p>我们定义$k-colorable$性质指所有顶点数为$n$且可以被$k$着色的图。<br>当$k=2$，则$k-colorable$等价于二分性。对于二分性的检测，一个接近最优的解是$\mathcal{S}_{2-colorable}(n,\epsilon)=\tilde{\Theta}(1/\epsilon)$。所以我们关注$k\geq 3$时的情况。<br>对于$k-colorable$问题我们同样关注两种组织结构：</p>
+<ul>
+<li>$low\ chromatic\ number$：此时$k$为常数。</li>
+<li>$polychromatic$：此时$k=k(n)$是关于顶点数$n$的函数。注意此时只有当$\epsilon&lt;1/k$时问题才是有意义的，否则我么可以消除至多$k{n/k\choose 2}\leq n^2/k$条边得到一张$k-colorable$的图。$\Longleftarrow$ 这里考虑将顶点集随意划分为$k$块，每块大小为$n/k$，则我们需要消除每部分内部的边，而内部边数可以被$k{n/k\choose 2}$给bound住，于是得到上面关于$no\ trivial$条件的判定结论。</li>
+</ul>
+<p>关于$k-colorability$，我们将在本文证明以下命题：<br><strong>Theorem 2</strong> The $k-colorable$ proprety has sample complexity $\mathcal{S}_{k-colorable}(n,\epsilon)=\tilde{O}(\frac{k}{\epsilon})$.</p>
+<h4 id="1-3-图的容器定理"><a href="#1-3-图的容器定理" class="headerlink" title="1.3 图的容器定理"></a>1.3 图的容器定理</h4><p>Theorem1和Theorem2都建立在使用传统tester检测我们采样得到的导出子图$G[S]$是否具有相应性质的基础上。当我们在检测图是否包含large clique结构时，对于确实包含$\rho n-clique$的图，由Theorem1得到的tester将以至少$1/2$的概率accepts；而在$k-colorablility$的检测时，对于确实具有该性质的图，由Theorem得到的tester的输出总是accepts。（详见PART 3 &amp; 4）</p>
+<p>难点在于证明tester会以一个比较高的概率拒绝距离该性质较远的图，我们将通过graph container method解决这个问题。</p>
+<p>首先，我们知道graph container method是以independent sets为对象进行陈述的。所以比起检测一张图是否有$\rho-cliques$，我们的容器应用于检测图中是否有$\rho-independent\ sets$时更为自然。所以我们只需要在原图的补图中检测是否有$\rho-independent\ sets$即可（换句话说，可以得到$\rho-cliques\leq_k\rho-independent\ sets$。</p>
+<p>简单来说，graph container method说的是，尽管一张图中可能包含大量的independent sets，但是对于任意图$G$，我们都可以找到一个很小的容器集，其中（1）每个容器都不大；（2）每个独立集都是至少一个容器的子集；（3）对于每个容器$C$，导出子图$G[C]$都是稀疏的。container method最早由Kleitman和Winston提出，而后有很多变体（前几章讲义中列举了一些），这里对于Theorem 1和Theorem 2的证明所使用的是container method最初的版本（也就是Kleitman和Winston最早提出的container method），我们需要用到container集合的构建过程中的greedy算法来证明我们的目标。</p>
+<p>在正式深入前，我们先呈现一下我们的证明思路：</p>
+<ul>
+<li>假设$S$是tester在$G$中随机采样得到的$s$个顶点，由graph container method知任何一个独立集$S$都具有唯一一个很小的指纹，这个指纹会对应一个大小有限的container。我们将证明$S$包含对应container中多于$\rho s$个顶点的概率是极小的，小到即使对所有可能的指纹使用了联合界，这个概率也不会很大。详细证明见PART 3。</li>
+<li>对于检测$k-colorability$，大致思路是类似的，唯一的区别在于这里我们要对采样集中的任意$k$个独立集对应的$k$个指纹，它们对应的containers有一个比较小的联合界。详细证明见PART 4。</li>
+</ul>
+<h3 id="2-The-Container-Method再利用"><a href="#2-The-Container-Method再利用" class="headerlink" title="2.The Container Method再利用"></a>2.The Container Method再利用</h3><p>独立集fingerprints和containers的构建采用Algorithm1，其大致思路与Kleitman和Winston版本相同，也用到了greedy的思想：</p>
+<ul>
+<li>每次加入fingerprint$S$中的点$v$都是independent set $I$在$G[C_{t-1}]$中度数最高的点。</li>
+<li>因为$I$是一个independent set，所以$v$的所有邻居肯定不在$I$中，所以可以从$C_t$中移除。</li>
+<li>因为$v$是$I$在图$G[C_{t-1}]$中度数最高的点，所以所有在$G[C_{t-1}]$中所有度数高于$I$的点都不在$I$中，可以从$C_{t}$中移除。</li>
+</ul>
+<p>这个过程直到所有$I$中点都被选入fingerprint后才结束。</p>
+<blockquote>
+<p><strong>Algorithm</strong><br>Input: A graph $G=(V,E)$ and an independent set $I\subset V$<br>Initialize $F_0\leftarrow \emptyset$ and $C_0\leftarrow V$;<br>for $t=1,2,…,|I|$ do<br>&emsp;$v_t \leftarrow$ the vertex in $I\backslash F_{t-1}$ with the largest degree in $G[C_{t-1}]$;<br>&emsp;//Add $v_t$ to the fingerprint:<br>&emsp;$F_t\leftarrow F_{t-1}\cup\{v_t\}$;<br>&emsp;//Remove all the neighbours of $v_t$ from the container:<br>&emsp;$C_t\leftarrow C_{t-1}\backslash\{w\in C_{t-1}:(v,w)\in E\}$;<br>&emsp;//And remove all vertices with higher degree than $v_t$ in $G[C_{t-1}]$:<br>&emsp;$C_t\leftarrow C_t\backslash\{w\in C_{t-1}:deg_{G[C_{t-1}]}(w)\gt deg_{G[C_{t-1}]}(v_t)\}$;<br>Return $F_1,\dots,F_{|I|}$ and $C_1,\dots,C_{|I|}$.</p>
+</blockquote>
+<p>在接下来的证明中，我们记Algorithm 1每一步得到的fingerprints为$F_1,F_2,\dots,F_{|I|}$以及对应的containers为$C_1,C_2,\dots,C_{|I|}$。用记号$F_t$和$C_t$分别表示$I$的$t-th$ fingerprint和$t-th$ container。<br>(待更新…)</p>
+</div><div class="article-licensing box"><div class="licensing-title"><p>用容器定理测试图的性质</p><p><a href="http://example.com/Com-Pro/TestingGraphProperties.html">http://example.com/Com-Pro/TestingGraphProperties.html</a></p></div><div class="licensing-meta level is-mobile"><div class="level-left"><div class="level-item is-narrow"><div><h6>作者</h6><p>Jiamin Liu</p></div></div><div class="level-item is-narrow"><div><h6>发布于</h6><p>2025-08-10</p></div></div><div class="level-item is-narrow"><div><h6>更新于</h6><p>2025-08-10</p></div></div><div class="level-item is-narrow"><div><h6>许可协议</h6><p><a class="icons" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="icon fab fa-creative-commons"></i></a><a class="icons" rel="noopener" target="_blank" title="Attribution" href="https://creativecommons.org/licenses/by/4.0/"><i class="icon fab fa-creative-commons-by"></i></a><a class="icons" rel="noopener" target="_blank" title="Noncommercial" href="https://creativecommons.org/licenses/by-nc/4.0/"><i class="icon fab fa-creative-commons-nc"></i></a></p></div></div></div></div></div><!--!--></article></div><!--!--><div class="card" id="comments"><div class="card-content"><h3 class="title is-5">评论</h3><div id="comment-container"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.css"><script src="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js"></script><script>var gitalk = new Gitalk({
+            id: "d66655abca0a4a172f9ff994056a359a",
+            repo: "od-liu.github.io",
+            owner: "od-Liu",
+            clientID: "Ov23liWi9TgDXgT7hhEB",
+            clientSecret: "054ac0bc0bc8afaac9a807be4b6af2274ee9bc10",
+            admin: ["od-liu"],
+            createIssueManually: false,
+            distractionFreeMode: false,
+            perPage: 10,
+            pagerDirection: "last",
+            
+            
+            enableHotKey: true,
+            
+        })
+        gitalk.render('comment-container')</script></div></div></div><div class="column column-left is-4-tablet is-4-desktop is-4-widescreen  order-1"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar" src="/img/1.png" alt="Jiamin Liu"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">Jiamin Liu</p><p class="is-size-6 is-block">别卷我别卷我别卷我👊</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>Hangzhou</span></p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">文章</p><a href="/archives/"><p class="title">1</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">分类</p><a href="/categories/"><p class="title">0</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">标签</p><a href="/tags/"><p class="title">0</p></a></div></div></nav></div></div><!--!--></div><!--!--></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/img/logo.svg" alt="OD&#039;s blog" height="28"></a><p class="is-size-7"><span>&copy; 2025 Jiamin Liu</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a></p><p class="is-size-7">© 2019</p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("zh-cn");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script data-pjax src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="回到顶端" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script data-pjax src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
+      window.cookieconsent.initialise({
+        type: "info",
+        theme: "edgeless",
+        static: false,
+        position: "bottom-left",
+        content: {
+          message: "此网站使用Cookie来改善您的体验。",
+          dismiss: "知道了！",
+          allow: "允许使用Cookie",
+          deny: "拒绝",
+          link: "了解更多",
+          policy: "Cookie政策",
+          href: "https://www.cookiesandyou.com/",
+        },
+        palette: {
+          popup: {
+            background: "#edeff5",
+            text: "#838391"
+          },
+          button: {
+            background: "#4b81e8"
+          },
+        },
+      });
+    });</script><script src="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/js/lightgallery.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><script type="text/javascript" id="MathJax-script" async>MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']]
+      },
+      svg: {
+        fontCache: 'global'
+      },
+      chtml: {
+        matchFontHeight: false
+      }
+    };</script><script src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js"></script><script src="https://cdn.jsdelivr.net/npm/pjax@0.2.8/pjax.min.js"></script><script src="/js/pjax.js"></script><!--!--><!--!--><!--!--><script data-pjax src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="想要查找什么..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script data-pjax src="/js/insight.js" defer></script><script data-pjax>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"想要查找什么...","untitled":"(无标题)","posts":"文章","pages":"页面","categories":"分类","tags":"标签"});
+        });</script></body></html>
